@@ -52,6 +52,16 @@
       margin-top: 2rem;
     }
 
+    .facebook-link {
+      margin-top: 2rem;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    .facebook-link a {
+      color: #1877f2;
+    }
+
     @media (max-width: 600px) {
       body {
         padding: 1rem;
@@ -97,5 +107,7 @@
   <hr>
 
   <p><strong>Conclusion ?</strong> Venez découvrir Nyons et la Drôme Provençale. On vous accueillera avec un verre de rosé, une tapenade maison, et un bon bouquin à l’ombre d’un olivier 🌿😉</p>
+
+  <p class="facebook-link">👉 Rejoignez-nous sur Facebook : <a href="https://www.facebook.com/groups/nyonsaujourdhui" target="_blank">Nyons Aujourd'hui</a></p>
 </body>
 </html>
