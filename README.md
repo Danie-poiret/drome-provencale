@@ -96,18 +96,4 @@
 
   <p>Pour les curieux, le site officiel de la ville, <a href="https://www.nyons.com/" target="_blank">nyons.com</a>, est plein d’infos pratiques : agenda culturel, infos pour les touristes, démarches administratives… et même des bons plans pour vivre ici !</p>
 
-  <h2>Une ville qui bouge</h2>
-
-  <p>Mais ce n’est pas qu’un décor de carte postale. Nyons, c’est aussi une ville qui innove. Par exemple, la communauté <a href="https://www.data.gouv.fr/fr/organizations/vivre-a-nyons/" target="_blank">Vivre à Nyons</a> partage des données ouvertes sur les services, les projets citoyens, la vie locale. C’est super inspirant de voir une petite commune aussi impliquée dans le numérique et la transparence.</p>
-
-  <h2>Pourquoi ce dépôt GitHub ?</h2>
-
-  <p>Ce dépôt, c’est une base pour partager des infos, des photos, des idées ou même des projets liés à la région. Que vous soyez passionné de terroir, de code ou juste curieux, n’hésitez pas à contribuer !</p>
-
-  <hr>
-
-  <p><strong>Conclusion ?</strong> Venez découvrir Nyons et la Drôme Provençale. On vous accueillera avec un verre de rosé, une tapenade maison, et un bon bouquin à l’ombre d’un olivier 🌿😉</p>
-
-  <p class="facebook-link">👉 Rejoignez-nous sur Facebook : <a href="https://www.facebook.com/groups/nyonsaujourdhui" target="_blank">Nyons Aujourd'hui</a></p>
-</body>
-</html>
+  <h2>Une ville qui bou
