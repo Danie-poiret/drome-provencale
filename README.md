@@ -98,7 +98,7 @@
 
   <h2>Une ville qui bouge</h2>
 
-  <p>Mais ce n’est pas qu’un décor de carte postale. Nyons, c’est aussi une ville qui innove. Par exemple, la communauté <a href="https://www.data.gouv.fr/fr/organizations/vivre-a-nyons/" target="_blank">Vivre à Nyons</a> partage des données ouvertes sur les services, les projets citoyens, la vie locale. C’est super inspirant de voir une petite commune aussi impliquée dans le numérique et la transparence.</p>
+  <p>Mais ce n’est pas qu’un décor de carte postale. Nyons, c’est aussi une ville qui innove. Par exemple, la communauté <a href="https://www.data.gouv.fr/fr/organizations/vivre-a-nyons/" target="_blank">Vivre à Nyons</a> partage des données ouvertes sur les services, les projets citoyens, la vie locale. C’est super inspirant de voir une petite commune aussi impliquée dans <a href="https://www.data.gouv.fr/fr/organizations/vivre-a-nyons/" target="_blank">le numérique</a> et la transparence.</p>
 
   <h2>Pourquoi ce dépôt GitHub ?</h2>
 
