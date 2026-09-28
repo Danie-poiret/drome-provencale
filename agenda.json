@@ -1,7 +1,7 @@
 {
   "source": "https://www.drome-cestmanature.com/preparez-votre-sejour/l-agenda/",
   "source_mode": "all_links_clean_fields_then_remove_nyons",
-  "updated_at": "2026-09-28T10:44:59.983688+00:00",
+  "updated_at": "2026-09-28T10:52:54.152128+00:00",
   "scope": "100 prochains événements dans un rayon de 100 km autour de Nyons, Nyons retiré après collecte",
   "search": {
     "date_du": "28/09/2026",
@@ -26,7 +26,7 @@
     "communes_filled_from_address": 1,
     "communes_still_missing": 0,
     "dates_normalized": 1,
-    "elapsed_seconds": 3.36,
+    "elapsed_seconds": 3.12,
     "territory_filter": "none",
     "only_exclusion": "Nyons"
   },
