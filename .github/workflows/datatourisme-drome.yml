@@ -25,14 +25,14 @@ jobs:
       - name: Recuperer tous les evenements DATAtourisme de la Drome
         env:
           DATATOURISME_API_KEY: ${{ secrets.DATATOURISME_API_KEY }}
-          DATATOURISME_EVENT_LIMIT: "20"
+          DATATOURISME_EVENT_LIMIT: "50"
         run: python extract_datatourisme_drome.py
 
-      - name: Generer 20 fiches uniques comme agenda.vivreanyons.fr
+      - name: Generer 50 fiches uniques comme agenda.vivreanyons.fr
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           OPENAI_MODEL: "gpt-5.6-terra"
-          MAX_EVENT_AI_CALLS: "20"
+          MAX_EVENT_AI_CALLS: "50"
         run: python generate_event_pages.py
 
       - name: Ajouter habillage et attribution DATAtourisme
@@ -59,5 +59,5 @@ jobs:
             exit 0
           fi
 
-          git commit -m "Test DATAtourisme - 20 fiches Papy en noindex"
+          git commit -m "Test DATAtourisme - 50 fiches Papy en noindex"
           git push
