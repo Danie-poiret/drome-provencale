@@ -1,7 +1,9 @@
-name: Mise a jour agenda Baronnies V3
+name: Mise a jour agenda Baronnies V4
 
 on:
   workflow_dispatch:
+  schedule:
+    - cron: "47 6 * * *"
 
 permissions:
   contents: write
@@ -22,8 +24,11 @@ jobs:
       - name: Installer les dependances
         run: python -m pip install -r requirements.txt
 
-      - name: Extraire agenda Baronnies hors Nyons
-        run: python extract_baronnies_v3.py
+      - name: Installer Chromium
+        run: python -m playwright install --with-deps chromium
+
+      - name: Extraire le PDF officiel Baronnies hors Nyons
+        run: python extract_baronnies_v4.py
 
       - name: Enregistrer les changements
         shell: bash
@@ -32,12 +37,11 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
           git add agenda.json
-          git add _detail_cache.json
 
           if git diff --cached --quiet; then
             echo "Aucun changement."
             exit 0
           fi
 
-          git commit -m "Mise a jour agenda Baronnies V3"
+          git commit -m "Mise a jour agenda Baronnies V4"
           git push
