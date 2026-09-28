@@ -1,23 +1,23 @@
 #!/usr/bin/env python3
-"""Agenda Baronnies — moteur inspiré de Nyons.
+"""Agenda Baronnies simple : 100 prochains événements, Nyons exclu.
 
-Principe :
-- recherche Nyons + 100 km sur 180 jours ;
-- récupère TOUS les vrais liens /fiches/ des pages de résultats ;
-- dédoublonne immédiatement par URL ;
-- ne tente plus de deviner la commune dans la carte de liste ;
-- utilise d'abord le cache des fiches ;
-- ouvre ensuite les fiches nouvelles en parallèle ;
-- APRÈS lecture de la fiche, garde seulement les communes des Baronnies ;
-- exclut Nyons à ce moment-là ;
-- enlève les événements terminés et garde les 50 prochains.
+Principe calqué sur Nyons :
+- recherche autour de Nyons sur 100 km et 180 jours ;
+- lit uniquement les pages de LISTE, pas les fiches détail ;
+- repère les vrais liens /fiches/ et leur position dans le texte ;
+- récupère date + commune directement dans la liste ;
+- garde uniquement les communes des Baronnies ;
+- enlève Nyons ;
+- dédoublonne par URL ;
+- trie par date et conserve les 100 prochains.
 
-Ainsi, une carte qui n'affiche pas sa commune n'est plus perdue.
+Aucune IA et aucune ouverture de fiche détail : c'est volontairement simple.
 """
+
 from __future__ import annotations
 
-import hashlib
 import json
+import re
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import date, datetime, timedelta, timezone
@@ -30,23 +30,20 @@ import extract_baronnies_v9 as v9
 
 ROOT = Path(__file__).resolve().parent
 OUT = ROOT / "agenda.json"
-CACHE_FILE = ROOT / "_detail_cache_v9.json"
 
 CENTER = "nyons"
 RADIUS_KM = 100
 HORIZON_DAYS = 180
 MAX_LIST_PAGES = 160
-MAX_FINAL_EVENTS = 50
-MIN_FINAL_EVENTS = 10
+MAX_FINAL_EVENTS = 100
 LIST_WORKERS = 24
-DETAIL_WORKERS = 16
-DETAIL_BATCH_SIZE = 120
 TIMEOUT = 18
-DETAIL_TTL_HOURS = 60
 
 v9.RADIUS_KM = RADIUS_KM
 v9.TIMEOUT = TIMEOUT
-v9.DETAIL_TTL_HOURS = DETAIL_TTL_HOURS
+
+MONTH_RE = "|".join(sorted((re.escape(x) for x in v9.MONTHS), key=len, reverse=True))
+LIST_DATE_RE = re.compile(rf"\b(\d{{1,2}})\s+({MONTH_RE})\.?\b", re.I)
 
 
 def today_paris() -> date:
@@ -70,289 +67,118 @@ def get_page(page_no: int, start: date, end: date) -> dict:
         except Exception as exc:
             last_error = str(exc)
             if attempt == 0:
-                time.sleep(0.5)
+                time.sleep(0.4)
     return {"page": page_no, "status": 0, "url": url, "html": "", "error": last_error}
 
 
-def extract_true_links(html: str, current_url: str, page_no: int) -> list[dict]:
-    """Récupère tous les vrais liens /fiches/, sans filtre de commune."""
+def true_links_in_order(html: str, current_url: str) -> list[tuple[str, str]]:
+    """Vrais liens événement, dans l'ordre visuel, une seule fois par URL."""
     soup = v9.BeautifulSoup(html, "html.parser")
     root = soup.find("main") or soup
-    by_url: dict[str, dict] = {}
+    seen = set()
+    items: list[tuple[str, str]] = []
 
     for a in root.find_all("a", href=True):
         href = v9.normalize_url(urljoin(current_url, a.get("href", "")))
-        if not v9.is_detail_url(href):
+        if not v9.is_detail_url(href) or href in seen:
             continue
-        label = v9.clean(a.get_text(" ", strip=True))
-        item = {"url": href, "list_label": label, "list_page": page_no}
-        old = by_url.get(href)
-        if old is None or len(label) > len(old.get("list_label", "")):
-            by_url[href] = item
-    return list(by_url.values())
+        title = v9.clean(a.get_text(" ", strip=True))
+        if len(title) < 3:
+            continue
+        seen.add(href)
+        items.append((title, href))
+    return items
 
 
-def collect_candidates(start: date, end: date) -> tuple[dict[str, dict], dict]:
-    first = get_page(1, start, end)
-    if not first["html"]:
-        raise RuntimeError(f"Page 1 agenda inaccessible: {first['error'] or first['status']}")
+def find_positions(page_text: str, items: list[tuple[str, str]]) -> list[tuple[str, str, int]]:
+    located = []
+    cursor = 0
+    for title, href in items:
+        pos = page_text.find(title, cursor)
+        if pos < 0:
+            pos = page_text.find(title)
+        if pos < 0:
+            continue
+        located.append((title, href, pos))
+        cursor = pos + len(title)
+    return located
 
-    detected = v9.detect_total_pages(v9.BeautifulSoup(first["html"], "html.parser")) or 1
-    total_pages = min(detected, MAX_LIST_PAGES)
-    results = [first]
 
-    print(f"PAGE 1: HTTP {first['status']} | pages détectées={detected} | plafond={MAX_LIST_PAGES}")
+def commune_from_segment(segment: str) -> str:
+    """Cherche une commune connue dans le texte qui suit le titre."""
+    n = " " + v9.norm(segment) + " "
+    for key in v9.COMMUNE_KEYS:
+        if re.search(rf"\b{re.escape(key)}\b", n):
+            return v9.COMMUNE_BY_NORM[key]
+    return ""
 
-    if total_pages > 1:
-        with ThreadPoolExecutor(max_workers=LIST_WORKERS) as pool:
-            futures = [pool.submit(get_page, p, start, end) for p in range(2, total_pages + 1)]
-            for future in as_completed(futures):
-                results.append(future.result())
 
-    collected: dict[str, dict] = {}
-    errors = 0
-    page_stats = {}
+def date_from_before(text: str, today: date) -> str:
+    """Prend la dernière date visible avant le titre et déduit l'année."""
+    matches = list(LIST_DATE_RE.finditer(text))
+    if not matches:
+        return ""
+    m = matches[-1]
+    day = int(m.group(1))
+    month = v9.MONTHS.get(m.group(2).lower().rstrip("."))
+    if not month:
+        return ""
 
-    for result in sorted(results, key=lambda x: x["page"]):
-        p = result["page"]
-        if not result["html"]:
-            errors += 1
-            page_stats[str(p)] = {"status": result["status"], "links": 0, "error": result["error"]}
+    year = today.year
+    try:
+        candidate = date(year, month, day)
+        if candidate < today - timedelta(days=7):
+            candidate = date(year + 1, month, day)
+        return candidate.isoformat()
+    except ValueError:
+        return ""
+
+
+def parse_list_page(result: dict, today: date) -> list[dict]:
+    if not result.get("html"):
+        return []
+
+    soup = v9.BeautifulSoup(result["html"], "html.parser")
+    root = soup.find("main") or soup
+    page_text = v9.clean(root.get_text(" ", strip=True))
+    items = true_links_in_order(result["html"], result["url"])
+    located = find_positions(page_text, items)
+
+    events = []
+    for i, (title, href, pos) in enumerate(located):
+        prev = 0 if i == 0 else located[i - 1][2] + len(located[i - 1][0])
+        nxt = len(page_text) if i + 1 == len(located) else located[i + 1][2]
+
+        before = page_text[max(prev, pos - 700):pos]
+        after = page_text[pos + len(title):nxt]
+
+        commune = commune_from_segment(after[:700])
+        if not commune:
+            continue
+        if v9.norm(commune) == "nyons":
+            continue
+        if v9.norm(commune) not in v9.COMMUNE_BY_NORM:
             continue
 
-        items = extract_true_links(result["html"], result["url"], p)
-        new_count = 0
-        for item in items:
-            old = collected.get(item["url"])
-            if old is None:
-                collected[item["url"]] = item
-                new_count += 1
-            else:
-                old["list_page"] = min(old.get("list_page", p), p)
-                if len(item.get("list_label", "")) > len(old.get("list_label", "")):
-                    old["list_label"] = item.get("list_label", "")
-
-        page_stats[str(p)] = {"status": result["status"], "links": len(items), "new": new_count}
-        if p == 1 or p % 10 == 0 or new_count:
-            print(f"Page {p:03d}/{total_pages}: liens={len(items)} | +{new_count} | total={len(collected)}")
-
-    return collected, {
-        "detected_pages": detected,
-        "pages_scanned": total_pages,
-        "list_errors": errors,
-        "list_workers": LIST_WORKERS,
-        "candidate_urls": len(collected),
-        "page_stats": page_stats,
-    }
-
-
-def cache_fresh(entry: dict) -> bool:
-    stamp = v9.clean(entry.get("fetched_at"))
-    if not stamp:
-        return False
-    try:
-        dt = datetime.fromisoformat(stamp.replace("Z", "+00:00"))
-        age = (datetime.now(timezone.utc) - dt.astimezone(timezone.utc)).total_seconds()
-        return age < DETAIL_TTL_HOURS * 3600
-    except Exception:
-        return False
-
-
-def get_detail(item: dict) -> tuple[dict | None, str]:
-    try:
-        r = requests.get(item["url"], headers=v9.HEADERS, timeout=TIMEOUT, allow_redirects=True)
-        r.raise_for_status()
-        return v9.parse_detail(r.text, item, r.url), ""
-    except Exception as exc:
-        return None, str(exc)
-
-
-def reparse_dates(opening: str, today: date) -> tuple[str, str]:
-    opening = v9.clean(opening)
-    if not opening:
-        return "", ""
-
-    candidates: list[tuple[int, int, int | None]] = []
-    for d, m, y in v9.NUMERIC_DATE_RE.findall(opening):
-        candidates.append((int(d), int(m), int(y) if y else None))
-    for match in v9.NAMED_DATE_RE.finditer(opening):
-        day = int(match.group(1))
-        month = v9.MONTHS.get(match.group(2).lower().rstrip("."))
-        if month:
-            candidates.append((day, month, int(match.group(3)) if match.group(3) else None))
-    if not candidates:
-        return "", ""
-
-    explicit = [y for _, _, y in candidates if y]
-    year = explicit[0] if explicit else today.year
-    if not explicit:
-        d0, m0, _ = candidates[0]
-        try:
-            if date(year, m0, d0) < today - timedelta(days=7):
-                year += 1
-        except ValueError:
-            pass
-
-    values: list[date] = []
-    prev_month = None
-    for d, m, y in candidates:
-        if y:
-            year = y
-        elif prev_month is not None and m < prev_month - 6:
-            year += 1
-        prev_month = m
-        try:
-            values.append(date(year, m, d))
-        except ValueError:
-            pass
-    if not values:
-        return "", ""
-    return min(values).isoformat(), max(values).isoformat()
-
-
-def iso(value: str) -> date | None:
-    try:
-        return date.fromisoformat(str(value or ""))
-    except Exception:
-        return None
-
-
-def accept_event(data: dict, item: dict, today: date, horizon: date, stats: dict) -> dict | None:
-    event = dict(data)
-    commune = event.get("commune", "")
-
-    # Le filtre est volontairement ici, APRÈS lecture de la fiche.
-    if v9.norm(commune) == "nyons":
-        stats["nyons_excluded"] += 1
-        return None
-    if not commune or v9.norm(commune) not in v9.COMMUNE_BY_NORM:
-        stats["outside_rejected"] += 1
-        return None
-
-    start, end = reparse_dates(event.get("opening", ""), today)
-    if start:
-        event["start_date"] = start
-        event["end_date"] = end or start
-
-    start_d = iso(event.get("start_date", ""))
-    end_d = iso(event.get("end_date", ""))
-    if end_d and end_d < today:
-        stats["past_removed"] += 1
-        return None
-    if start_d and start_d > horizon:
-        stats["after_horizon_removed"] += 1
-        return None
-
-    event["list_page"] = item.get("list_page")
-    return event
-
-
-def dedupe_and_sort(events: list[dict]) -> tuple[list[dict], int]:
-    unique = []
-    seen_urls = set()
-    seen_fp = set()
-    duplicates = 0
-
-    for event in sorted(events, key=lambda e: (
-        e.get("start_date") or "9999-12-31",
-        v9.norm(e.get("commune")),
-        v9.norm(e.get("title")),
-    )):
-        url_key = v9.normalize_url(event.get("url", ""))
-        raw = "|".join([
-            v9.norm(event.get("title")),
-            event.get("start_date", ""),
-            event.get("end_date", ""),
-            v9.norm(event.get("commune")),
-        ])
-        fp = hashlib.sha256(raw.encode("utf-8")).hexdigest()
-        if (url_key and url_key in seen_urls) or fp in seen_fp:
-            duplicates += 1
+        start = date_from_before(before, today)
+        if not start:
             continue
-        if url_key:
-            seen_urls.add(url_key)
-        seen_fp.add(fp)
-        event["dedupe_id"] = fp[:16]
-        unique.append(event)
-    return unique, duplicates
 
+        summary = v9.clean(after)
+        events.append({
+            "title": title,
+            "start_date": start,
+            "end_date": start,
+            "commune": commune,
+            "summary": summary[:420],
+            "categories": [],
+            "url": href,
+            "source_url": href,
+            "source_format": "drome_tourisme_list",
+            "list_page": result["page"],
+        })
 
-def fetch_details(collected: dict[str, dict], cache: dict, today: date, horizon: date) -> tuple[list[dict], dict]:
-    stats = {
-        "cache_hits": 0,
-        "network_attempts": 0,
-        "network_fetches": 0,
-        "detail_errors": 0,
-        "nyons_excluded": 0,
-        "outside_rejected": 0,
-        "past_removed": 0,
-        "after_horizon_removed": 0,
-        "batches": 0,
-    }
-    accepted: list[dict] = []
-    pending: list[dict] = []
-
-    ordered = sorted(collected.values(), key=lambda x: (x.get("list_page", 9999), x.get("url", "")))
-
-    # D'abord toutes les fiches déjà connues du cache.
-    for item in ordered:
-        entry = cache.get(item["url"])
-        if isinstance(entry, dict) and cache_fresh(entry) and isinstance(entry.get("data"), dict):
-            stats["cache_hits"] += 1
-            event = accept_event(entry["data"], item, today, horizon, stats)
-            if event:
-                accepted.append(event)
-        else:
-            pending.append(item)
-
-    current_unique, _ = dedupe_and_sort(accepted)
-    print(
-        f"FICHES: {len(collected)} URLs | cache={stats['cache_hits']} | "
-        f"valides cache={len(current_unique)} | réseau restant={len(pending)}"
-    )
-
-    # Les nouvelles fiches sont ouvertes par lots. Dès que 50 événements valides
-    # sont obtenus, il est inutile d'ouvrir les milliers de fiches restantes.
-    for offset in range(0, len(pending), DETAIL_BATCH_SIZE):
-        if len(current_unique) >= MAX_FINAL_EVENTS:
-            break
-
-        batch = pending[offset:offset + DETAIL_BATCH_SIZE]
-        stats["batches"] += 1
-        stats["network_attempts"] += len(batch)
-
-        with ThreadPoolExecutor(max_workers=DETAIL_WORKERS) as pool:
-            futures = {pool.submit(get_detail, item): item for item in batch}
-            for future in as_completed(futures):
-                item = futures[future]
-                data, error = future.result()
-                if not data:
-                    stats["detail_errors"] += 1
-                    continue
-                stats["network_fetches"] += 1
-                cache[item["url"]] = {
-                    "fetched_at": datetime.now(timezone.utc).isoformat(),
-                    "data": data,
-                }
-                event = accept_event(data, item, today, horizon, stats)
-                if event:
-                    accepted.append(event)
-
-        current_unique, _ = dedupe_and_sort(accepted)
-        print(
-            f"Lot {stats['batches']}: {len(batch)} fiches testées | "
-            f"Baronnies valides cumulées={len(current_unique)}"
-        )
-
-    final_unique, duplicates = dedupe_and_sort(accepted)
-    stats["duplicates_removed"] = duplicates
-    return final_unique[:MAX_FINAL_EVENTS], stats
-
-
-def save_json(path: Path, data: object) -> None:
-    tmp = path.with_suffix(path.suffix + ".tmp")
-    tmp.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    tmp.replace(path)
+    return events
 
 
 def main() -> None:
@@ -360,27 +186,63 @@ def main() -> None:
     today = today_paris()
     horizon = today + timedelta(days=HORIZON_DAYS)
 
-    print("MOTEUR NYONS BARONNIES : tous les liens d'abord, filtre commune après la fiche")
-    print(f"Période {today} -> {horizon} | centre={CENTER} | rayon={RADIUS_KM} km | max={MAX_FINAL_EVENTS}")
+    print("BARONNIES SIMPLE : pages de liste -> Baronnies -> enlève Nyons -> 100 prochains")
+    print(f"Période {today} -> {horizon} | centre={CENTER} | rayon={RADIUS_KM} km")
 
-    collected, list_diag = collect_candidates(today, horizon)
-    if not collected:
-        raise RuntimeError("Aucun lien /fiches/ trouvé. agenda.json reste inchangé.")
+    first = get_page(1, today, horizon)
+    if not first["html"]:
+        raise RuntimeError(f"Page 1 inaccessible: {first['error'] or first['status']}")
 
-    cache = v9.load_json(CACHE_FILE)
-    final_events, detail_diag = fetch_details(collected, cache, today, horizon)
-    save_json(CACHE_FILE, cache)
+    detected = v9.detect_total_pages(v9.BeautifulSoup(first["html"], "html.parser")) or 1
+    total_pages = min(detected, MAX_LIST_PAGES)
+    results = [first]
 
-    if len(final_events) < MIN_FINAL_EVENTS:
-        raise RuntimeError(
-            f"Contrôle qualité: seulement {len(final_events)} événement(s) Baronnies hors Nyons. "
-            "agenda.json reste inchangé."
-        )
+    print(f"Pages détectées={detected} | pages lues={total_pages}")
+
+    if total_pages > 1:
+        with ThreadPoolExecutor(max_workers=LIST_WORKERS) as pool:
+            futures = [pool.submit(get_page, p, today, horizon) for p in range(2, total_pages + 1)]
+            for future in as_completed(futures):
+                results.append(future.result())
+
+    by_url: dict[str, dict] = {}
+    errors = 0
+    nyons_seen = 0
+
+    for result in sorted(results, key=lambda x: x["page"]):
+        if not result["html"]:
+            errors += 1
+            continue
+
+        # Comptage diagnostic Nyons sur le texte de la page.
+        text_norm = v9.norm(v9.BeautifulSoup(result["html"], "html.parser").get_text(" ", strip=True))
+        nyons_seen += len(re.findall(r"\bnyons\b", text_norm))
+
+        events = parse_list_page(result, today)
+        added = 0
+        for event in events:
+            if event["url"] not in by_url:
+                by_url[event["url"]] = event
+                added += 1
+
+        p = result["page"]
+        if p == 1 or p % 10 == 0 or added:
+            print(f"Page {p:03d}/{total_pages}: Baronnies hors Nyons={len(events)} | +{added} | total={len(by_url)}")
+
+    events = sorted(
+        by_url.values(),
+        key=lambda e: (e["start_date"], v9.norm(e["commune"]), v9.norm(e["title"])),
+    )
+    events = [e for e in events if e["end_date"] >= today.isoformat()]
+    events = events[:MAX_FINAL_EVENTS]
+
+    if not events:
+        raise RuntimeError("Aucun événement Baronnies hors Nyons trouvé. agenda.json reste inchangé.")
 
     elapsed = round(time.monotonic() - started, 2)
     payload = {
         "source": v9.BASE,
-        "source_mode": "nyons_engine_all_links_filter_after_detail",
+        "source_mode": "list_only_next_100_exclude_nyons",
         "updated_at": datetime.now(timezone.utc).isoformat(),
         "scope": "Baronnies en Drôme Provençale hors Nyons",
         "search": {
@@ -388,23 +250,32 @@ def main() -> None:
             "date_au": horizon.strftime("%d/%m/%Y"),
             "center": CENTER,
             "radius_km": RADIUS_KM,
-            "max_final_events": MAX_FINAL_EVENTS,
+            "max_events": MAX_FINAL_EVENTS,
         },
-        "count": len(final_events),
-        "diagnostics": {**list_diag, **detail_diag, "elapsed_seconds": elapsed},
-        "events": final_events,
+        "count": len(events),
+        "diagnostics": {
+            "detected_pages": detected,
+            "pages_scanned": total_pages,
+            "list_errors": errors,
+            "nyons_mentions_seen": nyons_seen,
+            "unique_baronnies_urls_before_limit": len(by_url),
+            "elapsed_seconds": elapsed,
+            "detail_pages_opened": 0,
+        },
+        "events": events,
     }
-    save_json(OUT, payload)
+
+    tmp = OUT.with_suffix(".json.tmp")
+    tmp.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    tmp.replace(OUT)
 
     print("=== BILAN ===")
-    print(f"Pages liste             : {list_diag['pages_scanned']}")
-    print(f"URLs candidates         : {list_diag['candidate_urls']}")
-    print(f"Cache utilisé           : {detail_diag['cache_hits']}")
-    print(f"Fiches réseau testées   : {detail_diag['network_attempts']}")
-    print(f"Nyons exclus après fiche: {detail_diag['nyons_excluded']}")
-    print(f"Hors Baronnies          : {detail_diag['outside_rejected']}")
-    print(f"Événements finaux       : {len(final_events)}")
-    print(f"Durée script            : {elapsed} s")
+    print(f"Pages liste          : {total_pages}")
+    print(f"Erreurs liste        : {errors}")
+    print(f"Baronnies hors Nyons : {len(by_url)}")
+    print(f"Événements publiés   : {len(events)}")
+    print(f"Fiches détail ouvertes: 0")
+    print(f"Durée script         : {elapsed} s")
     print("OK: agenda.json prêt.")
 
 
