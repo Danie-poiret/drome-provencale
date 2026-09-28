@@ -1,1079 +1,463 @@
 {
   "source": "https://www.drome-cestmanature.com/preparez-votre-sejour/l-agenda/",
-  "source_mode": "nyons_engine_all_links_filter_after_detail",
-  "updated_at": "2026-09-28T09:16:07.747683+00:00",
-  "scope": "Baronnies en Drôme Provençale hors Nyons",
+  "source_mode": "collect_first_remove_nyons_second",
+  "updated_at": "2026-09-28T09:26:36.537237+00:00",
+  "scope": "Prochains événements dans un rayon de 100 km autour de Nyons, Nyons retiré en second passage",
   "search": {
     "date_du": "28/09/2026",
     "date_au": "27/03/2027",
     "center": "nyons",
     "radius_km": 100,
-    "max_final_events": 50
+    "target_events": 100
   },
-  "count": 13,
+  "count": 36,
   "diagnostics": {
     "detected_pages": 149,
-    "pages_scanned": 149,
+    "pages_read": 40,
     "list_errors": 0,
-    "list_workers": 24,
-    "candidate_urls": 1043,
-    "page_stats": {
-      "1": {
-        "status": 200,
-        "links": 36,
-        "new": 36
-      },
-      "2": {
-        "status": 200,
-        "links": 36,
-        "new": 5
-      },
-      "3": {
-        "status": 200,
-        "links": 36,
-        "new": 5
-      },
-      "4": {
-        "status": 200,
-        "links": 36,
-        "new": 17
-      },
-      "5": {
-        "status": 200,
-        "links": 36,
-        "new": 9
-      },
-      "6": {
-        "status": 200,
-        "links": 36,
-        "new": 14
-      },
-      "7": {
-        "status": 200,
-        "links": 36,
-        "new": 25
-      },
-      "8": {
-        "status": 200,
-        "links": 36,
-        "new": 15
-      },
-      "9": {
-        "status": 200,
-        "links": 36,
-        "new": 15
-      },
-      "10": {
-        "status": 200,
-        "links": 36,
-        "new": 21
-      },
-      "11": {
-        "status": 200,
-        "links": 36,
-        "new": 23
-      },
-      "12": {
-        "status": 200,
-        "links": 36,
-        "new": 6
-      },
-      "13": {
-        "status": 200,
-        "links": 35,
-        "new": 6
-      },
-      "14": {
-        "status": 200,
-        "links": 36,
-        "new": 16
-      },
-      "15": {
-        "status": 200,
-        "links": 36,
-        "new": 5
-      },
-      "16": {
-        "status": 200,
-        "links": 36,
-        "new": 0
-      },
-      "17": {
-        "status": 200,
-        "links": 36,
-        "new": 7
-      },
-      "18": {
-        "status": 200,
-        "links": 34,
-        "new": 6
-      },
-      "19": {
-        "status": 200,
-        "links": 36,
-        "new": 16
-      },
-      "20": {
-        "status": 200,
-        "links": 36,
-        "new": 4
-      },
-      "21": {
-        "status": 200,
-        "links": 36,
-        "new": 13
-      },
-      "22": {
-        "status": 200,
-        "links": 36,
-        "new": 20
-      },
-      "23": {
-        "status": 200,
-        "links": 36,
-        "new": 9
-      },
-      "24": {
-        "status": 200,
-        "links": 36,
-        "new": 24
-      },
-      "25": {
-        "status": 200,
-        "links": 36,
-        "new": 6
-      },
-      "26": {
-        "status": 200,
-        "links": 36,
-        "new": 11
-      },
-      "27": {
-        "status": 200,
-        "links": 36,
-        "new": 0
-      },
-      "28": {
-        "status": 200,
-        "links": 30,
-        "new": 5
-      },
-      "29": {
-        "status": 200,
-        "links": 36,
-        "new": 13
-      },
-      "30": {
-        "status": 200,
-        "links": 36,
-        "new": 5
-      },
-      "31": {
-        "status": 200,
-        "links": 36,
-        "new": 11
-      },
-      "32": {
-        "status": 200,
-        "links": 36,
-        "new": 20
-      },
-      "33": {
-        "status": 200,
-        "links": 36,
-        "new": 18
-      },
-      "34": {
-        "status": 200,
-        "links": 36,
-        "new": 30
-      },
-      "35": {
-        "status": 200,
-        "links": 36,
-        "new": 8
-      },
-      "36": {
-        "status": 200,
-        "links": 35,
-        "new": 5
-      },
-      "37": {
-        "status": 200,
-        "links": 36,
-        "new": 7
-      },
-      "38": {
-        "status": 200,
-        "links": 36,
-        "new": 5
-      },
-      "39": {
-        "status": 200,
-        "links": 31,
-        "new": 2
-      },
-      "40": {
-        "status": 200,
-        "links": 36,
-        "new": 9
-      },
-      "41": {
-        "status": 200,
-        "links": 36,
-        "new": 0
-      },
-      "42": {
-        "status": 200,
-        "links": 36,
-        "new": 6
-      },
-      "43": {
-        "status": 200,
-        "links": 36,
-        "new": 11
-      },
-      "44": {
-        "status": 200,
-        "links": 36,
-        "new": 14
-      },
-      "45": {
-        "status": 200,
-        "links": 36,
-        "new": 7
-      },
-      "46": {
-        "status": 200,
-        "links": 34,
-        "new": 3
-      },
-      "47": {
-        "status": 200,
-        "links": 34,
-        "new": 0
-      },
-      "48": {
-        "status": 200,
-        "links": 36,
-        "new": 4
-      },
-      "49": {
-        "status": 200,
-        "links": 36,
-        "new": 3
-      },
-      "50": {
-        "status": 200,
-        "links": 36,
-        "new": 1
-      },
-      "51": {
-        "status": 200,
-        "links": 36,
-        "new": 5
-      },
-      "52": {
-        "status": 200,
-        "links": 36,
-        "new": 6
-      },
-      "53": {
-        "status": 200,
-        "links": 36,
-        "new": 7
-      },
-      "54": {
-        "status": 200,
-        "links": 36,
-        "new": 0
-      },
-      "55": {
-        "status": 200,
-        "links": 30,
-        "new": 0
-      },
-      "56": {
-        "status": 200,
-        "links": 34,
-        "new": 6
-      },
-      "57": {
-        "status": 200,
-        "links": 36,
-        "new": 5
-      },
-      "58": {
-        "status": 200,
-        "links": 36,
-        "new": 10
-      },
-      "59": {
-        "status": 200,
-        "links": 36,
-        "new": 10
-      },
-      "60": {
-        "status": 200,
-        "links": 36,
-        "new": 7
-      },
-      "61": {
-        "status": 200,
-        "links": 36,
-        "new": 13
-      },
-      "62": {
-        "status": 200,
-        "links": 36,
-        "new": 5
-      },
-      "63": {
-        "status": 200,
-        "links": 36,
-        "new": 3
-      },
-      "64": {
-        "status": 200,
-        "links": 35,
-        "new": 3
-      },
-      "65": {
-        "status": 200,
-        "links": 36,
-        "new": 5
-      },
-      "66": {
-        "status": 200,
-        "links": 36,
-        "new": 4
-      },
-      "67": {
-        "status": 200,
-        "links": 36,
-        "new": 5
-      },
-      "68": {
-        "status": 200,
-        "links": 36,
-        "new": 3
-      },
-      "69": {
-        "status": 200,
-        "links": 36,
-        "new": 10
-      },
-      "70": {
-        "status": 200,
-        "links": 36,
-        "new": 8
-      },
-      "71": {
-        "status": 200,
-        "links": 36,
-        "new": 3
-      },
-      "72": {
-        "status": 200,
-        "links": 31,
-        "new": 0
-      },
-      "73": {
-        "status": 200,
-        "links": 33,
-        "new": 4
-      },
-      "74": {
-        "status": 200,
-        "links": 36,
-        "new": 4
-      },
-      "75": {
-        "status": 200,
-        "links": 36,
-        "new": 9
-      },
-      "76": {
-        "status": 200,
-        "links": 36,
-        "new": 9
-      },
-      "77": {
-        "status": 200,
-        "links": 36,
-        "new": 9
-      },
-      "78": {
-        "status": 200,
-        "links": 36,
-        "new": 7
-      },
-      "79": {
-        "status": 200,
-        "links": 36,
-        "new": 3
-      },
-      "80": {
-        "status": 200,
-        "links": 32,
-        "new": 2
-      },
-      "81": {
-        "status": 200,
-        "links": 33,
-        "new": 3
-      },
-      "82": {
-        "status": 200,
-        "links": 36,
-        "new": 5
-      },
-      "83": {
-        "status": 200,
-        "links": 35,
-        "new": 5
-      },
-      "84": {
-        "status": 200,
-        "links": 36,
-        "new": 7
-      },
-      "85": {
-        "status": 200,
-        "links": 36,
-        "new": 5
-      },
-      "86": {
-        "status": 200,
-        "links": 35,
-        "new": 4
-      },
-      "87": {
-        "status": 200,
-        "links": 36,
-        "new": 2
-      },
-      "88": {
-        "status": 200,
-        "links": 35,
-        "new": 4
-      },
-      "89": {
-        "status": 200,
-        "links": 36,
-        "new": 3
-      },
-      "90": {
-        "status": 200,
-        "links": 36,
-        "new": 6
-      },
-      "91": {
-        "status": 200,
-        "links": 36,
-        "new": 9
-      },
-      "92": {
-        "status": 200,
-        "links": 36,
-        "new": 5
-      },
-      "93": {
-        "status": 200,
-        "links": 36,
-        "new": 6
-      },
-      "94": {
-        "status": 200,
-        "links": 36,
-        "new": 5
-      },
-      "95": {
-        "status": 200,
-        "links": 36,
-        "new": 5
-      },
-      "96": {
-        "status": 200,
-        "links": 30,
-        "new": 0
-      },
-      "97": {
-        "status": 200,
-        "links": 31,
-        "new": 4
-      },
-      "98": {
-        "status": 200,
-        "links": 36,
-        "new": 12
-      },
-      "99": {
-        "status": 200,
-        "links": 35,
-        "new": 0
-      },
-      "100": {
-        "status": 200,
-        "links": 35,
-        "new": 6
-      },
-      "101": {
-        "status": 200,
-        "links": 36,
-        "new": 8
-      },
-      "102": {
-        "status": 200,
-        "links": 36,
-        "new": 8
-      },
-      "103": {
-        "status": 200,
-        "links": 36,
-        "new": 3
-      },
-      "104": {
-        "status": 200,
-        "links": 36,
-        "new": 4
-      },
-      "105": {
-        "status": 200,
-        "links": 35,
-        "new": 3
-      },
-      "106": {
-        "status": 200,
-        "links": 36,
-        "new": 3
-      },
-      "107": {
-        "status": 200,
-        "links": 36,
-        "new": 4
-      },
-      "108": {
-        "status": 200,
-        "links": 36,
-        "new": 2
-      },
-      "109": {
-        "status": 200,
-        "links": 36,
-        "new": 5
-      },
-      "110": {
-        "status": 200,
-        "links": 36,
-        "new": 11
-      },
-      "111": {
-        "status": 200,
-        "links": 32,
-        "new": 0
-      },
-      "112": {
-        "status": 200,
-        "links": 32,
-        "new": 1
-      },
-      "113": {
-        "status": 200,
-        "links": 27,
-        "new": 0
-      },
-      "114": {
-        "status": 200,
-        "links": 32,
-        "new": 1
-      },
-      "115": {
-        "status": 200,
-        "links": 29,
-        "new": 0
-      },
-      "116": {
-        "status": 200,
-        "links": 31,
-        "new": 0
-      },
-      "117": {
-        "status": 200,
-        "links": 31,
-        "new": 0
-      },
-      "118": {
-        "status": 200,
-        "links": 28,
-        "new": 0
-      },
-      "119": {
-        "status": 200,
-        "links": 29,
-        "new": 1
-      },
-      "120": {
-        "status": 200,
-        "links": 29,
-        "new": 1
-      },
-      "121": {
-        "status": 200,
-        "links": 27,
-        "new": 2
-      },
-      "122": {
-        "status": 200,
-        "links": 15,
-        "new": 4
-      },
-      "123": {
-        "status": 200,
-        "links": 18,
-        "new": 5
-      },
-      "124": {
-        "status": 200,
-        "links": 19,
-        "new": 3
-      },
-      "125": {
-        "status": 200,
-        "links": 14,
-        "new": 6
-      },
-      "126": {
-        "status": 200,
-        "links": 20,
-        "new": 10
-      },
-      "127": {
-        "status": 200,
-        "links": 21,
-        "new": 7
-      },
-      "128": {
-        "status": 200,
-        "links": 25,
-        "new": 9
-      },
-      "129": {
-        "status": 200,
-        "links": 27,
-        "new": 9
-      },
-      "130": {
-        "status": 200,
-        "links": 23,
-        "new": 6
-      },
-      "131": {
-        "status": 200,
-        "links": 15,
-        "new": 5
-      },
-      "132": {
-        "status": 200,
-        "links": 22,
-        "new": 8
-      },
-      "133": {
-        "status": 200,
-        "links": 18,
-        "new": 5
-      },
-      "134": {
-        "status": 200,
-        "links": 22,
-        "new": 8
-      },
-      "135": {
-        "status": 200,
-        "links": 27,
-        "new": 9
-      },
-      "136": {
-        "status": 200,
-        "links": 23,
-        "new": 9
-      },
-      "137": {
-        "status": 200,
-        "links": 24,
-        "new": 8
-      },
-      "138": {
-        "status": 200,
-        "links": 17,
-        "new": 6
-      },
-      "139": {
-        "status": 200,
-        "links": 16,
-        "new": 4
-      },
-      "140": {
-        "status": 200,
-        "links": 16,
-        "new": 4
-      },
-      "141": {
-        "status": 200,
-        "links": 14,
-        "new": 3
-      },
-      "142": {
-        "status": 200,
-        "links": 17,
-        "new": 5
-      },
-      "143": {
-        "status": 200,
-        "links": 22,
-        "new": 11
-      },
-      "144": {
-        "status": 200,
-        "links": 18,
-        "new": 10
-      },
-      "145": {
-        "status": 200,
-        "links": 24,
-        "new": 15
-      },
-      "146": {
-        "status": 200,
-        "links": 23,
-        "new": 7
-      },
-      "147": {
-        "status": 200,
-        "links": 21,
-        "new": 10
-      },
-      "148": {
-        "status": 200,
-        "links": 21,
-        "new": 9
-      },
-      "149": {
-        "status": 200,
-        "links": 20,
-        "new": 9
-      }
-    },
-    "cache_hits": 424,
-    "network_attempts": 619,
-    "network_fetches": 619,
+    "candidate_urls": 36,
+    "detail_cache_hits": 36,
+    "detail_network_fetches": 0,
     "detail_errors": 0,
-    "nyons_excluded": 40,
-    "outside_rejected": 990,
-    "past_removed": 0,
-    "after_horizon_removed": 0,
-    "batches": 6,
-    "duplicates_removed": 0,
-    "elapsed_seconds": 106.03
+    "nyons_removed_second_pass": 0,
+    "candidates_checked_second_pass": 36,
+    "elapsed_seconds": 9.44,
+    "territory_filter": "none",
+    "only_exclusion": "Nyons, second pass"
   },
   "events": [
     {
-      "title": "Parcours découverte de la Biscuiterie",
-      "start_date": "2026-04-01",
-      "end_date": "2026-10-31",
-      "commune": "Saint-Maurice-sur-Eygues",
-      "address": "Biscuiterie de Provence ZA les Grands Prés 26110 Saint-Maurice-sur-Eygues",
-      "description": "Plongez dans l'univers de la Fabrique en visitant notre Musée Parcours découverte ! Histoire, vues sur les ateliers, activités ludiques et dégustation gratuite… venez passer un agréable moment en famille et terminez par notre halle gourmande salon de thé. Histoire, vues sur les ateliers, activités ludiques et dégustation, venez passer un agréable moment en famille ! En visite libre",
-      "opening": "Du 01/04 au 31/10/2026 du lundi au samedi de 10h30 à 11h15. Et le dimanche en Juillet et Août.",
-      "tariffs": "Gratuit. Sur inscription à l'office de tourisme.",
-      "contact": "Lieu de rendez-vous Biscuiterie de Provence ZA les Grands Prés 26110 Saint-Maurice-sur-Eygues 04 75 26 10 35 Nous contacter par mail Visiter le site web",
-      "url": "https://www.drome-cestmanature.com/fiches/parcours-decouverte-de-la-biscuiterie/",
-      "source_url": "https://www.drome-cestmanature.com/fiches/parcours-decouverte-de-la-biscuiterie/",
-      "source_format": "drome_tourisme_filtered_detail",
-      "search_centers": [
-        "nyons",
-        "buis-les-baronnies"
-      ],
-      "dedupe_id": "eef2981fcbcb8ca8",
-      "search_windows": [
-        "2026-09-28_2026-10-27"
-      ],
-      "list_page": 1
+      "title": "À 01h Jeu de piste / Chasse au trésor Madame de Sévigné et le trésor de Valaurie Valaurie",
+      "start_date": "2026-09-28",
+      "end_date": "2026-09-28",
+      "summary": "",
+      "categories": [],
+      "url": "https://www.drome-cestmanature.com/fiches/madame-de-sevigne-et-le-tresor-de-valaurie/",
+      "source_url": "https://www.drome-cestmanature.com/fiches/madame-de-sevigne-et-le-tresor-de-valaurie/",
+      "source_format": "drome_tourisme_list_then_detail_filter",
+      "list_page": 1,
+      "address": ". Jeu à la demande et sur réservation. Accès Départ devant le point info Le village 26230 Valaurie"
     },
     {
-      "title": "Marché de producteurs",
-      "start_date": "2026-05-11",
-      "end_date": "2026-10-12",
-      "commune": "Les Pilles",
-      "address": "Place de l'Olivier 26110 Les Pilles",
-      "description": "Marché de producteurs locaux. Buvette et petite restauration jusqu'à 20h30 Animations régulières",
-      "opening": "Du 11/05 au 12/10/2026 le lundi de 17h à 19h.",
-      "tariffs": "Accès libre.",
-      "contact": "Lieu de rendez-vous Place de l'Olivier 26110 Les Pilles 04 75 27 71 80 Nous contacter par mail Visiter le site web Mise à jour le 07/04/2026 Par Office de Tourisme des Baronnies en Drôme Provençale",
-      "url": "https://www.drome-cestmanature.com/fiches/marche-de-producteurs-19/",
-      "source_url": "https://www.drome-cestmanature.com/fiches/marche-de-producteurs-19/",
-      "source_format": "drome_tourisme_filtered_detail",
-      "search_centers": [
-        "nyons",
-        "buis-les-baronnies"
-      ],
-      "dedupe_id": "8eae630c10563cb8",
-      "search_windows": [
-        "2026-09-28_2026-10-27"
-      ],
-      "list_page": 1
+      "title": "De 20h À 19h59 Initiation / découverte dans le cadre d'un événement Ateliers floraux avec La Nuit Rêveuse Châteaudouble",
+      "start_date": "2026-09-28",
+      "end_date": "2026-09-28",
+      "summary": "",
+      "categories": [],
+      "url": "https://www.drome-cestmanature.com/fiches/ateliers-floraux-avec-la-nuit-reveuse/",
+      "source_url": "https://www.drome-cestmanature.com/fiches/ateliers-floraux-avec-la-nuit-reveuse/",
+      "source_format": "drome_tourisme_list_then_detail_filter",
+      "list_page": 2,
+      "address": "La Nuit rêveuse - Atelier floral 19 Grande Rue 26120 Châteaudouble"
     },
     {
-      "title": "Vide grenier",
+      "title": "À 01h Jeu de piste / Chasse au trésor Année 2026 : Madame de Sévigné et le mystère de Donzère Donzère",
+      "start_date": "2026-09-29",
+      "end_date": "2026-09-29",
+      "summary": "",
+      "categories": [],
+      "url": "https://www.drome-cestmanature.com/fiches/annee-2026-madame-de-sevigne-et-le-mystere-de-donzere/",
+      "source_url": "https://www.drome-cestmanature.com/fiches/annee-2026-madame-de-sevigne-et-le-mystere-de-donzere/",
+      "source_format": "drome_tourisme_list_then_detail_filter",
+      "list_page": 2,
+      "address": ". Accès Le village 26290 Donzère"
+    },
+    {
+      "title": "De 12h30 À 01h59 Spectacle Lecture jeunesse : Ophélie lit Romans-sur-Isère",
+      "start_date": "2026-09-30",
+      "end_date": "2026-09-30",
+      "summary": "",
+      "categories": [],
+      "url": "https://www.drome-cestmanature.com/fiches/lecture-jeunesse-ophelie-lit/",
+      "source_url": "https://www.drome-cestmanature.com/fiches/lecture-jeunesse-ophelie-lit/",
+      "source_format": "drome_tourisme_list_then_detail_filter",
+      "list_page": 4,
+      "address": "Librairie La Cordelette 6 cote des Cordeliers 26100 Romans-sur-Isère"
+    },
+    {
+      "title": "À 01h Jeu de piste / Chasse au trésor Madame de Sévigné et le serment de Réauville Réauville",
+      "start_date": "2026-10-01",
+      "end_date": "2026-10-01",
+      "summary": "",
+      "categories": [],
+      "url": "https://www.drome-cestmanature.com/fiches/madame-de-sevigne-et-le-serment-de-reauville/",
+      "source_url": "https://www.drome-cestmanature.com/fiches/madame-de-sevigne-et-le-serment-de-reauville/",
+      "source_format": "drome_tourisme_list_then_detail_filter",
+      "list_page": 4,
+      "address": ". Jeu à la demande. Sur réservation. Accès Le village 26230 Réauville"
+    },
+    {
+      "title": "À 02h Jeu de piste / Chasse au trésor Le petit naturaliste Suze-la-Rousse",
+      "start_date": "2026-10-01",
+      "end_date": "2026-10-01",
+      "summary": "",
+      "categories": [],
+      "url": "https://www.drome-cestmanature.com/fiches/le-petit-naturaliste/",
+      "source_url": "https://www.drome-cestmanature.com/fiches/le-petit-naturaliste/",
+      "source_format": "drome_tourisme_list_then_detail_filter",
+      "list_page": 5,
+      "address": "Château de Suze-la-Rousse Le Village 26790 Suze-la-Rousse"
+    },
+    {
+      "title": "De 02h À 01h59 Foire ou salon 86ème Foire du Dauphiné Romans-sur-Isère",
+      "start_date": "2026-10-02",
+      "end_date": "2026-10-02",
+      "summary": "",
+      "categories": [],
+      "url": "https://www.drome-cestmanature.com/fiches/86eme-foire-du-dauphine/",
+      "source_url": "https://www.drome-cestmanature.com/fiches/86eme-foire-du-dauphine/",
+      "source_format": "drome_tourisme_list_then_detail_filter",
+      "list_page": 7,
+      "address": "en transport en commun est également possible depuis le centre-ville grâce aux lignes du réseau Citéa (Ligne C6 ou ligne 60 depuis la gare de Romans). - A l’extrémité Nord se trouveront sept restaurants aux cuisines variées ainsi qu’une allée de snacks, bars et gourmandises (allée gourmande). - A l‘extrémité Est, la fête foraine s’étendra sur 5 000 m² pour le plus grand plaisir des familles. - Au centre, une grande place bordée d’arbres permettra au public de prendre un verre et de déguster quelques délices tout en admirant le spectacle ! - Les stands exposants seront positionnés tout autour de l'esplanade où se dérouleront les concerts/animations. Accès Foire du Dauphiné Rue Vincent d'Indy 26100 Romans-sur-Isère"
+    },
+    {
+      "title": "De 21h30 À 21h29 Concert Concert d'ouverture de saison du Jazz Action Valence Valence",
+      "start_date": "2026-10-02",
+      "end_date": "2026-10-02",
+      "summary": "",
+      "categories": [],
+      "url": "https://www.drome-cestmanature.com/fiches/concert-ouverture-de-saison-jazz-action-valence/",
+      "source_url": "https://www.drome-cestmanature.com/fiches/concert-ouverture-de-saison-jazz-action-valence/",
+      "source_format": "drome_tourisme_list_then_detail_filter",
+      "list_page": 8,
+      "address": "Maison de la Musique et de la Danse 32 avenue Georges Clemenceau 26000 Valence"
+    },
+    {
+      "title": "De 02h À 01h59 Exposition, Portes ouvertes Atelier Natasha Bertin - Journées Nationales des Artistes Romans-sur-Isère",
+      "start_date": "2026-10-03",
+      "end_date": "2026-10-03",
+      "summary": "",
+      "categories": [],
+      "url": "https://www.drome-cestmanature.com/fiches/atelier-natasha-bertin-journees-nationales-des-artistes/",
+      "source_url": "https://www.drome-cestmanature.com/fiches/atelier-natasha-bertin-journees-nationales-des-artistes/",
+      "source_format": "drome_tourisme_list_then_detail_filter",
+      "list_page": 9,
+      "address": "Atelier Natasha Bertin 99 c, rue Parmentier 26100 Romans-sur-Isère"
+    },
+    {
+      "title": "De 02h À 01h59 Exposition, Portes ouvertes Visite de l’atelier \"Aux couleurs de l'eau\" -Journées nationales des Artistes Valence",
+      "start_date": "2026-10-03",
+      "end_date": "2026-10-03",
+      "summary": "",
+      "categories": [],
+      "url": "https://www.drome-cestmanature.com/fiches/visite-de-latelier-aux-couleurs-de-leau-journees-nationales-des-artistes/",
+      "source_url": "https://www.drome-cestmanature.com/fiches/visite-de-latelier-aux-couleurs-de-leau-journees-nationales-des-artistes/",
+      "source_format": "drome_tourisme_list_then_detail_filter",
+      "list_page": 10,
+      "address": "Aux Couleurs de l'eau 65 rue Denis Papin 26000 Valence"
+    },
+    {
+      "title": "De 16h À 20h59 Exposition, Portes ouvertes Portes ouvertes de l'atelier de Roland Salti -Journées nationales des Artistes Valence",
+      "start_date": "2026-10-03",
+      "end_date": "2026-10-03",
+      "summary": "",
+      "categories": [],
+      "url": "https://www.drome-cestmanature.com/fiches/portes-ouvertes-de-latelier-de-roland-salti-journees-nationales-des-artistes/",
+      "source_url": "https://www.drome-cestmanature.com/fiches/portes-ouvertes-de-latelier-de-roland-salti-journees-nationales-des-artistes/",
+      "source_format": "drome_tourisme_list_then_detail_filter",
+      "list_page": 11,
+      "address": "Atelier de Roland Salti 21 rue Foriel 26000 Valence"
+    },
+    {
+      "title": "De 22h30 À 22h29 Spectacle Spectacle - A l'eau Châteaudouble",
+      "start_date": "2026-10-03",
+      "end_date": "2026-10-03",
+      "summary": "",
+      "categories": [],
+      "url": "https://www.drome-cestmanature.com/fiches/spectacle-a-leau/",
+      "source_url": "https://www.drome-cestmanature.com/fiches/spectacle-a-leau/",
+      "source_format": "drome_tourisme_list_then_detail_filter",
+      "list_page": 12,
+      "address": "Salle des Fêtes Grande Rue 26120 Châteaudouble"
+    },
+    {
+      "title": "À 01h Démonstration, Initiation / découverte dans le cadre d'un événement Lettres d'encre et sceaux de cire Grignan",
       "start_date": "2026-10-04",
       "end_date": "2026-10-04",
-      "commune": "Mirabel-aux-Baronnies",
-      "address": "Tennis 26110 Mirabel-aux-Baronnies",
-      "description": "Dernier vide grenier de la saison Buvette et restauration sur place Vide grenier proposé par Gym Vitamine Mirabel-Piégon et le soutien du comité des fêtes de Mirabel aux Baronnies",
-      "opening": "Dimanche 4 octobre 2026 à partir de 8h.",
-      "tariffs": "Gratuit. Tarif exposants : 5€ les 3 mètres.",
-      "contact": "Lieu de rendez-vous Tennis 26110 Mirabel-aux-Baronnies 06 98 97 96 67 Nous contacter par mail Mise à jour le 21/09/2026 Par Office de Tourisme des Baronnies en Drôme Provençale",
-      "url": "https://www.drome-cestmanature.com/fiches/vide-grenier-10/",
-      "source_url": "https://www.drome-cestmanature.com/fiches/vide-grenier-10/",
-      "source_format": "drome_tourisme_filtered_detail",
-      "search_centers": [
-        "nyons",
-        "buis-les-baronnies"
-      ],
-      "dedupe_id": "4e3e5330e5a64859",
-      "search_windows": [
-        "2026-09-28_2026-10-27"
-      ],
-      "list_page": 14
+      "summary": "",
+      "categories": [],
+      "url": "https://www.drome-cestmanature.com/fiches/lettres-dencre-et-sceaux-de-cire/",
+      "source_url": "https://www.drome-cestmanature.com/fiches/lettres-dencre-et-sceaux-de-cire/",
+      "source_format": "drome_tourisme_list_then_detail_filter",
+      "list_page": 12,
+      "address": "RDV devant l'Office de Tourisme Pays de Grignan - Enclave des Papes 12 Place du Jeu de Ballon Maison de Pays 26230 Grignan"
     },
     {
-      "title": "Vide grenier",
+      "title": "De 07h À 15h Vide greniers, Marché aux puces Vide-Grenier au Parc Saint-Paul Saint-Paul-lès-Romans",
       "start_date": "2026-10-04",
       "end_date": "2026-10-04",
-      "commune": "Sahune",
-      "address": "Place du village 26510 Sahune",
-      "description": "Vide grenier sur la place du village Buvette et snack sur place",
-      "opening": "Dimanche 4 octobre 2026.",
-      "tariffs": "Entrée libre. Tarif exposant : 5€ les 3 mètres.",
-      "contact": "Lieu de rendez-vous Place du village 26510 Sahune 06 87 70 71 42 Mise à jour le 17/09/2026 Par Office de Tourisme des Baronnies en Drôme Provençale",
-      "url": "https://www.drome-cestmanature.com/fiches/vide-grenier-6/",
-      "source_url": "https://www.drome-cestmanature.com/fiches/vide-grenier-6/",
-      "source_format": "drome_tourisme_filtered_detail",
-      "search_centers": [
-        "nyons",
-        "buis-les-baronnies"
-      ],
-      "dedupe_id": "937843cee3ec730c",
-      "search_windows": [
-        "2026-09-28_2026-10-27"
-      ],
-      "list_page": 13
+      "summary": "",
+      "categories": [],
+      "url": "https://www.drome-cestmanature.com/fiches/vide-grenier-au-parc-saint-paul/",
+      "source_url": "https://www.drome-cestmanature.com/fiches/vide-grenier-au-parc-saint-paul/",
+      "source_format": "drome_tourisme_list_then_detail_filter",
+      "list_page": 14,
+      "address": "Parc St Paul 21 Avenue des Pins 26750 Saint-Paul-lès-Romans"
     },
     {
-      "title": "Miratrail",
+      "title": "De 19h À 20h Théâtre Théâtre : Ça résiste ! Valence",
+      "start_date": "2026-10-04",
+      "end_date": "2026-10-04",
+      "summary": "",
+      "categories": [],
+      "url": "https://www.drome-cestmanature.com/fiches/ca-resiste-theatre-de-la-ville/",
+      "source_url": "https://www.drome-cestmanature.com/fiches/ca-resiste-theatre-de-la-ville/",
+      "source_format": "drome_tourisme_list_then_detail_filter",
+      "list_page": 15,
+      "address": "Théâtre de la ville Place de la Liberté 26000 Valence"
+    },
+    {
+      "title": "De 02h À 01h59 Foire ou salon Foire Bio de Montfroc Montfroc",
+      "start_date": "2026-10-05",
+      "end_date": "2026-10-05",
+      "summary": "",
+      "categories": [],
+      "url": "https://www.drome-cestmanature.com/fiches/foire-bio-de-montfroc/",
+      "source_url": "https://www.drome-cestmanature.com/fiches/foire-bio-de-montfroc/",
+      "source_format": "drome_tourisme_list_then_detail_filter",
+      "list_page": 16,
+      "address": "Le village 26560 Montfroc"
+    },
+    {
+      "title": "De 11h À 19h59 Compétition sportive Concours Hunter d’équitation Beauregard-Baret",
+      "start_date": "2026-10-05",
+      "end_date": "2026-10-05",
+      "summary": "",
+      "categories": [],
+      "url": "https://www.drome-cestmanature.com/fiches/concours-hunter-dequitation/",
+      "source_url": "https://www.drome-cestmanature.com/fiches/concours-hunter-dequitation/",
+      "source_format": "drome_tourisme_list_then_detail_filter",
+      "list_page": 17,
+      "address": "Ecurie Casa Nostra 780 route du souvenir 26300 Beauregard-Baret"
+    },
+    {
+      "title": "À 02h Festival Festival de cinéma de Saint-Paul-Trois-Châteaux Saint-Paul-Trois-Châteaux",
+      "start_date": "2026-10-06",
+      "end_date": "2026-10-06",
+      "summary": "",
+      "categories": [],
+      "url": "https://www.drome-cestmanature.com/fiches/festival-de-cinema-de-saint-paul-trois-chateaux/",
+      "source_url": "https://www.drome-cestmanature.com/fiches/festival-de-cinema-de-saint-paul-trois-chateaux/",
+      "source_format": "drome_tourisme_list_then_detail_filter",
+      "list_page": 18,
+      "address": "Cinéma Le 7 ème Art et Salle Fontaine, Espace de la Gare 26130 Saint-Paul-Trois-Châteaux"
+    },
+    {
+      "title": "À 02h Jeu de piste / Chasse au trésor Jeux de Piste Numériques et Ludiques avec Baludik Grignan",
+      "start_date": "2026-10-07",
+      "end_date": "2026-10-07",
+      "summary": "",
+      "categories": [],
+      "url": "https://www.drome-cestmanature.com/fiches/jeux-de-piste-numeriques-et-ludiques-avec-baludik/",
+      "source_url": "https://www.drome-cestmanature.com/fiches/jeux-de-piste-numeriques-et-ludiques-avec-baludik/",
+      "source_format": "drome_tourisme_list_then_detail_filter",
+      "list_page": 19,
+      "address": "Office de Tourisme Pays de Grignan - Enclave des Papes : Bureau de Grignan 12 Place du Jeu de Ballon Maison de Pays 26230 Grignan"
+    },
+    {
+      "title": "De 22h30 À 22h29 Spectacle Spectacle d'impro : Les Givrés dans \"100% improvisé\" Bourg-lès-Valence",
+      "start_date": "2026-10-07",
+      "end_date": "2026-10-07",
+      "summary": "jeu. 08 octobre",
+      "categories": [],
+      "url": "https://www.drome-cestmanature.com/fiches/spectacle-dimpro-les-givres-dans-100-improvise/",
+      "source_url": "https://www.drome-cestmanature.com/fiches/spectacle-dimpro-les-givres-dans-100-improvise/",
+      "source_format": "drome_tourisme_list_then_detail_filter",
+      "list_page": 20,
+      "address": "L'Appart café - Café Théâtre Quai Thannaron 26500 Bourg-lès-Valence"
+    },
+    {
+      "title": "De 17h À 01h59 Conférence / Débat / Rencontre Visite contée : Pierre Josquin raconte Gillons Génissieux",
+      "start_date": "2026-10-08",
+      "end_date": "2026-10-08",
+      "summary": "",
+      "categories": [],
+      "url": "https://www.drome-cestmanature.com/fiches/visite-contee-pierre-josquin-raconte-gillons/",
+      "source_url": "https://www.drome-cestmanature.com/fiches/visite-contee-pierre-josquin-raconte-gillons/",
+      "source_format": "drome_tourisme_list_then_detail_filter",
+      "list_page": 21,
+      "address": "Association \"Pour Gillons\" M. Pierre MINONZIO 1455, route de la Plaine 26750 Génissieux"
+    },
+    {
+      "title": "De 02h À 01h Dégustation Dégustations truffées au Domaine de Cordis Grignan",
+      "start_date": "2026-10-09",
+      "end_date": "2026-10-09",
+      "summary": "",
+      "categories": [],
+      "url": "https://www.drome-cestmanature.com/fiches/degustations-truffees-au-domaine-de-cordis/",
+      "source_url": "https://www.drome-cestmanature.com/fiches/degustations-truffees-au-domaine-de-cordis/",
+      "source_format": "drome_tourisme_list_then_detail_filter",
+      "list_page": 22,
+      "address": "Domaine de Cordis 700 route de Chantemerle 26230 Grignan"
+    },
+    {
+      "title": "À 01h Animation dans les commerces, Initiation / découverte dans le cadre d'un événement Ateliers Pâtisserie Grignan",
       "start_date": "2026-10-10",
       "end_date": "2026-10-10",
-      "commune": "Mirabel-aux-Baronnies",
-      "address": "Tennis club Mirabel Piégon 26110 Mirabel-aux-Baronnies",
-      "description": "2 courses 11h : 20km - 850m de dénivelé 9h : 40km - 1500m de dénivelé 18h : DJ Sets Dégustation de vins locaux Food truck",
-      "opening": "Samedi 10 octobre 2026 à partir de 9h.",
-      "tariffs": "Accès libre.",
-      "contact": "Lieu de rendez-vous Tennis club Mirabel Piégon 26110 Mirabel-aux-Baronnies 04 75 27 15 09 Nous contacter par mail Visiter le site web Mise à jour le 05/09/2026 Par Office de Tourisme des Baronnies en Drôme Provençale",
-      "url": "https://www.drome-cestmanature.com/fiches/miratrail/",
-      "source_url": "https://www.drome-cestmanature.com/fiches/miratrail/",
-      "source_format": "drome_tourisme_filtered_detail",
-      "search_centers": [
-        "buis-les-baronnies"
-      ],
-      "dedupe_id": "001ca32a5409b868",
-      "search_windows": [
-        "2026-09-28_2026-10-27"
-      ],
-      "list_page": 23
+      "summary": "757 à 792 résultat(s) sur 5354 résultat(s) 1 ... 20 21 22 23 24 ... 149 En voir plus Du : Au : Voir la carte Filtrer Espace ambassadeurs Les ambassadeurs Drôme c'est ma nature Espace pro Espace pour les pros du tourisme Espace presse Espace presse Suivre nos actualités Les dernières actus de la Drôme dans votre boite mail Newsletter S'inscrire Informations pratiques Contact L’Actu’Drôme Comment venir Téléchargez nos ",
+      "categories": [],
+      "url": "https://www.drome-cestmanature.com/fiches/ateliers-patisserie/",
+      "source_url": "https://www.drome-cestmanature.com/fiches/ateliers-patisserie/",
+      "source_format": "drome_tourisme_list_then_detail_filter",
+      "list_page": 22,
+      "address": "L'Epicerie d'Emilie 10 Chemin de la petite tuilière 26230 Grignan"
     },
     {
-      "title": "« Ts’art : Une histoire de Paradis ! »",
+      "title": "De 12h30 À 13h15 Dégustation Parcours découverte de la Biscuiterie Saint-Maurice-sur-Eygues",
+      "start_date": "2026-10-10",
+      "end_date": "2026-10-10",
+      "summary": "",
+      "categories": [],
+      "url": "https://www.drome-cestmanature.com/fiches/parcours-decouverte-de-la-biscuiterie/",
+      "source_url": "https://www.drome-cestmanature.com/fiches/parcours-decouverte-de-la-biscuiterie/",
+      "source_format": "drome_tourisme_list_then_detail_filter",
+      "list_page": 24,
+      "commune": "Saint-Maurice-sur-Eygues",
+      "address": "Biscuiterie de Provence ZA les Grands Prés 26110 Saint-Maurice-sur-Eygues"
+    },
+    {
+      "title": "De 23h À 22h59 Concert La Générale - Goleen & Jearz & Catno Bourg-lès-Valence",
+      "start_date": "2026-10-10",
+      "end_date": "2026-10-10",
+      "summary": "dim. 11 octobre",
+      "categories": [],
+      "url": "https://www.drome-cestmanature.com/fiches/la-generale-goleen-jearz-catno/",
+      "source_url": "https://www.drome-cestmanature.com/fiches/la-generale-goleen-jearz-catno/",
+      "source_format": "drome_tourisme_list_then_detail_filter",
+      "list_page": 25,
+      "address": "Vacarme Exquis - VEX 811 allée André Revol 26500 Bourg-lès-Valence"
+    },
+    {
+      "title": "De 11h À 15h Marché Marché hebdomadaire Grane",
+      "start_date": "2026-10-11",
+      "end_date": "2026-10-11",
+      "summary": "",
+      "categories": [],
+      "url": "https://www.drome-cestmanature.com/fiches/marche-hebdomadaire-191/",
+      "source_url": "https://www.drome-cestmanature.com/fiches/marche-hebdomadaire-191/",
+      "source_format": "drome_tourisme_list_then_detail_filter",
+      "list_page": 26,
+      "address": "26400 Grane"
+    },
+    {
+      "title": "De 01h À 01h Jeu de piste / Chasse au trésor Baludik - Le Rêve de l'aviateur Montélimar",
+      "start_date": "2026-10-12",
+      "end_date": "2026-10-12",
+      "summary": "",
+      "categories": [],
+      "url": "https://www.drome-cestmanature.com/fiches/baludik-le-reve-de-laviateur/",
+      "source_url": "https://www.drome-cestmanature.com/fiches/baludik-le-reve-de-laviateur/",
+      "source_format": "drome_tourisme_list_then_detail_filter",
+      "list_page": 27,
+      "address": "au musée. - Le départ du jeu se fait à l’accueil du musée. - Assurez-vous d’avoir suffisamment de batterie sur votre téléphone avant de vous. - Téléchargez gratuitement l'application Baludik. Accès Musée Européen de l'Aviation de Chasse Chemin de l'entrée de l'aérodrome 26200 Montélimar"
+    },
+    {
+      "title": "À 02h Jeu de piste / Chasse au trésor A la recherche des animaux de la garenne Suze-la-Rousse",
       "start_date": "2026-10-14",
       "end_date": "2026-10-14",
-      "commune": "Buis-les-Baronnies",
-      "address": "Hôpital de Buis 109 Rue du Dr Bernard 26170 Buis-les-Baronnies",
-      "description": "« Ts’art : Une histoire de Paradis ! » De la dépression à la création artistique, Représentation théâtrale, avec une quinzaine d’adhérents des GEM le Soleil et l’Oasis, qui donnent vie à leurs zones d’ombre et les transforment en force. Accompagnés par Philippe Altier, comédien et metteur en scène, ils partagent une création pleine d’émotions, portée par leur énergie communicative et la présence de trois marionnettes qui viennent enrichir le récit. Un spectacle qui s’inscrit dans le cadre de la Semaine Bleue 2026.",
-      "opening": "Mercredi 14 octobre 2026 de 15h à 16h.",
-      "tariffs": "Entrée libre.",
-      "contact": "Lieu de rendez-vous Hôpital de Buis 109 Rue du Dr Bernard 26170 Buis-les-Baronnies 04 75 27 79 27 Nous contacter par mail Mise à jour le 10/09/2026 Par Office de Tourisme des Baronnies en Drôme Provençale",
-      "url": "https://www.drome-cestmanature.com/fiches/tsart-une-histoire-de-paradis-5/",
-      "source_url": "https://www.drome-cestmanature.com/fiches/tsart-une-histoire-de-paradis-5/",
-      "source_format": "drome_tourisme_filtered_detail",
-      "search_centers": [
-        "buis-les-baronnies",
-        "montbrun-les-bains"
-      ],
-      "dedupe_id": "16585ffe5e606a4c",
-      "search_windows": [
-        "2026-09-28_2026-10-27"
-      ],
-      "list_page": 29
+      "summary": "",
+      "categories": [],
+      "url": "https://www.drome-cestmanature.com/fiches/a-la-recherche-des-animaux-de-la-garenne/",
+      "source_url": "https://www.drome-cestmanature.com/fiches/a-la-recherche-des-animaux-de-la-garenne/",
+      "source_format": "drome_tourisme_list_then_detail_filter",
+      "list_page": 29,
+      "address": "Château de Suze-la-Rousse Le Village 26790 Suze-la-Rousse"
     },
     {
-      "title": "Vignobles en Scène - Domaine Vallot - Atelier autour du Vin et de la Vigne - Les Immersives",
-      "start_date": "2026-10-16",
-      "end_date": "2026-10-16",
-      "commune": "Vinsobres",
-      "address": "Domaine Vallot - le Coriançon 3176 Route de Nyons Quartier Hauterives 26110 Vinsobres",
-      "description": "Atelier autour du vin et de la vigne, enfant et adulte à partir de 6 ans. Peinture avec du vin à emporter chez soi. Réservation obligatoire Chaînes et Labels Label Vignobles & Découvertes",
-      "opening": "Vendredi 16 octobre 2026 de 17h à 18h30. Réservation obligatoire.",
-      "tariffs": "Tarif unique : 20 €.",
-      "contact": "Lieu de rendez-vous Domaine Vallot - le Coriançon 3176 Route de Nyons Quartier Hauterives 26110 Vinsobres 04 75 26 03 24 Nous contacter par mail Visiter le site web Mise à jour le 21/09/2026 Par Office de Tourisme des Baronnies en Drôme Provençale",
-      "url": "https://www.drome-cestmanature.com/fiches/vignobles-en-scene-domaine-vallot-atelier-autour-du-vin-et-de-la-vigne-les-immersives/",
-      "source_url": "https://www.drome-cestmanature.com/fiches/vignobles-en-scene-domaine-vallot-atelier-autour-du-vin-et-de-la-vigne-les-immersives/",
-      "source_format": "drome_tourisme_filtered_detail",
-      "search_centers": [
-        "buis-les-baronnies"
-      ],
-      "dedupe_id": "4b9db8cbfd2ba13b",
-      "search_windows": [
-        "2026-09-28_2026-10-27"
-      ],
-      "list_page": 32
+      "title": "De 22h À 21h59 Théâtre Théâtre : Salma, Mon Amour Valence",
+      "start_date": "2026-10-15",
+      "end_date": "2026-10-15",
+      "summary": "",
+      "categories": [],
+      "url": "https://www.drome-cestmanature.com/fiches/theatre-salma-mon-amour/",
+      "source_url": "https://www.drome-cestmanature.com/fiches/theatre-salma-mon-amour/",
+      "source_format": "drome_tourisme_list_then_detail_filter",
+      "list_page": 31,
+      "address": "Comédie de Valence 1 Place Charles Huguenel 26000 Valence"
     },
     {
-      "title": "Fête des fruits d'automne",
+      "title": "À 02h Jeu de piste / Chasse au trésor Jeu de Piste Numérique et Ludique avec Baludik : Blasons, Symboles et Pierres gravées Grignan Grignan",
       "start_date": "2026-10-17",
       "end_date": "2026-10-17",
-      "commune": "Rémuzat",
-      "address": "Place du Champ de Mars 26510 Rémuzat",
-      "description": "Marché de producteurs locaux et artisans Sur la place centrale du village Parking à proximité Petite restauration sur place - soupe de courge Concours de pâte de coing",
-      "opening": "Samedi 17 octobre 2026 de 10h à 18h.",
-      "tariffs": "Accès libre.",
-      "contact": "Lieu de rendez-vous Place du Champ de Mars 26510 Rémuzat 07 86 05 33 27 Nous contacter par mail Mise à jour le 31/08/2026 Par Office de Tourisme des Baronnies en Drôme Provençale",
-      "url": "https://www.drome-cestmanature.com/fiches/fete-des-fruits-dautomne/",
-      "source_url": "https://www.drome-cestmanature.com/fiches/fete-des-fruits-dautomne/",
-      "source_format": "drome_tourisme_filtered_detail",
-      "search_centers": [
-        "buis-les-baronnies",
-        "montbrun-les-bains"
-      ],
-      "dedupe_id": "17a4f5fd21736278",
-      "search_windows": [
-        "2026-09-28_2026-10-27"
-      ],
-      "list_page": 34
+      "summary": "",
+      "categories": [],
+      "url": "https://www.drome-cestmanature.com/fiches/jeux-de-piste-numeriques-et-ludiques-avec-baludik-blasons-symboles-et-pierres-gravees-grignan/",
+      "source_url": "https://www.drome-cestmanature.com/fiches/jeux-de-piste-numeriques-et-ludiques-avec-baludik-blasons-symboles-et-pierres-gravees-grignan/",
+      "source_format": "drome_tourisme_list_then_detail_filter",
+      "list_page": 33,
+      "address": "Office de Tourisme Pays de Grignan - Enclave des Papes : Bureau de Grignan 12 Place du Jeu de Ballon Maison de Pays 26230 Grignan"
     },
     {
-      "title": "Vide Grenier de Courges Potirons et Cie",
+      "title": "De 12h À 01h59 Braderie Braderie Vintage - Ville de Romans Romans-sur-Isère",
+      "start_date": "2026-10-17",
+      "end_date": "2026-10-17",
+      "summary": "",
+      "categories": [],
+      "url": "https://www.drome-cestmanature.com/fiches/braderie-vintage-ville-de-romans/",
+      "source_url": "https://www.drome-cestmanature.com/fiches/braderie-vintage-ville-de-romans/",
+      "source_format": "drome_tourisme_list_then_detail_filter",
+      "list_page": 34,
+      "address": "Rue Mathieu-de-la-Drôme 26100 Romans-sur-Isère"
+    },
+    {
+      "title": "De 20h30 À 22h Conférence / Débat / Rencontre Rencontre littéraire Grignan",
+      "start_date": "2026-10-17",
+      "end_date": "2026-10-17",
+      "summary": "",
+      "categories": [],
+      "url": "https://www.drome-cestmanature.com/fiches/rencontre-litteraire-13/",
+      "source_url": "https://www.drome-cestmanature.com/fiches/rencontre-litteraire-13/",
+      "source_format": "drome_tourisme_list_then_detail_filter",
+      "list_page": 35,
+      "address": "Association Colophon Maison du Bailli 3 Place Saint Louis 26230 Grignan"
+    },
+    {
+      "title": "À 02h Jeu de piste / Chasse au trésor Chasse aux trésors \"Bienvenue à l’école des sorciers !\" avec Tournon Passion Tournon-sur-Rhône",
       "start_date": "2026-10-18",
       "end_date": "2026-10-18",
-      "commune": "Montbrun-les-Bains",
-      "address": "Centre du village 26570 Montbrun-les-Bains",
-      "description": "Vide Grenier organisé dans le cadre de Courges, Potirons et Cie",
-      "opening": "Dimanche 18 octobre 2026 de 9h à 18h.",
-      "tariffs": "Gratuit.",
-      "contact": "Lieu de rendez-vous Centre du village 26570 Montbrun-les-Bains 04 75 28 82 98 Nous contacter par mail Mise à jour le 18/09/2026 Par Office de Tourisme des Baronnies en Drôme Provençale",
-      "url": "https://www.drome-cestmanature.com/fiches/vide-grenier-de-courges-potirons-et-cie/",
-      "source_url": "https://www.drome-cestmanature.com/fiches/vide-grenier-de-courges-potirons-et-cie/",
-      "source_format": "drome_tourisme_filtered_detail",
-      "search_centers": [
-        "buis-les-baronnies",
-        "montbrun-les-bains"
-      ],
-      "dedupe_id": "02bb32944998386f",
-      "search_windows": [
-        "2026-09-28_2026-10-27"
-      ],
-      "list_page": 36
+      "summary": "",
+      "categories": [],
+      "url": "https://www.drome-cestmanature.com/fiches/chasse-aux-tresors-bienvenue-a-lecole-des-sorciers-avec-tournon-passion/",
+      "source_url": "https://www.drome-cestmanature.com/fiches/chasse-aux-tresors-bienvenue-a-lecole-des-sorciers-avec-tournon-passion/",
+      "source_format": "drome_tourisme_list_then_detail_filter",
+      "list_page": 36,
+      "address": "Ardèche Hermitage Tourisme Hôtel de la Tourette 2, place Saint Julien 07300 Tournon-sur-Rhône"
     },
     {
-      "title": "« Ts’art : Une histoire de Paradis ! »",
+      "title": "De 12h À 19h59 Conférence / Débat / Rencontre, Festival, Séances de dédicaces Salon du livre et de l’imaginaire : Dracopolis Saint-Marcel-lès-Valence",
+      "start_date": "2026-10-18",
+      "end_date": "2026-10-18",
+      "summary": "",
+      "categories": [],
+      "url": "https://www.drome-cestmanature.com/fiches/dracopolis-la-cite-du-livre-et-de-limaginaire/",
+      "source_url": "https://www.drome-cestmanature.com/fiches/dracopolis-la-cite-du-livre-et-de-limaginaire/",
+      "source_format": "drome_tourisme_list_then_detail_filter",
+      "list_page": 37,
+      "address": "Salle des fêtes, médiathèque l'Oiseau Lire, MJC 26320 Saint-Marcel-lès-Valence"
+    },
+    {
+      "title": "À 02h Jeu de piste / Chasse au trésor Jeu de piste numérique et ludique : Voyagez avec Madame de Sévigné : de Donzère à Grignan Donzère",
+      "start_date": "2026-10-20",
+      "end_date": "2026-10-20",
+      "summary": "",
+      "categories": [],
+      "url": "https://www.drome-cestmanature.com/fiches/jeu-de-piste-numerique-et-ludique-voyagez-avec-madame-de-sevigne-de-donzere-a-grignan/",
+      "source_url": "https://www.drome-cestmanature.com/fiches/jeu-de-piste-numerique-et-ludique-voyagez-avec-madame-de-sevigne-de-donzere-a-grignan/",
+      "source_format": "drome_tourisme_list_then_detail_filter",
+      "list_page": 39,
+      "address": "Site du Pont de Robinet 26290 Donzère"
+    },
+    {
+      "title": "À 02h Jeu de piste / Chasse au trésor Chasse au trésor au parc 1001 cornes : Aravis à la rescousse ! Charmes-sur-l'Herbasse",
       "start_date": "2026-10-21",
       "end_date": "2026-10-21",
-      "commune": "Rémuzat",
-      "address": "Marpa de Rémuzat Allée des Béatrix 26510 Rémuzat",
-      "description": "« Ts’art : Une histoire de Paradis ! » De la dépression à la création artistique, Représentation théâtrale, avec une quinzaine d’adhérents des GEM le Soleil et l’Oasis, qui donnent vie à leurs zones d’ombre et les transforment en force. Accompagnés par Philippe Altier, comédien et metteur en scène, ils partagent une création pleine d’émotions, portée par leur énergie communicative et la présence de trois marionnettes qui viennent enrichir le récit. Un spectacle qui s’inscrit dans le cadre de la Semaine Bleue 2026.",
-      "opening": "Mercredi 21 octobre 2026 de 15h à 16h.",
-      "tariffs": "Entrée libre.",
-      "contact": "Lieu de rendez-vous Marpa de Rémuzat Allée des Béatrix 26510 Rémuzat 04 75 27 79 27 Nous contacter par mail Mise à jour le 10/09/2026 Par Office de Tourisme des Baronnies en Drôme Provençale",
-      "url": "https://www.drome-cestmanature.com/fiches/tsart-une-histoire-de-paradis-13/",
-      "source_url": "https://www.drome-cestmanature.com/fiches/tsart-une-histoire-de-paradis-13/",
-      "source_format": "drome_tourisme_filtered_detail",
-      "search_centers": [
-        "buis-les-baronnies",
-        "montbrun-les-bains"
-      ],
-      "dedupe_id": "b43c961b40beb0c9",
-      "search_windows": [
-        "2026-09-28_2026-10-27"
-      ],
-      "list_page": 40
-    },
-    {
-      "title": "Naïma Quartet",
-      "start_date": "2026-11-27",
-      "end_date": "2026-11-27",
-      "commune": "Buis-les-Baronnies",
-      "address": "Salle & théâtre de verdure de La Palun ZA La Palun 26170 Buis-les-Baronnies",
-      "description": "Mené par la captivante contrebassiste et chanteuse Naïma Girou depuis 2016, Le Naïma Quartet est soudé par un son singulier et puissant construit au fil du temps. Réservation sur https://www.parfumdejazz.com/ C’est une profonde amitié qu’ils nous font partager chaleureusement. Si le son du Naïma Quartet est si spécial c’est parce qu’il met en valeur chacun d’eux. Les influences et les caractères se croisent dans une harmonie fraîche et naturelle. Comme une renaissance, Evergreen le nouvel album du Naïma Quartet s’enracine dans de vieilles pierres et tend vers une lumière nouvelle. Après l’eau dans Sea of Red (avril 2019) et le vent dans Zephyr (mars 2021), le Quartet compose un hymne envoûtant à la nature dans ce troisième album. Les quatre musiciens et amis puisent dans la sève du jazz et font fleurir des compositions aux couleurs électriques.",
-      "opening": "Vendredi 27 novembre 2026 à partir de 20h30.",
-      "tariffs": "Tarif réduit : 12 € (Chômeurs / Groupes +10 personnes / Adhérents / Donateurs / Stagiaire des ateliers), Adulte : 15 €, Enfant (11 ans) : gratuit. Tarif jeune (12-25 ans) et PSH (Pour les détenteurs d'une CMI ou d'une Carte européenne du handicap) 7€.",
-      "contact": "Lieu de rendez-vous Salle & théâtre de verdure de La Palun ZA La Palun 26170 Buis-les-Baronnies Visiter le site web Mise à jour le 25/09/2026 Par Office de Tourisme des Baronnies en Drôme Provençale",
-      "url": "https://www.drome-cestmanature.com/fiches/naima-quartet/",
-      "source_url": "https://www.drome-cestmanature.com/fiches/naima-quartet/",
-      "source_format": "drome_tourisme_filtered_detail",
-      "search_centers": [
-        "nyons",
-        "buis-les-baronnies",
-        "montbrun-les-bains"
-      ],
-      "dedupe_id": "76d7874ce32f30f5",
-      "search_windows": [
-        "2026-11-27_2026-12-26"
-      ],
-      "list_page": 84
-    },
-    {
-      "title": "Marché de Noël 2026",
-      "start_date": "2026-12-06",
-      "end_date": "2026-12-06",
-      "commune": "Rémuzat",
-      "address": "Village vacances Neaclub Les Lavandes 26510 Rémuzat",
-      "description": "Dans 2 salles chauffées marché de producteurs et artisans Buvette - Tombola - soupe à l'oignon et restauration rapide sur place",
-      "opening": "Dimanche 6 décembre 2026 de 10h à 17h.",
-      "tariffs": "Accès libre.",
-      "contact": "Lieu de rendez-vous Village vacances Neaclub Les Lavandes 26510 Rémuzat 07 86 05 33 27 Nous contacter par mail Mise à jour le 25/09/2026 Par Office de Tourisme des Baronnies en Drôme Provençale",
-      "url": "https://www.drome-cestmanature.com/fiches/marche-de-noel-2026/",
-      "source_url": "https://www.drome-cestmanature.com/fiches/marche-de-noel-2026/",
-      "source_format": "drome_tourisme_filtered_detail",
-      "search_centers": [
-        "buis-les-baronnies",
-        "montbrun-les-bains"
-      ],
-      "dedupe_id": "6a9ec837d9edeecc",
-      "search_windows": [
-        "2026-11-27_2026-12-26"
-      ],
-      "list_page": 95
-    },
-    {
-      "title": "L'olive et huile en fête",
-      "start_date": "2027-01-18",
-      "end_date": "2027-01-18",
-      "commune": "Buis-les-Baronnies",
-      "address": "Place du marché 26170 Buis-les-Baronnies",
-      "description": "Cette 22ème édition de l'Olive et l'Huile en Fête vous proposera une journée festive et conviviale autour de l'Huile d'olive et les Olives noires de Nyons AOP mais aussi des produits traditionnels propres au terroir des Baronnies Provençales . 9h00 :",
-      "opening": "du marché de producteurs 10h00 : Messe de l'huile nouvelle à l'église de Buis-les-Baronnies 11h30 : Alicoque et apéritif offert par les producteurs 14h00 : Promenade guidée dans les oliviers (départ devant la fontaine de la Place des Arcades) Et toute la journée : Musique provençale avec le groupe Li Festejaïres Exposition et défilé de vieux tracteurs Promenade en calèche (gratuit) Accès Place du marché 26170 Buis-les-Baronnies Informations complémentaires Langues parlées Français Ouverture Lundi 18 janvier.",
-      "tariffs": "Accès libre.",
-      "contact": "Lieu de rendez-vous Place du marché 26170 Buis-les-Baronnies Nous contacter par mail Mise à jour le 30/12/2025 Par Office de Tourisme des Baronnies en Drôme Provençale",
-      "url": "https://www.drome-cestmanature.com/fiches/lolive-et-huile-en-fete/",
-      "source_url": "https://www.drome-cestmanature.com/fiches/lolive-et-huile-en-fete/",
-      "source_format": "drome_tourisme_filtered_detail",
-      "search_centers": [
-        "buis-les-baronnies",
-        "montbrun-les-bains"
-      ],
-      "dedupe_id": "e4161ac944ced279",
-      "search_windows": [
-        "2026-12-27_2027-01-25"
-      ],
-      "list_page": 127
+      "summary": "",
+      "categories": [],
+      "url": "https://www.drome-cestmanature.com/fiches/chasse-au-tresor-au-parc-1001-cornes-aravis-a-la-rescousse/",
+      "source_url": "https://www.drome-cestmanature.com/fiches/chasse-au-tresor-au-parc-1001-cornes-aravis-a-la-rescousse/",
+      "source_format": "drome_tourisme_list_then_detail_filter",
+      "list_page": 40,
+      "address": "Parc 1001 cornes 460, Chemin des Pinèdes Route de Bathernay 26260 Charmes-sur-l'Herbasse"
     }
   ]
 }
