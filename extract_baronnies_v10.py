@@ -1,25 +1,22 @@
 #!/usr/bin/env python3
-"""Agenda Baronnies simple : 100 prochains événements, Nyons exclu.
+"""Agenda simple : 100 prochains événements autour de Nyons, Nyons exclu.
 
-Principe calqué sur Nyons :
-- recherche autour de Nyons sur 100 km et 180 jours ;
-- lit uniquement les pages de LISTE, pas les fiches détail ;
-- repère les vrais liens /fiches/ et leur position dans le texte ;
-- récupère date + commune directement dans la liste ;
-- garde uniquement les communes des Baronnies ;
-- enlève Nyons ;
+Principe :
+- recherche La Drôme Tourisme autour de Nyons dans un rayon de 100 km ;
+- lit seulement les pages de LISTE ;
+- récupère tous les vrais liens /fiches/ sans filtre de territoire ;
+- enlève uniquement les événements dont le bloc local mentionne Nyons ;
 - dédoublonne par URL ;
-- trie par date et conserve les 100 prochains.
+- trie par date ;
+- conserve les 100 prochains événements.
 
-Aucune IA et aucune ouverture de fiche détail : c'est volontairement simple.
+Aucune fiche détail, aucune IA, aucun filtre Baronnies.
 """
-
 from __future__ import annotations
 
 import json
 import re
 import time
-from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from urllib.parse import urljoin
@@ -36,7 +33,6 @@ RADIUS_KM = 100
 HORIZON_DAYS = 180
 MAX_LIST_PAGES = 160
 MAX_FINAL_EVENTS = 100
-LIST_WORKERS = 24
 TIMEOUT = 18
 
 v9.RADIUS_KM = RADIUS_KM
@@ -44,6 +40,7 @@ v9.TIMEOUT = TIMEOUT
 
 MONTH_RE = "|".join(sorted((re.escape(x) for x in v9.MONTHS), key=len, reverse=True))
 LIST_DATE_RE = re.compile(rf"\b(\d{{1,2}})\s+({MONTH_RE})\.?\b", re.I)
+POSTAL_COMMUNE_RE = re.compile(r"\b(?:0[1-9]|[1-8]\d|9[0-5])\d{3}\s+([A-Za-zÀ-ÿ'’\- ]{2,60})")
 
 
 def today_paris() -> date:
@@ -72,7 +69,6 @@ def get_page(page_no: int, start: date, end: date) -> dict:
 
 
 def true_links_in_order(html: str, current_url: str) -> list[tuple[str, str]]:
-    """Vrais liens événement, dans l'ordre visuel, une seule fois par URL."""
     soup = v9.BeautifulSoup(html, "html.parser")
     root = soup.find("main") or soup
     seen = set()
@@ -104,17 +100,7 @@ def find_positions(page_text: str, items: list[tuple[str, str]]) -> list[tuple[s
     return located
 
 
-def commune_from_segment(segment: str) -> str:
-    """Cherche une commune connue dans le texte qui suit le titre."""
-    n = " " + v9.norm(segment) + " "
-    for key in v9.COMMUNE_KEYS:
-        if re.search(rf"\b{re.escape(key)}\b", n):
-            return v9.COMMUNE_BY_NORM[key]
-    return ""
-
-
 def date_from_before(text: str, today: date) -> str:
-    """Prend la dernière date visible avant le titre et déduit l'année."""
     matches = list(LIST_DATE_RE.finditer(text))
     if not matches:
         return ""
@@ -134,9 +120,19 @@ def date_from_before(text: str, today: date) -> str:
         return ""
 
 
-def parse_list_page(result: dict, today: date) -> list[dict]:
+def commune_from_segment(segment: str) -> str:
+    """Essaie d'afficher une commune, sans jamais l'utiliser comme filtre."""
+    m = POSTAL_COMMUNE_RE.search(segment)
+    if m:
+        value = v9.clean(m.group(1))
+        value = re.split(r"\b(?:Tél|Tel|Téléphone|Contact|Ouverture|Tarifs|Description)\b", value, maxsplit=1, flags=re.I)[0]
+        return v9.clean(value)[:60]
+    return ""
+
+
+def parse_list_page(result: dict, today: date) -> tuple[list[dict], int]:
     if not result.get("html"):
-        return []
+        return [], 0
 
     soup = v9.BeautifulSoup(result["html"], "html.parser")
     root = soup.find("main") or soup
@@ -145,26 +141,28 @@ def parse_list_page(result: dict, today: date) -> list[dict]:
     located = find_positions(page_text, items)
 
     events = []
+    nyons_removed = 0
+
     for i, (title, href, pos) in enumerate(located):
         prev = 0 if i == 0 else located[i - 1][2] + len(located[i - 1][0])
         nxt = len(page_text) if i + 1 == len(located) else located[i + 1][2]
 
         before = page_text[max(prev, pos - 700):pos]
         after = page_text[pos + len(title):nxt]
+        local_block = v9.clean(before[-250:] + " " + title + " " + after[:700])
 
-        commune = commune_from_segment(after[:700])
-        if not commune:
-            continue
-        if v9.norm(commune) == "nyons":
-            continue
-        if v9.norm(commune) not in v9.COMMUNE_BY_NORM:
+        # SEUL filtre territorial demandé : Nyons.
+        if re.search(r"\bnyons\b", v9.norm(local_block)):
+            nyons_removed += 1
             continue
 
         start = date_from_before(before, today)
         if not start:
             continue
 
+        commune = commune_from_segment(after[:700])
         summary = v9.clean(after)
+
         events.append({
             "title": title,
             "start_date": start,
@@ -178,7 +176,7 @@ def parse_list_page(result: dict, today: date) -> list[dict]:
             "list_page": result["page"],
         })
 
-    return events
+    return events, nyons_removed
 
 
 def main() -> None:
@@ -186,7 +184,7 @@ def main() -> None:
     today = today_paris()
     horizon = today + timedelta(days=HORIZON_DAYS)
 
-    print("BARONNIES SIMPLE : pages de liste -> Baronnies -> enlève Nyons -> 100 prochains")
+    print("AGENDA SIMPLE : tous les événements, sauf Nyons, puis 100 prochains")
     print(f"Période {today} -> {horizon} | centre={CENTER} | rayon={RADIUS_KM} km")
 
     first = get_page(1, today, horizon)
@@ -195,56 +193,57 @@ def main() -> None:
 
     detected = v9.detect_total_pages(v9.BeautifulSoup(first["html"], "html.parser")) or 1
     total_pages = min(detected, MAX_LIST_PAGES)
-    results = [first]
-
-    print(f"Pages détectées={detected} | pages lues={total_pages}")
-
-    if total_pages > 1:
-        with ThreadPoolExecutor(max_workers=LIST_WORKERS) as pool:
-            futures = [pool.submit(get_page, p, today, horizon) for p in range(2, total_pages + 1)]
-            for future in as_completed(futures):
-                results.append(future.result())
+    print(f"Pages détectées={detected}")
 
     by_url: dict[str, dict] = {}
     errors = 0
-    nyons_seen = 0
+    nyons_removed = 0
+    pages_read = 0
 
-    for result in sorted(results, key=lambda x: x["page"]):
+    # Les résultats sont paginés par l'agenda. On lit dans l'ordre et on s'arrête
+    # dès qu'on a une marge suffisante au-dessus des 100 événements demandés.
+    for page_no in range(1, total_pages + 1):
+        result = first if page_no == 1 else get_page(page_no, today, horizon)
+        pages_read += 1
+
         if not result["html"]:
             errors += 1
             continue
 
-        # Comptage diagnostic Nyons sur le texte de la page.
-        text_norm = v9.norm(v9.BeautifulSoup(result["html"], "html.parser").get_text(" ", strip=True))
-        nyons_seen += len(re.findall(r"\bnyons\b", text_norm))
-
-        events = parse_list_page(result, today)
+        events, removed = parse_list_page(result, today)
+        nyons_removed += removed
         added = 0
+
         for event in events:
             if event["url"] not in by_url:
                 by_url[event["url"]] = event
                 added += 1
 
-        p = result["page"]
-        if p == 1 or p % 10 == 0 or added:
-            print(f"Page {p:03d}/{total_pages}: Baronnies hors Nyons={len(events)} | +{added} | total={len(by_url)}")
+        print(
+            f"Page {page_no:03d}/{total_pages}: gardés={len(events)} | "
+            f"Nyons retirés={removed} | +{added} | total={len(by_url)}"
+        )
+
+        # Petite marge pour pouvoir trier proprement par date ensuite.
+        if len(by_url) >= 130:
+            break
 
     events = sorted(
         by_url.values(),
-        key=lambda e: (e["start_date"], v9.norm(e["commune"]), v9.norm(e["title"])),
+        key=lambda e: (e["start_date"], v9.norm(e.get("title"))),
     )
     events = [e for e in events if e["end_date"] >= today.isoformat()]
     events = events[:MAX_FINAL_EVENTS]
 
     if not events:
-        raise RuntimeError("Aucun événement Baronnies hors Nyons trouvé. agenda.json reste inchangé.")
+        raise RuntimeError("Aucun événement hors Nyons trouvé. agenda.json reste inchangé.")
 
     elapsed = round(time.monotonic() - started, 2)
     payload = {
         "source": v9.BASE,
-        "source_mode": "list_only_next_100_exclude_nyons",
+        "source_mode": "next_100_all_except_nyons",
         "updated_at": datetime.now(timezone.utc).isoformat(),
-        "scope": "Baronnies en Drôme Provençale hors Nyons",
+        "scope": "100 prochains événements dans un rayon de 100 km autour de Nyons, Nyons exclu",
         "search": {
             "date_du": today.strftime("%d/%m/%Y"),
             "date_au": horizon.strftime("%d/%m/%Y"),
@@ -255,12 +254,13 @@ def main() -> None:
         "count": len(events),
         "diagnostics": {
             "detected_pages": detected,
-            "pages_scanned": total_pages,
+            "pages_read": pages_read,
             "list_errors": errors,
-            "nyons_mentions_seen": nyons_seen,
-            "unique_baronnies_urls_before_limit": len(by_url),
+            "nyons_removed": nyons_removed,
+            "unique_urls_before_limit": len(by_url),
             "elapsed_seconds": elapsed,
             "detail_pages_opened": 0,
+            "territory_filter": "none_except_nyons",
         },
         "events": events,
     }
@@ -270,12 +270,14 @@ def main() -> None:
     tmp.replace(OUT)
 
     print("=== BILAN ===")
-    print(f"Pages liste          : {total_pages}")
-    print(f"Erreurs liste        : {errors}")
-    print(f"Baronnies hors Nyons : {len(by_url)}")
-    print(f"Événements publiés   : {len(events)}")
-    print(f"Fiches détail ouvertes: 0")
-    print(f"Durée script         : {elapsed} s")
+    print(f"Pages lues            : {pages_read}")
+    print(f"Erreurs liste         : {errors}")
+    print(f"Nyons retirés         : {nyons_removed}")
+    print(f"Événements candidats  : {len(by_url)}")
+    print(f"Événements publiés    : {len(events)}")
+    print("Filtre territoire      : AUCUN, sauf Nyons")
+    print("Fiches détail ouvertes : 0")
+    print(f"Durée script          : {elapsed} s")
     print("OK: agenda.json prêt.")
 
 
