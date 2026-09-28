@@ -1,4 +1,4 @@
-name: Mise a jour agenda Baronnies V2
+name: Mise a jour agenda Baronnies V3
 
 on:
   workflow_dispatch:
@@ -23,7 +23,7 @@ jobs:
         run: python -m pip install -r requirements.txt
 
       - name: Extraire agenda Baronnies hors Nyons
-        run: python extract_baronnies_v2.py
+        run: python extract_baronnies_v3.py
 
       - name: Enregistrer les changements
         shell: bash
@@ -39,5 +39,5 @@ jobs:
             exit 0
           fi
 
-          git commit -m "Mise a jour agenda Baronnies V2"
+          git commit -m "Mise a jour agenda Baronnies V3"
           git push
