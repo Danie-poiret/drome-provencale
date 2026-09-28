@@ -1,46 +1,137 @@
 {
   "source": "https://www.drome-cestmanature.com/preparez-votre-sejour/l-agenda/",
-  "updated_at": "2026-09-28T07:22:07.164162+00:00",
-  "scope": "67 communes CCBDP, hors Nyons",
-  "version": "v3",
-  "count": 5,
+  "source_mode": "filtered_radius_multi_center",
+  "updated_at": "2026-09-28T08:21:51.359800+00:00",
+  "scope": "Baronnies en Drôme Provençale hors Nyons",
+  "search": {
+    "date_du": "28/09/2026",
+    "date_au": "27/03/2027",
+    "radius_km": 30,
+    "centers": [
+      "nyons",
+      "buis-les-baronnies",
+      "remuzat",
+      "montbrun-les-bains",
+      "sederon"
+    ]
+  },
+  "count": 16,
   "diagnostics": {
-    "commune_filter_auto_used": false,
-    "commune_filter_values_selected": 0,
-    "list_pages_scanned": 17,
-    "nyons_excluded_on_list": 20,
-    "excluded_on_detail": 0,
+    "center_searches": {
+      "nyons": {
+        "pages_scanned": 30,
+        "detected_pages": 61,
+        "raw_candidate_links": 595
+      },
+      "buis-les-baronnies": {
+        "pages_scanned": 11,
+        "detected_pages": 11,
+        "raw_candidate_links": 90
+      },
+      "remuzat": {
+        "pages_scanned": 8,
+        "detected_pages": 8,
+        "raw_candidate_links": 79
+      },
+      "montbrun-les-bains": {
+        "pages_scanned": 1,
+        "detected_pages": 1,
+        "raw_candidate_links": 12
+      },
+      "sederon": {
+        "pages_scanned": 30,
+        "detected_pages": 150,
+        "raw_candidate_links": 1076
+      }
+    },
+    "list_pages_scanned": 80,
+    "list_errors": 0,
+    "candidate_urls": 425,
+    "nyons_excluded": 40,
+    "outside_or_unrecognized_rejected": 369,
     "detail_errors": 0,
     "duplicates_removed": 0,
-    "missing_date": 2
+    "missing_date": 0
   },
   "events": [
     {
+      "title": "L'olive et huile en fête",
+      "start_date": "2026-01-18",
+      "end_date": "2026-01-18",
+      "commune": "Buis-les-Baronnies",
+      "address": "Place du marché 26170 Buis-les-Baronnies",
+      "description": "Cette 22ème édition de l'Olive et l'Huile en Fête vous proposera une journée festive et conviviale autour de l'Huile d'olive et les Olives noires de Nyons AOP mais aussi des produits traditionnels propres au terroir des Baronnies Provençales . 9h00 :",
+      "opening": "du marché de producteurs 10h00 : Messe de l'huile nouvelle à l'église de Buis-les-Baronnies 11h30 : Alicoque et apéritif offert par les producteurs 14h00 : Promenade guidée dans les oliviers (départ devant la fontaine de la Place des Arcades) Et toute la journée : Musique provençale avec le groupe Li Festejaïres Exposition et défilé de vieux tracteurs Promenade en calèche (gratuit) Accès Place du marché 26170 Buis-les-Baronnies Informations complémentaires Langues parlées Français Ouverture Lundi 18 janvier.",
+      "tariffs": "Accès libre.",
+      "contact": "Lieu de rendez-vous Place du marché 26170 Buis-les-Baronnies Nous contacter par mail Mise à jour le 30/12/2025 Par Office de Tourisme des Baronnies en Drôme Provençale",
+      "url": "https://www.drome-cestmanature.com/fiches/lolive-et-huile-en-fete/",
+      "source_url": "https://www.drome-cestmanature.com/fiches/lolive-et-huile-en-fete/",
+      "source_format": "drome_tourisme_filtered_detail",
+      "search_centers": [
+        "buis-les-baronnies",
+        "remuzat",
+        "montbrun-les-bains"
+      ],
+      "dedupe_id": "bab08c56a47c3ee9"
+    },
+    {
+      "title": "Parcours découverte de la Biscuiterie",
+      "start_date": "2026-04-01",
+      "end_date": "2026-10-31",
+      "commune": "Saint-Maurice-sur-Eygues",
+      "address": "Biscuiterie de Provence ZA les Grands Prés 26110 Saint-Maurice-sur-Eygues",
+      "description": "Plongez dans l'univers de la Fabrique en visitant notre Musée Parcours découverte ! Histoire, vues sur les ateliers, activités ludiques et dégustation gratuite… venez passer un agréable moment en famille et terminez par notre halle gourmande salon de thé. Histoire, vues sur les ateliers, activités ludiques et dégustation, venez passer un agréable moment en famille ! En visite libre",
+      "opening": "Du 01/04 au 31/10/2026 du lundi au samedi de 10h30 à 11h15. Et le dimanche en Juillet et Août.",
+      "tariffs": "Gratuit. Sur inscription à l'office de tourisme.",
+      "contact": "Lieu de rendez-vous Biscuiterie de Provence ZA les Grands Prés 26110 Saint-Maurice-sur-Eygues 04 75 26 10 35 Nous contacter par mail Visiter le site web",
+      "url": "https://www.drome-cestmanature.com/fiches/parcours-decouverte-de-la-biscuiterie/",
+      "source_url": "https://www.drome-cestmanature.com/fiches/parcours-decouverte-de-la-biscuiterie/",
+      "source_format": "drome_tourisme_filtered_detail",
+      "search_centers": [
+        "nyons",
+        "buis-les-baronnies",
+        "sederon"
+      ],
+      "dedupe_id": "eef2981fcbcb8ca8"
+    },
+    {
       "title": "Marché de producteurs",
-      "start_date": "2026-09-28",
-      "end_date": "2026-09-28",
+      "start_date": "2026-05-11",
+      "end_date": "2026-10-12",
       "commune": "Les Pilles",
-      "location": "",
-      "address": "",
-      "detail_locality": "",
+      "address": "Place de l'Olivier 26110 Les Pilles",
+      "description": "Marché de producteurs locaux. Buvette et petite restauration jusqu'à 20h30 Animations régulières",
+      "opening": "Du 11/05 au 12/10/2026 le lundi de 17h à 19h.",
+      "tariffs": "Accès libre.",
+      "contact": "Lieu de rendez-vous Place de l'Olivier 26110 Les Pilles 04 75 27 71 80 Nous contacter par mail Visiter le site web Mise à jour le 07/04/2026 Par Office de Tourisme des Baronnies en Drôme Provençale",
       "url": "https://www.drome-cestmanature.com/fiches/marche-de-producteurs-19/",
       "source_url": "https://www.drome-cestmanature.com/fiches/marche-de-producteurs-19/",
-      "jsonld_event": false,
-      "geo_source": "event_link_city",
-      "dedupe_id": "42ffbe3cdd136223"
+      "source_format": "drome_tourisme_filtered_detail",
+      "search_centers": [
+        "nyons",
+        "buis-les-baronnies",
+        "remuzat",
+        "sederon"
+      ],
+      "dedupe_id": "8eae630c10563cb8"
     },
     {
       "title": "Festival Pantaï",
       "start_date": "2026-10-03",
       "end_date": "2026-10-03",
       "commune": "Buis-les-Baronnies",
-      "location": "",
-      "address": "",
-      "detail_locality": "",
+      "address": "26170 Buis-les-Baronnies",
+      "description": "En Provençal, Pantaï signifie Rêve ! Le Festival Pantaï, spectacles de rue, transforme le cœur de Buis les Baronnies en une grande scène à ciel ouvert pour rêver ensemble. Spectacles de rue, cirque, théâtre, danse, musique et déambulations investissent les places et les ruelles du village pour offrir une journée de découvertes, de poésie, d'émotions et de rencontres. Programmation sur le site Internet: https://pantaifestival.fr/programme-2026/",
+      "opening": "Samedi 3 octobre 2026.",
+      "tariffs": "Gratuit.",
+      "contact": "Lieu de rendez-vous 26170 Buis-les-Baronnies Nous contacter par mail Visiter le site web Mise à jour le 17/09/2026 Par Office de Tourisme des Baronnies en Drôme Provençale",
       "url": "https://www.drome-cestmanature.com/fiches/festival-pantai/",
       "source_url": "https://www.drome-cestmanature.com/fiches/festival-pantai/",
-      "jsonld_event": false,
-      "geo_source": "event_link_city",
+      "source_format": "drome_tourisme_filtered_detail",
+      "search_centers": [
+        "buis-les-baronnies",
+        "sederon"
+      ],
       "dedupe_id": "9292f97a23de06a3"
     },
     {
@@ -48,42 +139,243 @@
       "start_date": "2026-10-04",
       "end_date": "2026-10-04",
       "commune": "Mirabel-aux-Baronnies",
-      "location": "",
-      "address": "",
-      "detail_locality": "",
+      "address": "Tennis 26110 Mirabel-aux-Baronnies",
+      "description": "Dernier vide grenier de la saison Buvette et restauration sur place Vide grenier proposé par Gym Vitamine Mirabel-Piégon et le soutien du comité des fêtes de Mirabel aux Baronnies",
+      "opening": "Dimanche 4 octobre 2026 à partir de 8h.",
+      "tariffs": "Gratuit. Tarif exposants : 5€ les 3 mètres.",
+      "contact": "Lieu de rendez-vous Tennis 26110 Mirabel-aux-Baronnies 06 98 97 96 67 Nous contacter par mail Mise à jour le 21/09/2026 Par Office de Tourisme des Baronnies en Drôme Provençale",
       "url": "https://www.drome-cestmanature.com/fiches/vide-grenier-10/",
       "source_url": "https://www.drome-cestmanature.com/fiches/vide-grenier-10/",
-      "jsonld_event": false,
-      "geo_source": "event_link_city",
+      "source_format": "drome_tourisme_filtered_detail",
+      "search_centers": [
+        "nyons",
+        "buis-les-baronnies",
+        "remuzat",
+        "sederon"
+      ],
       "dedupe_id": "4e3e5330e5a64859"
     },
     {
       "title": "Vide grenier",
-      "start_date": "",
-      "end_date": "",
+      "start_date": "2026-10-04",
+      "end_date": "2026-10-04",
       "commune": "Sahune",
-      "location": "",
-      "address": "",
-      "detail_locality": "",
+      "address": "Place du village 26510 Sahune",
+      "description": "Vide grenier sur la place du village Buvette et snack sur place",
+      "opening": "Dimanche 4 octobre 2026.",
+      "tariffs": "Entrée libre. Tarif exposant : 5€ les 3 mètres.",
+      "contact": "Lieu de rendez-vous Place du village 26510 Sahune 06 87 70 71 42 Mise à jour le 17/09/2026 Par Office de Tourisme des Baronnies en Drôme Provençale",
       "url": "https://www.drome-cestmanature.com/fiches/vide-grenier-6/",
       "source_url": "https://www.drome-cestmanature.com/fiches/vide-grenier-6/",
-      "jsonld_event": false,
-      "geo_source": "event_link_city",
-      "dedupe_id": "213b10bea0b8f2f9"
+      "source_format": "drome_tourisme_filtered_detail",
+      "search_centers": [
+        "nyons",
+        "buis-les-baronnies",
+        "remuzat",
+        "sederon"
+      ],
+      "dedupe_id": "937843cee3ec730c"
     },
     {
-      "title": "Parcours découverte de la Biscuiterie",
-      "start_date": "",
-      "end_date": "",
-      "commune": "Saint-Maurice-sur-Eygues",
-      "location": "",
-      "address": "",
-      "detail_locality": "",
-      "url": "https://www.drome-cestmanature.com/fiches/parcours-decouverte-de-la-biscuiterie/",
-      "source_url": "https://www.drome-cestmanature.com/fiches/parcours-decouverte-de-la-biscuiterie/",
-      "jsonld_event": false,
-      "geo_source": "event_link_city",
-      "dedupe_id": "55e6a3d087e0f544"
+      "title": "Miratrail",
+      "start_date": "2026-10-10",
+      "end_date": "2026-10-10",
+      "commune": "Mirabel-aux-Baronnies",
+      "address": "Tennis club Mirabel Piégon 26110 Mirabel-aux-Baronnies",
+      "description": "2 courses 11h : 20km - 850m de dénivelé 9h : 40km - 1500m de dénivelé 18h : DJ Sets Dégustation de vins locaux Food truck",
+      "opening": "Samedi 10 octobre 2026 à partir de 9h.",
+      "tariffs": "Accès libre.",
+      "contact": "Lieu de rendez-vous Tennis club Mirabel Piégon 26110 Mirabel-aux-Baronnies 04 75 27 15 09 Nous contacter par mail Visiter le site web Mise à jour le 05/09/2026 Par Office de Tourisme des Baronnies en Drôme Provençale",
+      "url": "https://www.drome-cestmanature.com/fiches/miratrail/",
+      "source_url": "https://www.drome-cestmanature.com/fiches/miratrail/",
+      "source_format": "drome_tourisme_filtered_detail",
+      "search_centers": [
+        "nyons",
+        "buis-les-baronnies",
+        "remuzat",
+        "sederon"
+      ],
+      "dedupe_id": "001ca32a5409b868"
+    },
+    {
+      "title": "« Ts’art : Une histoire de Paradis ! »",
+      "start_date": "2026-10-14",
+      "end_date": "2026-10-14",
+      "commune": "Buis-les-Baronnies",
+      "address": "Hôpital de Buis 109 Rue du Dr Bernard 26170 Buis-les-Baronnies",
+      "description": "« Ts’art : Une histoire de Paradis ! » De la dépression à la création artistique, Représentation théâtrale, avec une quinzaine d’adhérents des GEM le Soleil et l’Oasis, qui donnent vie à leurs zones d’ombre et les transforment en force. Accompagnés par Philippe Altier, comédien et metteur en scène, ils partagent une création pleine d’émotions, portée par leur énergie communicative et la présence de trois marionnettes qui viennent enrichir le récit. Un spectacle qui s’inscrit dans le cadre de la Semaine Bleue 2026.",
+      "opening": "Mercredi 14 octobre 2026 de 15h à 16h.",
+      "tariffs": "Entrée libre.",
+      "contact": "Lieu de rendez-vous Hôpital de Buis 109 Rue du Dr Bernard 26170 Buis-les-Baronnies 04 75 27 79 27 Nous contacter par mail Mise à jour le 10/09/2026 Par Office de Tourisme des Baronnies en Drôme Provençale",
+      "url": "https://www.drome-cestmanature.com/fiches/tsart-une-histoire-de-paradis-5/",
+      "source_url": "https://www.drome-cestmanature.com/fiches/tsart-une-histoire-de-paradis-5/",
+      "source_format": "drome_tourisme_filtered_detail",
+      "search_centers": [
+        "nyons",
+        "buis-les-baronnies",
+        "remuzat",
+        "montbrun-les-bains",
+        "sederon"
+      ],
+      "dedupe_id": "16585ffe5e606a4c"
+    },
+    {
+      "title": "Vignobles en Scène - Domaine Vallot - Atelier autour du Vin et de la Vigne - Les Immersives",
+      "start_date": "2026-10-16",
+      "end_date": "2026-10-16",
+      "commune": "Vinsobres",
+      "address": "Domaine Vallot - le Coriançon 3176 Route de Nyons Quartier Hauterives 26110 Vinsobres",
+      "description": "Atelier autour du vin et de la vigne, enfant et adulte à partir de 6 ans. Peinture avec du vin à emporter chez soi. Réservation obligatoire Chaînes et Labels Label Vignobles & Découvertes",
+      "opening": "Vendredi 16 octobre 2026 de 17h à 18h30. Réservation obligatoire.",
+      "tariffs": "Tarif unique : 20 €.",
+      "contact": "Lieu de rendez-vous Domaine Vallot - le Coriançon 3176 Route de Nyons Quartier Hauterives 26110 Vinsobres 04 75 26 03 24 Nous contacter par mail Visiter le site web Mise à jour le 21/09/2026 Par Office de Tourisme des Baronnies en Drôme Provençale",
+      "url": "https://www.drome-cestmanature.com/fiches/vignobles-en-scene-domaine-vallot-atelier-autour-du-vin-et-de-la-vigne-les-immersives/",
+      "source_url": "https://www.drome-cestmanature.com/fiches/vignobles-en-scene-domaine-vallot-atelier-autour-du-vin-et-de-la-vigne-les-immersives/",
+      "source_format": "drome_tourisme_filtered_detail",
+      "search_centers": [
+        "nyons",
+        "buis-les-baronnies",
+        "remuzat"
+      ],
+      "dedupe_id": "4b9db8cbfd2ba13b"
+    },
+    {
+      "title": "Fête des fruits d'automne",
+      "start_date": "2026-10-17",
+      "end_date": "2026-10-17",
+      "commune": "Rémuzat",
+      "address": "Place du Champ de Mars 26510 Rémuzat",
+      "description": "Marché de producteurs locaux et artisans Sur la place centrale du village Parking à proximité Petite restauration sur place - soupe de courge Concours de pâte de coing",
+      "opening": "Samedi 17 octobre 2026 de 10h à 18h.",
+      "tariffs": "Accès libre.",
+      "contact": "Lieu de rendez-vous Place du Champ de Mars 26510 Rémuzat 07 86 05 33 27 Nous contacter par mail Mise à jour le 31/08/2026 Par Office de Tourisme des Baronnies en Drôme Provençale",
+      "url": "https://www.drome-cestmanature.com/fiches/fete-des-fruits-dautomne/",
+      "source_url": "https://www.drome-cestmanature.com/fiches/fete-des-fruits-dautomne/",
+      "source_format": "drome_tourisme_filtered_detail",
+      "search_centers": [
+        "nyons",
+        "buis-les-baronnies",
+        "remuzat",
+        "montbrun-les-bains"
+      ],
+      "dedupe_id": "17a4f5fd21736278"
+    },
+    {
+      "title": "Fête de la Courge",
+      "start_date": "2026-10-18",
+      "end_date": "2026-10-18",
+      "commune": "Montbrun-les-Bains",
+      "address": "l’Autin 26570 Montbrun-les-Bains",
+      "description": "Fête automnal autour de la courge Marché et animations familial",
+      "opening": "Dimanche 18 octobre 2026 de 10h à 20h.",
+      "tariffs": "",
+      "contact": "Lieu de rendez-vous l’Autin 26570 Montbrun-les-Bains Mise à jour le 22/09/2026 Par Office de Tourisme des Baronnies en Drôme Provençale",
+      "url": "https://www.drome-cestmanature.com/fiches/fete-de-la-courge/",
+      "source_url": "https://www.drome-cestmanature.com/fiches/fete-de-la-courge/",
+      "source_format": "drome_tourisme_filtered_detail",
+      "search_centers": [
+        "montbrun-les-bains"
+      ],
+      "dedupe_id": "433f919f4a2368fc"
+    },
+    {
+      "title": "Vide Grenier de Courges Potirons et Cie",
+      "start_date": "2026-10-18",
+      "end_date": "2026-10-18",
+      "commune": "Montbrun-les-Bains",
+      "address": "Centre du village 26570 Montbrun-les-Bains",
+      "description": "Vide Grenier organisé dans le cadre de Courges, Potirons et Cie",
+      "opening": "Dimanche 18 octobre 2026 de 9h à 18h.",
+      "tariffs": "Gratuit.",
+      "contact": "Lieu de rendez-vous Centre du village 26570 Montbrun-les-Bains 04 75 28 82 98 Nous contacter par mail Mise à jour le 18/09/2026 Par Office de Tourisme des Baronnies en Drôme Provençale",
+      "url": "https://www.drome-cestmanature.com/fiches/vide-grenier-de-courges-potirons-et-cie/",
+      "source_url": "https://www.drome-cestmanature.com/fiches/vide-grenier-de-courges-potirons-et-cie/",
+      "source_format": "drome_tourisme_filtered_detail",
+      "search_centers": [
+        "buis-les-baronnies",
+        "remuzat",
+        "montbrun-les-bains"
+      ],
+      "dedupe_id": "02bb32944998386f"
+    },
+    {
+      "title": "« Ts’art : Une histoire de Paradis ! »",
+      "start_date": "2026-10-21",
+      "end_date": "2026-10-21",
+      "commune": "Rémuzat",
+      "address": "Marpa de Rémuzat Allée des Béatrix 26510 Rémuzat",
+      "description": "« Ts’art : Une histoire de Paradis ! » De la dépression à la création artistique, Représentation théâtrale, avec une quinzaine d’adhérents des GEM le Soleil et l’Oasis, qui donnent vie à leurs zones d’ombre et les transforment en force. Accompagnés par Philippe Altier, comédien et metteur en scène, ils partagent une création pleine d’émotions, portée par leur énergie communicative et la présence de trois marionnettes qui viennent enrichir le récit. Un spectacle qui s’inscrit dans le cadre de la Semaine Bleue 2026.",
+      "opening": "Mercredi 21 octobre 2026 de 15h à 16h.",
+      "tariffs": "Entrée libre.",
+      "contact": "Lieu de rendez-vous Marpa de Rémuzat Allée des Béatrix 26510 Rémuzat 04 75 27 79 27 Nous contacter par mail Mise à jour le 10/09/2026 Par Office de Tourisme des Baronnies en Drôme Provençale",
+      "url": "https://www.drome-cestmanature.com/fiches/tsart-une-histoire-de-paradis-13/",
+      "source_url": "https://www.drome-cestmanature.com/fiches/tsart-une-histoire-de-paradis-13/",
+      "source_format": "drome_tourisme_filtered_detail",
+      "search_centers": [
+        "nyons",
+        "buis-les-baronnies",
+        "remuzat",
+        "montbrun-les-bains"
+      ],
+      "dedupe_id": "b43c961b40beb0c9"
+    },
+    {
+      "title": "Naïma Quartet",
+      "start_date": "2026-11-27",
+      "end_date": "2026-11-27",
+      "commune": "Buis-les-Baronnies",
+      "address": "Salle & théâtre de verdure de La Palun ZA La Palun 26170 Buis-les-Baronnies",
+      "description": "Mené par la captivante contrebassiste et chanteuse Naïma Girou depuis 2016, Le Naïma Quartet est soudé par un son singulier et puissant construit au fil du temps. Réservation sur https://www.parfumdejazz.com/ C’est une profonde amitié qu’ils nous font partager chaleureusement. Si le son du Naïma Quartet est si spécial c’est parce qu’il met en valeur chacun d’eux. Les influences et les caractères se croisent dans une harmonie fraîche et naturelle. Comme une renaissance, Evergreen le nouvel album du Naïma Quartet s’enracine dans de vieilles pierres et tend vers une lumière nouvelle. Après l’eau dans Sea of Red (avril 2019) et le vent dans Zephyr (mars 2021), le Quartet compose un hymne envoûtant à la nature dans ce troisième album. Les quatre musiciens et amis puisent dans la sève du jazz et font fleurir des compositions aux couleurs électriques.",
+      "opening": "Vendredi 27 novembre 2026 à partir de 20h30.",
+      "tariffs": "Tarif réduit : 12 € (Chômeurs / Groupes +10 personnes / Adhérents / Donateurs / Stagiaire des ateliers), Adulte : 15 €, Enfant (11 ans) : gratuit. Tarif jeune (12-25 ans) et PSH (Pour les détenteurs d'une CMI ou d'une Carte européenne du handicap) 7€.",
+      "contact": "Lieu de rendez-vous Salle & théâtre de verdure de La Palun ZA La Palun 26170 Buis-les-Baronnies Visiter le site web Mise à jour le 25/09/2026 Par Office de Tourisme des Baronnies en Drôme Provençale",
+      "url": "https://www.drome-cestmanature.com/fiches/naima-quartet/",
+      "source_url": "https://www.drome-cestmanature.com/fiches/naima-quartet/",
+      "source_format": "drome_tourisme_filtered_detail",
+      "search_centers": [
+        "buis-les-baronnies",
+        "remuzat",
+        "montbrun-les-bains"
+      ],
+      "dedupe_id": "76d7874ce32f30f5"
+    },
+    {
+      "title": "Marché de Noël 2026",
+      "start_date": "2026-12-06",
+      "end_date": "2026-12-06",
+      "commune": "Rémuzat",
+      "address": "Village vacances Neaclub Les Lavandes 26510 Rémuzat",
+      "description": "Dans 2 salles chauffées marché de producteurs et artisans Buvette - Tombola - soupe à l'oignon et restauration rapide sur place",
+      "opening": "Dimanche 6 décembre 2026 de 10h à 17h.",
+      "tariffs": "Accès libre.",
+      "contact": "Lieu de rendez-vous Village vacances Neaclub Les Lavandes 26510 Rémuzat 07 86 05 33 27 Nous contacter par mail Mise à jour le 25/09/2026 Par Office de Tourisme des Baronnies en Drôme Provençale",
+      "url": "https://www.drome-cestmanature.com/fiches/marche-de-noel-2026/",
+      "source_url": "https://www.drome-cestmanature.com/fiches/marche-de-noel-2026/",
+      "source_format": "drome_tourisme_filtered_detail",
+      "search_centers": [
+        "buis-les-baronnies",
+        "remuzat",
+        "montbrun-les-bains"
+      ],
+      "dedupe_id": "6a9ec837d9edeecc"
+    },
+    {
+      "title": "Plaisirs d'Hiver",
+      "start_date": "2026-12-12",
+      "end_date": "2026-12-12",
+      "commune": "Montbrun-les-Bains",
+      "address": "La Halle 26570 Montbrun-les-Bains",
+      "description": "Les Plaisirs d’Hiver de Montbrun-les-Bains sont de retour ! Sous le ciel étoilé de la Halle de Montbrun-les-Bains, venez découvrir les pépites de nos artisans-commerçants & les régalades de nos restaurateurs. Sous le ciel étoilé de la Halle, ACTIVE MONTBRUN - l'Association des Commerçants de Montbrun-les-Bains - vous propose 2 journées magiques pour passer de formidables moments en famille ou entre amis ! ✨ Dès Vendredi 12 Décembre à 16h00, venez découvrir les stands de nos commerçants pour trouver vos plus beaux cadeaux de Noël au gré de musique de Noël. Un gouter sera offert aux Enfants. Profitez en pour applaudir la Chorale des minots de Montbrun-les-bains qui chanteront depuis les marches de la Halle. La soirée débutera par un apéritif festif et se poursuivra avec les petits plats les plus raffinés préparés par les restaurateurs de Montbrun-les-Bains. Côté musique, ce n’est pas moins de 3 chanteurs ou groupes qui se succéderont pour assurer l’ambiance ! ✨ Samedi 13 Décembre 2025, nos exposants seront toujours présents pour vous et ne manquez le tirage de notre grande Tombola de l’Hiver. Tentez votre chance, de très nombreux lots sont à gagner ! En soirée, (re-)découvrez les Régalades de nos restaurateurs et venez vous amuser en famille ou entre amis à la Christmas party ! ️ Rendez-vous les Vendredi 12 et Samedi 13 Décembre 2025 Sous la Halle de Montbrun-les-Bains ️ de 16H00 à 00h00",
+      "opening": "Du vendredi 11 au samedi 12 décembre 2026 de 16h à 0h.",
+      "tariffs": "Gratuit.",
+      "contact": "Lieu de rendez-vous La Halle 26570 Montbrun-les-Bains Visiter le site web Mise à jour le 22/09/2026 Par Office de Tourisme des Baronnies en Drôme Provençale",
+      "url": "https://www.drome-cestmanature.com/fiches/plaisirs-dhiver/",
+      "source_url": "https://www.drome-cestmanature.com/fiches/plaisirs-dhiver/",
+      "source_format": "drome_tourisme_filtered_detail",
+      "search_centers": [
+        "montbrun-les-bains"
+      ],
+      "dedupe_id": "a0afff54641aeb04"
     }
   ]
 }
