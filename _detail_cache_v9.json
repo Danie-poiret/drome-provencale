@@ -289,6 +289,10 @@
       "search_centers": [
         "nyons",
         "buis-les-baronnies"
+      ],
+      "dedupe_id": "eef2981fcbcb8ca8",
+      "search_windows": [
+        "2026-09-28_2026-10-27"
       ]
     }
   },
@@ -310,6 +314,10 @@
       "search_centers": [
         "nyons",
         "buis-les-baronnies"
+      ],
+      "dedupe_id": "8eae630c10563cb8",
+      "search_windows": [
+        "2026-09-28_2026-10-27"
       ]
     }
   },
@@ -518,6 +526,10 @@
       "search_centers": [
         "nyons",
         "buis-les-baronnies"
+      ],
+      "dedupe_id": "937843cee3ec730c",
+      "search_windows": [
+        "2026-09-28_2026-10-27"
       ]
     }
   },
@@ -556,6 +568,10 @@
       "search_centers": [
         "nyons",
         "buis-les-baronnies"
+      ],
+      "dedupe_id": "4e3e5330e5a64859",
+      "search_windows": [
+        "2026-09-28_2026-10-27"
       ]
     }
   },
@@ -779,8 +795,11 @@
       "source_url": "https://www.drome-cestmanature.com/fiches/miratrail/",
       "source_format": "drome_tourisme_filtered_detail",
       "search_centers": [
-        "nyons",
         "buis-les-baronnies"
+      ],
+      "dedupe_id": "001ca32a5409b868",
+      "search_windows": [
+        "2026-09-28_2026-10-27"
       ]
     }
   },
@@ -868,9 +887,12 @@
       "source_url": "https://www.drome-cestmanature.com/fiches/tsart-une-histoire-de-paradis-5/",
       "source_format": "drome_tourisme_filtered_detail",
       "search_centers": [
-        "nyons",
         "buis-les-baronnies",
         "montbrun-les-bains"
+      ],
+      "dedupe_id": "16585ffe5e606a4c",
+      "search_windows": [
+        "2026-09-28_2026-10-27"
       ]
     }
   },
@@ -924,8 +946,11 @@
       "source_url": "https://www.drome-cestmanature.com/fiches/vignobles-en-scene-domaine-vallot-atelier-autour-du-vin-et-de-la-vigne-les-immersives/",
       "source_format": "drome_tourisme_filtered_detail",
       "search_centers": [
-        "nyons",
         "buis-les-baronnies"
+      ],
+      "dedupe_id": "4b9db8cbfd2ba13b",
+      "search_windows": [
+        "2026-09-28_2026-10-27"
       ]
     }
   },
@@ -1166,9 +1191,12 @@
       "source_url": "https://www.drome-cestmanature.com/fiches/fete-des-fruits-dautomne/",
       "source_format": "drome_tourisme_filtered_detail",
       "search_centers": [
-        "nyons",
         "buis-les-baronnies",
         "montbrun-les-bains"
+      ],
+      "dedupe_id": "17a4f5fd21736278",
+      "search_windows": [
+        "2026-09-28_2026-10-27"
       ]
     }
   },
@@ -1375,9 +1403,12 @@
       "source_url": "https://www.drome-cestmanature.com/fiches/tsart-une-histoire-de-paradis-13/",
       "source_format": "drome_tourisme_filtered_detail",
       "search_centers": [
-        "nyons",
         "buis-les-baronnies",
         "montbrun-les-bains"
+      ],
+      "dedupe_id": "b43c961b40beb0c9",
+      "search_windows": [
+        "2026-09-28_2026-10-27"
       ]
     }
   },
@@ -1738,6 +1769,10 @@
       "source_format": "drome_tourisme_filtered_detail",
       "search_centers": [
         "buis-les-baronnies"
+      ],
+      "dedupe_id": "9292f97a23de06a3",
+      "search_windows": [
+        "2026-09-28_2026-10-27"
       ]
     }
   },
@@ -1776,6 +1811,10 @@
       "search_centers": [
         "buis-les-baronnies",
         "montbrun-les-bains"
+      ],
+      "dedupe_id": "02bb32944998386f",
+      "search_windows": [
+        "2026-09-28_2026-10-27"
       ]
     }
   },
@@ -1795,8 +1834,13 @@
       "source_url": "https://www.drome-cestmanature.com/fiches/naima-quartet/",
       "source_format": "drome_tourisme_filtered_detail",
       "search_centers": [
+        "nyons",
         "buis-les-baronnies",
         "montbrun-les-bains"
+      ],
+      "dedupe_id": "76d7874ce32f30f5",
+      "search_windows": [
+        "2026-11-27_2026-12-26"
       ]
     }
   },
@@ -1835,6 +1879,10 @@
       "search_centers": [
         "buis-les-baronnies",
         "montbrun-les-bains"
+      ],
+      "dedupe_id": "6a9ec837d9edeecc",
+      "search_windows": [
+        "2026-11-27_2026-12-26"
       ]
     }
   },
@@ -1944,8 +1992,8 @@
     "fetched_at": "2026-09-28T08:19:14.945976+00:00",
     "data": {
       "title": "L'olive et huile en fête",
-      "start_date": "2026-01-18",
-      "end_date": "2026-01-18",
+      "start_date": "2027-01-18",
+      "end_date": "2027-01-18",
       "commune": "Buis-les-Baronnies",
       "address": "Place du marché 26170 Buis-les-Baronnies",
       "description": "Cette 22ème édition de l'Olive et l'Huile en Fête vous proposera une journée festive et conviviale autour de l'Huile d'olive et les Olives noires de Nyons AOP mais aussi des produits traditionnels propres au terroir des Baronnies Provençales . 9h00 :",
@@ -1958,6 +2006,10 @@
       "search_centers": [
         "buis-les-baronnies",
         "montbrun-les-bains"
+      ],
+      "dedupe_id": "e4161ac944ced279",
+      "search_windows": [
+        "2026-12-27_2027-01-25"
       ]
     }
   },
@@ -2131,6 +2183,10 @@
       "source_format": "drome_tourisme_filtered_detail",
       "search_centers": [
         "montbrun-les-bains"
+      ],
+      "dedupe_id": "433f919f4a2368fc",
+      "search_windows": [
+        "2026-09-28_2026-10-27"
       ]
     }
   },
@@ -2151,6 +2207,10 @@
       "source_format": "drome_tourisme_filtered_detail",
       "search_centers": [
         "montbrun-les-bains"
+      ],
+      "dedupe_id": "a0afff54641aeb04",
+      "search_windows": [
+        "2026-11-27_2026-12-26"
       ]
     }
   },
@@ -7285,6 +7345,125 @@
       "contact": "Lieu de rendez-vous Librairie Notre Temps 30 Grande rue 26000 Valence 04 75 43 78 79 Nous contacter par mail Mise à jour le 12/09/2026 Par Valence Romans Tourisme",
       "url": "https://www.drome-cestmanature.com/fiches/presentation-de-la-revue-dissidente-antiraciste-et-feministe/",
       "source_url": "https://www.drome-cestmanature.com/fiches/presentation-de-la-revue-dissidente-antiraciste-et-feministe/",
+      "source_format": "drome_tourisme_filtered_detail"
+    }
+  },
+  "https://www.drome-cestmanature.com/fiches/le-noel-de-madame-de-sevigne/": {
+    "fetched_at": "2026-09-28T08:39:34.939292+00:00",
+    "data": {
+      "title": "Le Noël de madame de Sévigné",
+      "start_date": "2026-11-28",
+      "end_date": "2027-12-25",
+      "commune": "",
+      "address": "Château de Grignan 23 rue Montant au Château 26230 Grignan",
+      "description": "Vivez en famille le beau Noël de madame de Sévigné, invitée par ses enfants au château de Grignan. Un esprit de fête s'empare du lieu où la magie et la féérie rivalisent pour offrir une expérience inoubliable.",
+      "opening": "Du 28/11/2026 au 03/01/2027 tous les jours de 10h à 18h. sauf les 1er janvier et 25 décembre.",
+      "tariffs": "Plein tarif : de 10 à 13 €, Tarif réduit : de 8 à 10 €.",
+      "contact": "Lieu de rendez-vous Château de Grignan 23 rue Montant au Château 26230 Grignan 04 75 91 83 50 Nous contacter par mail Visiter le site web Galerie d’images Département de la Drôme Mise à jour le 06/01/2026 Par Office de Tourisme Communautaire Pays de Grignan et Enclave des Papes",
+      "url": "https://www.drome-cestmanature.com/fiches/le-noel-de-madame-de-sevigne/",
+      "source_url": "https://www.drome-cestmanature.com/fiches/le-noel-de-madame-de-sevigne/",
+      "source_format": "drome_tourisme_filtered_detail"
+    }
+  },
+  "https://www.drome-cestmanature.com/fiches/creche-a-leglise/": {
+    "fetched_at": "2026-09-28T08:40:27.473171+00:00",
+    "data": {
+      "title": "Crèche à l'église",
+      "start_date": "2026-12-08",
+      "end_date": "2027-12-07",
+      "commune": "",
+      "address": "Eglise 26770 Saint-Pantaléon-les-Vignes",
+      "description": "Installée dans l'église du village, la crèche est construite avec beaucoup de créativité par la famille Peloux et a bénéficié de nombreux dons, notamment de santons. Elle change chaque année, donc n'hésitez pas à y retourner ! Elle fait partie du circuit \"de Crèche en Crèche\" organisé par la paroisse, mais la date n'est pas encore fixée.",
+      "opening": "Du 08/12 au 31/01, tous les jours de 9h à 17h30. Inauguration en présence du prêtre de la paroisse le samedi 7 décembre à 18h30, à l'issue de la messe.",
+      "tariffs": "Accès libre.",
+      "contact": "Lieu de rendez-vous Eglise 26770 Saint-Pantaléon-les-Vignes 04 75 27 90 83 Nous contacter par mail Galerie d’images Evelyne Maurent Mise à jour le 14/12/2024 Par Office de Tourisme Communautaire Pays de Grignan et Enclave des Papes",
+      "url": "https://www.drome-cestmanature.com/fiches/creche-a-leglise/",
+      "source_url": "https://www.drome-cestmanature.com/fiches/creche-a-leglise/",
+      "source_format": "drome_tourisme_filtered_detail"
+    }
+  },
+  "https://www.drome-cestmanature.com/fiches/creche-animee-a-la-collegiale/": {
+    "fetched_at": "2026-09-28T08:40:28.616206+00:00",
+    "data": {
+      "title": "Crèche animée à la Collégiale",
+      "start_date": "2026-12-05",
+      "end_date": "2027-03-07",
+      "commune": "",
+      "address": "Collégiale Saint Sauveur Rue Saint Sauveur 26230 Grignan",
+      "description": "Crèche animée dans la Chapelle de la Vierge, à l'intérieur de la Collégiale. Fonctionne à l'aide d'un monnayeur (2€), au profit de l'entretien de la Collégiale. Inauguration de la crèche le 1er dimanche de Décembre après la messe. Réalisée par une quinzaine de bénévoles passionnés qui chaque année réinvente cette crèche pour le plaisir des petits comme des grands. La Crèche animée occupe une surface au sol de 6.5 m par 3 m. Un décor en trompe-l’œil peint par un artiste de renom, d'une longueur de 9 m, couvre les murs de la Chapelle, afin de créer une perspective et un relief. Depuis 1999, de grands santons en cire du XIXème siècle sont venus compléter les premiers plans. Ainsi que de nombreuses nouvelles pièces enrichissent les scènes de vie populaire et d'activités rurales de la Crèche, la restauration et la réfection des maisons ont été aussi entreprises. Des jeux de lumières figurant les 4 cycles d'une journée (aube, jour, crépuscule et nuit), les éclairages intérieurs des maisons et lampadaires du village en fonction des cycles de la journée, une vraie cascade, le meunier transportant les sacs de farine vers le moulin, les étoiles lumineuses, les \"chants\" de l'âne et du coq, etc. donnent vie à l'ensemble. Selon la tradition, l'enfant Jésus apparaîtra le soir de Noël, et les Rois Mages feront leur entrée au moment de l'Epiphanie.",
+      "opening": "Du 05/12/2026 au 07/03/2027 tous les jours de 10h à 18h. Merci de ne pas actionner la Crèche lors de concerts, visites ou cérémonies religieuses.",
+      "tariffs": "Moyen de paiements : Espèces Gratuit. Collégiale en accès libre mais 2 € sont nécessaires à la mise en route de l'animation de la Crèche (monnayeur situé sur le côté gauche de la Chapelle). L’argent récolté sert à l'entretien de la crèche et de la collégiale.",
+      "contact": "Lieu de rendez-vous Collégiale Saint Sauveur Rue Saint Sauveur 26230 Grignan 06 08 88 51 70 Nous contacter par mail Visiter le site web Galerie d’images VM VM VM VM Mise à jour le 05/07/2026 Par Office de Tourisme Communautaire Pays de Grignan et Enclave des Papes",
+      "url": "https://www.drome-cestmanature.com/fiches/creche-animee-a-la-collegiale/",
+      "source_url": "https://www.drome-cestmanature.com/fiches/creche-animee-a-la-collegiale/",
+      "source_format": "drome_tourisme_filtered_detail"
+    }
+  },
+  "https://www.drome-cestmanature.com/fiches/demonstration-de-cavage-degustation-truffee/": {
+    "fetched_at": "2026-09-28T08:40:28.744870+00:00",
+    "data": {
+      "title": "Démonstration de cavage & dégustation truffée",
+      "start_date": "2026-12-20",
+      "end_date": "2027-02-28",
+      "commune": "",
+      "address": "La Ferme les Eybrachas 745 Chemin des Eybrassas 26230 Réauville",
+      "description": "Avec Virginie et Hélice, vous découvrirez le cavage (recherche de la truffe avec le chien). La visite se terminera par une dégustation truffée conviviale, accompagnée d'un verre de vin local. Lors de cette activité immersive au cœur de la truffière, vous seront présentés les principes de culture de la truffe, les différentes espèces, l'éducation du chien... L'activité se conclut par une dégustation truffée accompagnée d'un verre de vin local. Préparez-vous à un moment riche en émotions et en sensations !",
+      "opening": "Du samedi 19 au dimanche 20 décembre 2026 de 11h à 12h15. Du samedi 26 au dimanche 27 décembre 2026 de 11h à 12h15. Samedi 2 janvier 2027 de 11h à 12h15. Dimanche 10 janvier 2027 de 11h à 12h15. Dimanche 28 février 2027 de 11h à 12h15.",
+      "tariffs": "Moyen de paiements : Chèque, Espèces, Chèque-Vacances Classic, Chèque-Vacances Connect, Paiement en ligne Tarif unique : 20 € (par participant).",
+      "contact": "Lieu de rendez-vous La Ferme les Eybrachas 745 Chemin des Eybrassas 26230 Réauville 06 86 91 88 99 Nous contacter par mail Visiter le site web Galerie d’images Mise à jour le 11/02/2026 Par Office de Tourisme Communautaire Pays de Grignan et Enclave des Papes",
+      "url": "https://www.drome-cestmanature.com/fiches/demonstration-de-cavage-degustation-truffee/",
+      "source_url": "https://www.drome-cestmanature.com/fiches/demonstration-de-cavage-degustation-truffee/",
+      "source_format": "drome_tourisme_filtered_detail"
+    }
+  },
+  "https://www.drome-cestmanature.com/fiches/concert-du-nouvel-an/": {
+    "fetched_at": "2026-09-28T08:40:29.736034+00:00",
+    "data": {
+      "title": "Concert du Nouvel An",
+      "start_date": "",
+      "end_date": "",
+      "commune": "",
+      "address": "Collégiale Saint Sauveur Rue Saint Sauveur 26230 Grignan",
+      "description": "Le Comité des Orgues de Grignan vous invite à son traditionnel concert du Nouvel An. Invité 2026 : Maxime Heintz Au programme de ce 1er janvier 2026 Maxime jouera des œuvres de L.C. D'Aquin, C.B. Balbastre, J. S. Bach...",
+      "opening": "Vendredi 1er janvier à partir de 17h.",
+      "tariffs": "Participation libre.",
+      "contact": "Lieu de rendez-vous Collégiale Saint Sauveur Rue Saint Sauveur 26230 Grignan 04 75 46 59 47 Nous contacter par mail Galerie d’images COG",
+      "url": "https://www.drome-cestmanature.com/fiches/concert-du-nouvel-an/",
+      "source_url": "https://www.drome-cestmanature.com/fiches/concert-du-nouvel-an/",
+      "source_format": "drome_tourisme_filtered_detail"
+    }
+  },
+  "https://www.drome-cestmanature.com/fiches/journee-decouverte-de-la-truffe-noire-et-vins/": {
+    "fetched_at": "2026-09-28T08:40:29.857021+00:00",
+    "data": {
+      "title": "Journée découverte de la Truffe Noire et Vins",
+      "start_date": "2027-01-09",
+      "end_date": "2027-02-27",
+      "commune": "",
+      "address": "La Ferme les Eybrachas 745 Chemin des Eybrassas 26230 Réauville",
+      "description": "Les samedis et dimanches de janvier et février. Nous vous invitons à plonger au cœur de la Provence d'hiver, là où le parfum envoûtant de la truffe noire est mis à l'honneur en partenariat avec les vignerons locaux. Dates suppl : 2, 15 janvier & 14 mars. Chers épicuriens et amoureux du terroir, voici le programme de votre journée. 10h00 Immersion Matinale : Visite libre des Marchés aux truffes & Musées Plongez dans l'atmosphère unique et parfumée des marchés aux truffes : Richerenches le samedi matin et Saint-Paul-Trois-Châteaux le dimanche matin. Profitez-en également pour explorer les musées de la truffe et découvrir l'histoire et la culture de ce champignon d'exception. 12h00 précises rendez-vous à la Ferme pour le cavage : Retrouvez-nous à la ferme pour une expérience inoubliable ! Vous découvrirez les truffières, le cavage, les principes de culture de la truffe, les différentes espèces. Vous vivrez une expérience inoubliable avec la possibilité de découvrir le diamant noir à sa sortie de terre, de le toucher, de le sentir. 12h45 Casse-croute de la Rabassière en accord mets et vins en présence d'un vigneron. Mise en bouche truffée Velouté de courge truffé Brouillade truffée Fromage truffé Dessert truffé Les vins rouges et blancs, AOC Grignan les Adhémar, présentés par le vigneron, accompagneront idéalement chaque met. 15h30 Fin du programme. Visitez ! Continuez vos découvertes dans la région. *rabasse = truffe en provençal",
+      "opening": "Samedi 9 janvier 2027 de 12h à 15h30. Samedi 16 janvier 2027 de 12h à 15h30. Dimanche 17 janvier 2027 de 12h à 15h30. Samedi 23 janvier 2027 de 12h à 15h30. Dimanche 24 janvier 2027 de 12h à 15h30. Samedi 30 janvier 2027 de 12h à 15h30. Dimanche 31 janvier 2027 de 12h à 15h30. Samedi 6 février 2027 de 12h à 15h30. Dimanche 7 février 2027 de 12h à 15h30. Samedi 13 février 2027 de 12h à 15h30. Dimanche 14 février 2027 de 12h à 15h30. Samedi 20 février 2027 de 12h à 15h30. Dimanche 21 février 2027 de 12h à 15h30. Samedi 27 février 2027 de 12h à 15h30.",
+      "tariffs": "Moyen de paiements : Chèque, Espèces, Chèque-Vacances Classic, Chèque-Vacances Connect, Paiement en ligne Tarif unique : 70 € (par participant).",
+      "contact": "Lieu de rendez-vous La Ferme les Eybrachas 745 Chemin des Eybrassas 26230 Réauville 06 86 91 88 99 Nous contacter par mail Visiter le site web Mise à jour le 10/02/2026 Par Office de Tourisme Communautaire Pays de Grignan et Enclave des Papes",
+      "url": "https://www.drome-cestmanature.com/fiches/journee-decouverte-de-la-truffe-noire-et-vins/",
+      "source_url": "https://www.drome-cestmanature.com/fiches/journee-decouverte-de-la-truffe-noire-et-vins/",
+      "source_format": "drome_tourisme_filtered_detail"
+    }
+  },
+  "https://www.drome-cestmanature.com/fiches/salon-de-la-carte-postale-et-toutes-collections/": {
+    "fetched_at": "2026-09-28T08:41:27.203126+00:00",
+    "data": {
+      "title": "Salon de la Carte postale et toutes collections",
+      "start_date": "2027-03-14",
+      "end_date": "2027-03-14",
+      "commune": "",
+      "address": "Espace Sévigné - salle des fêtes Espace Sévigné - Salle des Fêtes Allée du 11 Novembre 26230 Grignan",
+      "description": "Pour le 44ème salon organisé par l'Association de la Cartophilie, découvrez pas moins d'une trentaine d'exposants (philatélie, cartophilie, numismate, objets publicitaires, jouets anciens...) Le rendez-vous incontournable pour tous les collectionneurs ! Vous trouverez cartophiles, philatélistes, numismates, collectionneurs d'objets publicitaires et/ou de vieilles affiches... Il y en a pour tous les goûts. Sur place buvette et petite restauration. Plateaux repas pour les exposants.",
+      "opening": "Dimanche 14 mars 2027 de 8h à 17h30.",
+      "tariffs": "Entrée libre. Le menu du midi est payant (23 €) sur réservation.",
+      "contact": "Lieu de rendez-vous Espace Sévigné - salle des fêtes Espace Sévigné - Salle des Fêtes Allée du 11 Novembre 26230 Grignan 06 08 88 51 70 Galerie d’images ACPG-LDOM ACPG-LDOM ACPG-LDOM ACPG-LDOM Mise à jour le 15/07/2026 Par Office de Tourisme Communautaire Pays de Grignan et Enclave des Papes",
+      "url": "https://www.drome-cestmanature.com/fiches/salon-de-la-carte-postale-et-toutes-collections/",
+      "source_url": "https://www.drome-cestmanature.com/fiches/salon-de-la-carte-postale-et-toutes-collections/",
       "source_format": "drome_tourisme_filtered_detail"
     }
   }

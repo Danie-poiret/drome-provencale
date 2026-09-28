@@ -1,7 +1,7 @@
 {
   "source": "https://www.drome-cestmanature.com/preparez-votre-sejour/l-agenda/",
-  "source_mode": "filtered_radius_fast_v10",
-  "updated_at": "2026-09-28T08:30:03.752355+00:00",
+  "source_mode": "segmented_radius_v11",
+  "updated_at": "2026-09-28T08:41:48.491142+00:00",
   "scope": "Baronnies en Drôme Provençale hors Nyons",
   "search": {
     "date_du": "28/09/2026",
@@ -12,39 +12,28 @@
       "buis-les-baronnies",
       "montbrun-les-bains"
     ],
-    "max_final_events": 50,
-    "max_pages_per_center": 15
+    "window_days": 30,
+    "max_pages_per_search": 6,
+    "max_final_events": 50
   },
   "count": 16,
   "diagnostics": {
-    "center_searches": {
-      "nyons": {
-        "pages_scanned": 15,
-        "detected_pages": 61,
-        "raw_candidate_links": 338
-      },
-      "buis-les-baronnies": {
-        "pages_scanned": 11,
-        "detected_pages": 11,
-        "raw_candidate_links": 90
-      },
-      "montbrun-les-bains": {
-        "pages_scanned": 1,
-        "detected_pages": 1,
-        "raw_candidate_links": 12
-      }
-    },
-    "list_pages_scanned": 27,
+    "windows_scanned": 7,
+    "list_pages_scanned": 51,
     "list_errors": 0,
-    "candidate_urls": 109,
-    "nyons_excluded": 40,
-    "outside_or_unrecognized_rejected": 53,
+    "candidate_urls": 100,
     "detail_errors": 0,
+    "nyons_excluded": 40,
+    "outside_or_unrecognized_rejected": 44,
+    "past_removed": 0,
+    "after_horizon_removed": 0,
     "duplicates_removed": 0,
     "missing_date": 0,
-    "v10_past_removed": 0,
-    "v10_after_horizon_removed": 0,
-    "v10_cache_ttl_hours": 60
+    "center_pages": {
+      "nyons": 26,
+      "buis-les-baronnies": 14,
+      "montbrun-les-bains": 11
+    }
   },
   "events": [
     {
@@ -64,7 +53,10 @@
         "nyons",
         "buis-les-baronnies"
       ],
-      "dedupe_id": "eef2981fcbcb8ca8"
+      "dedupe_id": "eef2981fcbcb8ca8",
+      "search_windows": [
+        "2026-09-28_2026-10-27"
+      ]
     },
     {
       "title": "Marché de producteurs",
@@ -83,7 +75,10 @@
         "nyons",
         "buis-les-baronnies"
       ],
-      "dedupe_id": "8eae630c10563cb8"
+      "dedupe_id": "8eae630c10563cb8",
+      "search_windows": [
+        "2026-09-28_2026-10-27"
+      ]
     },
     {
       "title": "Festival Pantaï",
@@ -101,7 +96,10 @@
       "search_centers": [
         "buis-les-baronnies"
       ],
-      "dedupe_id": "9292f97a23de06a3"
+      "dedupe_id": "9292f97a23de06a3",
+      "search_windows": [
+        "2026-09-28_2026-10-27"
+      ]
     },
     {
       "title": "Vide grenier",
@@ -120,7 +118,10 @@
         "nyons",
         "buis-les-baronnies"
       ],
-      "dedupe_id": "4e3e5330e5a64859"
+      "dedupe_id": "4e3e5330e5a64859",
+      "search_windows": [
+        "2026-09-28_2026-10-27"
+      ]
     },
     {
       "title": "Vide grenier",
@@ -139,7 +140,10 @@
         "nyons",
         "buis-les-baronnies"
       ],
-      "dedupe_id": "937843cee3ec730c"
+      "dedupe_id": "937843cee3ec730c",
+      "search_windows": [
+        "2026-09-28_2026-10-27"
+      ]
     },
     {
       "title": "Miratrail",
@@ -155,10 +159,12 @@
       "source_url": "https://www.drome-cestmanature.com/fiches/miratrail/",
       "source_format": "drome_tourisme_filtered_detail",
       "search_centers": [
-        "nyons",
         "buis-les-baronnies"
       ],
-      "dedupe_id": "001ca32a5409b868"
+      "dedupe_id": "001ca32a5409b868",
+      "search_windows": [
+        "2026-09-28_2026-10-27"
+      ]
     },
     {
       "title": "« Ts’art : Une histoire de Paradis ! »",
@@ -174,11 +180,13 @@
       "source_url": "https://www.drome-cestmanature.com/fiches/tsart-une-histoire-de-paradis-5/",
       "source_format": "drome_tourisme_filtered_detail",
       "search_centers": [
-        "nyons",
         "buis-les-baronnies",
         "montbrun-les-bains"
       ],
-      "dedupe_id": "16585ffe5e606a4c"
+      "dedupe_id": "16585ffe5e606a4c",
+      "search_windows": [
+        "2026-09-28_2026-10-27"
+      ]
     },
     {
       "title": "Vignobles en Scène - Domaine Vallot - Atelier autour du Vin et de la Vigne - Les Immersives",
@@ -194,10 +202,12 @@
       "source_url": "https://www.drome-cestmanature.com/fiches/vignobles-en-scene-domaine-vallot-atelier-autour-du-vin-et-de-la-vigne-les-immersives/",
       "source_format": "drome_tourisme_filtered_detail",
       "search_centers": [
-        "nyons",
         "buis-les-baronnies"
       ],
-      "dedupe_id": "4b9db8cbfd2ba13b"
+      "dedupe_id": "4b9db8cbfd2ba13b",
+      "search_windows": [
+        "2026-09-28_2026-10-27"
+      ]
     },
     {
       "title": "Fête des fruits d'automne",
@@ -213,11 +223,13 @@
       "source_url": "https://www.drome-cestmanature.com/fiches/fete-des-fruits-dautomne/",
       "source_format": "drome_tourisme_filtered_detail",
       "search_centers": [
-        "nyons",
         "buis-les-baronnies",
         "montbrun-les-bains"
       ],
-      "dedupe_id": "17a4f5fd21736278"
+      "dedupe_id": "17a4f5fd21736278",
+      "search_windows": [
+        "2026-09-28_2026-10-27"
+      ]
     },
     {
       "title": "Fête de la Courge",
@@ -235,7 +247,10 @@
       "search_centers": [
         "montbrun-les-bains"
       ],
-      "dedupe_id": "433f919f4a2368fc"
+      "dedupe_id": "433f919f4a2368fc",
+      "search_windows": [
+        "2026-09-28_2026-10-27"
+      ]
     },
     {
       "title": "Vide Grenier de Courges Potirons et Cie",
@@ -254,7 +269,10 @@
         "buis-les-baronnies",
         "montbrun-les-bains"
       ],
-      "dedupe_id": "02bb32944998386f"
+      "dedupe_id": "02bb32944998386f",
+      "search_windows": [
+        "2026-09-28_2026-10-27"
+      ]
     },
     {
       "title": "« Ts’art : Une histoire de Paradis ! »",
@@ -270,11 +288,13 @@
       "source_url": "https://www.drome-cestmanature.com/fiches/tsart-une-histoire-de-paradis-13/",
       "source_format": "drome_tourisme_filtered_detail",
       "search_centers": [
-        "nyons",
         "buis-les-baronnies",
         "montbrun-les-bains"
       ],
-      "dedupe_id": "b43c961b40beb0c9"
+      "dedupe_id": "b43c961b40beb0c9",
+      "search_windows": [
+        "2026-09-28_2026-10-27"
+      ]
     },
     {
       "title": "Naïma Quartet",
@@ -290,10 +310,14 @@
       "source_url": "https://www.drome-cestmanature.com/fiches/naima-quartet/",
       "source_format": "drome_tourisme_filtered_detail",
       "search_centers": [
+        "nyons",
         "buis-les-baronnies",
         "montbrun-les-bains"
       ],
-      "dedupe_id": "76d7874ce32f30f5"
+      "dedupe_id": "76d7874ce32f30f5",
+      "search_windows": [
+        "2026-11-27_2026-12-26"
+      ]
     },
     {
       "title": "Marché de Noël 2026",
@@ -312,7 +336,10 @@
         "buis-les-baronnies",
         "montbrun-les-bains"
       ],
-      "dedupe_id": "6a9ec837d9edeecc"
+      "dedupe_id": "6a9ec837d9edeecc",
+      "search_windows": [
+        "2026-11-27_2026-12-26"
+      ]
     },
     {
       "title": "Plaisirs d'Hiver",
@@ -330,7 +357,10 @@
       "search_centers": [
         "montbrun-les-bains"
       ],
-      "dedupe_id": "a0afff54641aeb04"
+      "dedupe_id": "a0afff54641aeb04",
+      "search_windows": [
+        "2026-11-27_2026-12-26"
+      ]
     },
     {
       "title": "L'olive et huile en fête",
@@ -349,7 +379,10 @@
         "buis-les-baronnies",
         "montbrun-les-bains"
       ],
-      "dedupe_id": "bab08c56a47c3ee9"
+      "dedupe_id": "e4161ac944ced279",
+      "search_windows": [
+        "2026-12-27_2027-01-25"
+      ]
     }
   ]
 }
