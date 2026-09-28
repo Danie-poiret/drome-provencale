@@ -1,35 +1,24 @@
 {
   "source": "https://www.drome-cestmanature.com/preparez-votre-sejour/l-agenda/",
-  "updated_at": "2026-09-28T07:11:56.000329+00:00",
+  "updated_at": "2026-09-28T07:22:07.164162+00:00",
   "scope": "67 communes CCBDP, hors Nyons",
+  "version": "v3",
   "count": 5,
   "diagnostics": {
+    "commune_filter_auto_used": false,
+    "commune_filter_values_selected": 0,
     "list_pages_scanned": 17,
     "nyons_excluded_on_list": 20,
-    "nyons_excluded_on_detail": 0,
+    "excluded_on_detail": 0,
     "detail_errors": 0,
     "duplicates_removed": 0,
-    "missing_date": 5
+    "missing_date": 2
   },
   "events": [
     {
-      "title": "Festival Pantaï",
-      "start_date": "",
-      "end_date": "",
-      "commune": "Buis-les-Baronnies",
-      "location": "",
-      "address": "",
-      "detail_locality": "",
-      "url": "https://www.drome-cestmanature.com/fiches/festival-pantai/",
-      "source_url": "https://www.drome-cestmanature.com/fiches/festival-pantai/",
-      "jsonld_event": false,
-      "geo_source": "event_link_city",
-      "dedupe_id": "7ae29a9532a623cf"
-    },
-    {
       "title": "Marché de producteurs",
-      "start_date": "",
-      "end_date": "",
+      "start_date": "2026-09-28",
+      "end_date": "2026-09-28",
       "commune": "Les Pilles",
       "location": "",
       "address": "",
@@ -38,12 +27,26 @@
       "source_url": "https://www.drome-cestmanature.com/fiches/marche-de-producteurs-19/",
       "jsonld_event": false,
       "geo_source": "event_link_city",
-      "dedupe_id": "25231ebcf644e328"
+      "dedupe_id": "42ffbe3cdd136223"
+    },
+    {
+      "title": "Festival Pantaï",
+      "start_date": "2026-10-03",
+      "end_date": "2026-10-03",
+      "commune": "Buis-les-Baronnies",
+      "location": "",
+      "address": "",
+      "detail_locality": "",
+      "url": "https://www.drome-cestmanature.com/fiches/festival-pantai/",
+      "source_url": "https://www.drome-cestmanature.com/fiches/festival-pantai/",
+      "jsonld_event": false,
+      "geo_source": "event_link_city",
+      "dedupe_id": "9292f97a23de06a3"
     },
     {
       "title": "Vide grenier",
-      "start_date": "",
-      "end_date": "",
+      "start_date": "2026-10-04",
+      "end_date": "2026-10-04",
       "commune": "Mirabel-aux-Baronnies",
       "location": "",
       "address": "",
@@ -52,7 +55,7 @@
       "source_url": "https://www.drome-cestmanature.com/fiches/vide-grenier-10/",
       "jsonld_event": false,
       "geo_source": "event_link_city",
-      "dedupe_id": "9eb2a0a2c0b1fbe0"
+      "dedupe_id": "4e3e5330e5a64859"
     },
     {
       "title": "Vide grenier",
