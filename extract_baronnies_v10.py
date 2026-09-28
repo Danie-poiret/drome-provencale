@@ -1,16 +1,15 @@
 #!/usr/bin/env python3
 """
-V10 rapide — s'appuie sur la V9 validée, mais réduit fortement le travail.
+V10 rapide — recherche La Drôme Tourisme autour de Nyons avec un rayon de 100 km.
 
-Le run V9 a montré que :
-- Nyons, Buis-les-Baronnies et Montbrun-les-Bains suffisent à retrouver les
-  événements valides conservés ;
-- Rémuzat n'apporte presque rien de nouveau ;
-- Séderon déclenche énormément de pages/bruit hors territoire.
-
-V10 garde donc seulement 3 centres, limite Nyons à 15 pages, réutilise le
-cache V9 pendant 60 h, raccourcit les timeouts, puis nettoie le résultat :
-- dates sans année réinterprétées par rapport à aujourd'hui ;
+Principe :
+- une seule recherche centrée sur Nyons ;
+- rayon porté à 100 km pour couvrir largement toutes les Baronnies ;
+- 15 pages maximum pour garder un temps d'exécution raisonnable ;
+- cache V9 réutilisé pendant 60 h ;
+- seules les communes officielles des Baronnies sont conservées ;
+- Nyons est exclu ;
+- dates sans année corrigées ;
 - événements réellement terminés supprimés ;
 - maximum 50 prochains événements.
 """
@@ -18,7 +17,6 @@ cache V9 pendant 60 h, raccourcit les timeouts, puis nettoie le résultat :
 from __future__ import annotations
 
 import json
-import re
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -29,12 +27,9 @@ ROOT = Path(__file__).resolve().parent
 OUT = ROOT / "agenda.json"
 MAX_FINAL_EVENTS = 50
 
-# Réduction basée sur le run V9 réussi du 28/09/2026.
-v9.SEARCH_CENTERS = (
-    "nyons",
-    "buis-les-baronnies",
-    "montbrun-les-bains",
-)
+# Recherche unique autour de Nyons, avec un rayon large de 100 km.
+v9.SEARCH_CENTERS = ("nyons",)
+v9.RADIUS_KM = 100
 v9.MAX_PAGES_PER_CENTER = 15
 v9.TIMEOUT = 15
 v9.REQUEST_DELAY = 0
@@ -139,13 +134,14 @@ def postprocess() -> None:
 
     if len(cleaned) < 10:
         raise RuntimeError(
-            f"Contrôle qualité V10: seulement {len(cleaned)} événement(s) après nettoyage."
+            f"Contrôle qualité V10 100 km: seulement {len(cleaned)} événement(s) après nettoyage."
         )
 
-    data["source_mode"] = "filtered_radius_fast_v10"
+    data["source_mode"] = "filtered_radius_100km_fast_v10"
     data["updated_at"] = datetime.now(timezone.utc).isoformat()
     data["count"] = len(cleaned)
     data.setdefault("search", {})["centers"] = list(v9.SEARCH_CENTERS)
+    data["search"]["radius_km"] = v9.RADIUS_KM
     data["search"]["max_final_events"] = MAX_FINAL_EVENTS
     data["search"]["max_pages_per_center"] = v9.MAX_PAGES_PER_CENTER
     data.setdefault("diagnostics", {})["v10_past_removed"] = past_removed
@@ -157,17 +153,17 @@ def postprocess() -> None:
     tmp.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     tmp.replace(OUT)
 
-    print("=== V10 POST-TRAITEMENT ===")
+    print("=== V10 100 KM POST-TRAITEMENT ===")
     print(f"Événements terminés retirés : {past_removed}")
     print(f"Après horizon retirés        : {after_horizon_removed}")
     print(f"Événements finaux            : {len(cleaned)}")
 
 
 def main() -> None:
-    print("V10 RAPIDE : 3 centres utiles + cache V9 + nettoyage rolling 50.")
+    print("V10 RAPIDE : Nyons + rayon 100 km + cache + rolling 50.")
     v9.main()
     postprocess()
-    print("OK V10: agenda.json prêt.")
+    print("OK V10 100 km: agenda.json prêt.")
 
 
 if __name__ == "__main__":
