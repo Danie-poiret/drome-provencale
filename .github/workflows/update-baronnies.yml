@@ -29,6 +29,7 @@ jobs:
 
       - name: Generer les 100 fiches evenements
         env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           OPENAI_MODEL: gpt-5.6-terra
           MAX_EVENT_AI_CALLS: "100"
         run: python generate_event_pages.py
