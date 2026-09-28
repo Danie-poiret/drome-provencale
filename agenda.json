@@ -1,39 +1,780 @@
 {
   "source": "https://www.drome-cestmanature.com/preparez-votre-sejour/l-agenda/",
-  "source_mode": "segmented_radius_v11",
-  "updated_at": "2026-09-28T08:41:48.491142+00:00",
+  "source_mode": "nyons_engine_all_links_filter_after_detail",
+  "updated_at": "2026-09-28T09:16:07.747683+00:00",
   "scope": "Baronnies en Drôme Provençale hors Nyons",
   "search": {
     "date_du": "28/09/2026",
     "date_au": "27/03/2027",
-    "radius_km": 30,
-    "centers": [
-      "nyons",
-      "buis-les-baronnies",
-      "montbrun-les-bains"
-    ],
-    "window_days": 30,
-    "max_pages_per_search": 6,
+    "center": "nyons",
+    "radius_km": 100,
     "max_final_events": 50
   },
-  "count": 16,
+  "count": 13,
   "diagnostics": {
-    "windows_scanned": 7,
-    "list_pages_scanned": 51,
+    "detected_pages": 149,
+    "pages_scanned": 149,
     "list_errors": 0,
-    "candidate_urls": 100,
+    "list_workers": 24,
+    "candidate_urls": 1043,
+    "page_stats": {
+      "1": {
+        "status": 200,
+        "links": 36,
+        "new": 36
+      },
+      "2": {
+        "status": 200,
+        "links": 36,
+        "new": 5
+      },
+      "3": {
+        "status": 200,
+        "links": 36,
+        "new": 5
+      },
+      "4": {
+        "status": 200,
+        "links": 36,
+        "new": 17
+      },
+      "5": {
+        "status": 200,
+        "links": 36,
+        "new": 9
+      },
+      "6": {
+        "status": 200,
+        "links": 36,
+        "new": 14
+      },
+      "7": {
+        "status": 200,
+        "links": 36,
+        "new": 25
+      },
+      "8": {
+        "status": 200,
+        "links": 36,
+        "new": 15
+      },
+      "9": {
+        "status": 200,
+        "links": 36,
+        "new": 15
+      },
+      "10": {
+        "status": 200,
+        "links": 36,
+        "new": 21
+      },
+      "11": {
+        "status": 200,
+        "links": 36,
+        "new": 23
+      },
+      "12": {
+        "status": 200,
+        "links": 36,
+        "new": 6
+      },
+      "13": {
+        "status": 200,
+        "links": 35,
+        "new": 6
+      },
+      "14": {
+        "status": 200,
+        "links": 36,
+        "new": 16
+      },
+      "15": {
+        "status": 200,
+        "links": 36,
+        "new": 5
+      },
+      "16": {
+        "status": 200,
+        "links": 36,
+        "new": 0
+      },
+      "17": {
+        "status": 200,
+        "links": 36,
+        "new": 7
+      },
+      "18": {
+        "status": 200,
+        "links": 34,
+        "new": 6
+      },
+      "19": {
+        "status": 200,
+        "links": 36,
+        "new": 16
+      },
+      "20": {
+        "status": 200,
+        "links": 36,
+        "new": 4
+      },
+      "21": {
+        "status": 200,
+        "links": 36,
+        "new": 13
+      },
+      "22": {
+        "status": 200,
+        "links": 36,
+        "new": 20
+      },
+      "23": {
+        "status": 200,
+        "links": 36,
+        "new": 9
+      },
+      "24": {
+        "status": 200,
+        "links": 36,
+        "new": 24
+      },
+      "25": {
+        "status": 200,
+        "links": 36,
+        "new": 6
+      },
+      "26": {
+        "status": 200,
+        "links": 36,
+        "new": 11
+      },
+      "27": {
+        "status": 200,
+        "links": 36,
+        "new": 0
+      },
+      "28": {
+        "status": 200,
+        "links": 30,
+        "new": 5
+      },
+      "29": {
+        "status": 200,
+        "links": 36,
+        "new": 13
+      },
+      "30": {
+        "status": 200,
+        "links": 36,
+        "new": 5
+      },
+      "31": {
+        "status": 200,
+        "links": 36,
+        "new": 11
+      },
+      "32": {
+        "status": 200,
+        "links": 36,
+        "new": 20
+      },
+      "33": {
+        "status": 200,
+        "links": 36,
+        "new": 18
+      },
+      "34": {
+        "status": 200,
+        "links": 36,
+        "new": 30
+      },
+      "35": {
+        "status": 200,
+        "links": 36,
+        "new": 8
+      },
+      "36": {
+        "status": 200,
+        "links": 35,
+        "new": 5
+      },
+      "37": {
+        "status": 200,
+        "links": 36,
+        "new": 7
+      },
+      "38": {
+        "status": 200,
+        "links": 36,
+        "new": 5
+      },
+      "39": {
+        "status": 200,
+        "links": 31,
+        "new": 2
+      },
+      "40": {
+        "status": 200,
+        "links": 36,
+        "new": 9
+      },
+      "41": {
+        "status": 200,
+        "links": 36,
+        "new": 0
+      },
+      "42": {
+        "status": 200,
+        "links": 36,
+        "new": 6
+      },
+      "43": {
+        "status": 200,
+        "links": 36,
+        "new": 11
+      },
+      "44": {
+        "status": 200,
+        "links": 36,
+        "new": 14
+      },
+      "45": {
+        "status": 200,
+        "links": 36,
+        "new": 7
+      },
+      "46": {
+        "status": 200,
+        "links": 34,
+        "new": 3
+      },
+      "47": {
+        "status": 200,
+        "links": 34,
+        "new": 0
+      },
+      "48": {
+        "status": 200,
+        "links": 36,
+        "new": 4
+      },
+      "49": {
+        "status": 200,
+        "links": 36,
+        "new": 3
+      },
+      "50": {
+        "status": 200,
+        "links": 36,
+        "new": 1
+      },
+      "51": {
+        "status": 200,
+        "links": 36,
+        "new": 5
+      },
+      "52": {
+        "status": 200,
+        "links": 36,
+        "new": 6
+      },
+      "53": {
+        "status": 200,
+        "links": 36,
+        "new": 7
+      },
+      "54": {
+        "status": 200,
+        "links": 36,
+        "new": 0
+      },
+      "55": {
+        "status": 200,
+        "links": 30,
+        "new": 0
+      },
+      "56": {
+        "status": 200,
+        "links": 34,
+        "new": 6
+      },
+      "57": {
+        "status": 200,
+        "links": 36,
+        "new": 5
+      },
+      "58": {
+        "status": 200,
+        "links": 36,
+        "new": 10
+      },
+      "59": {
+        "status": 200,
+        "links": 36,
+        "new": 10
+      },
+      "60": {
+        "status": 200,
+        "links": 36,
+        "new": 7
+      },
+      "61": {
+        "status": 200,
+        "links": 36,
+        "new": 13
+      },
+      "62": {
+        "status": 200,
+        "links": 36,
+        "new": 5
+      },
+      "63": {
+        "status": 200,
+        "links": 36,
+        "new": 3
+      },
+      "64": {
+        "status": 200,
+        "links": 35,
+        "new": 3
+      },
+      "65": {
+        "status": 200,
+        "links": 36,
+        "new": 5
+      },
+      "66": {
+        "status": 200,
+        "links": 36,
+        "new": 4
+      },
+      "67": {
+        "status": 200,
+        "links": 36,
+        "new": 5
+      },
+      "68": {
+        "status": 200,
+        "links": 36,
+        "new": 3
+      },
+      "69": {
+        "status": 200,
+        "links": 36,
+        "new": 10
+      },
+      "70": {
+        "status": 200,
+        "links": 36,
+        "new": 8
+      },
+      "71": {
+        "status": 200,
+        "links": 36,
+        "new": 3
+      },
+      "72": {
+        "status": 200,
+        "links": 31,
+        "new": 0
+      },
+      "73": {
+        "status": 200,
+        "links": 33,
+        "new": 4
+      },
+      "74": {
+        "status": 200,
+        "links": 36,
+        "new": 4
+      },
+      "75": {
+        "status": 200,
+        "links": 36,
+        "new": 9
+      },
+      "76": {
+        "status": 200,
+        "links": 36,
+        "new": 9
+      },
+      "77": {
+        "status": 200,
+        "links": 36,
+        "new": 9
+      },
+      "78": {
+        "status": 200,
+        "links": 36,
+        "new": 7
+      },
+      "79": {
+        "status": 200,
+        "links": 36,
+        "new": 3
+      },
+      "80": {
+        "status": 200,
+        "links": 32,
+        "new": 2
+      },
+      "81": {
+        "status": 200,
+        "links": 33,
+        "new": 3
+      },
+      "82": {
+        "status": 200,
+        "links": 36,
+        "new": 5
+      },
+      "83": {
+        "status": 200,
+        "links": 35,
+        "new": 5
+      },
+      "84": {
+        "status": 200,
+        "links": 36,
+        "new": 7
+      },
+      "85": {
+        "status": 200,
+        "links": 36,
+        "new": 5
+      },
+      "86": {
+        "status": 200,
+        "links": 35,
+        "new": 4
+      },
+      "87": {
+        "status": 200,
+        "links": 36,
+        "new": 2
+      },
+      "88": {
+        "status": 200,
+        "links": 35,
+        "new": 4
+      },
+      "89": {
+        "status": 200,
+        "links": 36,
+        "new": 3
+      },
+      "90": {
+        "status": 200,
+        "links": 36,
+        "new": 6
+      },
+      "91": {
+        "status": 200,
+        "links": 36,
+        "new": 9
+      },
+      "92": {
+        "status": 200,
+        "links": 36,
+        "new": 5
+      },
+      "93": {
+        "status": 200,
+        "links": 36,
+        "new": 6
+      },
+      "94": {
+        "status": 200,
+        "links": 36,
+        "new": 5
+      },
+      "95": {
+        "status": 200,
+        "links": 36,
+        "new": 5
+      },
+      "96": {
+        "status": 200,
+        "links": 30,
+        "new": 0
+      },
+      "97": {
+        "status": 200,
+        "links": 31,
+        "new": 4
+      },
+      "98": {
+        "status": 200,
+        "links": 36,
+        "new": 12
+      },
+      "99": {
+        "status": 200,
+        "links": 35,
+        "new": 0
+      },
+      "100": {
+        "status": 200,
+        "links": 35,
+        "new": 6
+      },
+      "101": {
+        "status": 200,
+        "links": 36,
+        "new": 8
+      },
+      "102": {
+        "status": 200,
+        "links": 36,
+        "new": 8
+      },
+      "103": {
+        "status": 200,
+        "links": 36,
+        "new": 3
+      },
+      "104": {
+        "status": 200,
+        "links": 36,
+        "new": 4
+      },
+      "105": {
+        "status": 200,
+        "links": 35,
+        "new": 3
+      },
+      "106": {
+        "status": 200,
+        "links": 36,
+        "new": 3
+      },
+      "107": {
+        "status": 200,
+        "links": 36,
+        "new": 4
+      },
+      "108": {
+        "status": 200,
+        "links": 36,
+        "new": 2
+      },
+      "109": {
+        "status": 200,
+        "links": 36,
+        "new": 5
+      },
+      "110": {
+        "status": 200,
+        "links": 36,
+        "new": 11
+      },
+      "111": {
+        "status": 200,
+        "links": 32,
+        "new": 0
+      },
+      "112": {
+        "status": 200,
+        "links": 32,
+        "new": 1
+      },
+      "113": {
+        "status": 200,
+        "links": 27,
+        "new": 0
+      },
+      "114": {
+        "status": 200,
+        "links": 32,
+        "new": 1
+      },
+      "115": {
+        "status": 200,
+        "links": 29,
+        "new": 0
+      },
+      "116": {
+        "status": 200,
+        "links": 31,
+        "new": 0
+      },
+      "117": {
+        "status": 200,
+        "links": 31,
+        "new": 0
+      },
+      "118": {
+        "status": 200,
+        "links": 28,
+        "new": 0
+      },
+      "119": {
+        "status": 200,
+        "links": 29,
+        "new": 1
+      },
+      "120": {
+        "status": 200,
+        "links": 29,
+        "new": 1
+      },
+      "121": {
+        "status": 200,
+        "links": 27,
+        "new": 2
+      },
+      "122": {
+        "status": 200,
+        "links": 15,
+        "new": 4
+      },
+      "123": {
+        "status": 200,
+        "links": 18,
+        "new": 5
+      },
+      "124": {
+        "status": 200,
+        "links": 19,
+        "new": 3
+      },
+      "125": {
+        "status": 200,
+        "links": 14,
+        "new": 6
+      },
+      "126": {
+        "status": 200,
+        "links": 20,
+        "new": 10
+      },
+      "127": {
+        "status": 200,
+        "links": 21,
+        "new": 7
+      },
+      "128": {
+        "status": 200,
+        "links": 25,
+        "new": 9
+      },
+      "129": {
+        "status": 200,
+        "links": 27,
+        "new": 9
+      },
+      "130": {
+        "status": 200,
+        "links": 23,
+        "new": 6
+      },
+      "131": {
+        "status": 200,
+        "links": 15,
+        "new": 5
+      },
+      "132": {
+        "status": 200,
+        "links": 22,
+        "new": 8
+      },
+      "133": {
+        "status": 200,
+        "links": 18,
+        "new": 5
+      },
+      "134": {
+        "status": 200,
+        "links": 22,
+        "new": 8
+      },
+      "135": {
+        "status": 200,
+        "links": 27,
+        "new": 9
+      },
+      "136": {
+        "status": 200,
+        "links": 23,
+        "new": 9
+      },
+      "137": {
+        "status": 200,
+        "links": 24,
+        "new": 8
+      },
+      "138": {
+        "status": 200,
+        "links": 17,
+        "new": 6
+      },
+      "139": {
+        "status": 200,
+        "links": 16,
+        "new": 4
+      },
+      "140": {
+        "status": 200,
+        "links": 16,
+        "new": 4
+      },
+      "141": {
+        "status": 200,
+        "links": 14,
+        "new": 3
+      },
+      "142": {
+        "status": 200,
+        "links": 17,
+        "new": 5
+      },
+      "143": {
+        "status": 200,
+        "links": 22,
+        "new": 11
+      },
+      "144": {
+        "status": 200,
+        "links": 18,
+        "new": 10
+      },
+      "145": {
+        "status": 200,
+        "links": 24,
+        "new": 15
+      },
+      "146": {
+        "status": 200,
+        "links": 23,
+        "new": 7
+      },
+      "147": {
+        "status": 200,
+        "links": 21,
+        "new": 10
+      },
+      "148": {
+        "status": 200,
+        "links": 21,
+        "new": 9
+      },
+      "149": {
+        "status": 200,
+        "links": 20,
+        "new": 9
+      }
+    },
+    "cache_hits": 424,
+    "network_attempts": 619,
+    "network_fetches": 619,
     "detail_errors": 0,
     "nyons_excluded": 40,
-    "outside_or_unrecognized_rejected": 44,
+    "outside_rejected": 990,
     "past_removed": 0,
     "after_horizon_removed": 0,
+    "batches": 6,
     "duplicates_removed": 0,
-    "missing_date": 0,
-    "center_pages": {
-      "nyons": 26,
-      "buis-les-baronnies": 14,
-      "montbrun-les-bains": 11
-    }
+    "elapsed_seconds": 106.03
   },
   "events": [
     {
@@ -56,7 +797,8 @@
       "dedupe_id": "eef2981fcbcb8ca8",
       "search_windows": [
         "2026-09-28_2026-10-27"
-      ]
+      ],
+      "list_page": 1
     },
     {
       "title": "Marché de producteurs",
@@ -78,28 +820,8 @@
       "dedupe_id": "8eae630c10563cb8",
       "search_windows": [
         "2026-09-28_2026-10-27"
-      ]
-    },
-    {
-      "title": "Festival Pantaï",
-      "start_date": "2026-10-03",
-      "end_date": "2026-10-03",
-      "commune": "Buis-les-Baronnies",
-      "address": "26170 Buis-les-Baronnies",
-      "description": "En Provençal, Pantaï signifie Rêve ! Le Festival Pantaï, spectacles de rue, transforme le cœur de Buis les Baronnies en une grande scène à ciel ouvert pour rêver ensemble. Spectacles de rue, cirque, théâtre, danse, musique et déambulations investissent les places et les ruelles du village pour offrir une journée de découvertes, de poésie, d'émotions et de rencontres. Programmation sur le site Internet: https://pantaifestival.fr/programme-2026/",
-      "opening": "Samedi 3 octobre 2026.",
-      "tariffs": "Gratuit.",
-      "contact": "Lieu de rendez-vous 26170 Buis-les-Baronnies Nous contacter par mail Visiter le site web Mise à jour le 17/09/2026 Par Office de Tourisme des Baronnies en Drôme Provençale",
-      "url": "https://www.drome-cestmanature.com/fiches/festival-pantai/",
-      "source_url": "https://www.drome-cestmanature.com/fiches/festival-pantai/",
-      "source_format": "drome_tourisme_filtered_detail",
-      "search_centers": [
-        "buis-les-baronnies"
       ],
-      "dedupe_id": "9292f97a23de06a3",
-      "search_windows": [
-        "2026-09-28_2026-10-27"
-      ]
+      "list_page": 1
     },
     {
       "title": "Vide grenier",
@@ -121,7 +843,8 @@
       "dedupe_id": "4e3e5330e5a64859",
       "search_windows": [
         "2026-09-28_2026-10-27"
-      ]
+      ],
+      "list_page": 14
     },
     {
       "title": "Vide grenier",
@@ -143,7 +866,8 @@
       "dedupe_id": "937843cee3ec730c",
       "search_windows": [
         "2026-09-28_2026-10-27"
-      ]
+      ],
+      "list_page": 13
     },
     {
       "title": "Miratrail",
@@ -164,7 +888,8 @@
       "dedupe_id": "001ca32a5409b868",
       "search_windows": [
         "2026-09-28_2026-10-27"
-      ]
+      ],
+      "list_page": 23
     },
     {
       "title": "« Ts’art : Une histoire de Paradis ! »",
@@ -186,7 +911,8 @@
       "dedupe_id": "16585ffe5e606a4c",
       "search_windows": [
         "2026-09-28_2026-10-27"
-      ]
+      ],
+      "list_page": 29
     },
     {
       "title": "Vignobles en Scène - Domaine Vallot - Atelier autour du Vin et de la Vigne - Les Immersives",
@@ -207,7 +933,8 @@
       "dedupe_id": "4b9db8cbfd2ba13b",
       "search_windows": [
         "2026-09-28_2026-10-27"
-      ]
+      ],
+      "list_page": 32
     },
     {
       "title": "Fête des fruits d'automne",
@@ -229,28 +956,8 @@
       "dedupe_id": "17a4f5fd21736278",
       "search_windows": [
         "2026-09-28_2026-10-27"
-      ]
-    },
-    {
-      "title": "Fête de la Courge",
-      "start_date": "2026-10-18",
-      "end_date": "2026-10-18",
-      "commune": "Montbrun-les-Bains",
-      "address": "l’Autin 26570 Montbrun-les-Bains",
-      "description": "Fête automnal autour de la courge Marché et animations familial",
-      "opening": "Dimanche 18 octobre 2026 de 10h à 20h.",
-      "tariffs": "",
-      "contact": "Lieu de rendez-vous l’Autin 26570 Montbrun-les-Bains Mise à jour le 22/09/2026 Par Office de Tourisme des Baronnies en Drôme Provençale",
-      "url": "https://www.drome-cestmanature.com/fiches/fete-de-la-courge/",
-      "source_url": "https://www.drome-cestmanature.com/fiches/fete-de-la-courge/",
-      "source_format": "drome_tourisme_filtered_detail",
-      "search_centers": [
-        "montbrun-les-bains"
       ],
-      "dedupe_id": "433f919f4a2368fc",
-      "search_windows": [
-        "2026-09-28_2026-10-27"
-      ]
+      "list_page": 34
     },
     {
       "title": "Vide Grenier de Courges Potirons et Cie",
@@ -272,7 +979,8 @@
       "dedupe_id": "02bb32944998386f",
       "search_windows": [
         "2026-09-28_2026-10-27"
-      ]
+      ],
+      "list_page": 36
     },
     {
       "title": "« Ts’art : Une histoire de Paradis ! »",
@@ -294,7 +1002,8 @@
       "dedupe_id": "b43c961b40beb0c9",
       "search_windows": [
         "2026-09-28_2026-10-27"
-      ]
+      ],
+      "list_page": 40
     },
     {
       "title": "Naïma Quartet",
@@ -317,7 +1026,8 @@
       "dedupe_id": "76d7874ce32f30f5",
       "search_windows": [
         "2026-11-27_2026-12-26"
-      ]
+      ],
+      "list_page": 84
     },
     {
       "title": "Marché de Noël 2026",
@@ -339,28 +1049,8 @@
       "dedupe_id": "6a9ec837d9edeecc",
       "search_windows": [
         "2026-11-27_2026-12-26"
-      ]
-    },
-    {
-      "title": "Plaisirs d'Hiver",
-      "start_date": "2026-12-12",
-      "end_date": "2026-12-12",
-      "commune": "Montbrun-les-Bains",
-      "address": "La Halle 26570 Montbrun-les-Bains",
-      "description": "Les Plaisirs d’Hiver de Montbrun-les-Bains sont de retour ! Sous le ciel étoilé de la Halle de Montbrun-les-Bains, venez découvrir les pépites de nos artisans-commerçants & les régalades de nos restaurateurs. Sous le ciel étoilé de la Halle, ACTIVE MONTBRUN - l'Association des Commerçants de Montbrun-les-Bains - vous propose 2 journées magiques pour passer de formidables moments en famille ou entre amis ! ✨ Dès Vendredi 12 Décembre à 16h00, venez découvrir les stands de nos commerçants pour trouver vos plus beaux cadeaux de Noël au gré de musique de Noël. Un gouter sera offert aux Enfants. Profitez en pour applaudir la Chorale des minots de Montbrun-les-bains qui chanteront depuis les marches de la Halle. La soirée débutera par un apéritif festif et se poursuivra avec les petits plats les plus raffinés préparés par les restaurateurs de Montbrun-les-Bains. Côté musique, ce n’est pas moins de 3 chanteurs ou groupes qui se succéderont pour assurer l’ambiance ! ✨ Samedi 13 Décembre 2025, nos exposants seront toujours présents pour vous et ne manquez le tirage de notre grande Tombola de l’Hiver. Tentez votre chance, de très nombreux lots sont à gagner ! En soirée, (re-)découvrez les Régalades de nos restaurateurs et venez vous amuser en famille ou entre amis à la Christmas party ! ️ Rendez-vous les Vendredi 12 et Samedi 13 Décembre 2025 Sous la Halle de Montbrun-les-Bains ️ de 16H00 à 00h00",
-      "opening": "Du vendredi 11 au samedi 12 décembre 2026 de 16h à 0h.",
-      "tariffs": "Gratuit.",
-      "contact": "Lieu de rendez-vous La Halle 26570 Montbrun-les-Bains Visiter le site web Mise à jour le 22/09/2026 Par Office de Tourisme des Baronnies en Drôme Provençale",
-      "url": "https://www.drome-cestmanature.com/fiches/plaisirs-dhiver/",
-      "source_url": "https://www.drome-cestmanature.com/fiches/plaisirs-dhiver/",
-      "source_format": "drome_tourisme_filtered_detail",
-      "search_centers": [
-        "montbrun-les-bains"
       ],
-      "dedupe_id": "a0afff54641aeb04",
-      "search_windows": [
-        "2026-11-27_2026-12-26"
-      ]
+      "list_page": 95
     },
     {
       "title": "L'olive et huile en fête",
@@ -382,7 +1072,8 @@
       "dedupe_id": "e4161ac944ced279",
       "search_windows": [
         "2026-12-27_2027-01-25"
-      ]
+      ],
+      "list_page": 127
     }
   ]
 }
