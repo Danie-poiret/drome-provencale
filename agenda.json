@@ -1,7 +1,7 @@
 {
   "source": "https://www.drome-cestmanature.com/preparez-votre-sejour/l-agenda/",
-  "source_mode": "filtered_radius_multi_center",
-  "updated_at": "2026-09-28T08:21:51.359800+00:00",
+  "source_mode": "filtered_radius_fast_v10",
+  "updated_at": "2026-09-28T08:30:03.752355+00:00",
   "scope": "Baronnies en Drôme Provençale hors Nyons",
   "search": {
     "date_du": "28/09/2026",
@@ -10,70 +10,43 @@
     "centers": [
       "nyons",
       "buis-les-baronnies",
-      "remuzat",
-      "montbrun-les-bains",
-      "sederon"
-    ]
+      "montbrun-les-bains"
+    ],
+    "max_final_events": 50,
+    "max_pages_per_center": 15
   },
   "count": 16,
   "diagnostics": {
     "center_searches": {
       "nyons": {
-        "pages_scanned": 30,
+        "pages_scanned": 15,
         "detected_pages": 61,
-        "raw_candidate_links": 595
+        "raw_candidate_links": 338
       },
       "buis-les-baronnies": {
         "pages_scanned": 11,
         "detected_pages": 11,
         "raw_candidate_links": 90
       },
-      "remuzat": {
-        "pages_scanned": 8,
-        "detected_pages": 8,
-        "raw_candidate_links": 79
-      },
       "montbrun-les-bains": {
         "pages_scanned": 1,
         "detected_pages": 1,
         "raw_candidate_links": 12
-      },
-      "sederon": {
-        "pages_scanned": 30,
-        "detected_pages": 150,
-        "raw_candidate_links": 1076
       }
     },
-    "list_pages_scanned": 80,
+    "list_pages_scanned": 27,
     "list_errors": 0,
-    "candidate_urls": 425,
+    "candidate_urls": 109,
     "nyons_excluded": 40,
-    "outside_or_unrecognized_rejected": 369,
+    "outside_or_unrecognized_rejected": 53,
     "detail_errors": 0,
     "duplicates_removed": 0,
-    "missing_date": 0
+    "missing_date": 0,
+    "v10_past_removed": 0,
+    "v10_after_horizon_removed": 0,
+    "v10_cache_ttl_hours": 60
   },
   "events": [
-    {
-      "title": "L'olive et huile en fête",
-      "start_date": "2026-01-18",
-      "end_date": "2026-01-18",
-      "commune": "Buis-les-Baronnies",
-      "address": "Place du marché 26170 Buis-les-Baronnies",
-      "description": "Cette 22ème édition de l'Olive et l'Huile en Fête vous proposera une journée festive et conviviale autour de l'Huile d'olive et les Olives noires de Nyons AOP mais aussi des produits traditionnels propres au terroir des Baronnies Provençales . 9h00 :",
-      "opening": "du marché de producteurs 10h00 : Messe de l'huile nouvelle à l'église de Buis-les-Baronnies 11h30 : Alicoque et apéritif offert par les producteurs 14h00 : Promenade guidée dans les oliviers (départ devant la fontaine de la Place des Arcades) Et toute la journée : Musique provençale avec le groupe Li Festejaïres Exposition et défilé de vieux tracteurs Promenade en calèche (gratuit) Accès Place du marché 26170 Buis-les-Baronnies Informations complémentaires Langues parlées Français Ouverture Lundi 18 janvier.",
-      "tariffs": "Accès libre.",
-      "contact": "Lieu de rendez-vous Place du marché 26170 Buis-les-Baronnies Nous contacter par mail Mise à jour le 30/12/2025 Par Office de Tourisme des Baronnies en Drôme Provençale",
-      "url": "https://www.drome-cestmanature.com/fiches/lolive-et-huile-en-fete/",
-      "source_url": "https://www.drome-cestmanature.com/fiches/lolive-et-huile-en-fete/",
-      "source_format": "drome_tourisme_filtered_detail",
-      "search_centers": [
-        "buis-les-baronnies",
-        "remuzat",
-        "montbrun-les-bains"
-      ],
-      "dedupe_id": "bab08c56a47c3ee9"
-    },
     {
       "title": "Parcours découverte de la Biscuiterie",
       "start_date": "2026-04-01",
@@ -89,8 +62,7 @@
       "source_format": "drome_tourisme_filtered_detail",
       "search_centers": [
         "nyons",
-        "buis-les-baronnies",
-        "sederon"
+        "buis-les-baronnies"
       ],
       "dedupe_id": "eef2981fcbcb8ca8"
     },
@@ -109,9 +81,7 @@
       "source_format": "drome_tourisme_filtered_detail",
       "search_centers": [
         "nyons",
-        "buis-les-baronnies",
-        "remuzat",
-        "sederon"
+        "buis-les-baronnies"
       ],
       "dedupe_id": "8eae630c10563cb8"
     },
@@ -129,8 +99,7 @@
       "source_url": "https://www.drome-cestmanature.com/fiches/festival-pantai/",
       "source_format": "drome_tourisme_filtered_detail",
       "search_centers": [
-        "buis-les-baronnies",
-        "sederon"
+        "buis-les-baronnies"
       ],
       "dedupe_id": "9292f97a23de06a3"
     },
@@ -149,9 +118,7 @@
       "source_format": "drome_tourisme_filtered_detail",
       "search_centers": [
         "nyons",
-        "buis-les-baronnies",
-        "remuzat",
-        "sederon"
+        "buis-les-baronnies"
       ],
       "dedupe_id": "4e3e5330e5a64859"
     },
@@ -170,9 +137,7 @@
       "source_format": "drome_tourisme_filtered_detail",
       "search_centers": [
         "nyons",
-        "buis-les-baronnies",
-        "remuzat",
-        "sederon"
+        "buis-les-baronnies"
       ],
       "dedupe_id": "937843cee3ec730c"
     },
@@ -191,9 +156,7 @@
       "source_format": "drome_tourisme_filtered_detail",
       "search_centers": [
         "nyons",
-        "buis-les-baronnies",
-        "remuzat",
-        "sederon"
+        "buis-les-baronnies"
       ],
       "dedupe_id": "001ca32a5409b868"
     },
@@ -213,9 +176,7 @@
       "search_centers": [
         "nyons",
         "buis-les-baronnies",
-        "remuzat",
-        "montbrun-les-bains",
-        "sederon"
+        "montbrun-les-bains"
       ],
       "dedupe_id": "16585ffe5e606a4c"
     },
@@ -234,8 +195,7 @@
       "source_format": "drome_tourisme_filtered_detail",
       "search_centers": [
         "nyons",
-        "buis-les-baronnies",
-        "remuzat"
+        "buis-les-baronnies"
       ],
       "dedupe_id": "4b9db8cbfd2ba13b"
     },
@@ -255,7 +215,6 @@
       "search_centers": [
         "nyons",
         "buis-les-baronnies",
-        "remuzat",
         "montbrun-les-bains"
       ],
       "dedupe_id": "17a4f5fd21736278"
@@ -293,7 +252,6 @@
       "source_format": "drome_tourisme_filtered_detail",
       "search_centers": [
         "buis-les-baronnies",
-        "remuzat",
         "montbrun-les-bains"
       ],
       "dedupe_id": "02bb32944998386f"
@@ -314,7 +272,6 @@
       "search_centers": [
         "nyons",
         "buis-les-baronnies",
-        "remuzat",
         "montbrun-les-bains"
       ],
       "dedupe_id": "b43c961b40beb0c9"
@@ -334,7 +291,6 @@
       "source_format": "drome_tourisme_filtered_detail",
       "search_centers": [
         "buis-les-baronnies",
-        "remuzat",
         "montbrun-les-bains"
       ],
       "dedupe_id": "76d7874ce32f30f5"
@@ -354,7 +310,6 @@
       "source_format": "drome_tourisme_filtered_detail",
       "search_centers": [
         "buis-les-baronnies",
-        "remuzat",
         "montbrun-les-bains"
       ],
       "dedupe_id": "6a9ec837d9edeecc"
@@ -376,6 +331,25 @@
         "montbrun-les-bains"
       ],
       "dedupe_id": "a0afff54641aeb04"
+    },
+    {
+      "title": "L'olive et huile en fête",
+      "start_date": "2027-01-18",
+      "end_date": "2027-01-18",
+      "commune": "Buis-les-Baronnies",
+      "address": "Place du marché 26170 Buis-les-Baronnies",
+      "description": "Cette 22ème édition de l'Olive et l'Huile en Fête vous proposera une journée festive et conviviale autour de l'Huile d'olive et les Olives noires de Nyons AOP mais aussi des produits traditionnels propres au terroir des Baronnies Provençales . 9h00 :",
+      "opening": "du marché de producteurs 10h00 : Messe de l'huile nouvelle à l'église de Buis-les-Baronnies 11h30 : Alicoque et apéritif offert par les producteurs 14h00 : Promenade guidée dans les oliviers (départ devant la fontaine de la Place des Arcades) Et toute la journée : Musique provençale avec le groupe Li Festejaïres Exposition et défilé de vieux tracteurs Promenade en calèche (gratuit) Accès Place du marché 26170 Buis-les-Baronnies Informations complémentaires Langues parlées Français Ouverture Lundi 18 janvier.",
+      "tariffs": "Accès libre.",
+      "contact": "Lieu de rendez-vous Place du marché 26170 Buis-les-Baronnies Nous contacter par mail Mise à jour le 30/12/2025 Par Office de Tourisme des Baronnies en Drôme Provençale",
+      "url": "https://www.drome-cestmanature.com/fiches/lolive-et-huile-en-fete/",
+      "source_url": "https://www.drome-cestmanature.com/fiches/lolive-et-huile-en-fete/",
+      "source_format": "drome_tourisme_filtered_detail",
+      "search_centers": [
+        "buis-les-baronnies",
+        "montbrun-les-bains"
+      ],
+      "dedupe_id": "bab08c56a47c3ee9"
     }
   ]
 }

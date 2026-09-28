@@ -288,8 +288,7 @@
       "source_format": "drome_tourisme_filtered_detail",
       "search_centers": [
         "nyons",
-        "buis-les-baronnies",
-        "sederon"
+        "buis-les-baronnies"
       ]
     }
   },
@@ -310,9 +309,7 @@
       "source_format": "drome_tourisme_filtered_detail",
       "search_centers": [
         "nyons",
-        "buis-les-baronnies",
-        "remuzat",
-        "sederon"
+        "buis-les-baronnies"
       ]
     }
   },
@@ -520,9 +517,7 @@
       "source_format": "drome_tourisme_filtered_detail",
       "search_centers": [
         "nyons",
-        "buis-les-baronnies",
-        "remuzat",
-        "sederon"
+        "buis-les-baronnies"
       ]
     }
   },
@@ -560,9 +555,7 @@
       "source_format": "drome_tourisme_filtered_detail",
       "search_centers": [
         "nyons",
-        "buis-les-baronnies",
-        "remuzat",
-        "sederon"
+        "buis-les-baronnies"
       ]
     }
   },
@@ -787,9 +780,7 @@
       "source_format": "drome_tourisme_filtered_detail",
       "search_centers": [
         "nyons",
-        "buis-les-baronnies",
-        "remuzat",
-        "sederon"
+        "buis-les-baronnies"
       ]
     }
   },
@@ -879,9 +870,7 @@
       "search_centers": [
         "nyons",
         "buis-les-baronnies",
-        "remuzat",
-        "montbrun-les-bains",
-        "sederon"
+        "montbrun-les-bains"
       ]
     }
   },
@@ -936,8 +925,7 @@
       "source_format": "drome_tourisme_filtered_detail",
       "search_centers": [
         "nyons",
-        "buis-les-baronnies",
-        "remuzat"
+        "buis-les-baronnies"
       ]
     }
   },
@@ -1180,7 +1168,6 @@
       "search_centers": [
         "nyons",
         "buis-les-baronnies",
-        "remuzat",
         "montbrun-les-bains"
       ]
     }
@@ -1390,7 +1377,6 @@
       "search_centers": [
         "nyons",
         "buis-les-baronnies",
-        "remuzat",
         "montbrun-les-bains"
       ]
     }
@@ -1751,8 +1737,7 @@
       "source_url": "https://www.drome-cestmanature.com/fiches/festival-pantai/",
       "source_format": "drome_tourisme_filtered_detail",
       "search_centers": [
-        "buis-les-baronnies",
-        "sederon"
+        "buis-les-baronnies"
       ]
     }
   },
@@ -1790,7 +1775,6 @@
       "source_format": "drome_tourisme_filtered_detail",
       "search_centers": [
         "buis-les-baronnies",
-        "remuzat",
         "montbrun-les-bains"
       ]
     }
@@ -1812,7 +1796,6 @@
       "source_format": "drome_tourisme_filtered_detail",
       "search_centers": [
         "buis-les-baronnies",
-        "remuzat",
         "montbrun-les-bains"
       ]
     }
@@ -1851,7 +1834,6 @@
       "source_format": "drome_tourisme_filtered_detail",
       "search_centers": [
         "buis-les-baronnies",
-        "remuzat",
         "montbrun-les-bains"
       ]
     }
@@ -1975,7 +1957,6 @@
       "source_format": "drome_tourisme_filtered_detail",
       "search_centers": [
         "buis-les-baronnies",
-        "remuzat",
         "montbrun-les-bains"
       ]
     }
