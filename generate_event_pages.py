@@ -1,0 +1,475 @@
+#!/usr/bin/env python3
+"""Génère les fiches événements HTML dans le même esprit que agenda.vivreanyons.fr.
+
+- lit agenda.json produit par extract_baronnies_v10.py ;
+- génère une page /evenements/<slug>/index.html par événement ;
+- reprend la même présentation visuelle et éditoriale que l'agenda Nyons ;
+- utilise OpenAI uniquement pour les événements nouveaux ou modifiés ;
+- conserve un cache éditorial pour ne pas repayer les textes inchangés ;
+- génère aussi l'index des événements, sitemap.xml et robots.txt.
+"""
+from __future__ import annotations
+
+import hashlib
+import html
+import json
+import os
+import re
+import shutil
+import unicodedata
+from datetime import date, datetime, timezone
+from pathlib import Path
+from urllib.parse import urljoin
+
+try:
+    from openai import OpenAI
+except Exception:
+    OpenAI = None
+
+ROOT = Path(__file__).resolve().parent
+AGENDA = ROOT / "agenda.json"
+EVENTS_DIR = ROOT / "evenements"
+CACHE_FILE = ROOT / "_event_seo_cache.json"
+SITEMAP = ROOT / "sitemap.xml"
+ROBOTS = ROOT / "robots.txt"
+
+SITE = os.getenv("SITE_URL", "https://danie-poiret.github.io/drome-provencale/").rstrip("/") + "/"
+BANNER_URL = "https://danie-poiret.github.io/banniere-nyons/"
+OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gpt-5.6-terra")
+MAX_EVENT_AI_CALLS = int(os.getenv("MAX_EVENT_AI_CALLS", "100"))
+PROMPT_VERSION = 1
+
+MONTHS = {
+    1: "janvier", 2: "février", 3: "mars", 4: "avril", 5: "mai", 6: "juin",
+    7: "juillet", 8: "août", 9: "septembre", 10: "octobre", 11: "novembre", 12: "décembre",
+}
+
+
+def clean(value) -> str:
+    return re.sub(r"\s+", " ", str(value or "")).strip()
+
+
+def esc(value) -> str:
+    return html.escape(clean(value), quote=True)
+
+
+def slugify(text: str, max_len: int = 90) -> str:
+    raw = unicodedata.normalize("NFKD", clean(text))
+    raw = "".join(ch for ch in raw if not unicodedata.combining(ch))
+    raw = raw.lower().replace("’", "-").replace("'", "-")
+    raw = re.sub(r"[^a-z0-9]+", "-", raw).strip("-")
+    return raw[:max_len].rstrip("-") or "evenement"
+
+
+def iso_date(value: str) -> date | None:
+    try:
+        return date.fromisoformat(clean(value))
+    except Exception:
+        return None
+
+
+def fr_date(value: str) -> str:
+    d = iso_date(value)
+    if not d:
+        return clean(value)
+    return f"{d.day} {MONTHS[d.month]} {d.year}"
+
+
+def date_label(event: dict) -> str:
+    opening = clean(event.get("opening"))
+    if opening:
+        return opening
+    start = iso_date(event.get("start_date", ""))
+    end = iso_date(event.get("end_date", ""))
+    if not start:
+        return "Dates à vérifier sur la fiche source"
+    if not end or end == start:
+        return fr_date(start.isoformat())
+    return f"Du {fr_date(start.isoformat())} au {fr_date(end.isoformat())}"
+
+
+def event_status(event: dict) -> str:
+    today = date.today()
+    start = iso_date(event.get("start_date", ""))
+    end = iso_date(event.get("end_date", "")) or start
+    if start and end and start <= today <= end:
+        return "En cours"
+    if start and start > today:
+        return "À venir"
+    return "Agenda"
+
+
+def extract_email(text: str) -> str:
+    m = re.search(r"[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}", text or "", re.I)
+    return m.group(0) if m else ""
+
+
+def extract_phone(text: str) -> str:
+    m = re.search(r"(?<!\d)(?:\+33\s?\(0\)\s?|\+33\s?|0)[1-9](?:[ .-]?\d{2}){4}(?!\d)", text or "")
+    return clean(m.group(0)) if m else ""
+
+
+def compact_description(text: str, limit: int = 3600) -> str:
+    return clean(text)[:limit]
+
+
+def event_facts(event: dict) -> dict:
+    return {
+        "title": clean(event.get("title")),
+        "commune": clean(event.get("commune")),
+        "start_date": clean(event.get("start_date")),
+        "end_date": clean(event.get("end_date")),
+        "dates_horaires_source": clean(event.get("opening")),
+        "adresse": clean(event.get("address")),
+        "description_source": compact_description(event.get("description", "")),
+        "tarifs": clean(event.get("tariffs")),
+        "contact": clean(event.get("contact"))[:1200],
+        "source_url": clean(event.get("source_url") or event.get("url")),
+    }
+
+
+def event_hash(event: dict) -> str:
+    payload = {
+        "facts": event_facts(event),
+        "prompt_version": PROMPT_VERSION,
+        "model": OPENAI_MODEL,
+    }
+    raw = json.dumps(payload, ensure_ascii=False, sort_keys=True)
+    return hashlib.sha256(raw.encode("utf-8")).hexdigest()
+
+
+def load_json(path: Path, default):
+    if not path.exists():
+        return default
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return default
+
+
+def save_json(path: Path, data) -> None:
+    path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
+def fallback_editorial(event: dict) -> dict:
+    title = clean(event.get("title"))
+    commune = clean(event.get("commune"))
+    desc = clean(event.get("description"))
+    place = f" à {commune}" if commune else ""
+    lead = desc[:560].rstrip(" .") if desc else f"{title} est annoncé{place}. Retrouvez ci-dessous les informations pratiques publiées par la source de l’événement."
+    if lead and not lead.endswith("."):
+        lead += "."
+    return {
+        "seo_title": f"{title}{' à ' + commune if commune else ''}"[:68],
+        "meta_description": (f"{title}{place} : dates, lieu et informations pratiques pour préparer votre sortie.")[:158],
+        "lead": lead,
+        "discover_title": "Ce que vous pourrez découvrir",
+        "discover_text": desc[:950] if desc else lead,
+        "why_text": f"Ce rendez-vous peut être une idée de sortie{place}. Les informations utiles sont regroupées ici pour vérifier rapidement la date, le lieu et les conditions annoncées.",
+        "practical_text": date_label(event) + (f". {clean(event.get('address'))}" if clean(event.get("address")) else ""),
+        "question": f"Irez-vous découvrir {title}{place} ?",
+    }
+
+
+def generate_editorial(event: dict) -> dict:
+    api_key = os.getenv("OPENAI_API_KEY", "").strip()
+    if not api_key or OpenAI is None:
+        return fallback_editorial(event)
+
+    schema = {
+        "type": "object",
+        "properties": {
+            "seo_title": {"type": "string"},
+            "meta_description": {"type": "string"},
+            "lead": {"type": "string"},
+            "discover_title": {"type": "string"},
+            "discover_text": {"type": "string"},
+            "why_text": {"type": "string"},
+            "practical_text": {"type": "string"},
+            "question": {"type": "string"},
+        },
+        "required": [
+            "seo_title", "meta_description", "lead", "discover_title",
+            "discover_text", "why_text", "practical_text", "question"
+        ],
+        "additionalProperties": False,
+    }
+
+    facts = event_facts(event)
+    system = (
+        "Tu es rédacteur local francophone spécialisé dans les sorties, le tourisme et le SEO utile. "
+        "Tu écris une fiche événement dans le même esprit éditorial que l'agenda de Nyons de Vivre à Nyons : "
+        "chaleureux, clair, local, naturel, sans ton publicitaire ni phrases creuses. "
+        "RÈGLES ABSOLUES : utilise uniquement les faits fournis ; n'invente jamais un horaire, un tarif, "
+        "une activité, un public, une réservation, un programme, un lieu ou une caractéristique absente. "
+        "Ne recopie pas mot pour mot la description source : reformule réellement. "
+        "Si l'information est pauvre, fais plus court au lieu d'inventer. "
+        "Le texte doit ressembler aux fiches de agenda.vivreanyons.fr : un chapeau, une partie découverte, "
+        "une partie 'pourquoi cela peut valoir le détour', puis des informations pratiques. "
+        "Évite les expressions typiques d'IA, les superlatifs gratuits et les répétitions. "
+        "SEO : le titre doit naturellement contenir le nom de l'événement et la commune quand elle est connue. "
+        "La meta description doit faire idéalement 145 à 160 caractères. "
+        "Longueur totale éditoriale souhaitée : environ 250 à 430 mots seulement si les faits le permettent."
+    )
+    user = (
+        "Rédige la fiche à partir de ces faits structurés. Le champ practical_text doit synthétiser uniquement "
+        "les informations pratiques présentes. Le champ question doit être une vraie question simple au lecteur.\n\n"
+        + json.dumps(facts, ensure_ascii=False, indent=2)
+    )
+
+    client = OpenAI(api_key=api_key)
+    response = client.responses.create(
+        model=OPENAI_MODEL,
+        store=False,
+        input=[
+            {"role": "system", "content": system},
+            {"role": "user", "content": user},
+        ],
+        text={
+            "format": {
+                "type": "json_schema",
+                "name": "agenda_drome_event_page",
+                "strict": True,
+                "schema": schema,
+            }
+        },
+    )
+    return json.loads(response.output_text)
+
+
+STYLE = """
+*{box-sizing:border-box}:root{--olive:#566b3a;--olive-dark:#354622;--terracotta:#a94f35;--cream:#f6f1e8;--paper:#fffdf9;--ink:#262722;--muted:#686b63;--line:#e4dccd;--shadow:0 12px 34px rgba(52,48,38,.10)}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--cream);color:var(--ink);line-height:1.72}a{color:var(--olive-dark)}
+.top{max-width:1180px;margin:auto;padding:15px 18px 0}.ad-shell{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--shadow)}.ad-frame{display:block;width:100%;aspect-ratio:3/1;border:0}.ad-note{font-size:11px;text-align:right;color:#777;margin:6px 4px 0}
+.wrap{max-width:980px;margin:auto;padding:18px 18px 64px}.nav{display:flex;gap:9px;flex-wrap:wrap;margin:8px 0 18px}.nav a{padding:9px 13px;background:#fff;border:1px solid var(--line);border-radius:999px;text-decoration:none;font-weight:800;font-size:13px}
+.hero{background:linear-gradient(125deg,var(--olive-dark),var(--olive) 62%,#788d58);color:#fff;border-radius:24px;padding:clamp(27px,5vw,52px);box-shadow:var(--shadow)}
+.status{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.15);font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:.04em}h1{font-size:clamp(31px,5vw,50px);line-height:1.08;margin:.35em 0 .3em}.date{font-size:18px;font-weight:800;margin:0 0 8px}.cats{opacity:.9;font-size:14px}
+.lead{font-size:19px;background:var(--paper);border-left:5px solid var(--terracotta);padding:22px 24px;border-radius:16px;margin:24px 0;box-shadow:0 6px 22px rgba(52,48,38,.055)}
+.section{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:22px 24px;margin:18px 0}.section h2{margin:0 0 9px;font-size:25px;line-height:1.2}.section p{margin:0 0 10px}.section p:last-child{margin-bottom:0}.practical-box{border-top:5px solid var(--terracotta)}.info-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:14px}.info-row{display:flex;gap:11px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;min-width:0}.info-row span{flex:0 0 24px;font-size:19px}.info-row a{overflow-wrap:anywhere}.info-date{grid-column:1/-1;background:#f6f0e4}
+.official-note{margin-top:12px!important;padding:14px 16px;background:#f3eee3;border-left:4px solid var(--terracotta);border-radius:10px}.question{background:#efe7cf;border-radius:18px;padding:22px 24px;margin:20px 0;font-weight:800;font-size:18px}.source{font-size:13px;color:var(--muted);margin-top:24px;padding:18px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.65)}
+.related{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px}.related-card{display:flex;flex-direction:column;gap:6px;padding:16px;background:#fff;border:1px solid var(--line);border-radius:14px;text-decoration:none}.related-card span{font-size:13px;color:var(--muted)}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;text-decoration:none}.card strong{display:block;font-size:18px}.card span{font-size:13px;color:var(--muted)}
+@media(max-width:720px){.related,.info-grid,.cards{grid-template-columns:1fr}.info-date{grid-column:auto}.top{padding:9px 9px 0}.wrap{padding:10px 11px 45px}.hero{border-radius:18px;padding:24px 20px}.lead,.section{padding:18px}}
+"""
+
+
+def event_slug(event: dict) -> str:
+    return f"{slugify(event.get('title', 'evenement'))}-{clean(event.get('start_date')) or 'date'}"
+
+
+def related_events(current: dict, events: list[dict], slug_map: dict[str, str]) -> list[dict]:
+    current_date = iso_date(current.get("start_date", "")) or date.max
+    others = [e for e in events if e is not current and clean(e.get("url")) != clean(current.get("url"))]
+    def score(e):
+        d = iso_date(e.get("start_date", "")) or date.max
+        delta = abs((d - current_date).days) if d != date.max and current_date != date.max else 99999
+        same_commune = 0 if clean(e.get("commune")).lower() == clean(current.get("commune")).lower() else 1
+        return (same_commune, delta, clean(e.get("title")).lower())
+    return sorted(others, key=score)[:3]
+
+
+def render_page(event: dict, editorial: dict, events: list[dict], slug_map: dict[str, str]) -> str:
+    slug = slug_map[clean(event.get("url"))]
+    canonical = urljoin(SITE, f"evenements/{slug}/")
+    source_url = clean(event.get("source_url") or event.get("url"))
+    title = clean(event.get("title"))
+    commune = clean(event.get("commune"))
+    address = clean(event.get("address"))
+    tariffs = clean(event.get("tariffs"))
+    contact = clean(event.get("contact"))
+    phone = extract_phone(contact)
+    email = extract_email(contact)
+    date_text = date_label(event)
+    seo_title = clean(editorial.get("seo_title")) or f"{title} à {commune}".strip()
+    meta = clean(editorial.get("meta_description")) or fallback_editorial(event)["meta_description"]
+    status = event_status(event)
+
+    info = [f'<div class="info-row info-date"><span>📅</span><div><strong>Dates et horaires</strong><br>{esc(date_text)}</div></div>']
+    if address:
+        info.append(f'<div class="info-row"><span>🗺️</span><div><strong>Adresse</strong><br>{esc(address)}</div></div>')
+    elif commune:
+        info.append(f'<div class="info-row"><span>📍</span><div><strong>Commune</strong><br>{esc(commune)}</div></div>')
+    if phone:
+        tel_href = re.sub(r"[^+\d]", "", phone)
+        info.append(f'<div class="info-row"><span>☎️</span><div><strong>Téléphone</strong><br><a href="tel:{esc(tel_href)}">{esc(phone)}</a></div></div>')
+    if email:
+        info.append(f'<div class="info-row"><span>✉️</span><div><strong>Email</strong><br><a href="mailto:{esc(email)}">{esc(email)}</a></div></div>')
+    if tariffs:
+        info.append(f'<div class="info-row"><span>💶</span><div><strong>Tarifs</strong><br>{esc(tariffs[:500])}</div></div>')
+
+    rel_html = []
+    for e in related_events(event, events, slug_map):
+        eurl = clean(e.get("url"))
+        eslug = slug_map.get(eurl)
+        if not eslug:
+            continue
+        rel_html.append(
+            f'<a class="related-card" href="{esc(urljoin(SITE, f"evenements/{eslug}/"))}">'
+            f'<strong>{esc(e.get("title"))}</strong>'
+            f'<span>{esc(date_label(e))}</span>'
+            f'</a>'
+        )
+
+    event_ld = {
+        "@context": "https://schema.org",
+        "@type": "Event",
+        "name": title,
+        "startDate": clean(event.get("start_date")),
+        "endDate": clean(event.get("end_date")) or clean(event.get("start_date")),
+        "url": canonical,
+        "sameAs": source_url,
+        "eventStatus": "https://schema.org/EventScheduled",
+        "description": meta,
+        "location": {
+            "@type": "Place",
+            "name": commune or address or "Drôme Provençale",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": address,
+                "addressLocality": commune,
+                "addressCountry": "FR",
+            },
+        },
+    }
+    breadcrumb = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Agenda", "item": SITE},
+            {"@type": "ListItem", "position": 2, "name": "Événements", "item": urljoin(SITE, "evenements/")},
+            {"@type": "ListItem", "position": 3, "name": title, "item": canonical},
+        ],
+    }
+
+    return f'''<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>{esc(seo_title)}</title>
+  <meta name="description" content="{esc(meta)}">
+  <link rel="canonical" href="{esc(canonical)}">
+  <meta name="robots" content="index,follow">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="{esc(seo_title)}">
+  <meta property="og:description" content="{esc(meta)}">
+  <meta property="og:url" content="{esc(canonical)}">
+  <script type="application/ld+json">{html.escape(json.dumps(event_ld, ensure_ascii=False))}</script>
+  <script type="application/ld+json">{html.escape(json.dumps(breadcrumb, ensure_ascii=False))}</script>
+  <style>{STYLE}</style>
+</head>
+<body>
+  <aside class="top" aria-label="Sélection de livres sur Nyons"><div class="ad-shell"><iframe class="ad-frame" src="{esc(BANNER_URL)}" loading="eager" title="Voir ma sélection de vieux livres sur Nyons"></iframe></div><div class="ad-note">Publicité · lien affilié</div></aside>
+  <main class="wrap">
+    <nav class="nav"><a href="{esc(SITE)}">← Agenda</a><a href="{esc(urljoin(SITE, 'evenements/'))}">📌 Tous les événements</a></nav>
+    <header class="hero"><span class="status">{esc(status)}</span><h1>{esc(title)}</h1><p class="date">📅 {esc(date_text)}</p><div class="cats">{esc(commune or 'Drôme et alentours')}</div></header>
+
+    <section class="section practical-box"><h2>📌 Infos pratiques</h2><div class="info-grid">{''.join(info)}</div></section>
+    <div class="lead">{esc(editorial.get('lead'))}</div>
+    <section class="section"><h2>🖼️ {esc(editorial.get('discover_title') or 'Ce que vous pourrez découvrir')}</h2><p>{esc(editorial.get('discover_text'))}</p></section>
+    <section class="section"><h2>👀 Pourquoi cette sortie peut valoir le détour</h2><p>{esc(editorial.get('why_text'))}</p></section>
+    <section class="section"><h2>ℹ️ Informations pratiques</h2><p>{esc(editorial.get('practical_text'))}</p><p class="official-note">🔗 <a href="{esc(source_url)}" target="_blank" rel="noopener"><strong>Voir la fiche source de l’événement sur La Drôme Tourisme</strong></a></p></section>
+    <div class="question">💬 {esc(editorial.get('question'))}</div>
+    <section class="section"><h2>📍 D’autres rendez-vous proches</h2><div class="related">{''.join(rel_html)}</div></section>
+    <div class="source"><strong>Source factuelle :</strong> <a href="{esc(source_url)}" target="_blank" rel="noopener">fiche de l’événement sur La Drôme Tourisme</a>. Le texte de cette page est une présentation éditoriale originale construite à partir des informations publiées. Les informations pratiques peuvent évoluer.</div>
+  </main>
+</body>
+</html>'''
+
+
+def render_index(events: list[dict], slug_map: dict[str, str]) -> str:
+    cards = []
+    for e in events:
+        slug = slug_map[clean(e.get("url"))]
+        cards.append(
+            f'<a class="card" href="{esc(urljoin(SITE, f"evenements/{slug}/"))}">'
+            f'<strong>{esc(e.get("title"))}</strong>'
+            f'<span>📅 {esc(date_label(e))}</span><span>📍 {esc(e.get("commune"))}</span></a>'
+        )
+    return f'''<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>100 prochains événements autour de Nyons</title><meta name="description" content="Découvrez les 100 prochains événements autour de Nyons : sorties, culture, loisirs, fêtes et rendez-vous dans un rayon de 100 km."><link rel="canonical" href="{esc(urljoin(SITE, 'evenements/'))}"><meta name="robots" content="index,follow"><style>{STYLE}</style></head><body><main class="wrap"><nav class="nav"><a href="{esc(SITE)}">← Accueil</a></nav><header class="hero"><span class="status">Agenda</span><h1>100 prochains événements autour de Nyons</h1><p class="date">Nyons est retiré de cette sélection pour éviter les doublons avec l’agenda local.</p></header><section class="section"><h2>📅 Tous les rendez-vous</h2><div class="cards">{''.join(cards)}</div></section></main></body></html>'''
+
+
+def write_sitemap(events: list[dict], slug_map: dict[str, str]) -> None:
+    urls = [SITE, urljoin(SITE, "evenements/")]
+    urls += [urljoin(SITE, f"evenements/{slug_map[clean(e.get('url'))]}/") for e in events]
+    now = datetime.now(timezone.utc).date().isoformat()
+    body = "\n".join(f"  <url><loc>{html.escape(u)}</loc><lastmod>{now}</lastmod></url>" for u in urls)
+    SITEMAP.write_text(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{body}\n</urlset>\n', encoding="utf-8")
+    ROBOTS.write_text(f"User-agent: *\nAllow: /\nSitemap: {urljoin(SITE, 'sitemap.xml')}\n", encoding="utf-8")
+
+
+def main() -> None:
+    payload = load_json(AGENDA, {})
+    events = payload.get("events", []) if isinstance(payload, dict) else []
+    if not events:
+        raise RuntimeError("agenda.json ne contient aucun événement")
+
+    cache = load_json(CACHE_FILE, {})
+    if not isinstance(cache, dict):
+        cache = {}
+
+    slug_map: dict[str, str] = {}
+    used = set()
+    for event in events:
+        key = clean(event.get("url"))
+        base = event_slug(event)
+        slug = base
+        if slug in used:
+            slug = f"{base}-{slugify(event.get('commune', 'lieu'), 35)}"
+        used.add(slug)
+        slug_map[key] = slug
+
+    EVENTS_DIR.mkdir(parents=True, exist_ok=True)
+    wanted_dirs = set(slug_map.values())
+    for child in EVENTS_DIR.iterdir():
+        if child.is_dir() and child.name not in wanted_dirs:
+            shutil.rmtree(child)
+
+    ai_calls = 0
+    cache_hits = 0
+    fallbacks = 0
+
+    for i, event in enumerate(events, start=1):
+        key = clean(event.get("url"))
+        h = event_hash(event)
+        entry = cache.get(key)
+        editorial = None
+        if isinstance(entry, dict) and entry.get("hash") == h and isinstance(entry.get("editorial"), dict):
+            editorial = entry["editorial"]
+            cache_hits += 1
+        else:
+            if ai_calls < MAX_EVENT_AI_CALLS:
+                try:
+                    editorial = generate_editorial(event)
+                    if os.getenv("OPENAI_API_KEY", "").strip() and OpenAI is not None:
+                        ai_calls += 1
+                    else:
+                        fallbacks += 1
+                except Exception as exc:
+                    print(f"IA ERREUR {key}: {exc}")
+                    editorial = fallback_editorial(event)
+                    fallbacks += 1
+            else:
+                editorial = fallback_editorial(event)
+                fallbacks += 1
+            cache[key] = {"hash": h, "editorial": editorial, "updated_at": datetime.now(timezone.utc).isoformat()}
+
+        out_dir = EVENTS_DIR / slug_map[key]
+        out_dir.mkdir(parents=True, exist_ok=True)
+        (out_dir / "index.html").write_text(render_page(event, editorial, events, slug_map), encoding="utf-8")
+        print(f"FICHE {i:03d}/{len(events)}: {slug_map[key]}")
+
+    (EVENTS_DIR / "index.html").write_text(render_index(events, slug_map), encoding="utf-8")
+    save_json(CACHE_FILE, cache)
+    write_sitemap(events, slug_map)
+
+    print("=== FICHES ÉVÉNEMENTS ===")
+    print(f"Fiches générées : {len(events)}")
+    print(f"Cache éditorial : {cache_hits}")
+    print(f"Appels OpenAI    : {ai_calls}")
+    print(f"Textes secours   : {fallbacks}")
+    print("OK: pages événements, sitemap.xml et robots.txt prêts.")
+
+
+if __name__ == "__main__":
+    main()
