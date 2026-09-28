@@ -34,6 +34,18 @@ jobs:
           MAX_EVENT_AI_CALLS: "100"
         run: python generate_event_pages.py
 
+      - name: Nettoyer le bandeau de la page evenements
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path("evenements/index.html")
+          if p.exists():
+              s = p.read_text(encoding="utf-8")
+              s = s.replace('<p class="date">Nyons est retiré de cette sélection pour éviter les doublons avec l’agenda local.</p>', '')
+              p.write_text(s, encoding="utf-8")
+          PY
+
       - name: Enregistrer les changements
         shell: bash
         run: |
