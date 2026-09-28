@@ -1,4 +1,4 @@
-name: Mise a jour agenda Baronnies V10
+name: Mise a jour agenda Baronnies - moteur Nyons
 
 on:
   workflow_dispatch:
@@ -41,5 +41,5 @@ jobs:
             exit 0
           fi
 
-          git commit -m "Mise a jour agenda Baronnies V10"
+          git commit -m "Mise a jour agenda Baronnies - moteur Nyons"
           git push
