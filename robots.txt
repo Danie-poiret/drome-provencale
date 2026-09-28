@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://danie-poiret.github.io/drome-provencale/sitemap.xml
