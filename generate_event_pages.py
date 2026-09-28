@@ -75,10 +75,8 @@ def fr_date(value: str) -> str:
     return f"{d.day} {MONTHS[d.month]} {d.year}"
 
 
-def date_label(event: dict) -> str:
-    opening = clean(event.get("opening"))
-    if opening:
-        return opening
+def date_summary(event: dict) -> str:
+    """Date courte, toujours sûre pour le bandeau, les listes et les cartes."""
     start = iso_date(event.get("start_date", ""))
     end = iso_date(event.get("end_date", ""))
     if not start:
@@ -86,6 +84,90 @@ def date_label(event: dict) -> str:
     if not end or end == start:
         return fr_date(start.isoformat())
     return f"Du {fr_date(start.isoformat())} au {fr_date(end.isoformat())}"
+
+
+def _cut_clean_text(text: str, limit: int = 280) -> str:
+    text = clean(text).strip(" -:;,.|")
+    if len(text) <= limit:
+        return text
+    chunk = text[:limit]
+    cuts = [chunk.rfind(". "), chunk.rfind("; "), chunk.rfind(" - ")]
+    cut = max(cuts)
+    if cut >= 80:
+        chunk = chunk[: cut + 1]
+    else:
+        chunk = chunk.rsplit(" ", 1)[0]
+    return chunk.rstrip(" -:;,.|")
+
+
+def date_label(event: dict) -> str:
+    """Horaires utiles, sans laisser une description entière envahir la fiche."""
+    opening = clean(event.get("opening"))
+    if not opening:
+        return date_summary(event)
+
+    # Une vraie ligne d'ouverture courte est conservée telle quelle.
+    has_time_or_date = bool(re.search(
+        r"(?:\b\d{1,2}[h:]\d{0,2}\b|\b20\d{2}\b|\b(?:lundi|mardi|mercredi|jeudi|vendredi|samedi|dimanche)\b|\bdu\s+\d{1,2}[\s/])",
+        opening,
+        re.I,
+    ))
+    if len(opening) <= 240 and has_time_or_date:
+        return opening
+
+    # Certains champs de la source contiennent le programme complet puis une vraie rubrique "Ouverture".
+    low = opening.lower()
+    pos = low.rfind("ouverture")
+    if pos >= 0:
+        tail = clean(opening[pos + len("ouverture"):]).strip(" -:;")
+        for marker in (
+            " informations complémentaires", " langues parlées", " tarifs", " réservation",
+            " contact", " accès", " equipements", " équipements", " services",
+        ):
+            idx = tail.lower().find(marker)
+            if idx > 0:
+                tail = tail[:idx]
+        tail = _cut_clean_text(tail, 300)
+        if len(tail) >= 8:
+            return tail
+
+    return date_summary(event)
+
+
+def concise_address(event: dict) -> str:
+    """Évite d'afficher un paragraphe complet lorsque le scraper a avalé le texte autour de l'adresse."""
+    raw = clean(event.get("address"))
+    commune = clean(event.get("commune"))
+    if not raw:
+        return commune
+    if len(raw) <= 190:
+        return raw
+
+    postcodes = list(re.finditer(r"\b\d{5}\b", raw))
+    if postcodes:
+        pc = postcodes[-1]
+        end = pc.end()
+        after = raw[end:end + 100]
+        if commune:
+            cm = re.search(re.escape(commune), after, re.I)
+            if cm:
+                end += cm.end()
+        start = max(0, pc.start() - 150)
+        segment = clean(raw[start:end]).strip(" -:;,.|")
+        low = segment.lower()
+        starts = [
+            low.rfind("accès "), low.rfind("adresse "), low.rfind("rue "),
+            low.rfind("avenue "), low.rfind("place "), low.rfind("chemin "),
+            low.rfind("route "), low.rfind("boulevard "),
+        ]
+        good = max(starts)
+        if good >= 0:
+            segment = segment[good:]
+        segment = _cut_clean_text(segment, 190)
+        if segment:
+            return segment
+
+    return commune or _cut_clean_text(raw, 190)
 
 
 def event_status(event: dict) -> str:
@@ -159,6 +241,7 @@ def fallback_editorial(event: dict) -> dict:
     lead = desc[:560].rstrip(" .") if desc else f"{title} est annoncé{place}. Retrouvez ci-dessous les informations pratiques publiées par la source de l’événement."
     if lead and not lead.endswith("."):
         lead += "."
+    address = concise_address(event)
     return {
         "seo_title": f"{title}{' à ' + commune if commune else ''}"[:68],
         "meta_description": (f"{title}{place} : dates, lieu et informations pratiques pour préparer votre sortie.")[:158],
@@ -166,7 +249,7 @@ def fallback_editorial(event: dict) -> dict:
         "discover_title": "Ce que vous pourrez découvrir",
         "discover_text": desc[:950] if desc else lead,
         "why_text": f"Ce rendez-vous peut être une idée de sortie{place}. Les informations utiles sont regroupées ici pour vérifier rapidement la date, le lieu et les conditions annoncées.",
-        "practical_text": date_label(event) + (f". {clean(event.get('address'))}" if clean(event.get("address")) else ""),
+        "practical_text": date_label(event) + (f". {address}" if address else ""),
         "question": f"Irez-vous découvrir {title}{place} ?",
     }
 
@@ -260,11 +343,13 @@ def event_slug(event: dict) -> str:
 def related_events(current: dict, events: list[dict], slug_map: dict[str, str]) -> list[dict]:
     current_date = iso_date(current.get("start_date", "")) or date.max
     others = [e for e in events if e is not current and clean(e.get("url")) != clean(current.get("url"))]
+
     def score(e):
         d = iso_date(e.get("start_date", "")) or date.max
         delta = abs((d - current_date).days) if d != date.max and current_date != date.max else 99999
         same_commune = 0 if clean(e.get("commune")).lower() == clean(current.get("commune")).lower() else 1
         return (same_commune, delta, clean(e.get("title")).lower())
+
     return sorted(others, key=score)[:3]
 
 
@@ -274,12 +359,13 @@ def render_page(event: dict, editorial: dict, events: list[dict], slug_map: dict
     source_url = clean(event.get("source_url") or event.get("url"))
     title = clean(event.get("title"))
     commune = clean(event.get("commune"))
-    address = clean(event.get("address"))
+    address = concise_address(event)
     tariffs = clean(event.get("tariffs"))
     contact = clean(event.get("contact"))
     phone = extract_phone(contact)
     email = extract_email(contact)
     date_text = date_label(event)
+    header_date = date_summary(event)
     seo_title = clean(editorial.get("seo_title")) or f"{title} à {commune}".strip()
     meta = clean(editorial.get("meta_description")) or fallback_editorial(event)["meta_description"]
     status = event_status(event)
@@ -295,7 +381,7 @@ def render_page(event: dict, editorial: dict, events: list[dict], slug_map: dict
     if email:
         info.append(f'<div class="info-row"><span>✉️</span><div><strong>Email</strong><br><a href="mailto:{esc(email)}">{esc(email)}</a></div></div>')
     if tariffs:
-        info.append(f'<div class="info-row"><span>💶</span><div><strong>Tarifs</strong><br>{esc(tariffs[:500])}</div></div>')
+        info.append(f'<div class="info-row"><span>💶</span><div><strong>Tarifs</strong><br>{esc(_cut_clean_text(tariffs, 360))}</div></div>')
 
     rel_html = []
     for e in related_events(event, events, slug_map):
@@ -306,7 +392,7 @@ def render_page(event: dict, editorial: dict, events: list[dict], slug_map: dict
         rel_html.append(
             f'<a class="related-card" href="{esc(urljoin(SITE, f"evenements/{eslug}/"))}">'
             f'<strong>{esc(e.get("title"))}</strong>'
-            f'<span>{esc(date_label(e))}</span>'
+            f'<span>{esc(date_summary(e))}</span>'
             f'</a>'
         )
 
@@ -340,6 +426,8 @@ def render_page(event: dict, editorial: dict, events: list[dict], slug_map: dict
             {"@type": "ListItem", "position": 3, "name": title, "item": canonical},
         ],
     }
+    event_json = json.dumps(event_ld, ensure_ascii=False).replace("</", "<\\/")
+    breadcrumb_json = json.dumps(breadcrumb, ensure_ascii=False).replace("</", "<\\/")
 
     return f'''<!doctype html>
 <html lang="fr">
@@ -354,15 +442,15 @@ def render_page(event: dict, editorial: dict, events: list[dict], slug_map: dict
   <meta property="og:title" content="{esc(seo_title)}">
   <meta property="og:description" content="{esc(meta)}">
   <meta property="og:url" content="{esc(canonical)}">
-  <script type="application/ld+json">{html.escape(json.dumps(event_ld, ensure_ascii=False))}</script>
-  <script type="application/ld+json">{html.escape(json.dumps(breadcrumb, ensure_ascii=False))}</script>
+  <script type="application/ld+json">{event_json}</script>
+  <script type="application/ld+json">{breadcrumb_json}</script>
   <style>{STYLE}</style>
 </head>
 <body>
   <aside class="top" aria-label="Sélection de livres sur Nyons"><div class="ad-shell"><iframe class="ad-frame" src="{esc(BANNER_URL)}" loading="eager" title="Voir ma sélection de vieux livres sur Nyons"></iframe></div><div class="ad-note">Publicité · lien affilié</div></aside>
   <main class="wrap">
     <nav class="nav"><a href="{esc(SITE)}">← Agenda</a><a href="{esc(urljoin(SITE, 'evenements/'))}">📌 Tous les événements</a></nav>
-    <header class="hero"><span class="status">{esc(status)}</span><h1>{esc(title)}</h1><p class="date">📅 {esc(date_text)}</p><div class="cats">{esc(commune or 'Drôme et alentours')}</div></header>
+    <header class="hero"><span class="status">{esc(status)}</span><h1>{esc(title)}</h1><p class="date">📅 {esc(header_date)}</p><div class="cats">{esc(commune or 'Drôme et alentours')}</div></header>
 
     <section class="section practical-box"><h2>📌 Infos pratiques</h2><div class="info-grid">{''.join(info)}</div></section>
     <div class="lead">{esc(editorial.get('lead'))}</div>
@@ -384,7 +472,7 @@ def render_index(events: list[dict], slug_map: dict[str, str]) -> str:
         cards.append(
             f'<a class="card" href="{esc(urljoin(SITE, f"evenements/{slug}/"))}">'
             f'<strong>{esc(e.get("title"))}</strong>'
-            f'<span>📅 {esc(date_label(e))}</span><span>📍 {esc(e.get("commune"))}</span></a>'
+            f'<span>📅 {esc(date_summary(e))}</span><span>📍 {esc(e.get("commune"))}</span></a>'
         )
     return f'''<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>100 prochains événements autour de Nyons</title><meta name="description" content="Découvrez les 100 prochains événements autour de Nyons : sorties, culture, loisirs, fêtes et rendez-vous dans un rayon de 100 km."><link rel="canonical" href="{esc(urljoin(SITE, 'evenements/'))}"><meta name="robots" content="index,follow"><style>{STYLE}</style></head><body><main class="wrap"><nav class="nav"><a href="{esc(SITE)}">← Accueil</a></nav><header class="hero"><span class="status">Agenda</span><h1>100 prochains événements autour de Nyons</h1><p class="date">Nyons est retiré de cette sélection pour éviter les doublons avec l’agenda local.</p></header><section class="section"><h2>📅 Tous les rendez-vous</h2><div class="cards">{''.join(cards)}</div></section></main></body></html>'''
 
