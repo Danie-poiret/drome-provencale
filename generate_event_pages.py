@@ -332,6 +332,7 @@ body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--cream);col
 .section{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:22px 24px;margin:18px 0}.section h2{margin:0 0 9px;font-size:25px;line-height:1.2}.section p{margin:0 0 10px}.section p:last-child{margin-bottom:0}.practical-box{border-top:5px solid var(--terracotta)}.info-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:14px}.info-row{display:flex;gap:11px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;min-width:0}.info-row span{flex:0 0 24px;font-size:19px}.info-row a{overflow-wrap:anywhere}.info-date{grid-column:1/-1;background:#f6f0e4}
 .question{background:#efe7cf;border-radius:18px;padding:22px 24px;margin:20px 0;font-weight:800;font-size:18px}
 .anecdote{border-left:5px solid var(--terracotta);background:#fff8ec}.source-note{font-size:12px;color:var(--muted);margin-top:14px!important}.source-note a{font-weight:700}
+.papy-tip{border-left:5px solid var(--olive);background:#f3f7ed}.around-intro{color:var(--muted);margin-bottom:14px!important}
 .related{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px}.related-card{display:flex;flex-direction:column;gap:6px;padding:16px;background:#fff;border:1px solid var(--line);border-radius:14px;text-decoration:none}.related-card span{font-size:13px;color:var(--muted)}
 .cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;text-decoration:none}.card strong{display:block;font-size:18px}.card span{font-size:13px;color:var(--muted)}
 @media(max-width:720px){.related,.info-grid,.cards{grid-template-columns:1fr}.info-date{grid-column:auto}.top{padding:9px 9px 0}.wrap{padding:10px 11px 45px}.hero{border-radius:18px;padding:24px 20px}.lead,.section{padding:18px}}
@@ -394,12 +395,71 @@ def assign_anecdotes(events: list[dict], catalog: dict) -> dict[str, dict]:
     return assigned
 
 
+def papy_tip(event: dict) -> str:
+    """Conseil pratique fondé uniquement sur les informations vérifiées de la fiche."""
+    title = clean(event.get("title"))
+    commune = clean(event.get("commune")) or "la Drôme"
+    address = concise_address(event)
+    schedule = date_label(event)
+    phone = extract_phone(clean(event.get("contact")))
+    kind = f"{title} {clean(event.get('description'))}".lower()
+
+    if "marché" in kind or "marche" in kind or "foire" in kind or "brocante" in kind:
+        return (
+            f"Pour « {title} » à {commune}, je prépare le cabas la veille et je note l’horaire annoncé : "
+            f"{schedule}. C’est tout simple, mais cela évite de rechercher l’information au moment de partir."
+        )
+    if "exposition" in kind or "expo " in kind or "œuvre" in kind or "oeuvre" in kind:
+        return (
+            f"Pour « {title} », je garde ensemble les deux renseignements utiles : {schedule} et "
+            f"{address or commune}. Ainsi, je sais tout de suite quand partir et où me rendre."
+        )
+    if any(word in kind for word in ("visite", "atelier", "dégustation", "degustation", "jeu de piste")):
+        if phone:
+            return (
+                f"Avant de partir pour « {title} » à {commune}, je garde le {phone} dans mon téléphone "
+                f"si un détail doit être confirmé. Le rendez-vous est annoncé ainsi : {schedule}."
+            )
+        return (
+            f"Avant « {title} » à {commune}, je relis la date annoncée — {schedule} — puis je note "
+            f"le point de rendez-vous : {address or commune}. Deux minutes de vérification évitent bien des détours."
+        )
+    if any(word in kind for word in ("géobalade", "geobalade", "rivière", "riviere", "vélo", "velo")):
+        return (
+            f"Pour « {title} » à {commune}, je note d’abord le point de départ ({address or commune}) et "
+            f"la période annoncée ({schedule}). Je peux alors préparer la sortie avec les bonnes informations sous la main."
+        )
+    return (
+        f"Pour « {title} » à {commune}, je recopie d’abord la date et l’horaire — {schedule} — ainsi que "
+        f"l’adresse, {address or commune}. Ce sont les deux informations à garder sous la main avant de partir."
+    )
+
+
+def assign_papy_tips(events: list[dict]) -> dict[str, str]:
+    """Prépare un conseil distinct par fiche et refuse tout doublon."""
+    assigned: dict[str, str] = {}
+    seen: set[str] = set()
+    for event in events:
+        key = clean(event.get("url"))
+        tip = papy_tip(event)
+        if not tip:
+            raise RuntimeError(f"Conseil de Papy manquant pour {key}")
+        if tip in seen:
+            raise RuntimeError(f"Conseil de Papy dupliqué pour {key}")
+        assigned[key] = tip
+        seen.add(tip)
+    if len(assigned) != len(events):
+        raise RuntimeError("Chaque fiche doit recevoir exactement un conseil de Papy")
+    return assigned
+
+
 def render_page(
     event: dict,
     editorial: dict,
     events: list[dict],
     slug_map: dict[str, str],
     anecdote: dict,
+    tip: str,
 ) -> str:
     slug = slug_map[clean(event.get("url"))]
     canonical = urljoin(SITE, f"evenements/{slug}/")
@@ -448,9 +508,15 @@ def render_page(
         rel_html.append(
             f'<a class="related-card" href="{esc(urljoin(SITE, f"evenements/{eslug}/"))}">'
             f'<strong>{esc(e.get("title"))}</strong>'
-            f'<span>{esc(date_summary(e))}</span>'
+            f'<span>📍 {esc(e.get("commune") or "Drôme")}</span>'
+            f'<span>📅 {esc(date_summary(e))}</span>'
             f'</a>'
         )
+
+    around_intro = (
+        f"Après « {title} » à {commune or 'la Drôme'}, annoncé {date_text}, voici trois autres idées prises dans cet agenda. "
+        "La commune et la date sont indiquées sur chaque proposition pour choisir facilement."
+    )
 
     event_ld = {
         "@context": "https://schema.org",
@@ -513,9 +579,10 @@ def render_page(
     <section class="section"><h2>🖼️ {esc(editorial.get('discover_title') or 'Ce que vous pourrez découvrir')}</h2><p>{esc(editorial.get('discover_text'))}</p></section>
     <section class="section"><h2>👀 Pourquoi cette sortie peut valoir le détour</h2><p>{esc(editorial.get('why_text'))}</p></section>
     {anecdote_html}
+    <section class="section papy-tip"><h2>👴 Le conseil de Papy</h2><p>{esc(tip)}</p></section>
     <section class="section"><h2>ℹ️ Informations pratiques</h2><p>{esc(editorial.get('practical_text'))}</p></section>
     <div class="question">💬 {esc(editorial.get('question'))}</div>
-    <section class="section"><h2>📍 D’autres rendez-vous proches</h2><div class="related">{''.join(rel_html)}</div></section>
+    <section class="section"><h2>🧭 À découvrir autour</h2><p class="around-intro">{esc(around_intro)}</p><div class="related">{''.join(rel_html)}</div></section>
   </main>
 </body>
 </html>'''
@@ -552,6 +619,7 @@ def main() -> None:
     if not isinstance(anecdote_catalog, dict):
         raise RuntimeError("village_anecdotes.json est invalide")
     anecdotes = assign_anecdotes(events, anecdote_catalog)
+    papy_tips = assign_papy_tips(events)
 
     cache = load_json(CACHE_FILE, {})
     if not isinstance(cache, dict):
@@ -606,7 +674,7 @@ def main() -> None:
         out_dir = EVENTS_DIR / slug_map[key]
         out_dir.mkdir(parents=True, exist_ok=True)
         (out_dir / "index.html").write_text(
-            render_page(event, editorial, events, slug_map, anecdotes[key]),
+            render_page(event, editorial, events, slug_map, anecdotes[key], papy_tips[key]),
             encoding="utf-8",
         )
         print(f"FICHE {i:03d}/{len(events)}: {slug_map[key]}")
