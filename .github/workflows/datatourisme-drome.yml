@@ -1,0 +1,63 @@
+name: DATAtourisme Drôme - test noindex
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  datatourisme-drome:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Recuperer le depot
+        uses: actions/checkout@v4
+
+      - name: Installer Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Installer les dependances
+        run: python -m pip install -r requirements.txt
+
+      - name: Recuperer tous les evenements DATAtourisme de la Drome
+        env:
+          DATATOURISME_API_KEY: ${{ secrets.DATATOURISME_API_KEY }}
+        run: python extract_datatourisme_drome.py
+
+      - name: Generer les fiches en mode test sans depense OpenAI
+        env:
+          MAX_EVENT_AI_CALLS: "0"
+        run: python generate_event_pages.py
+
+      - name: Ne pas conserver les textes secours dans le cache GPT
+        shell: bash
+        run: git restore _event_seo_cache.json || true
+
+      - name: Ajouter habillage et attribution DATAtourisme
+        run: python prepare_datatourisme_test.py
+
+      - name: Passer tout le site en noindex
+        run: python set_noindex.py
+
+      - name: Enregistrer les changements
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add agenda.json
+          git add index.html
+          git add evenements
+          git add sitemap.xml
+          git add robots.txt
+
+          if git diff --cached --quiet; then
+            echo "Aucun changement."
+            exit 0
+          fi
+
+          git commit -m "Test DATAtourisme - toute la Drome en noindex"
+          git push
