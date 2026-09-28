@@ -28,6 +28,7 @@ DEPARTMENT_INSEE = "26"
 PAGE_SIZE = 250
 MAX_PAGES = 100
 TIMEOUT = 45
+EVENT_LIMIT = int(os.getenv("DATATOURISME_EVENT_LIMIT", "0"))
 
 # Les champs parents permettent de récupérer leurs sous-propriétés sans faire
 # un appel de détail pour chaque événement.
@@ -370,6 +371,10 @@ def main() -> None:
             e.get("title", "").lower(),
         )
     )
+
+    if EVENT_LIMIT > 0:
+        events = events[:EVENT_LIMIT]
+        print(f"Test limité aux {len(events)} premiers événements.")
 
     payload = {
         "source": API_URL,
