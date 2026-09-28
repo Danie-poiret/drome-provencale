@@ -21,7 +21,7 @@ import re
 import unicodedata
 from datetime import date, datetime, timezone
 from pathlib import Path
-from urllib.parse import urljoin, urlparse
+from urllib.parse import urlparse
 
 from playwright.async_api import async_playwright
 
@@ -65,7 +65,7 @@ MONTHS = {
 }
 MONTH_RE = "|".join(MONTHS)
 FR_DATE_RE = re.compile(
-    rf"\b(\d{{1,2}})\s+({MONTH_RE})(?:\s+(20\d{{2}))?\b", re.I
+    rf"\b(\d{{1,2}})\s+({MONTH_RE})(?:\s+(20\d{{2}}))?\b", re.I
 )
 SLASH_DATE_RE = re.compile(r"\b(\d{1,2})/(\d{1,2})/(20\d{2})\b")
 ISO_DATE_RE = re.compile(r"\b(20\d{2})-(\d{2})-(\d{2})\b")
@@ -249,7 +249,6 @@ async def find_next_control(page):
             except Exception:
                 pass
 
-    # Fallback texte visible.
     for label in ("Suivant", "Suivante", "›", "»"):
         for role in ("link", "button"):
             loc = page.get_by_role(role, name=label, exact=True)
@@ -306,7 +305,6 @@ async def main_async() -> None:
         page_count = 0
 
         for page_no in range(1, MAX_PAGES + 1):
-            # Met le pager à portée et laisse les éventuels contenus lazy-load se stabiliser.
             await page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
             await page.wait_for_timeout(500)
 
