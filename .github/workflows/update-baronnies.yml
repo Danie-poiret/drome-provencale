@@ -1,4 +1,4 @@
-name: Mise a jour agenda Baronnies V4
+name: Mise a jour agenda Baronnies V5
 
 on:
   workflow_dispatch:
@@ -27,8 +27,8 @@ jobs:
       - name: Installer Chromium
         run: python -m playwright install --with-deps chromium
 
-      - name: Extraire le PDF officiel Baronnies hors Nyons
-        run: python extract_baronnies_v4.py
+      - name: Extraire agenda HTML officiel Baronnies hors Nyons
+        run: python extract_baronnies_v5.py
 
       - name: Enregistrer les changements
         shell: bash
@@ -43,5 +43,5 @@ jobs:
             exit 0
           fi
 
-          git commit -m "Mise a jour agenda Baronnies V4"
+          git commit -m "Mise a jour agenda Baronnies V5"
           git push
