@@ -24,8 +24,14 @@ jobs:
       - name: Installer les dependances
         run: python -m pip install -r requirements.txt
 
-      - name: Extraire agenda Baronnies hors Nyons
+      - name: Extraire agenda hors Nyons
         run: python extract_baronnies_v10.py
+
+      - name: Generer les 100 fiches evenements
+        env:
+          OPENAI_MODEL: gpt-5.6-terra
+          MAX_EVENT_AI_CALLS: "100"
+        run: python generate_event_pages.py
 
       - name: Enregistrer les changements
         shell: bash
@@ -35,11 +41,15 @@ jobs:
 
           git add agenda.json
           git add _detail_cache_v9.json
+          git add _event_seo_cache.json
+          git add evenements
+          git add sitemap.xml
+          git add robots.txt
 
           if git diff --cached --quiet; then
             echo "Aucun changement."
             exit 0
           fi
 
-          git commit -m "Mise a jour agenda Baronnies - moteur Nyons"
+          git commit -m "Mise a jour agenda et fiches SEO"
           git push
