@@ -2406,5 +2406,85 @@
       "source_url": "https://www.drome-cestmanature.com/fiches/conference-les-mystere-du-microbiote-intestinal-fete-de-la-science/",
       "jsonld_event": false
     }
+  },
+  "v2:https://www.drome-cestmanature.com/fiches/parcours-decouverte-de-la-biscuiterie/": {
+    "fetched_at": "2026-09-28T07:11:53.937029+00:00",
+    "data": {
+      "title": "Parcours découverte de la Biscuiterie",
+      "start_date": "",
+      "end_date": "",
+      "commune": "Saint-Maurice-sur-Eygues",
+      "location": "",
+      "address": "",
+      "detail_locality": "",
+      "url": "https://www.drome-cestmanature.com/fiches/parcours-decouverte-de-la-biscuiterie/",
+      "source_url": "https://www.drome-cestmanature.com/fiches/parcours-decouverte-de-la-biscuiterie/",
+      "jsonld_event": false,
+      "geo_source": "event_link_city"
+    }
+  },
+  "v2:https://www.drome-cestmanature.com/fiches/marche-de-producteurs-19/": {
+    "fetched_at": "2026-09-28T07:11:54.354155+00:00",
+    "data": {
+      "title": "Marché de producteurs",
+      "start_date": "",
+      "end_date": "",
+      "commune": "Les Pilles",
+      "location": "",
+      "address": "",
+      "detail_locality": "",
+      "url": "https://www.drome-cestmanature.com/fiches/marche-de-producteurs-19/",
+      "source_url": "https://www.drome-cestmanature.com/fiches/marche-de-producteurs-19/",
+      "jsonld_event": false,
+      "geo_source": "event_link_city"
+    }
+  },
+  "v2:https://www.drome-cestmanature.com/fiches/festival-pantai/": {
+    "fetched_at": "2026-09-28T07:11:54.964654+00:00",
+    "data": {
+      "title": "Festival Pantaï",
+      "start_date": "",
+      "end_date": "",
+      "commune": "Buis-les-Baronnies",
+      "location": "",
+      "address": "",
+      "detail_locality": "",
+      "url": "https://www.drome-cestmanature.com/fiches/festival-pantai/",
+      "source_url": "https://www.drome-cestmanature.com/fiches/festival-pantai/",
+      "jsonld_event": false,
+      "geo_source": "event_link_city"
+    }
+  },
+  "v2:https://www.drome-cestmanature.com/fiches/vide-grenier-6/": {
+    "fetched_at": "2026-09-28T07:11:55.381741+00:00",
+    "data": {
+      "title": "Vide grenier",
+      "start_date": "",
+      "end_date": "",
+      "commune": "Sahune",
+      "location": "",
+      "address": "",
+      "detail_locality": "",
+      "url": "https://www.drome-cestmanature.com/fiches/vide-grenier-6/",
+      "source_url": "https://www.drome-cestmanature.com/fiches/vide-grenier-6/",
+      "jsonld_event": false,
+      "geo_source": "event_link_city"
+    }
+  },
+  "v2:https://www.drome-cestmanature.com/fiches/vide-grenier-10/": {
+    "fetched_at": "2026-09-28T07:11:55.797832+00:00",
+    "data": {
+      "title": "Vide grenier",
+      "start_date": "",
+      "end_date": "",
+      "commune": "Mirabel-aux-Baronnies",
+      "location": "",
+      "address": "",
+      "detail_locality": "",
+      "url": "https://www.drome-cestmanature.com/fiches/vide-grenier-10/",
+      "source_url": "https://www.drome-cestmanature.com/fiches/vide-grenier-10/",
+      "jsonld_event": false,
+      "geo_source": "event_link_city"
+    }
   }
 }
