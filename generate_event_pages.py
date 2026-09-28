@@ -32,6 +32,7 @@ EVENTS_DIR = ROOT / "evenements"
 CACHE_FILE = ROOT / "_event_seo_cache.json"
 SITEMAP = ROOT / "sitemap.xml"
 ROBOTS = ROOT / "robots.txt"
+ANECDOTES_FILE = ROOT / "village_anecdotes.json"
 
 SITE = os.getenv("SITE_URL", "https://danie-poiret.github.io/drome-provencale/").rstrip("/") + "/"
 BANNER_URL = "https://danie-poiret.github.io/banniere-nyons/"
@@ -330,6 +331,7 @@ body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--cream);col
 .lead{font-size:19px;background:var(--paper);border-left:5px solid var(--terracotta);padding:22px 24px;border-radius:16px;margin:24px 0;box-shadow:0 6px 22px rgba(52,48,38,.055)}
 .section{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:22px 24px;margin:18px 0}.section h2{margin:0 0 9px;font-size:25px;line-height:1.2}.section p{margin:0 0 10px}.section p:last-child{margin-bottom:0}.practical-box{border-top:5px solid var(--terracotta)}.info-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:14px}.info-row{display:flex;gap:11px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;min-width:0}.info-row span{flex:0 0 24px;font-size:19px}.info-row a{overflow-wrap:anywhere}.info-date{grid-column:1/-1;background:#f6f0e4}
 .question{background:#efe7cf;border-radius:18px;padding:22px 24px;margin:20px 0;font-weight:800;font-size:18px}
+.anecdote{border-left:5px solid var(--terracotta);background:#fff8ec}.source-note{font-size:12px;color:var(--muted);margin-top:14px!important}.source-note a{font-weight:700}
 .related{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px}.related-card{display:flex;flex-direction:column;gap:6px;padding:16px;background:#fff;border:1px solid var(--line);border-radius:14px;text-decoration:none}.related-card span{font-size:13px;color:var(--muted)}
 .cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;text-decoration:none}.card strong{display:block;font-size:18px}.card span{font-size:13px;color:var(--muted)}
 @media(max-width:720px){.related,.info-grid,.cards{grid-template-columns:1fr}.info-date{grid-column:auto}.top{padding:9px 9px 0}.wrap{padding:10px 11px 45px}.hero{border-radius:18px;padding:24px 20px}.lead,.section{padding:18px}}
@@ -353,7 +355,52 @@ def related_events(current: dict, events: list[dict], slug_map: dict[str, str]) 
     return sorted(others, key=score)[:3]
 
 
-def render_page(event: dict, editorial: dict, events: list[dict], slug_map: dict[str, str]) -> str:
+def assign_anecdotes(events: list[dict], catalog: dict) -> dict[str, dict]:
+    """Attribue une anecdote réelle et différente à chaque fiche, sans recyclage."""
+    positions: dict[str, int] = {}
+    assigned: dict[str, dict] = {}
+    seen_texts: set[str] = set()
+
+    for event in events:
+        commune = clean(event.get("commune"))
+        key = clean(event.get("url"))
+        choices = catalog.get(commune)
+        if not isinstance(choices, list) or not choices:
+            raise RuntimeError(f"Aucune anecdote sourcée disponible pour {commune or key}")
+
+        index = positions.get(commune, 0)
+        if index >= len(choices):
+            raise RuntimeError(
+                f"Pas assez d'anecdotes uniques pour {commune}: "
+                f"{index + 1} fiches mais seulement {len(choices)} anecdotes"
+            )
+
+        anecdote = choices[index]
+        if not isinstance(anecdote, dict):
+            raise RuntimeError(f"Anecdote invalide pour {commune}, position {index + 1}")
+        text = clean(anecdote.get("text"))
+        source_url = clean(anecdote.get("source_url"))
+        if not text or not source_url:
+            raise RuntimeError(f"Texte ou source manquant pour {commune}, position {index + 1}")
+        if text in seen_texts:
+            raise RuntimeError(f"Anecdote dupliquée détectée pour {commune}")
+
+        assigned[key] = anecdote
+        seen_texts.add(text)
+        positions[commune] = index + 1
+
+    if len(assigned) != len(events):
+        raise RuntimeError("Chaque fiche doit recevoir exactement une anecdote")
+    return assigned
+
+
+def render_page(
+    event: dict,
+    editorial: dict,
+    events: list[dict],
+    slug_map: dict[str, str],
+    anecdote: dict,
+) -> str:
     slug = slug_map[clean(event.get("url"))]
     canonical = urljoin(SITE, f"evenements/{slug}/")
     source_url = clean(event.get("source_url") or event.get("url"))
@@ -369,6 +416,15 @@ def render_page(event: dict, editorial: dict, events: list[dict], slug_map: dict
     seo_title = clean(editorial.get("seo_title")) or f"{title} à {commune}".strip()
     meta = clean(editorial.get("meta_description")) or fallback_editorial(event)["meta_description"]
     status = event_status(event)
+
+    anecdote_html = (
+        '<section class="section anecdote"><h2>💡 Le savais-tu sur '
+        f'{esc(commune or "ce village")} ?</h2>'
+        f'<p>{esc(anecdote.get("text"))}</p>'
+        '<p class="source-note">Source : '
+        f'<a href="{esc(anecdote.get("source_url"))}" target="_blank" rel="noopener noreferrer">'
+        f'{esc(anecdote.get("source_label") or "référence historique")}</a></p></section>'
+    )
 
     info = [f'<div class="info-row info-date"><span>📅</span><div><strong>Dates et horaires</strong><br>{esc(date_text)}</div></div>']
     if address:
@@ -456,6 +512,7 @@ def render_page(event: dict, editorial: dict, events: list[dict], slug_map: dict
     <div class="lead">{esc(editorial.get('lead'))}</div>
     <section class="section"><h2>🖼️ {esc(editorial.get('discover_title') or 'Ce que vous pourrez découvrir')}</h2><p>{esc(editorial.get('discover_text'))}</p></section>
     <section class="section"><h2>👀 Pourquoi cette sortie peut valoir le détour</h2><p>{esc(editorial.get('why_text'))}</p></section>
+    {anecdote_html}
     <section class="section"><h2>ℹ️ Informations pratiques</h2><p>{esc(editorial.get('practical_text'))}</p></section>
     <div class="question">💬 {esc(editorial.get('question'))}</div>
     <section class="section"><h2>📍 D’autres rendez-vous proches</h2><div class="related">{''.join(rel_html)}</div></section>
@@ -490,6 +547,11 @@ def main() -> None:
     events = payload.get("events", []) if isinstance(payload, dict) else []
     if not events:
         raise RuntimeError("agenda.json ne contient aucun événement")
+
+    anecdote_catalog = load_json(ANECDOTES_FILE, {})
+    if not isinstance(anecdote_catalog, dict):
+        raise RuntimeError("village_anecdotes.json est invalide")
+    anecdotes = assign_anecdotes(events, anecdote_catalog)
 
     cache = load_json(CACHE_FILE, {})
     if not isinstance(cache, dict):
@@ -543,7 +605,10 @@ def main() -> None:
 
         out_dir = EVENTS_DIR / slug_map[key]
         out_dir.mkdir(parents=True, exist_ok=True)
-        (out_dir / "index.html").write_text(render_page(event, editorial, events, slug_map), encoding="utf-8")
+        (out_dir / "index.html").write_text(
+            render_page(event, editorial, events, slug_map, anecdotes[key]),
+            encoding="utf-8",
+        )
         print(f"FICHE {i:03d}/{len(events)}: {slug_map[key]}")
 
     (EVENTS_DIR / "index.html").write_text(render_index(events, slug_map), encoding="utf-8")
