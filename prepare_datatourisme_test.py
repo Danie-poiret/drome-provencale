@@ -92,7 +92,7 @@ def patch_index(count: int) -> bool:
     title = f"Agenda autour de Nyons : {count} événements en cours et à venir"
     desc = (
         "Agenda des événements dans les villages autour de Nyons : sorties, culture, fêtes, "
-        "spectacles et loisirs. Nyons est exclu de cette sélection."
+        "spectacles et loisirs."
     )
 
     text = re.sub(r"<title>.*?</title>", f"<title>{html.escape(title)}</title>", text, count=1, flags=re.S)
@@ -110,7 +110,7 @@ def patch_index(count: int) -> bool:
     )
     text = re.sub(
         r'<p class="date">Nyons est retiré de cette sélection pour éviter les doublons avec l’agenda local\.</p>',
-        f'<p class="date">Les villages alentour sont à l’honneur ; Nyons est volontairement exclu.</p>',
+        f'<p class="date">Les villages alentour sont à l’honneur.</p>',
         text,
         count=1,
     )
