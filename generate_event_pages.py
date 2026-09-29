@@ -196,6 +196,52 @@ def compact_description(text: str, limit: int = 3600) -> str:
     return clean(text)[:limit]
 
 
+def schema_offer(event: dict, source_url: str, canonical: str) -> dict | None:
+    """Construit une Offer seulement à partir d'un tarif réellement annoncé."""
+    tariffs = clean(event.get("tariffs"))
+    desc = clean(event.get("description"))
+    evidence = tariffs or ("Gratuit" if re.search(r"\bgratuit(?:e|ement)?\b", desc, re.I) else "")
+    if not evidence:
+        return None
+
+    offer = {
+        "@type": "Offer",
+        "url": source_url or canonical,
+        "priceCurrency": "EUR",
+        "availability": "https://schema.org/InStock",
+    }
+    low = evidence.lower()
+    if re.search(r"\bgratuit(?:e|ement)?\b", low):
+        offer["price"] = "0"
+    else:
+        match = re.search(r"(?<!\d)(\d+(?:[,.]\d{1,2})?)\s*(?:€|euros?\b)", evidence, re.I)
+        if not match:
+            match = re.search(r"\b(?:à partir de|dès|de)\s+(\d+(?:[,.]\d{1,2})?)", evidence, re.I)
+        if match:
+            offer["price"] = match.group(1).replace(",", ".")
+    offer["description"] = _cut_clean_text(evidence, 280)
+    return offer
+
+
+def schema_performer(event: dict) -> str:
+    """Repère uniquement un artiste/intervenant explicitement nommé dans les données source."""
+    explicit = clean(event.get("performer"))
+    if explicit:
+        return explicit
+
+    text = " ".join((clean(event.get("title")), clean(event.get("description"))))
+    name = r"([A-ZÀ-ÖØ-Þ][A-Za-zÀ-ÿ'’.-]+(?:\s+[A-ZÀ-ÖØ-Þ][A-Za-zÀ-ÿ'’.-]+){1,4})"
+    patterns = (
+        rf"\b(?:avec|par|anim(?:é|ée) par|interpr(?:été|étée) par)\s+{name}",
+        rf"\b(?:concert|récital|spectacle|exposition|conférence)\s+(?:de|par)\s+{name}",
+    )
+    for pattern in patterns:
+        match = re.search(pattern, text)
+        if match:
+            return clean(match.group(1)).strip(" .,:;-")
+    return ""
+
+
 def event_facts(event: dict) -> dict:
     return {
         "title": clean(event.get("title")),
@@ -539,6 +585,10 @@ def render_page(
         f"Après « {title} » à {commune or 'la Drôme'}, annoncé {date_text}, voici trois autres idées prises dans cet agenda. "
         "La commune et la date sont indiquées sur chaque proposition pour choisir facilement."
     )
+
+    organizer = clean(event.get("organizer"))
+    performer = schema_performer(event)
+    offer = schema_offer(event, source_url, canonical)
 
     event_ld = {
         "@context": "https://schema.org",

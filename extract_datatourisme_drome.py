@@ -59,6 +59,10 @@ FIELDS = ",".join(
         "isLocatedAt",
         "hasDescription",
         "hasContact",
+        "hasBookingContact",
+        "hasCommunicationContact",
+        "hasInformativeContact",
+        "hasManagementContact",
         "hasBeenCreatedBy",
         "takesPlaceAt",
         "offers",
@@ -370,6 +374,27 @@ def contact_text(poi: dict) -> tuple[str, str]:
     return " · ".join(pieces)[:1200], source_url
 
 
+def agent_name(value: Any) -> str:
+    """Nom d'un contact DATAtourisme, uniquement lorsqu'il est réellement fourni."""
+    if not value:
+        return ""
+    return first_for_key(value, "legalName", "name", "label", "familyName", "givenName")
+
+
+def organizer_name(poi: dict) -> str:
+    """Contact le plus proche d'un organisateur sans utiliser le producteur de la donnée."""
+    for key in (
+        "hasManagementContact",
+        "hasCommunicationContact",
+        "hasInformativeContact",
+        "hasBookingContact",
+    ):
+        name = agent_name(poi.get(key))
+        if name:
+            return name
+    return agent_name(poi.get("hasContact"))
+
+
 def tariff_text(poi: dict) -> str:
     offers = poi.get("offers") or {}
     texts = values_for_key(offers, {"textPriceSpecification"})
@@ -459,6 +484,7 @@ def normalize_poi(poi: dict, today: date) -> dict | None:
     if not stable_url:
         return None
 
+    organizer = organizer_name(poi)
     producer = lang_text(poi.get("hasBeenCreatedBy")) or "DATAtourisme"
     last_update = clean(poi.get("lastUpdate") or poi.get("lastUpdateDatatourisme"))
     image_url, image_credit, image_rights = image_data(poi)
@@ -473,6 +499,7 @@ def normalize_poi(poi: dict, today: date) -> dict | None:
         "description": description_text(poi),
         "tariffs": tariff_text(poi),
         "contact": contact,
+        "organizer": organizer,
         "url": stable_url,
         "source_url": website or stable_url,
         "datatourisme_uri": uri,
