@@ -34,7 +34,7 @@ SITEMAP = ROOT / "sitemap.xml"
 ROBOTS = ROOT / "robots.txt"
 ANECDOTES_FILE = ROOT / "village_anecdotes.json"
 
-SITE = os.getenv("SITE_URL", "https://danie-poiret.github.io/drome-provencale/").rstrip("/") + "/"
+SITE = os.getenv("SITE_URL", "https://drome.vivreanyons.fr/").rstrip("/") + "/"
 BANNER_URL = "https://danie-poiret.github.io/banniere-nyons/"
 OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gpt-5.6-terra")
 MAX_EVENT_AI_CALLS = int(os.getenv("MAX_EVENT_AI_CALLS", "100"))
