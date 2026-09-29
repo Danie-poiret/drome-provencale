@@ -4,7 +4,7 @@
   "license": "Licence Ouverte 2.0",
   "department": "Drôme",
   "department_insee": "26",
-  "updated_at": "2026-09-29T06:59:46.154896+00:00",
+  "updated_at": "2026-09-29T09:49:11.962658+00:00",
   "raw_count": 1990,
   "count": 100,
   "events": [
@@ -24,6 +24,9 @@
       "datatourisme_uuid": "46cfb47f-e5d9-38a7-9715-fb769a13bf11",
       "data_provider": "Valence Romans Tourisme",
       "last_update": "2026-09-11",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -43,6 +46,9 @@
       "datatourisme_uuid": "a74e87f2-d151-35fc-b4bc-f0f9f363186a",
       "data_provider": "Valence Romans Tourisme",
       "last_update": "2025-05-09",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -62,6 +68,9 @@
       "datatourisme_uuid": "bbba201f-fd51-39c6-af3e-451617f4eee2",
       "data_provider": "Office de Tourisme de la Vallée de la Drôme",
       "last_update": "2026-01-27",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -81,6 +90,9 @@
       "datatourisme_uuid": "7d29469f-bb5f-3206-a77d-60f1561debfd",
       "data_provider": "Office de Tourisme de la Vallée de la Drôme",
       "last_update": "2024-10-04",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -100,6 +112,9 @@
       "datatourisme_uuid": "6766937c-52be-3fa5-9ae1-6ee87b901777",
       "data_provider": "Montélimar Tourisme Agglomération",
       "last_update": "2025-07-24",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -119,6 +134,9 @@
       "datatourisme_uuid": "702af07b-d511-3d63-b7c4-df41018b03ef",
       "data_provider": "Office de Tourisme Porte de DrômArdèche",
       "last_update": "2024-04-11",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -138,6 +156,9 @@
       "datatourisme_uuid": "28c8f795-bff6-377f-9ca6-619557e8f3e1",
       "data_provider": "Office de Tourisme Porte de DrômArdèche",
       "last_update": "2021-06-20",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -157,6 +178,9 @@
       "datatourisme_uuid": "54872dbf-0817-30a7-a240-30293922fa19",
       "data_provider": "Valence Romans Tourisme",
       "last_update": "2024-05-04",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -176,6 +200,9 @@
       "datatourisme_uuid": "ceb93be1-7e6a-346a-a5f0-53fed48aad80",
       "data_provider": "Office de Tourisme de la Vallée de la Drôme",
       "last_update": "2024-10-04",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -195,6 +222,9 @@
       "datatourisme_uuid": "f3c79d19-3fb8-3e91-a1d1-6cdb2fff0e0b",
       "data_provider": "Office de Tourisme de la Vallée de la Drôme",
       "last_update": "2025-11-13",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -214,6 +244,9 @@
       "datatourisme_uuid": "ca1c78e2-e19e-332c-8eaf-081c0ef6a929",
       "data_provider": "Valence Romans Tourisme",
       "last_update": "2026-09-02",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -233,6 +266,9 @@
       "datatourisme_uuid": "437f7972-8389-36c9-ace2-7cf8c1c64ce3",
       "data_provider": "Valence Romans Tourisme",
       "last_update": "2026-06-14",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -252,6 +288,9 @@
       "datatourisme_uuid": "ae704cb1-66b0-3f7b-92eb-7f2085694872",
       "data_provider": "Office de Tourisme Porte de DrômArdèche",
       "last_update": "2026-05-29",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -271,6 +310,9 @@
       "datatourisme_uuid": "a0ce9d3f-4b18-362f-bc1b-f4349b08f7a5",
       "data_provider": "Valence Romans Tourisme",
       "last_update": "2023-05-16",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -290,6 +332,9 @@
       "datatourisme_uuid": "b68cd321-1d55-3965-bd58-6aca451333e1",
       "data_provider": "Valence Romans Tourisme",
       "last_update": "2023-02-07",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -309,6 +354,9 @@
       "datatourisme_uuid": "887ad5b2-9ac0-3ee0-adc3-00437f2f0c42",
       "data_provider": "Office de Tourisme Drôme Sud Provence",
       "last_update": "2023-02-08",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -328,6 +376,9 @@
       "datatourisme_uuid": "1c04fc2d-8312-3ed3-becb-192989b8094a",
       "data_provider": "Office de Tourisme Pays de Dieulefit-Bourdeaux",
       "last_update": "2026-07-06",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -347,6 +398,9 @@
       "datatourisme_uuid": "69ae7a7d-4dee-3421-9846-47bbeb98009d",
       "data_provider": "Office de Tourisme Pays de Dieulefit-Bourdeaux",
       "last_update": "2026-09-17",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -366,6 +420,9 @@
       "datatourisme_uuid": "3a3e1c61-8e43-3e05-8d02-daec196a01df",
       "data_provider": "Valence Romans Tourisme",
       "last_update": "2024-11-09",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -385,6 +442,9 @@
       "datatourisme_uuid": "3104de50-7eb4-3dc9-ba8b-fa65dbb1afc0",
       "data_provider": "Valence Romans Tourisme",
       "last_update": "2024-04-11",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -404,6 +464,9 @@
       "datatourisme_uuid": "cd9ce598-db36-3ebd-a8c4-170ce7af94e7",
       "data_provider": "Valence Romans Tourisme",
       "last_update": "2024-04-11",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -423,6 +486,9 @@
       "datatourisme_uuid": "eed47813-f8f0-3a66-821a-8a6a0b7187c2",
       "data_provider": "Office de Tourisme du Pays Diois",
       "last_update": "2026-03-02",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -442,6 +508,9 @@
       "datatourisme_uuid": "cdb45315-3dcb-3b98-b13c-40d5f158b0e4",
       "data_provider": "Office de Tourisme des Baronnies en Drôme Provençale",
       "last_update": "2025-06-10",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -461,6 +530,9 @@
       "datatourisme_uuid": "dd65f375-25b8-30e2-9e78-a5df1c04851a",
       "data_provider": "Office de Tourisme des Baronnies en Drôme Provençale",
       "last_update": "2025-06-10",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -480,6 +552,9 @@
       "datatourisme_uuid": "8cf3c4ee-392e-382f-a159-5533291b1bca",
       "data_provider": "Office de Tourisme des Baronnies en Drôme Provençale",
       "last_update": "2026-08-04",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -499,6 +574,9 @@
       "datatourisme_uuid": "fe55415a-674a-372e-a396-9b7332b9c483",
       "data_provider": "Office de Tourisme des Baronnies en Drôme Provençale",
       "last_update": "2026-03-09",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -518,6 +596,9 @@
       "datatourisme_uuid": "c9f27474-1680-319d-a6fb-feb9eab99215",
       "data_provider": "Valence Romans Tourisme",
       "last_update": "2023-02-07",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -537,6 +618,9 @@
       "datatourisme_uuid": "d513fa27-2a6d-3980-bce3-d46798b41cb0",
       "data_provider": "Office de Tourisme du Pays Diois",
       "last_update": "2026-03-16",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -556,6 +640,9 @@
       "datatourisme_uuid": "b9bcf2bd-f8d1-36f9-b4eb-40adc26d1a27",
       "data_provider": "Office de Tourisme Communautaire Pays de Grignan et Enclave des Papes",
       "last_update": "2023-06-30",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -575,6 +662,9 @@
       "datatourisme_uuid": "214aecf8-29fb-397d-9d1a-b619a750ed9b",
       "data_provider": "Office de Tourisme de la Vallée de la Drôme",
       "last_update": "2026-09-01",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -594,6 +684,9 @@
       "datatourisme_uuid": "928bcdfc-0261-3688-be17-51b231603691",
       "data_provider": "Valence Romans Tourisme",
       "last_update": "2024-04-11",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -613,6 +706,9 @@
       "datatourisme_uuid": "5d49e4ad-de73-38fb-bb72-9966b05ab948",
       "data_provider": "Valence Romans Tourisme",
       "last_update": "2026-09-07",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -632,6 +728,9 @@
       "datatourisme_uuid": "4f78e93d-48b1-3a0e-af2a-137eeb1c6e72",
       "data_provider": "Valence Romans Tourisme",
       "last_update": "2026-07-29",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -651,6 +750,9 @@
       "datatourisme_uuid": "17d98168-8257-33d5-95be-4ae3aae30816",
       "data_provider": "Valence Romans Tourisme",
       "last_update": "2023-02-08",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -670,6 +772,9 @@
       "datatourisme_uuid": "2e60926e-9309-392a-b4fb-65ccc455b035",
       "data_provider": "Valence Romans Tourisme",
       "last_update": "2026-09-26",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -689,6 +794,9 @@
       "datatourisme_uuid": "aebd35c0-c560-3b1f-97c3-d92ab0ae04ed",
       "data_provider": "Office de Tourisme du Pays Diois",
       "last_update": "2017-07-06",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -708,6 +816,9 @@
       "datatourisme_uuid": "a2415e80-78ab-364f-a38c-2f6813efc3ee",
       "data_provider": "Office de Tourisme du Pays Diois",
       "last_update": "2026-01-13",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -727,6 +838,9 @@
       "datatourisme_uuid": "346b2f38-a2c9-3aaa-b9bd-93b54d9c390b",
       "data_provider": "Office de Tourisme Drôme Sud Provence",
       "last_update": "2022-08-30",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -746,6 +860,9 @@
       "datatourisme_uuid": "a9d7db48-c44d-351f-ad8f-214c3773798d",
       "data_provider": "Montélimar Tourisme Agglomération",
       "last_update": "2022-09-21",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -765,6 +882,9 @@
       "datatourisme_uuid": "fca875aa-d709-360a-b7d0-98a910237ad9",
       "data_provider": "Montélimar Tourisme Agglomération",
       "last_update": "2023-07-28",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -784,6 +904,9 @@
       "datatourisme_uuid": "e1b993fc-a443-3353-82dc-d2897c600c2a",
       "data_provider": "Office de Tourisme Communautaire Pays de Grignan et Enclave des Papes",
       "last_update": "2026-07-07",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -803,6 +926,9 @@
       "datatourisme_uuid": "79be1585-8b4a-3896-9fec-53c74364391e",
       "data_provider": "Office de Tourisme de la Vallée de la Drôme",
       "last_update": "2026-07-30",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -822,6 +948,9 @@
       "datatourisme_uuid": "5150e53d-19ee-315c-bffc-99b351b5d26e",
       "data_provider": "Office de Tourisme de la Vallée de la Drôme",
       "last_update": "2023-05-31",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -841,6 +970,9 @@
       "datatourisme_uuid": "474ff205-4e1b-3780-9046-90be0c2bd888",
       "data_provider": "Office de Tourisme de la Vallée de la Drôme",
       "last_update": "2026-09-09",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -860,6 +992,9 @@
       "datatourisme_uuid": "519c6a69-3c6e-3676-97c4-5a675b9ddaa8",
       "data_provider": "Office de Tourisme de la Vallée de la Drôme",
       "last_update": "2024-07-11",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -879,6 +1014,9 @@
       "datatourisme_uuid": "97e138c6-59d0-3af3-861c-d2d2a6ebc556",
       "data_provider": "Office de Tourisme de la Vallée de la Drôme",
       "last_update": "2023-05-15",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -898,6 +1036,9 @@
       "datatourisme_uuid": "a6747af9-d66e-32ba-acc6-559df5609f79",
       "data_provider": "Office de Tourisme du Pays Diois",
       "last_update": "2026-07-16",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -917,6 +1058,9 @@
       "datatourisme_uuid": "4e463ddc-7aa9-36fc-922a-4a20e2c2fc8f",
       "data_provider": "Office de Tourisme du Pays Diois",
       "last_update": "2026-09-22",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -936,6 +1080,9 @@
       "datatourisme_uuid": "85a0de10-8bf2-3b7e-962d-dcba1232a697",
       "data_provider": "Office de Tourisme Pays de Dieulefit-Bourdeaux",
       "last_update": "2026-09-18",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -955,6 +1102,9 @@
       "datatourisme_uuid": "9bc0a581-ae9d-3182-a2c1-3d426d6002e7",
       "data_provider": "Office de Tourisme Drôme Sud Provence",
       "last_update": "2026-01-20",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -974,6 +1124,9 @@
       "datatourisme_uuid": "d36ae497-13cc-3c09-91e6-aef69746ab23",
       "data_provider": "Office de Tourisme Communautaire Pays de Grignan et Enclave des Papes",
       "last_update": "2025-02-25",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -993,6 +1146,9 @@
       "datatourisme_uuid": "ceb358d3-6dfa-36ea-8deb-bffb87956538",
       "data_provider": "Office de Tourisme Communautaire Pays de Grignan et Enclave des Papes",
       "last_update": "2026-04-14",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -1012,6 +1168,9 @@
       "datatourisme_uuid": "19d7e748-3b1b-33b2-97da-a7e9e9458832",
       "data_provider": "Office de Tourisme Drôme Sud Provence",
       "last_update": "2026-06-10",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -1031,6 +1190,9 @@
       "datatourisme_uuid": "4ef26522-4ca0-3d51-9533-cb3c5ebc0afa",
       "data_provider": "Office de Tourisme Pays de Dieulefit-Bourdeaux",
       "last_update": "2020-12-21",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -1050,6 +1212,9 @@
       "datatourisme_uuid": "2d8c7d4e-f4a9-3f46-9167-bfe58ed17af2",
       "data_provider": "Office de Tourisme Drôme Sud Provence",
       "last_update": "2022-12-02",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -1069,6 +1234,9 @@
       "datatourisme_uuid": "0ee89b0b-f8ad-36e5-a9b7-22b39319a63f",
       "data_provider": "Montélimar Tourisme Agglomération",
       "last_update": "2023-07-28",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -1088,6 +1256,9 @@
       "datatourisme_uuid": "aba3d6b8-b2c0-3c1d-aafc-8f4988175467",
       "data_provider": "Office de Tourisme Pays de Dieulefit-Bourdeaux",
       "last_update": "2026-02-27",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -1107,6 +1278,9 @@
       "datatourisme_uuid": "f086c7d1-6ec9-3459-8812-4da570696eb2",
       "data_provider": "Office de Tourisme des Baronnies en Drôme Provençale",
       "last_update": "2026-04-07",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -1126,6 +1300,9 @@
       "datatourisme_uuid": "70122800-1b8f-3322-b951-4cc36e8e949f",
       "data_provider": "Office de Tourisme des Baronnies en Drôme Provençale",
       "last_update": "2026-02-17",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -1145,6 +1322,9 @@
       "datatourisme_uuid": "f10a064a-015c-3c35-a5d7-2bae2833a6a7",
       "data_provider": "Office de Tourisme des Baronnies en Drôme Provençale",
       "last_update": "2026-02-03",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -1164,6 +1344,9 @@
       "datatourisme_uuid": "3486bdb2-c38f-370a-bb48-d698aa012791",
       "data_provider": "Office de Tourisme Communautaire Pays de Grignan et Enclave des Papes",
       "last_update": "2025-05-22",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -1183,6 +1366,9 @@
       "datatourisme_uuid": "e3ea7154-fec9-30af-96ad-a653a07f9acb",
       "data_provider": "Office de Tourisme Drôme Sud Provence",
       "last_update": "2022-12-02",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -1202,6 +1388,9 @@
       "datatourisme_uuid": "fa2e85ad-7627-3a3e-8869-bd69d713e704",
       "data_provider": "Office de Tourisme Pays de Dieulefit-Bourdeaux",
       "last_update": "2026-04-30",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -1221,6 +1410,9 @@
       "datatourisme_uuid": "5b904889-8bd2-3fe8-9457-e4b746ba886c",
       "data_provider": "Office de Tourisme Drôme Sud Provence",
       "last_update": "2022-08-30",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -1240,6 +1432,9 @@
       "datatourisme_uuid": "29195fea-6390-336e-b5a3-692e20f01873",
       "data_provider": "Office de Tourisme Drôme Sud Provence",
       "last_update": "2026-09-24",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -1259,6 +1454,9 @@
       "datatourisme_uuid": "401a9cdc-d77e-376b-a6e3-cdbd2df95e58",
       "data_provider": "Office de Tourisme Communautaire Pays de Grignan et Enclave des Papes",
       "last_update": "2026-01-21",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -1278,6 +1476,9 @@
       "datatourisme_uuid": "84b83796-c319-35a2-956c-f70967af6812",
       "data_provider": "Office de Tourisme des Baronnies en Drôme Provençale",
       "last_update": "2025-06-13",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -1297,6 +1498,9 @@
       "datatourisme_uuid": "293a2230-7b6f-3123-b065-953a2f331bea",
       "data_provider": "Office de Tourisme des Baronnies en Drôme Provençale",
       "last_update": "2026-07-09",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -1316,6 +1520,9 @@
       "datatourisme_uuid": "dce78634-b020-3b9d-8e49-af4223b6cf2a",
       "data_provider": "Office de Tourisme des Baronnies en Drôme Provençale",
       "last_update": "2026-01-29",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -1335,6 +1542,9 @@
       "datatourisme_uuid": "aaeffc50-f46e-393a-9f15-19b80c330524",
       "data_provider": "Office de Tourisme des Baronnies en Drôme Provençale",
       "last_update": "2026-04-24",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -1354,6 +1564,9 @@
       "datatourisme_uuid": "d88d7d25-5d9e-3045-9ba9-99058a70b592",
       "data_provider": "Office de Tourisme Drôme Sud Provence",
       "last_update": "2026-07-28",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -1373,6 +1586,9 @@
       "datatourisme_uuid": "c71d786f-b0ba-33c8-84d3-bc85f03a29ed",
       "data_provider": "Office de Tourisme Drôme Sud Provence",
       "last_update": "2026-09-20",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -1392,6 +1608,9 @@
       "datatourisme_uuid": "3b2c0359-dd00-31db-8f35-2c0a37c2b30f",
       "data_provider": "Office de Tourisme Drôme Sud Provence",
       "last_update": "2026-06-19",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -1411,6 +1630,9 @@
       "datatourisme_uuid": "578a79cd-9c2f-3cd6-a5d0-536a21643103",
       "data_provider": "Office de Tourisme Communautaire Pays de Grignan et Enclave des Papes",
       "last_update": "2026-02-21",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -1430,6 +1652,9 @@
       "datatourisme_uuid": "5f481c7b-b9b3-3f07-aec4-6c18d567efa9",
       "data_provider": "Office de Tourisme Communautaire Pays de Grignan et Enclave des Papes",
       "last_update": "2026-02-04",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -1449,6 +1674,9 @@
       "datatourisme_uuid": "28f5a4f6-ed82-369c-bb2b-e577e9990cd6",
       "data_provider": "Office de Tourisme Drôme Sud Provence",
       "last_update": "2022-08-30",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -1468,6 +1696,9 @@
       "datatourisme_uuid": "f12ca5ae-3f47-398f-996d-455ff9afb255",
       "data_provider": "Office de Tourisme Drôme Sud Provence",
       "last_update": "2026-01-28",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -1487,6 +1718,9 @@
       "datatourisme_uuid": "73be7ea5-00c1-3fef-9e17-23ddddcdccb7",
       "data_provider": "Office de Tourisme Communautaire Pays de Grignan et Enclave des Papes",
       "last_update": "2023-08-20",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -1506,6 +1740,9 @@
       "datatourisme_uuid": "02a94138-d1cb-32e2-b4c0-56e7473454a6",
       "data_provider": "Office de Tourisme des Baronnies en Drôme Provençale",
       "last_update": "2026-09-18",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -1525,6 +1762,9 @@
       "datatourisme_uuid": "c6f4535f-13b3-3a29-b6a9-09ee29a732ae",
       "data_provider": "Office de Tourisme des Baronnies en Drôme Provençale",
       "last_update": "2026-04-16",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -1544,6 +1784,9 @@
       "datatourisme_uuid": "9503902b-deb2-3abd-9448-df1376a7ce93",
       "data_provider": "Office de Tourisme des Baronnies en Drôme Provençale",
       "last_update": "2025-10-30",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -1563,6 +1806,9 @@
       "datatourisme_uuid": "43a62813-1609-3b53-82c1-37e8fe235216",
       "data_provider": "Montélimar Tourisme Agglomération",
       "last_update": "2026-08-27",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -1582,6 +1828,9 @@
       "datatourisme_uuid": "e0aa39a6-4289-30b2-90a9-efe82eca401f",
       "data_provider": "Office de Tourisme des Baronnies en Drôme Provençale",
       "last_update": "2026-09-17",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -1601,6 +1850,9 @@
       "datatourisme_uuid": "e4c225ad-5b00-3210-a322-78336db01231",
       "data_provider": "Office de Tourisme Drôme Sud Provence",
       "last_update": "2026-09-24",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -1620,6 +1872,9 @@
       "datatourisme_uuid": "68645115-2e45-3a95-8bd6-acfc47b1fdc6",
       "data_provider": "Office de Tourisme Drôme Sud Provence",
       "last_update": "2026-09-10",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -1639,6 +1894,9 @@
       "datatourisme_uuid": "396f9c64-9577-3adb-98f7-24658219fabc",
       "data_provider": "Office de Tourisme Pays de Dieulefit-Bourdeaux",
       "last_update": "2026-09-10",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -1658,6 +1916,9 @@
       "datatourisme_uuid": "2fe5e7b8-e4e5-3eff-94ae-1a3e979240dd",
       "data_provider": "Office de Tourisme Pays de Dieulefit-Bourdeaux",
       "last_update": "2026-09-21",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -1677,6 +1938,9 @@
       "datatourisme_uuid": "22af5d36-78f8-3109-bc77-b84f4a17973c",
       "data_provider": "Office de Tourisme Pays de Dieulefit-Bourdeaux",
       "last_update": "2026-09-22",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -1696,6 +1960,9 @@
       "datatourisme_uuid": "8dcddc43-2105-3038-ad89-14a6bfaabc1f",
       "data_provider": "Office de Tourisme des Baronnies en Drôme Provençale",
       "last_update": "2026-09-17",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -1715,6 +1982,9 @@
       "datatourisme_uuid": "b94109f4-67d3-3d0c-9404-5a452a083ca4",
       "data_provider": "Montélimar Tourisme Agglomération",
       "last_update": "2026-05-04",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -1734,6 +2004,9 @@
       "datatourisme_uuid": "b77d70f0-b051-3d8a-b312-ecf8258be225",
       "data_provider": "Office de Tourisme Communautaire Pays de Grignan et Enclave des Papes",
       "last_update": "2026-09-12",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -1753,6 +2026,9 @@
       "datatourisme_uuid": "414964d8-ca75-39b0-b432-33f0dc86bc90",
       "data_provider": "Office de Tourisme Pays de Dieulefit-Bourdeaux",
       "last_update": "2026-09-02",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -1772,6 +2048,9 @@
       "datatourisme_uuid": "7d9b63a9-dc4b-32ef-ab16-308c29e1c3fb",
       "data_provider": "Office de Tourisme Drôme Sud Provence",
       "last_update": "2026-09-09",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -1791,6 +2070,9 @@
       "datatourisme_uuid": "107a68be-88f6-321d-be48-3794986e4b5f",
       "data_provider": "Office de Tourisme des Baronnies en Drôme Provençale",
       "last_update": "2026-09-21",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -1810,6 +2092,9 @@
       "datatourisme_uuid": "6139c7f9-b0f5-368a-86c4-a0d8299e8787",
       "data_provider": "Office de Tourisme des Baronnies en Drôme Provençale",
       "last_update": "2026-09-17",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -1829,6 +2114,9 @@
       "datatourisme_uuid": "d47ec838-ae17-392d-bedc-d108ec210ddf",
       "data_provider": "Office de Tourisme Drôme Sud Provence",
       "last_update": "2026-09-16",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -1848,6 +2136,9 @@
       "datatourisme_uuid": "b9826c68-1f6e-31fb-9633-9c04063dbac2",
       "data_provider": "Office de Tourisme des Baronnies en Drôme Provençale",
       "last_update": "2026-09-05",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -1867,6 +2158,9 @@
       "datatourisme_uuid": "0f2f4067-7845-370f-b46d-81abda3f1945",
       "data_provider": "Office de Tourisme des Baronnies en Drôme Provençale",
       "last_update": "2026-09-22",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -1886,6 +2180,9 @@
       "datatourisme_uuid": "4fc12009-1231-39d6-b9b1-71fb97192558",
       "data_provider": "Office de Tourisme des Baronnies en Drôme Provençale",
       "last_update": "2026-08-31",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     },
@@ -1905,6 +2202,9 @@
       "datatourisme_uuid": "8727f460-6cfe-3311-be0f-689cfd91bd12",
       "data_provider": "Office de Tourisme Drôme Sud Provence",
       "last_update": "2026-09-24",
+      "image_url": "",
+      "image_credit": "",
+      "image_rights": "",
       "source_name": "DATAtourisme",
       "source_license": "Licence Ouverte 2.0"
     }
