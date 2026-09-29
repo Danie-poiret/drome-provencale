@@ -247,7 +247,7 @@ def schema_performer(event: dict) -> str:
     if explicit:
         return explicit
 
-    text = " ".join((clean(event.get("title")), clean(event.get("description"))))
+    text = " . ".join((clean(event.get("title")), clean(event.get("description"))))
     token = r"[A-ZÀ-ÖØ-Þ][A-Za-zÀ-ÿ'’.-]{1,}"
     name = rf"({token}(?:\s+{token}){{1,3}})"
     patterns = (
