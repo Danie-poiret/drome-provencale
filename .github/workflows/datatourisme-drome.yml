@@ -1,4 +1,4 @@
-name: DATAtourisme Drôme - test noindex
+name: DATAtourisme Drôme - 100 événements
 
 on:
   workflow_dispatch:
@@ -37,9 +37,6 @@ jobs:
 
       - name: Ajouter habillage et attribution DATAtourisme
         run: python prepare_datatourisme_test.py
-
-      - name: Passer tout le site en noindex
-        run: python set_noindex.py
 
       - name: Enregistrer les changements
         shell: bash
