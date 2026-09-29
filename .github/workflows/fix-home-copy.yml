@@ -1,0 +1,48 @@
+name: Corriger texte accueil agenda
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/fix-home-copy.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  fix-copy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Recuperer le depot
+        uses: actions/checkout@v4
+
+      - name: Retirer la mention sur Nyons
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path("evenements/index.html")
+          text = path.read_text(encoding="utf-8")
+          text = text.replace(
+              "Les villages alentour sont à l’honneur ; Nyons est volontairement exclu.",
+              "Les villages alentour sont à l’honneur."
+          )
+          text = text.replace(
+              "Agenda des événements dans les villages autour de Nyons : sorties, culture, fêtes, spectacles et loisirs. Nyons est exclu de cette sélection.",
+              "Agenda des événements dans les villages autour de Nyons : sorties, culture, fêtes, spectacles et loisirs."
+          )
+          path.write_text(text, encoding="utf-8")
+          PY
+
+      - name: Enregistrer la correction
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add evenements/index.html
+          if git diff --cached --quiet; then
+            echo "Aucun changement."
+            exit 0
+          fi
+          git commit -m "Retirer la mention sur Nyons de la page agenda"
+          git push
