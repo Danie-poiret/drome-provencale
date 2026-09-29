@@ -35,7 +35,8 @@ ROBOTS = ROOT / "robots.txt"
 ANECDOTES_FILE = ROOT / "village_anecdotes.json"
 
 SITE = os.getenv("SITE_URL", "https://drome.vivreanyons.fr/").rstrip("/") + "/"
-BANNER_URL = "https://danie-poiret.github.io/banniere-nyons/"
+BANNER_IMAGE_URL = urljoin(SITE, "banniere-livres-drome-ardeche.png")
+BANNER_LINK_URL = "https://link.amazon/B029AvcrG"
 OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gpt-5.6-terra")
 MAX_EVENT_AI_CALLS = int(os.getenv("MAX_EVENT_AI_CALLS", "100"))
 PROMPT_VERSION = 1
@@ -196,75 +197,6 @@ def compact_description(text: str, limit: int = 3600) -> str:
     return clean(text)[:limit]
 
 
-def schema_offer(event: dict, source_url: str, canonical: str) -> dict | None:
-    """Construit une Offer seulement à partir d'un tarif réellement annoncé."""
-    tariffs = clean(event.get("tariffs"))
-    desc = clean(event.get("description"))
-    evidence = tariffs or ("Gratuit" if re.search(r"\bgratuit(?:e|ement)?\b", desc, re.I) else "")
-    if not evidence:
-        return None
-
-    offer = {
-        "@type": "Offer",
-        "url": source_url or canonical,
-        "priceCurrency": "EUR",
-        "availability": "https://schema.org/InStock",
-    }
-    low = evidence.lower()
-    if re.search(r"\bgratuit(?:e|ement)?\b", low):
-        offer["price"] = "0"
-    else:
-        match = re.search(r"(?<!\d)(\d+(?:[,.]\d{1,2})?)\s*(?:€|euros?\b)", evidence, re.I)
-        if not match:
-            match = re.search(r"\b(?:à partir de|dès|de)\s+(\d+(?:[,.]\d{1,2})?)", evidence, re.I)
-        if match:
-            offer["price"] = match.group(1).replace(",", ".")
-    offer["description"] = _cut_clean_text(evidence, 280)
-    return offer
-
-
-def schema_organizer(event: dict) -> str:
-    """Organisateur seulement lorsqu'il est fourni ou explicitement nommé dans la source."""
-    explicit = clean(event.get("organizer"))
-    if explicit:
-        return explicit
-
-    text = " ".join((clean(event.get("description")), clean(event.get("contact"))))
-    patterns = (
-        r"(?i:\borganis(?:é|ée) par\s+(?:la\s+|le\s+|les\s+|l['’]\s*)?)([A-ZÀ-ÖØ-Þ][^,.;]{2,80})",
-        r"(?i:\bpropos(?:é|ée) par\s+(?:la\s+|le\s+|les\s+|l['’]\s*)?)([A-ZÀ-ÖØ-Þ][^,.;]{2,80})",
-        r"(?i:\borganisateur(?:rice)?\s*[:\-]\s*)([A-ZÀ-ÖØ-Þ][^,.;]{2,80})",
-    )
-    for pattern in patterns:
-        match = re.search(pattern, text)
-        if match:
-            value = _cut_clean_text(match.group(1), 80).strip(" .,:;-")
-            value = re.split(r"(?i)\s+(?:et|avec)\s+(?:le|la|les|l['’])?\s*soutien\b", value, maxsplit=1)[0]
-            return value.strip(" .,:;-")
-    return ""
-
-
-def schema_performer(event: dict) -> str:
-    """Artiste/intervenant uniquement lorsqu'un nom propre est explicitement présent."""
-    explicit = clean(event.get("performer"))
-    if explicit:
-        return explicit
-
-    text = " . ".join((clean(event.get("title")), clean(event.get("description"))))
-    token = r"[A-ZÀ-ÖØ-Þ][A-Za-zÀ-ÿ'’.-]{1,}"
-    name = rf"({token}(?:\s+{token}){{1,3}})"
-    patterns = (
-        rf"(?i:\b(?:avec|anim(?:é|ée) par|interpr(?:été|étée) par)\s+){name}",
-        rf"(?:^|[.!?]\s+)(?i:par)\s+{name}",
-        rf"(?i:\b(?:concert|récital|spectacle|exposition|conférence))(?:\s+[a-zà-ÿœ'’\-]+){{0,3}}\s+(?i:de|par)\s+{name}",
-    )
-    for pattern in patterns:
-        match = re.search(pattern, text)
-        if match:
-            return clean(match.group(1)).strip(" .,:;-")
-    return ""
-
-
 def event_facts(event: dict) -> dict:
     return {
         "title": clean(event.get("title")),
@@ -393,7 +325,7 @@ def generate_editorial(event: dict) -> dict:
 STYLE = """
 *{box-sizing:border-box}:root{--olive:#566b3a;--olive-dark:#354622;--terracotta:#a94f35;--cream:#f6f1e8;--paper:#fffdf9;--ink:#262722;--muted:#686b63;--line:#e4dccd;--shadow:0 12px 34px rgba(52,48,38,.10)}
 body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--cream);color:var(--ink);line-height:1.72}a{color:var(--olive-dark)}
-.top{max-width:1180px;margin:auto;padding:15px 18px 0}.ad-shell{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--shadow)}.ad-frame{display:block;width:100%;aspect-ratio:3/1;border:0}.ad-note{font-size:11px;text-align:right;color:#777;margin:6px 4px 0}
+.top{max-width:1180px;margin:auto;padding:15px 18px 0}.ad-shell{display:block;background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--shadow)}.ad-image{display:block;width:100%;height:auto;aspect-ratio:3/1;object-fit:cover}.ad-note{font-size:11px;text-align:right;color:#777;margin:6px 4px 0}
 .wrap{max-width:980px;margin:auto;padding:18px 18px 64px}.nav{display:flex;gap:9px;flex-wrap:wrap;margin:8px 0 18px}.nav a{padding:9px 13px;background:#fff;border:1px solid var(--line);border-radius:999px;text-decoration:none;font-weight:800;font-size:13px}
 .hero{background:linear-gradient(125deg,var(--olive-dark),var(--olive) 62%,#788d58);color:#fff;border-radius:24px;padding:clamp(27px,5vw,52px);box-shadow:var(--shadow)}
 .status{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.15);font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:.04em}h1{font-size:clamp(31px,5vw,50px);line-height:1.08;margin:.35em 0 .3em}.date{font-size:18px;font-weight:800;margin:0 0 8px}.cats{opacity:.9;font-size:14px}
@@ -609,10 +541,6 @@ def render_page(
         "La commune et la date sont indiquées sur chaque proposition pour choisir facilement."
     )
 
-    organizer = schema_organizer(event)
-    performer = schema_performer(event)
-    offer = schema_offer(event, source_url, canonical)
-
     event_ld = {
         "@context": "https://schema.org",
         "@type": "Event",
@@ -636,12 +564,6 @@ def render_page(
     }
     if image_url:
         event_ld["image"] = [image_url]
-    if organizer:
-        event_ld["organizer"] = {"@type": "Organization", "name": organizer}
-    if performer:
-        event_ld["performer"] = {"@type": "Person", "name": performer}
-    if offer:
-        event_ld["offers"] = offer
     breadcrumb = {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
@@ -673,7 +595,7 @@ def render_page(
   <style>{STYLE}</style>
 </head>
 <body>
-  <aside class="top" aria-label="Sélection de livres sur Nyons"><div class="ad-shell"><iframe class="ad-frame" src="{esc(BANNER_URL)}" loading="eager" title="Voir ma sélection de vieux livres sur Nyons"></iframe></div><div class="ad-note">Publicité · lien affilié</div></aside>
+  <aside class="top" aria-label="Sélection de livres sur la Drôme et l’Ardèche"><a class="ad-shell" href="{esc(BANNER_LINK_URL)}" target="_blank" rel="sponsored noopener noreferrer"><img class="ad-image" src="{esc(BANNER_IMAGE_URL)}" width="2048" height="682" alt="Livres sur la Drôme et l’Ardèche : guides, balades, patrimoine et nature"></a><div class="ad-note">Publicité · lien affilié Amazon</div></aside>
   <main class="wrap">
     <nav class="nav"><a href="{esc(SITE)}">← Agenda</a><a href="{esc(urljoin(SITE, 'evenements/'))}">📌 Tous les événements</a></nav>
     <header class="hero"><span class="status">{esc(status)}</span><h1>{esc(title)}</h1><p class="date">📅 {esc(header_date)}</p><div class="cats">{esc(commune or 'Drôme et alentours')}</div></header>
@@ -789,7 +711,7 @@ def render_index(events: list[dict], slug_map: dict[str, str]) -> str:
 """
 
     count = len(events)
-    return f'''<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Agenda autour de Nyons : {count} événements en cours et à venir</title><meta name="description" content="Agenda des événements classés par village autour de Nyons : sorties, culture, fêtes, spectacles et loisirs."><link rel="canonical" href="{esc(urljoin(SITE, 'evenements/'))}"><meta name="robots" content="index,follow"><style>{INDEX_STYLE}</style></head><body><aside class="top" aria-label="Sélection de livres sur Nyons"><div class="ad-shell"><iframe class="ad-frame" src="{esc(BANNER_URL)}" loading="eager" title="Voir ma sélection de vieux livres sur Nyons"></iframe></div><div class="ad-note">Publicité · lien affilié</div></aside><main class="wrap"><nav class="nav"><a href="{esc(SITE)}">← Accueil</a></nav><header class="hero"><span class="status">Agenda</span><h1>{count} événements autour de Nyons</h1><p class="date">Les villages alentour sont à l’honneur.</p></header><section class="section village-picker" id="classement-villages"><h2>🏘️ Classement par village</h2><p class="village-picker-intro">Choisissez un village pour afficher uniquement ses sorties.</p><label class="village-select-label" for="village-select">Choisir un village</label><select class="village-select" id="village-select"><option value="">Tous les villages ({count})</option>{''.join(options)}</select><div class="village-links" aria-label="Villages classés par ordre alphabétique">{''.join(filters)}</div><p class="filter-status" id="filter-status" aria-live="polite">{count} événements affichés</p></section><div id="liste-villages">{''.join(sections)}</div></main>{script}</body></html>'''
+    return f'''<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Agenda autour de Nyons : {count} événements en cours et à venir</title><meta name="description" content="Agenda des événements classés par village autour de Nyons : sorties, culture, fêtes, spectacles et loisirs."><link rel="canonical" href="{esc(urljoin(SITE, 'evenements/'))}"><meta name="robots" content="index,follow"><style>{INDEX_STYLE}</style></head><body><main class="wrap"><nav class="nav"><a href="{esc(SITE)}">← Accueil</a></nav><header class="hero"><span class="status">Agenda</span><h1>{count} événements autour de Nyons</h1><p class="date">Les villages alentour sont à l’honneur.</p></header><section class="section village-picker" id="classement-villages"><h2>🏘️ Classement par village</h2><p class="village-picker-intro">Choisissez un village pour afficher uniquement ses sorties.</p><label class="village-select-label" for="village-select">Choisir un village</label><select class="village-select" id="village-select"><option value="">Tous les villages ({count})</option>{''.join(options)}</select><div class="village-links" aria-label="Villages classés par ordre alphabétique">{''.join(filters)}</div><p class="filter-status" id="filter-status" aria-live="polite">{count} événements affichés</p></section><div id="liste-villages">{''.join(sections)}</div></main>{script}</body></html>'''
 
 
 def write_sitemap(events: list[dict], slug_map: dict[str, str]) -> None:
