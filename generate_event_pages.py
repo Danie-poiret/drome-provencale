@@ -338,6 +338,14 @@ body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--cream);col
 @media(max-width:720px){.related,.info-grid,.cards{grid-template-columns:1fr}.info-date{grid-column:auto}.top{padding:9px 9px 0}.wrap{padding:10px 11px 45px}.hero{border-radius:18px;padding:24px 20px}.lead,.section{padding:18px}}
 """
 
+INDEX_STYLE = STYLE + """
+.village-picker{margin-top:18px}.village-picker h2{margin-bottom:7px}.village-picker-intro{color:var(--muted);margin-bottom:15px!important}
+.village-select-label{display:block;font-weight:900;margin-bottom:7px}.village-select{width:100%;padding:13px 14px;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--ink);font:inherit;font-weight:800}
+.village-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:15px}.village-filter{display:inline-flex;align-items:center;gap:6px;padding:8px 11px;border:1px solid var(--line);border-radius:999px;background:#fff;text-decoration:none;font-size:13px;font-weight:800}.village-filter span{display:inline-grid;place-items:center;min-width:24px;height:24px;padding:0 6px;border-radius:999px;background:#eef1e8;color:var(--olive-dark);font-size:12px}.village-filter[aria-pressed="true"]{background:var(--olive-dark);border-color:var(--olive-dark);color:#fff}.village-filter[aria-pressed="true"] span{background:rgba(255,255,255,.18);color:#fff}
+.filter-status{margin:14px 0 0!important;font-size:14px;font-weight:800;color:var(--olive-dark)}.village-section{scroll-margin-top:14px}.village-section h2{display:flex;align-items:center;justify-content:space-between;gap:12px}.village-count{white-space:nowrap;font-size:13px;color:var(--muted);font-weight:800}.village-section[hidden]{display:none}
+@media(max-width:720px){.village-links{display:none}.village-picker{position:sticky;top:0;z-index:5;box-shadow:0 8px 24px rgba(52,48,38,.10)}.village-section h2{align-items:flex-start;flex-direction:column;gap:4px}}
+"""
+
 
 def event_slug(event: dict) -> str:
     return f"{slugify(event.get('title', 'evenement'))}-{clean(event.get('start_date')) or 'date'}"
@@ -529,15 +537,103 @@ def render_page(
 
 
 def render_index(events: list[dict], slug_map: dict[str, str]) -> str:
-    cards = []
-    for e in events:
-        slug = slug_map[clean(e.get("url"))]
-        cards.append(
-            f'<a class="card" href="{esc(urljoin(SITE, f"evenements/{slug}/"))}">'
-            f'<strong>{esc(e.get("title"))}</strong>'
-            f'<span>📅 {esc(date_summary(e))}</span><span>📍 {esc(e.get("commune"))}</span></a>'
+    def alpha_key(value: str) -> str:
+        raw = unicodedata.normalize("NFKD", clean(value))
+        return "".join(ch for ch in raw if not unicodedata.combining(ch)).casefold()
+
+    by_village: dict[str, list[dict]] = {}
+    for event in events:
+        village = clean(event.get("commune")) or "Village non précisé"
+        by_village.setdefault(village, []).append(event)
+
+    villages = sorted(by_village, key=alpha_key)
+    options = []
+    filters = [
+        f'<a class="village-filter" href="#tous-les-villages" data-village-filter="" '
+        f'aria-pressed="true">Tous les villages <span>{len(events)}</span></a>'
+    ]
+    sections = []
+
+    for village in villages:
+        village_slug = slugify(village, 60)
+        village_events = sorted(
+            by_village[village],
+            key=lambda event: (
+                clean(event.get("start_date")) or "9999-12-31",
+                alpha_key(event.get("title")),
+            ),
         )
-    return f'''<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>100 prochains événements autour de Nyons</title><meta name="description" content="Découvrez les 100 prochains événements autour de Nyons : sorties, culture, loisirs, fêtes et rendez-vous dans un rayon de 100 km."><link rel="canonical" href="{esc(urljoin(SITE, 'evenements/'))}"><meta name="robots" content="index,follow"><style>{STYLE}</style></head><body><main class="wrap"><nav class="nav"><a href="{esc(SITE)}">← Accueil</a></nav><header class="hero"><span class="status">Agenda</span><h1>100 prochains événements autour de Nyons</h1><p class="date">Nyons est retiré de cette sélection pour éviter les doublons avec l’agenda local.</p></header><section class="section"><h2>📅 Tous les rendez-vous</h2><div class="cards">{''.join(cards)}</div></section></main></body></html>'''
+        count = len(village_events)
+        label = "1 sortie" if count == 1 else f"{count} sorties"
+        options.append(
+            f'<option value="{esc(village_slug)}">{esc(village)} ({count})</option>'
+        )
+        filters.append(
+            f'<a class="village-filter" href="#village-{esc(village_slug)}" '
+            f'data-village-filter="{esc(village_slug)}" aria-pressed="false">'
+            f'{esc(village)} <span>{count}</span></a>'
+        )
+
+        cards = []
+        for event in village_events:
+            event_slug_value = slug_map[clean(event.get("url"))]
+            cards.append(
+                f'<a class="card" href="{esc(urljoin(SITE, f"evenements/{event_slug_value}/"))}">'
+                f'<strong>{esc(event.get("title"))}</strong>'
+                f'<span>📅 {esc(date_summary(event))}</span>'
+                f'<span>📍 {esc(village)}</span></a>'
+            )
+        sections.append(
+            f'<section class="section village-section" id="village-{esc(village_slug)}" '
+            f'data-village="{esc(village_slug)}"><h2>📍 {esc(village)} '
+            f'<span class="village-count">{esc(label)}</span></h2>'
+            f'<div class="cards">{"".join(cards)}</div></section>'
+        )
+
+    script = """
+<script>
+(function () {
+  const select = document.getElementById('village-select');
+  const status = document.getElementById('filter-status');
+  const sections = Array.from(document.querySelectorAll('.village-section'));
+  const filters = Array.from(document.querySelectorAll('[data-village-filter]'));
+
+  function showVillage(value, changeHash) {
+    let shown = 0;
+    sections.forEach(function (section) {
+      const visible = !value || section.dataset.village === value;
+      section.hidden = !visible;
+      if (visible) shown += section.querySelectorAll('.card').length;
+    });
+    filters.forEach(function (filter) {
+      filter.setAttribute('aria-pressed', filter.dataset.villageFilter === value ? 'true' : 'false');
+    });
+    select.value = value;
+    status.textContent = shown + (shown > 1 ? ' événements affichés' : ' événement affiché');
+    if (changeHash) {
+      history.replaceState(null, '', value ? '#village-' + value : '#tous-les-villages');
+    }
+  }
+
+  select.addEventListener('change', function () { showVillage(select.value, true); });
+  filters.forEach(function (filter) {
+    filter.addEventListener('click', function (event) {
+      event.preventDefault();
+      showVillage(filter.dataset.villageFilter, true);
+      document.getElementById('classement-villages').scrollIntoView({behavior: 'smooth'});
+    });
+  });
+
+  const initial = location.hash.indexOf('#village-') === 0
+    ? location.hash.replace('#village-', '')
+    : '';
+  showVillage(sections.some(function (section) { return section.dataset.village === initial; }) ? initial : '', false);
+})();
+</script>
+"""
+
+    count = len(events)
+    return f'''<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Agenda autour de Nyons : {count} événements en cours et à venir</title><meta name="description" content="Agenda des événements classés par village autour de Nyons : sorties, culture, fêtes, spectacles et loisirs. Nyons est exclu de cette sélection."><link rel="canonical" href="{esc(urljoin(SITE, 'evenements/'))}"><meta name="robots" content="noindex,follow"><style>{INDEX_STYLE}</style></head><body><main class="wrap"><nav class="nav"><a href="{esc(SITE)}">← Accueil</a></nav><header class="hero"><span class="status">Agenda</span><h1>{count} événements autour de Nyons</h1><p class="date">Les villages alentour sont à l’honneur ; Nyons est volontairement exclu.</p></header><section class="section village-picker" id="classement-villages"><h2>🏘️ Classement par village</h2><p class="village-picker-intro">Choisissez un village pour afficher uniquement ses sorties.</p><label class="village-select-label" for="village-select">Choisir un village</label><select class="village-select" id="village-select"><option value="">Tous les villages ({count})</option>{''.join(options)}</select><div class="village-links" aria-label="Villages classés par ordre alphabétique">{''.join(filters)}</div><p class="filter-status" id="filter-status" aria-live="polite">{count} événements affichés</p></section><div id="liste-villages">{''.join(sections)}</div></main>{script}</body></html>'''
 
 
 def write_sitemap(events: list[dict], slug_map: dict[str, str]) -> None:
