@@ -17,9 +17,9 @@ import os
 import re
 import shutil
 import unicodedata
-from datetime import date, datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
-from urllib.parse import urljoin
+from urllib.parse import quote, quote_plus, urljoin
 
 try:
     from openai import OpenAI
@@ -328,8 +328,10 @@ body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--cream);col
 .wrap{max-width:980px;margin:auto;padding:18px 18px 64px}.nav{display:flex;gap:9px;flex-wrap:wrap;margin:8px 0 18px}.nav a{padding:9px 13px;background:#fff;border:1px solid var(--line);border-radius:999px;text-decoration:none;font-weight:800;font-size:13px}
 .hero{background:linear-gradient(125deg,var(--olive-dark),var(--olive) 62%,#788d58);color:#fff;border-radius:24px;padding:clamp(27px,5vw,52px);box-shadow:var(--shadow)}
 .status{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.15);font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:.04em}h1{font-size:clamp(31px,5vw,50px);line-height:1.08;margin:.35em 0 .3em}.date{font-size:18px;font-weight:800;margin:0 0 8px}.cats{opacity:.9;font-size:14px}
+.event-photo{margin:22px 0 0;background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:var(--shadow)}.event-photo img{display:block;width:100%;max-height:620px;object-fit:cover}.event-photo figcaption{padding:9px 14px;font-size:12px;color:var(--muted)}
 .lead{font-size:19px;background:var(--paper);border-left:5px solid var(--terracotta);padding:22px 24px;border-radius:16px;margin:24px 0;box-shadow:0 6px 22px rgba(52,48,38,.055)}
 .section{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:22px 24px;margin:18px 0}.section h2{margin:0 0 9px;font-size:25px;line-height:1.2}.section p{margin:0 0 10px}.section p:last-child{margin-bottom:0}.practical-box{border-top:5px solid var(--terracotta)}.info-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:14px}.info-row{display:flex;gap:11px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;min-width:0}.info-row span{flex:0 0 24px;font-size:19px}.info-row a{overflow-wrap:anywhere}.info-date{grid-column:1/-1;background:#f6f0e4}
+.event-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}.event-action{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:11px 16px;border-radius:12px;background:var(--olive-dark);color:#fff;text-decoration:none;font-weight:900}.event-action.route{background:var(--terracotta)}
 .question{background:#efe7cf;border-radius:18px;padding:22px 24px;margin:20px 0;font-weight:800;font-size:18px}
 .anecdote{border-left:5px solid var(--terracotta);background:#fff8ec}.source-note{font-size:12px;color:var(--muted);margin-top:14px!important}.source-note a{font-weight:700}
 .around-intro{color:var(--muted);margin-bottom:14px!important}
@@ -403,6 +405,47 @@ def assign_anecdotes(events: list[dict], catalog: dict) -> dict[str, dict]:
     return assigned
 
 
+def ics_escape(value: str) -> str:
+    return clean(value).replace("\\", "\\\\").replace(";", "\\;").replace(",", "\\,")
+
+
+def calendar_href(event: dict, canonical: str) -> str:
+    """Construit un fichier calendrier universel sans rien stocker sur le site."""
+    start = iso_date(event.get("start_date", ""))
+    end = iso_date(event.get("end_date", "")) or start
+    if not start or not end:
+        return ""
+
+    stamp = iso_date(clean(event.get("last_update"))[:10]) or start
+    location = concise_address(event) or clean(event.get("commune"))
+    uid_seed = clean(event.get("url")) or canonical
+    uid = hashlib.sha256(uid_seed.encode("utf-8")).hexdigest()[:24]
+    description = f"Fiche : {canonical}"
+    source_url = clean(event.get("source_url") or event.get("url"))
+    if source_url:
+        description += f" | Source : {source_url}"
+
+    content = "\r\n".join([
+        "BEGIN:VCALENDAR",
+        "VERSION:2.0",
+        "PRODID:-//Vivre à Nyons//Agenda Drôme//FR",
+        "CALSCALE:GREGORIAN",
+        "BEGIN:VEVENT",
+        f"UID:{uid}@drome.vivreanyons.fr",
+        f"DTSTAMP:{stamp.strftime('%Y%m%d')}T000000Z",
+        f"DTSTART;VALUE=DATE:{start.strftime('%Y%m%d')}",
+        f"DTEND;VALUE=DATE:{(end + timedelta(days=1)).strftime('%Y%m%d')}",
+        f"SUMMARY:{ics_escape(event.get('title'))}",
+        f"LOCATION:{ics_escape(location)}",
+        f"DESCRIPTION:{ics_escape(description)}",
+        f"URL:{canonical}",
+        "END:VEVENT",
+        "END:VCALENDAR",
+        "",
+    ])
+    return "data:text/calendar;charset=utf-8," + quote(content, safe="")
+
+
 def render_page(
     event: dict,
     editorial: dict,
@@ -425,6 +468,36 @@ def render_page(
     seo_title = clean(editorial.get("seo_title")) or f"{title} à {commune}".strip()
     meta = clean(editorial.get("meta_description")) or fallback_editorial(event)["meta_description"]
     status = event_status(event)
+    image_url = clean(event.get("image_url"))
+    image_credit = clean(event.get("image_credit"))
+    image_rights = clean(event.get("image_rights"))
+
+    photo_html = ""
+    if image_url:
+        credit_bits = [bit for bit in (image_credit, image_rights) if bit]
+        caption = f'<figcaption>Photo : {esc(" · ".join(credit_bits))}</figcaption>' if credit_bits else ""
+        photo_html = (
+            '<figure class="event-photo">'
+            f'<img src="{esc(image_url)}" alt="{esc(title + (" à " + commune if commune else ""))}" '
+            'loading="lazy" decoding="async">'
+            f'{caption}</figure>'
+        )
+
+    actions = []
+    cal_href = calendar_href(event, canonical)
+    if cal_href:
+        actions.append(
+            f'<a class="event-action" href="{esc(cal_href)}" download="{esc(slug)}.ics">'
+            '📅 Ajouter à mon calendrier</a>'
+        )
+    destination = address or (f"{commune}, Drôme, France" if commune else "")
+    if destination:
+        route_url = "https://www.google.com/maps/dir/?api=1&destination=" + quote_plus(destination)
+        actions.append(
+            f'<a class="event-action route" href="{esc(route_url)}" target="_blank" '
+            'rel="noopener noreferrer">🧭 Voir l’itinéraire</a>'
+        )
+    actions_html = f'<div class="event-actions">{"".join(actions)}</div>' if actions else ""
 
     anecdote_html = (
         '<section class="section anecdote"><h2>💡 Le savais-tu sur '
@@ -488,6 +561,8 @@ def render_page(
             },
         },
     }
+    if image_url:
+        event_ld["image"] = [image_url]
     breadcrumb = {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
@@ -513,6 +588,7 @@ def render_page(
   <meta property="og:title" content="{esc(seo_title)}">
   <meta property="og:description" content="{esc(meta)}">
   <meta property="og:url" content="{esc(canonical)}">
+  {f'<meta property="og:image" content="{esc(image_url)}">' if image_url else ''}
   <script type="application/ld+json">{event_json}</script>
   <script type="application/ld+json">{breadcrumb_json}</script>
   <style>{STYLE}</style>
@@ -522,8 +598,9 @@ def render_page(
   <main class="wrap">
     <nav class="nav"><a href="{esc(SITE)}">← Agenda</a><a href="{esc(urljoin(SITE, 'evenements/'))}">📌 Tous les événements</a></nav>
     <header class="hero"><span class="status">{esc(status)}</span><h1>{esc(title)}</h1><p class="date">📅 {esc(header_date)}</p><div class="cats">{esc(commune or 'Drôme et alentours')}</div></header>
+    {photo_html}
 
-    <section class="section practical-box"><h2>📌 Infos pratiques</h2><div class="info-grid">{''.join(info)}</div></section>
+    <section class="section practical-box"><h2>📌 Infos pratiques</h2><div class="info-grid">{''.join(info)}</div>{actions_html}</section>
     <div class="lead">{esc(editorial.get('lead'))}</div>
     <section class="section"><h2>🖼️ {esc(editorial.get('discover_title') or 'Ce que vous pourrez découvrir')}</h2><p>{esc(editorial.get('discover_text'))}</p></section>
     <section class="section"><h2>👀 Pourquoi cette sortie peut valoir le détour</h2><p>{esc(editorial.get('why_text'))}</p></section>
@@ -633,7 +710,7 @@ def render_index(events: list[dict], slug_map: dict[str, str]) -> str:
 """
 
     count = len(events)
-    return f'''<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Agenda autour de Nyons : {count} événements en cours et à venir</title><meta name="description" content="Agenda des événements classés par village autour de Nyons : sorties, culture, fêtes, spectacles et loisirs. Nyons est exclu de cette sélection."><link rel="canonical" href="{esc(urljoin(SITE, 'evenements/'))}"><meta name="robots" content="noindex,follow"><style>{INDEX_STYLE}</style></head><body><main class="wrap"><nav class="nav"><a href="{esc(SITE)}">← Accueil</a></nav><header class="hero"><span class="status">Agenda</span><h1>{count} événements autour de Nyons</h1><p class="date">Les villages alentour sont à l’honneur ; Nyons est volontairement exclu.</p></header><section class="section village-picker" id="classement-villages"><h2>🏘️ Classement par village</h2><p class="village-picker-intro">Choisissez un village pour afficher uniquement ses sorties.</p><label class="village-select-label" for="village-select">Choisir un village</label><select class="village-select" id="village-select"><option value="">Tous les villages ({count})</option>{''.join(options)}</select><div class="village-links" aria-label="Villages classés par ordre alphabétique">{''.join(filters)}</div><p class="filter-status" id="filter-status" aria-live="polite">{count} événements affichés</p></section><div id="liste-villages">{''.join(sections)}</div></main>{script}</body></html>'''
+    return f'''<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Agenda autour de Nyons : {count} événements en cours et à venir</title><meta name="description" content="Agenda des événements classés par village autour de Nyons : sorties, culture, fêtes, spectacles et loisirs. Nyons est exclu de cette sélection."><link rel="canonical" href="{esc(urljoin(SITE, 'evenements/'))}"><meta name="robots" content="index,follow"><style>{INDEX_STYLE}</style></head><body><main class="wrap"><nav class="nav"><a href="{esc(SITE)}">← Accueil</a></nav><header class="hero"><span class="status">Agenda</span><h1>{count} événements autour de Nyons</h1><p class="date">Les villages alentour sont à l’honneur ; Nyons est volontairement exclu.</p></header><section class="section village-picker" id="classement-villages"><h2>🏘️ Classement par village</h2><p class="village-picker-intro">Choisissez un village pour afficher uniquement ses sorties.</p><label class="village-select-label" for="village-select">Choisir un village</label><select class="village-select" id="village-select"><option value="">Tous les villages ({count})</option>{''.join(options)}</select><div class="village-links" aria-label="Villages classés par ordre alphabétique">{''.join(filters)}</div><p class="filter-status" id="filter-status" aria-live="polite">{count} événements affichés</p></section><div id="liste-villages">{''.join(sections)}</div></main>{script}</body></html>'''
 
 
 def write_sitemap(events: list[dict], slug_map: dict[str, str]) -> None:
