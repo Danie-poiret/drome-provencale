@@ -232,6 +232,7 @@ def schema_organizer(event: dict) -> str:
     text = " ".join((clean(event.get("description")), clean(event.get("contact"))))
     patterns = (
         r"(?i:\borganis(?:é|ée) par\s+(?:la\s+|le\s+|les\s+|l['’]\s*)?)([A-ZÀ-ÖØ-Þ][^.;]{2,80})",
+        r"(?i:\bpropos(?:é|ée) par\s+(?:la\s+|le\s+|les\s+|l['’]\s*)?)([A-ZÀ-ÖØ-Þ][^.;]{2,80})",
         r"(?i:\borganisateur(?:rice)?\s*[:\-]\s*)([A-ZÀ-ÖØ-Þ][^.;]{2,80})",
     )
     for pattern in patterns:
