@@ -1,0 +1,137 @@
+name: Ameliorer Schema.org Event
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/fix-event-schema.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  fix-schema:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Recuperer le depot
+        uses: actions/checkout@v4
+
+      - name: Ajouter organizer performer et offers
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          # 1) Enrichir la collecte DATAtourisme avec des contacts nommes.
+          path = Path("extract_datatourisme_drome.py")
+          text = path.read_text(encoding="utf-8")
+
+          old = '''        "hasContact",\n        "hasBeenCreatedBy",'''
+          new = '''        "hasContact",\n        "hasBookingContact",\n        "hasCommunicationContact",\n        "hasInformativeContact",\n        "hasManagementContact",\n        "hasBeenCreatedBy",'''
+          if old in text:
+              text = text.replace(old, new, 1)
+
+          anchor = '''    return " · ".join(pieces)[:1200], source_url\n\n\ndef tariff_text(poi: dict) -> str:\n'''
+          helper = '''    return " · ".join(pieces)[:1200], source_url\n\n\ndef agent_name(value: Any) -> str:\n    """Nom d'un contact DATAtourisme, uniquement lorsqu'il est réellement fourni."""\n    if not value:\n        return ""\n    return first_for_key(value, "legalName", "name", "label", "familyName", "givenName")\n\n\ndef organizer_name(poi: dict) -> str:\n    """Contact le plus proche d'un organisateur sans utiliser le producteur de la donnée."""\n    for key in (\n        "hasManagementContact",\n        "hasCommunicationContact",\n        "hasInformativeContact",\n        "hasBookingContact",\n    ):\n        name = agent_name(poi.get(key))\n        if name:\n            return name\n    return agent_name(poi.get("hasContact"))\n\n\ndef tariff_text(poi: dict) -> str:\n'''
+          if anchor in text and "def organizer_name(poi: dict)" not in text:
+              text = text.replace(anchor, helper, 1)
+
+          old = '''    producer = lang_text(poi.get("hasBeenCreatedBy")) or "DATAtourisme"\n    last_update = clean(poi.get("lastUpdate") or poi.get("lastUpdateDatatourisme"))'''
+          new = '''    organizer = organizer_name(poi)\n    producer = lang_text(poi.get("hasBeenCreatedBy")) or "DATAtourisme"\n    last_update = clean(poi.get("lastUpdate") or poi.get("lastUpdateDatatourisme"))'''
+          if old in text:
+              text = text.replace(old, new, 1)
+
+          old = '''        "contact": contact,\n        "url": stable_url,'''
+          new = '''        "contact": contact,\n        "organizer": organizer,\n        "url": stable_url,'''
+          if old in text:
+              text = text.replace(old, new, 1)
+
+          path.write_text(text, encoding="utf-8")
+
+          # 2) Enrichir le JSON-LD Schema.org sans inventer d'informations.
+          path = Path("generate_event_pages.py")
+          text = path.read_text(encoding="utf-8")
+
+          anchor = '''def compact_description(text: str, limit: int = 3600) -> str:\n    return clean(text)[:limit]\n\n\ndef event_facts(event: dict) -> dict:\n'''
+          helper = r'''def compact_description(text: str, limit: int = 3600) -> str:
+    return clean(text)[:limit]
+
+
+def schema_offer(event: dict, source_url: str, canonical: str) -> dict | None:
+    """Construit une Offer seulement à partir d'un tarif réellement annoncé."""
+    tariffs = clean(event.get("tariffs"))
+    desc = clean(event.get("description"))
+    evidence = tariffs or ("Gratuit" if re.search(r"\bgratuit(?:e|ement)?\b", desc, re.I) else "")
+    if not evidence:
+        return None
+
+    offer = {
+        "@type": "Offer",
+        "url": source_url or canonical,
+        "priceCurrency": "EUR",
+        "availability": "https://schema.org/InStock",
+    }
+    low = evidence.lower()
+    if re.search(r"\bgratuit(?:e|ement)?\b", low):
+        offer["price"] = "0"
+    else:
+        match = re.search(r"(?<!\d)(\d+(?:[,.]\d{1,2})?)\s*(?:€|euros?\b)", evidence, re.I)
+        if not match:
+            match = re.search(r"\b(?:à partir de|dès|de)\s+(\d+(?:[,.]\d{1,2})?)", evidence, re.I)
+        if match:
+            offer["price"] = match.group(1).replace(",", ".")
+    offer["description"] = _cut_clean_text(evidence, 280)
+    return offer
+
+
+def schema_performer(event: dict) -> str:
+    """Repère uniquement un artiste/intervenant explicitement nommé dans les données source."""
+    explicit = clean(event.get("performer"))
+    if explicit:
+        return explicit
+
+    text = " ".join((clean(event.get("title")), clean(event.get("description"))))
+    name = r"([A-ZÀ-ÖØ-Þ][A-Za-zÀ-ÿ'’.-]+(?:\s+[A-ZÀ-ÖØ-Þ][A-Za-zÀ-ÿ'’.-]+){1,4})"
+    patterns = (
+        rf"\b(?:avec|par|anim(?:é|ée) par|interpr(?:été|étée) par)\s+{name}",
+        rf"\b(?:concert|récital|spectacle|exposition|conférence)\s+(?:de|par)\s+{name}",
+    )
+    for pattern in patterns:
+        match = re.search(pattern, text)
+        if match:
+            return clean(match.group(1)).strip(" .,:;-")
+    return ""
+
+
+def event_facts(event: dict) -> dict:
+'''
+          if anchor in text and "def schema_offer(event: dict" not in text:
+              text = text.replace(anchor, helper, 1)
+
+          old = '''    event_ld = {\n        "@context": "https://schema.org",'''
+          new = '''    organizer = clean(event.get("organizer"))\n    performer = schema_performer(event)\n    offer = schema_offer(event, source_url, canonical)\n\n    event_ld = {\n        "@context": "https://schema.org",'''
+          if old in text:
+              text = text.replace(old, new, 1)
+
+          old = '''    if image_url:\n        event_ld["image"] = [image_url]\n    breadcrumb = {'''
+          new = '''    if image_url:\n        event_ld["image"] = [image_url]\n    if organizer:\n        event_ld["organizer"] = {"@type": "Organization", "name": organizer}\n    if performer:\n        event_ld["performer"] = {"@type": "Person", "name": performer}\n    if offer:\n        event_ld["offers"] = offer\n    breadcrumb = {'''
+          if old in text:
+              text = text.replace(old, new, 1)
+
+          path.write_text(text, encoding="utf-8")
+          PY
+
+      - name: Verifier la syntaxe Python
+        run: python -m py_compile extract_datatourisme_drome.py generate_event_pages.py
+
+      - name: Enregistrer la correction
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add extract_datatourisme_drome.py generate_event_pages.py
+          if git diff --cached --quiet; then
+            echo "Aucun changement."
+            exit 0
+          fi
+          git commit -m "Ameliorer les donnees structurees Event"
+          git push
