@@ -24,43 +24,21 @@ jobs:
 
           pages = [Path("index.html"), *Path("evenements").rglob("*.html")]
           for path in pages:
-              text = path.read_text(encoding="utf-8")
-              text = text.replace(old, new)
-              text = text.replace("noindex,follow", "index,follow")
-              path.write_text(text, encoding="utf-8")
+              original = path.read_text(encoding="utf-8")
+              updated = original.replace(old, new)
+              updated = updated.replace("noindex,follow", "index,follow")
+              if updated != original:
+                  path.write_text(updated, encoding="utf-8")
 
           for filename in ("sitemap.xml", "robots.txt", "generate_event_pages.py"):
               path = Path(filename)
-              text = path.read_text(encoding="utf-8").replace(old, new)
-              path.write_text(text, encoding="utf-8")
-
-          workflow_changes = {
-              Path(".github/workflows/datatourisme-drome.yml"): (
-                  "name: DATAtourisme Drôme - 100 événements",
-                  None,
-              ),
-              Path(".github/workflows/update-baronnies.yml"): (
-                  "name: DATAtourisme Drôme - test sans OpenAI",
-                  ("Test DATAtourisme - toute la Drome en noindex",
-                   "Test DATAtourisme - toute la Drome"),
-              ),
-          }
-          noindex_step = (
-              "      - name: Passer tout le site en noindex\n"
-              "        run: python set_noindex.py\n\n"
-          )
-          for path, (new_name, commit_change) in workflow_changes.items():
-              text = path.read_text(encoding="utf-8")
-              first_line, rest = text.split("\n", 1)
-              text = new_name + "\n" + rest
-              text = text.replace(noindex_step, "")
-              if commit_change:
-                  text = text.replace(*commit_change)
-              path.write_text(text, encoding="utf-8")
+              original = path.read_text(encoding="utf-8")
+              updated = original.replace(old, new)
+              if updated != original:
+                  path.write_text(updated, encoding="utf-8")
 
           Path("CNAME").write_text("drome.vivreanyons.fr\n", encoding="utf-8")
           Path("set_noindex.py").unlink(missing_ok=True)
-          Path(".github/workflows/publish-drome-domain.yml").unlink(missing_ok=True)
           PY
 
       - name: Vérifier les changements
@@ -70,7 +48,7 @@ jobs:
             echo "Erreur : noindex est encore présent"
             exit 1
           fi
-          if grep -R "https://danie-poiret.github.io/drome-provencale/" --exclude-dir=".git" .; then
+          if grep -R "https://danie-poiret.github.io/drome-provencale/" --exclude-dir=".git" --exclude="publish-drome-domain.yml" .; then
             echo "Erreur : l'ancien domaine est encore présent"
             exit 1
           fi
