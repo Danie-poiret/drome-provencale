@@ -223,17 +223,36 @@ def schema_offer(event: dict, source_url: str, canonical: str) -> dict | None:
     return offer
 
 
+def schema_organizer(event: dict) -> str:
+    """Organisateur seulement lorsqu'il est fourni ou explicitement nommé dans la source."""
+    explicit = clean(event.get("organizer"))
+    if explicit:
+        return explicit
+
+    text = " ".join((clean(event.get("description")), clean(event.get("contact"))))
+    patterns = (
+        r"(?i:\borganis(?:é|ée) par\s+(?:la\s+|le\s+|les\s+|l['’]\s*)?)([A-ZÀ-ÖØ-Þ][^.;]{2,80})",
+        r"(?i:\borganisateur(?:rice)?\s*[:\-]\s*)([A-ZÀ-ÖØ-Þ][^.;]{2,80})",
+    )
+    for pattern in patterns:
+        match = re.search(pattern, text)
+        if match:
+            return _cut_clean_text(match.group(1), 80).strip(" .,:;-")
+    return ""
+
+
 def schema_performer(event: dict) -> str:
-    """Repère uniquement un artiste/intervenant explicitement nommé dans les données source."""
+    """Artiste/intervenant uniquement lorsqu'un nom propre est explicitement présent."""
     explicit = clean(event.get("performer"))
     if explicit:
         return explicit
 
     text = " ".join((clean(event.get("title")), clean(event.get("description"))))
-    name = r"([A-ZÀ-ÖØ-Þ][A-Za-zÀ-ÿ'’.-]+(?:\s+[A-ZÀ-ÖØ-Þ][A-Za-zÀ-ÿ'’.-]+){1,4})"
+    token = r"[A-ZÀ-ÖØ-Þ][A-Za-zÀ-ÿ'’.-]{1,}"
+    name = rf"({token}(?:\s+{token}){{1,3}})"
     patterns = (
-        rf"\b(?:avec|par|anim(?:é|ée) par|interpr(?:été|étée) par)\s+{name}",
-        rf"\b(?:concert|récital|spectacle|exposition|conférence)\s+(?:de|par)\s+{name}",
+        rf"(?i:\b(?:avec|par|anim(?:é|ée) par|interpr(?:été|étée) par)\s+){name}",
+        rf"(?i:\b(?:concert|récital|spectacle|exposition|conférence))(?:\s+[a-zà-ÿœ'’\-]+){{0,3}}\s+(?i:de|par)\s+{name}",
     )
     for pattern in patterns:
         match = re.search(pattern, text)
@@ -586,7 +605,7 @@ def render_page(
         "La commune et la date sont indiquées sur chaque proposition pour choisir facilement."
     )
 
-    organizer = clean(event.get("organizer"))
+    organizer = schema_organizer(event)
     performer = schema_performer(event)
     offer = schema_offer(event, source_url, canonical)
 
