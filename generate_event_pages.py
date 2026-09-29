@@ -231,14 +231,16 @@ def schema_organizer(event: dict) -> str:
 
     text = " ".join((clean(event.get("description")), clean(event.get("contact"))))
     patterns = (
-        r"(?i:\borganis(?:é|ée) par\s+(?:la\s+|le\s+|les\s+|l['’]\s*)?)([A-ZÀ-ÖØ-Þ][^.;]{2,80})",
-        r"(?i:\bpropos(?:é|ée) par\s+(?:la\s+|le\s+|les\s+|l['’]\s*)?)([A-ZÀ-ÖØ-Þ][^.;]{2,80})",
-        r"(?i:\borganisateur(?:rice)?\s*[:\-]\s*)([A-ZÀ-ÖØ-Þ][^.;]{2,80})",
+        r"(?i:\borganis(?:é|ée) par\s+(?:la\s+|le\s+|les\s+|l['’]\s*)?)([A-ZÀ-ÖØ-Þ][^,.;]{2,80})",
+        r"(?i:\bpropos(?:é|ée) par\s+(?:la\s+|le\s+|les\s+|l['’]\s*)?)([A-ZÀ-ÖØ-Þ][^,.;]{2,80})",
+        r"(?i:\borganisateur(?:rice)?\s*[:\-]\s*)([A-ZÀ-ÖØ-Þ][^,.;]{2,80})",
     )
     for pattern in patterns:
         match = re.search(pattern, text)
         if match:
-            return _cut_clean_text(match.group(1), 80).strip(" .,:;-")
+            value = _cut_clean_text(match.group(1), 80).strip(" .,:;-")
+            value = re.split(r"(?i)\s+(?:et|avec)\s+(?:le|la|les|l['’])?\s*soutien\b", value, maxsplit=1)[0]
+            return value.strip(" .,:;-")
     return ""
 
 
@@ -252,7 +254,8 @@ def schema_performer(event: dict) -> str:
     token = r"[A-ZÀ-ÖØ-Þ][A-Za-zÀ-ÿ'’.-]{1,}"
     name = rf"({token}(?:\s+{token}){{1,3}})"
     patterns = (
-        rf"(?i:\b(?:avec|par|anim(?:é|ée) par|interpr(?:été|étée) par)\s+){name}",
+        rf"(?i:\b(?:avec|anim(?:é|ée) par|interpr(?:été|étée) par)\s+){name}",
+        rf"(?:^|[.!?]\s+)(?i:par)\s+{name}",
         rf"(?i:\b(?:concert|récital|spectacle|exposition|conférence))(?:\s+[a-zà-ÿœ'’\-]+){{0,3}}\s+(?i:de|par)\s+{name}",
     )
     for pattern in patterns:
