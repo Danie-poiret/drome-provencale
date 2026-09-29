@@ -1,4 +1,4 @@
-name: Affiner Schema.org Event
+name: Corriger noms performer Schema.org
 
 on:
   push:
@@ -11,7 +11,7 @@ permissions:
   contents: write
 
 jobs:
-  refine-schema:
+  fix-performer:
     runs-on: ubuntu-latest
     steps:
       - name: Recuperer le depot
@@ -25,10 +25,10 @@ jobs:
       - name: Installer les dependances
         run: python -m pip install -r requirements.txt
 
-      - name: Affiner les champs Schema.org
+      - name: Corriger extraction des noms
         run: |
-          echo 'ZnJvbSBwYXRobGliIGltcG9ydCBQYXRoCnBhdGggPSBQYXRoKCJnZW5lcmF0ZV9ldmVudF9wYWdlcy5weSIpCnRleHQgPSBwYXRoLnJlYWRfdGV4dChlbmNvZGluZz0idXRmLTgiKQoKc3RhcnQgPSB0ZXh0LmluZGV4KCJkZWYgc2NoZW1hX3BlcmZvcm1lcihldmVudDogZGljdCkgLT4gc3RyOiIpCmVuZCA9IHRleHQuaW5kZXgoIlxuXG5kZWYgZXZlbnRfZmFjdHMoZXZlbnQ6IGRpY3QpIC0+IGRpY3Q6Iiwgc3RhcnQpCgpyZXBsYWNlbWVudCA9ICdkZWYgc2NoZW1hX29yZ2FuaXplcihldmVudDogZGljdCkgLT4gc3RyOlxuICAgICIiIk9yZ2FuaXNhdGV1ciBzZXVsZW1lbnQgbG9yc3F1XCdpbCBlc3QgZm91cm5pIG91IGV4cGxpY2l0ZW1lbnQgbm9tbcOpIGRhbnMgbGEgc291cmNlLiIiIlxuICAgIGV4cGxpY2l0ID0gY2xlYW4oZXZlbnQuZ2V0KCJvcmdhbml6ZXIiKSlcbiAgICBpZiBleHBsaWNpdDpcbiAgICAgICAgcmV0dXJuIGV4cGxpY2l0XG5cbiAgICB0ZXh0ID0gIiAiLmpvaW4oKGNsZWFuKGV2ZW50LmdldCgiZGVzY3JpcHRpb24iKSksIGNsZWFuKGV2ZW50LmdldCgiY29udGFjdCIpKSkpXG4gICAgcGF0dGVybnMgPSAoXG4gICAgICAgIHIiKD9pOlxcYm9yZ2FuaXMoPzrDqXzDqWUpIHBhclxccysoPzpsYVxccyt8bGVcXHMrfGxlc1xccyt8bFtcJ+KAmV1cXHMqKT8pKFtBLVrDgC3DlsOYLcOeXVteLjtdezIsODB9KSIsXG4gICAgICAgIHIiKD9pOlxcYm9yZ2FuaXNhdGV1cig/OnJpY2UpP1xccypbOlxcLV1cXHMqKShbQS1aw4Atw5bDmC3Dnl1bXi47XXsyLDgwfSkiLFxuICAgIClcbiAgICBmb3IgcGF0dGVybiBpbiBwYXR0ZXJuczpcbiAgICAgICAgbWF0Y2ggPSByZS5zZWFyY2gocGF0dGVybiwgdGV4dClcbiAgICAgICAgaWYgbWF0Y2g6XG4gICAgICAgICAgICByZXR1cm4gX2N1dF9jbGVhbl90ZXh0KG1hdGNoLmdyb3VwKDEpLCA4MCkuc3RyaXAoIiAuLDo7LSIpXG4gICAgcmV0dXJuICIiXG5cblxuZGVmIHNjaGVtYV9wZXJmb3JtZXIoZXZlbnQ6IGRpY3QpIC0+IHN0cjpcbiAgICAiIiJBcnRpc3RlL2ludGVydmVuYW50IHVuaXF1ZW1lbnQgbG9yc3F1XCd1biBub20gcHJvcHJlIGVzdCBleHBsaWNpdGVtZW50IHByw6lzZW50LiIiIlxuICAgIGV4cGxpY2l0ID0gY2xlYW4oZXZlbnQuZ2V0KCJwZXJmb3JtZXIiKSlcbiAgICBpZiBleHBsaWNpdDpcbiAgICAgICAgcmV0dXJuIGV4cGxpY2l0XG5cbiAgICB0ZXh0ID0gIiAiLmpvaW4oKGNsZWFuKGV2ZW50LmdldCgidGl0bGUiKSksIGNsZWFuKGV2ZW50LmdldCgiZGVzY3JpcHRpb24iKSkpKVxuICAgIHRva2VuID0gciJbQS1aw4Atw5bDmC3Dnl1bQS1aYS16w4Atw79cJ+KAmS4tXXsxLH0iXG4gICAgbmFtZSA9IHJmIih7dG9rZW59KD86XFxzK3t0b2tlbn0pe3sxLDN9fSkiXG4gICAgcGF0dGVybnMgPSAoXG4gICAgICAgIHJmIig/aTpcXGIoPzphdmVjfHBhcnxhbmltKD86w6l8w6llKSBwYXJ8aW50ZXJwcig/OsOpdMOpfMOpdMOpZSkgcGFyKVxccyspe25hbWV9IixcbiAgICAgICAgcmYiKD9pOlxcYig/OmNvbmNlcnR8csOpY2l0YWx8c3BlY3RhY2xlfGV4cG9zaXRpb258Y29uZsOpcmVuY2UpKSg/OlxccytbYS16w6Atw7/Fk1wn4oCZXFwtXSspe3swLDN9fVxccysoP2k6ZGV8cGFyKVxccyt7bmFtZX0iLFxuICAgIClcbiAgICBmb3IgcGF0dGVybiBpbiBwYXR0ZXJuczpcbiAgICAgICAgbWF0Y2ggPSByZS5zZWFyY2gocGF0dGVybiwgdGV4dClcbiAgICAgICAgaWYgbWF0Y2g6XG4gICAgICAgICAgICByZXR1cm4gY2xlYW4obWF0Y2guZ3JvdXAoMSkpLnN0cmlwKCIgLiw6Oy0iKVxuICAgIHJldHVybiAiIlxuJwp0ZXh0ID0gdGV4dFs6c3RhcnRdICsgcmVwbGFjZW1lbnQgKyB0ZXh0W2VuZDpdCnRleHQgPSB0ZXh0LnJlcGxhY2UoCiAgICAnICAgIG9yZ2FuaXplciA9IGNsZWFuKGV2ZW50LmdldCgib3JnYW5pemVyIikpXG4nLAogICAgJyAgICBvcmdhbml6ZXIgPSBzY2hlbWFfb3JnYW5pemVyKGV2ZW50KVxuJywKICAgIDEsCikKcGF0aC53cml0ZV90ZXh0KHRleHQsIGVuY29kaW5nPSJ1dGYtOCIpCg==' | base64 -d > /tmp/refine_schema.py
-          python /tmp/refine_schema.py
+          echo 'ZnJvbSBwYXRobGliIGltcG9ydCBQYXRoCnBhdGggPSBQYXRoKCJnZW5lcmF0ZV9ldmVudF9wYWdlcy5weSIpCnRleHQgPSBwYXRoLnJlYWRfdGV4dChlbmNvZGluZz0idXRmLTgiKQpvbGQgPSAnICAgIHRleHQgPSAiICIuam9pbigoY2xlYW4oZXZlbnQuZ2V0KCJ0aXRsZSIpKSwgY2xlYW4oZXZlbnQuZ2V0KCJkZXNjcmlwdGlvbiIpKSkpXG4nCm5ldyA9ICcgICAgdGV4dCA9ICIgLiAiLmpvaW4oKGNsZWFuKGV2ZW50LmdldCgidGl0bGUiKSksIGNsZWFuKGV2ZW50LmdldCgiZGVzY3JpcHRpb24iKSkpKVxuJwppZiBvbGQgbm90IGluIHRleHQ6CiAgICByYWlzZSBTeXN0ZW1FeGl0KCJMaWduZSBwZXJmb3JtZXIgaW50cm91dmFibGUiKQp0ZXh0ID0gdGV4dC5yZXBsYWNlKG9sZCwgbmV3LCAxKQpwYXRoLndyaXRlX3RleHQodGV4dCwgZW5jb2Rpbmc9InV0Zi04IikK' | base64 -d > /tmp/fix_performer.py
+          python /tmp/fix_performer.py
           python -m py_compile generate_event_pages.py
 
       - name: Regenerer les fiches
@@ -50,5 +50,5 @@ jobs:
             echo "Aucun changement."
             exit 0
           fi
-          git commit -m "Affiner performer et organizer Schema.org"
+          git commit -m "Corriger les noms performer Schema.org"
           git push
