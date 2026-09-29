@@ -613,6 +613,12 @@ def render_page(
     }
     if image_url:
         event_ld["image"] = [image_url]
+    if organizer:
+        event_ld["organizer"] = {"@type": "Organization", "name": organizer}
+    if performer:
+        event_ld["performer"] = {"@type": "Person", "name": performer}
+    if offer:
+        event_ld["offers"] = offer
     breadcrumb = {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
