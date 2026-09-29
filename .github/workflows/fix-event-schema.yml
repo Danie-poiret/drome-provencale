@@ -1,4 +1,4 @@
-name: Completer organizer Schema.org
+name: Nettoyer Schema.org Event
 
 on:
   push:
@@ -11,7 +11,7 @@ permissions:
   contents: write
 
 jobs:
-  fix-organizer:
+  clean-schema:
     runs-on: ubuntu-latest
     steps:
       - name: Recuperer le depot
@@ -25,17 +25,25 @@ jobs:
       - name: Installer les dependances
         run: python -m pip install -r requirements.txt
 
-      - name: Ajouter propose par a organizer
+      - name: Nettoyer organizer et performer
         run: |
           python - <<'PY'
           from pathlib import Path
           path = Path("generate_event_pages.py")
           text = path.read_text(encoding="utf-8")
-          old = '''    patterns = (\n        r"(?i:\\borganis(?:é|ée) par\\s+(?:la\\s+|le\\s+|les\\s+|l['’]\\s*)?)([A-ZÀ-ÖØ-Þ][^.;]{2,80})",\n        r"(?i:\\borganisateur(?:rice)?\\s*[:\\-]\\s*)([A-ZÀ-ÖØ-Þ][^.;]{2,80})",\n    )'''
-          new = '''    patterns = (\n        r"(?i:\\borganis(?:é|ée) par\\s+(?:la\\s+|le\\s+|les\\s+|l['’]\\s*)?)([A-ZÀ-ÖØ-Þ][^.;]{2,80})",\n        r"(?i:\\bpropos(?:é|ée) par\\s+(?:la\\s+|le\\s+|les\\s+|l['’]\\s*)?)([A-ZÀ-ÖØ-Þ][^.;]{2,80})",\n        r"(?i:\\borganisateur(?:rice)?\\s*[:\\-]\\s*)([A-ZÀ-ÖØ-Þ][^.;]{2,80})",\n    )'''
-          if old not in text:
-              raise SystemExit("Bloc schema_organizer introuvable")
-          text = text.replace(old, new, 1)
+
+          old_org = '''    patterns = (\n        r"(?i:\\borganis(?:é|ée) par\\s+(?:la\\s+|le\\s+|les\\s+|l['’]\\s*)?)([A-ZÀ-ÖØ-Þ][^.;]{2,80})",\n        r"(?i:\\bpropos(?:é|ée) par\\s+(?:la\\s+|le\\s+|les\\s+|l['’]\\s*)?)([A-ZÀ-ÖØ-Þ][^.;]{2,80})",\n        r"(?i:\\borganisateur(?:rice)?\\s*[:\\-]\\s*)([A-ZÀ-ÖØ-Þ][^.;]{2,80})",\n    )\n    for pattern in patterns:\n        match = re.search(pattern, text)\n        if match:\n            return _cut_clean_text(match.group(1), 80).strip(" .,:;-")\n    return ""'''
+          new_org = '''    patterns = (\n        r"(?i:\\borganis(?:é|ée) par\\s+(?:la\\s+|le\\s+|les\\s+|l['’]\\s*)?)([A-ZÀ-ÖØ-Þ][^,.;]{2,80})",\n        r"(?i:\\bpropos(?:é|ée) par\\s+(?:la\\s+|le\\s+|les\\s+|l['’]\\s*)?)([A-ZÀ-ÖØ-Þ][^,.;]{2,80})",\n        r"(?i:\\borganisateur(?:rice)?\\s*[:\\-]\\s*)([A-ZÀ-ÖØ-Þ][^,.;]{2,80})",\n    )\n    for pattern in patterns:\n        match = re.search(pattern, text)\n        if match:\n            value = _cut_clean_text(match.group(1), 80).strip(" .,:;-")\n            value = re.split(r"(?i)\\s+(?:et|avec)\\s+(?:le|la|les|l['’])?\\s*soutien\\b", value, maxsplit=1)[0]\n            return value.strip(" .,:;-")\n    return ""'''
+          if old_org not in text:
+              raise SystemExit("Bloc organizer introuvable")
+          text = text.replace(old_org, new_org, 1)
+
+          old_perf = '''    patterns = (\n        rf"(?i:\\b(?:avec|par|anim(?:é|ée) par|interpr(?:été|étée) par)\\s+){name}",\n        rf"(?i:\\b(?:concert|récital|spectacle|exposition|conférence))(?:\\s+[a-zà-ÿœ'’\\-]+){{0,3}}\\s+(?i:de|par)\\s+{name}",\n    )'''
+          new_perf = '''    patterns = (\n        rf"(?i:\\b(?:avec|anim(?:é|ée) par|interpr(?:été|étée) par)\\s+){name}",\n        rf"(?:^|[.!?]\\s+)(?i:par)\\s+{name}",\n        rf"(?i:\\b(?:concert|récital|spectacle|exposition|conférence))(?:\\s+[a-zà-ÿœ'’\\-]+){{0,3}}\\s+(?i:de|par)\\s+{name}",\n    )'''
+          if old_perf not in text:
+              raise SystemExit("Bloc performer introuvable")
+          text = text.replace(old_perf, new_perf, 1)
+
           path.write_text(text, encoding="utf-8")
           PY
           python -m py_compile generate_event_pages.py
@@ -59,5 +67,5 @@ jobs:
             echo "Aucun changement."
             exit 0
           fi
-          git commit -m "Completer organizer Schema.org"
+          git commit -m "Nettoyer organizer et performer Schema.org"
           git push
