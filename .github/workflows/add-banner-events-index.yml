@@ -1,0 +1,59 @@
+name: Ajouter bannière page événements
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/add-banner-events-index.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  add-banner:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le dépôt
+        uses: actions/checkout@v4
+
+      - name: Installer Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Ajouter la bannière au générateur de l'index
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path("generate_event_pages.py")
+          text = path.read_text(encoding="utf-8")
+
+          old = '</head><body><main class="wrap">'
+          new = '</head><body><aside class="top" aria-label="Sélection de livres sur Nyons"><div class="ad-shell"><iframe class="ad-frame" src="{esc(BANNER_URL)}" loading="eager" title="Voir ma sélection de vieux livres sur Nyons"></iframe></div><div class="ad-note">Publicité · lien affilié</div></aside><main class="wrap">'
+
+          if old not in text:
+              raise SystemExit("Point d’insertion de la bannière introuvable dans render_index")
+
+          text = text.replace(old, new, 1)
+          path.write_text(text, encoding="utf-8")
+          PY
+          python -m py_compile generate_event_pages.py
+
+      - name: Régénérer la page événements sans nouvel appel IA
+        env:
+          MAX_EVENT_AI_CALLS: "0"
+        run: python generate_event_pages.py
+
+      - name: Enregistrer les changements
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generate_event_pages.py evenements/index.html sitemap.xml robots.txt
+          if git diff --cached --quiet; then
+            echo "Aucun changement."
+            exit 0
+          fi
+          git commit -m "Afficher la bannière sur l'index des événements"
+          git push
