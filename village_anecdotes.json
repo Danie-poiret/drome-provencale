@@ -99,6 +99,16 @@
       "text": "Bouchet s'est développé autour d'une abbaye cistercienne de femmes fondée au XIIe siècle ; les paysans regroupaient leurs maisons près de l'abbaye pour mieux se protéger.",
       "source_label": "Mairie de Bouchet",
       "source_url": "https://www.mairie-bouchet.com/tourisme-et-patrimoine/lhistoire-de-la-commune/"
+    },
+    {
+      "text": "Bâti en grande partie avec une pierre locale couleur ocre, Bouchet conserve aussi des fontaines, des lavoirs, une église romane et la chapelle Saint-Sébastien.",
+      "source_label": "La Drôme Tourisme",
+      "source_url": "https://www.drome-cestmanature.com/fiches/bouchet/"
+    },
+    {
+      "text": "L'ancienne abbaye de Bouchet abrite la pierre tombale de saint Bertrand de Garrigues, compagnon de saint Dominique, longtemps objet de pèlerinages.",
+      "source_label": "La Drôme Tourisme",
+      "source_url": "https://www.drome-tourism.com/fiches/dicovery-tour-of-bouchet/"
     }
   ],
   "Bourdeaux": [
@@ -116,6 +126,11 @@
       "text": "Le Grand Temple, le plus vaste de la Drôme, était à l'origine une église catholique restée inachevée. Les protestants l'achetèrent comme bien national en 1806 et terminèrent sa construction.",
       "source_label": "Patrimoine de la Drôme",
       "source_url": "https://cartepatrimoine.ladrome.fr/notice-4235"
+    },
+    {
+      "text": "La fête médiévale de Bourdeaux est née d'un poème écrit en 1838 par le pasteur Alexis Muston ; repris en 1961, le récit est devenu une tradition locale du 15 août.",
+      "source_label": "Office de tourisme du Pays de Dieulefit-Bourdeaux",
+      "source_url": "https://www.dieulefit-tourisme.com/notre-destination/nos-villages/bourdeaux/"
     }
   ],
   "Bourg-de-Péage": [
@@ -159,6 +174,16 @@
       "text": "Les gestes traditionnels de la cueillette du tilleul des Baronnies ont été inscrits en 2024 à l'Inventaire national du patrimoine culturel immatériel.",
       "source_label": "Parc naturel régional des Baronnies provençales",
       "source_url": "https://www.baronnies-provencales.fr/actualite/on-se-donne-rendez-vous-a-la-fete-du-tilleul/"
+    },
+    {
+      "text": "Buis-les-Baronnies fut successivement un fief des barons de Mévouillon, des Dauphins de Viennois, du roi de France puis des princes de Monaco.",
+      "source_label": "Mairie de Buis-les-Baronnies",
+      "source_url": "https://www.buislesbaronnies.fr/patrimoines/"
+    },
+    {
+      "text": "La carte archéologique recense 31 entités archéologiques sur le territoire de Buis-les-Baronnies, signe d'une occupation ancienne particulièrement riche.",
+      "source_label": "Mairie de Buis-les-Baronnies — PLU",
+      "source_url": "https://www.buislesbaronnies.fr/medias/2021/09/1_PLU_BUIS_LES_B_Rapport_arret-1.pdf"
     }
   ],
   "Bénivay-Ollon": [
@@ -251,6 +276,11 @@
       "text": "Au milieu du XIXe siècle, l'ancien donjon de Clansayes fut transformé en chapelle mariale. Une statue de la Vierge fut ensuite installée au sommet de la tour.",
       "source_label": "La Drôme Tourisme",
       "source_url": "https://www.drome-cestmanature.com/fiches/donjon-de-clansayes/"
+    },
+    {
+      "text": "Clansayes a donné son nom au Clansayésien, un étage géologique du Crétacé connu des spécialistes grâce aux nombreux fossiles trouvés sur la commune.",
+      "source_label": "Mairie de Clansayes",
+      "source_url": "https://www.clansayes.fr/index.php/vivre-a-clansayes/un-peu-d-histoire"
     }
   ],
   "Cléon-d'Andran": [
@@ -270,6 +300,11 @@
       "text": "La chapelle Saint-Pierre-ès-Liens, du XIIe siècle, dépendait d'un prieuré clunisien. Sous un badigeon, on y a retrouvé un décor peint datant du XIVe siècle.",
       "source_label": "Patrimoine de la Drôme",
       "source_url": "https://cartepatrimoine.ladrome.fr/notice-1230"
+    },
+    {
+      "text": "En 2008, Colonzelle a reçu un Prix du patrimoine rhônalpin pour le projet de restauration générale de la chapelle Saint-Pierre-ès-Liens.",
+      "source_label": "Inventaire général du patrimoine culturel",
+      "source_url": "https://patrimoine.auvergnerhonealpes.fr/dossier/IA26000119"
     }
   ],
   "Crest": [
@@ -309,6 +344,285 @@
       "text": "La Die gallo-romaine fut un centre important du culte de Cybèle : plusieurs inscriptions et autels tauroboliques découverts sur place en témoignent encore.",
       "source_label": "Die — histoire antique",
       "source_url": "https://fr.wikipedia.org/wiki/Die_(Dr%C3%B4me)"
+    }
+  ],
+  "Venterol": [
+    {
+      "text": "Le nom de Venterol apparaît dès 1060 sous la forme « Venterolium ». Le village occupait alors une position frontière entre plusieurs territoires.",
+      "source_label": "Mairie de Venterol",
+      "source_url": "https://www.venterol.net/histoire-venterol/"
+    }
+  ],
+  "Vinsobres": [
+    {
+      "text": "Le vin rouge de Vinsobres a été reconnu cru des Côtes-du-Rhône le 17 février 2006 ; son vignoble s'étend uniquement sur la commune.",
+      "source_label": "Cru Vinsobres",
+      "source_url": "https://vinsobres.fr/fr/decouvrir/"
+    },
+    {
+      "text": "Occupé dès l'époque romaine, Vinsobres fut ensuite un fief des Montauban, des Dauphins, des princes d'Orange puis de la famille d'Urre.",
+      "source_label": "Vins Rhône",
+      "source_url": "https://www.vins-rhone.com/fr/aoc-cru-des-cotes-du-rhone-vinsobres"
+    }
+  ],
+  "Mirabel-aux-Baronnies": [
+    {
+      "text": "Au XIVe siècle, les Dauphins transférèrent à Mirabel leur atelier monétaire de Visan ; il y fonctionna jusqu'en 1426 avant de partir à Montélimar.",
+      "source_label": "Histoire de Mirabel-aux-Baronnies",
+      "source_url": "https://fr.wikipedia.org/wiki/Mirabel-aux-Baronnies"
+    },
+    {
+      "text": "Dès 1876, Mirabel se dota d'un réseau public d'eau alimenté par la source de Tune. Des spécialistes italiens vinrent fabriquer les canalisations sur place.",
+      "source_label": "Histoire de Mirabel-aux-Baronnies",
+      "source_url": "https://fr.wikipedia.org/wiki/Mirabel-aux-Baronnies"
+    }
+  ],
+  "Saint-Maurice-sur-Eygues": [
+    {
+      "text": "Plusieurs sites de Saint-Maurice-sur-Eygues ont livré des objets gallo-romains ; une partie de ces découvertes est conservée au musée communal.",
+      "source_label": "Mairie de Saint-Maurice-sur-Eygues",
+      "source_url": "https://www.saintmauricesureygues.fr/"
+    }
+  ],
+  "Tulette": [
+    {
+      "text": "La devise de Tulette, « Toustems libre », signifie « toujours libre » et rappelle que le village acheta autrefois sa liberté à son seigneur.",
+      "source_label": "Mairie de Tulette",
+      "source_url": "https://www.tulette.fr/patrimoine-tourisme-bis.php"
+    },
+    {
+      "text": "Au-dessus d'une ancienne porte de Tulette subsiste une plaque portant les armes des prieurs de Cluny : l'épée et les clés de saint Pierre.",
+      "source_label": "Mairie de Tulette",
+      "source_url": "https://www.tulette.fr/patrimoine-tourisme-bis.php"
+    }
+  ],
+  "Suze-la-Rousse": [
+    {
+      "text": "Le jeu de paume du château de Suze-la-Rousse fut édifié au XVIe siècle à l'occasion de la visite du futur Charles IX et de Catherine de Médicis.",
+      "source_label": "Mairie de Suze-la-Rousse",
+      "source_url": "https://www.mairie-suze-la-rousse.fr/chateau/"
+    },
+    {
+      "text": "Le Département de la Drôme a acquis le château de Suze-la-Rousse en 1965 avant d'y développer un projet associant histoire et patrimoine vitivinicole.",
+      "source_label": "Château de Suze-la-Rousse",
+      "source_url": "https://www.chateaudesuzelarousse.fr/le-chateau/histoire/"
+    }
+  ],
+  "La Baume-de-Transit": [
+    {
+      "text": "Le nom « La Baume-de-Transit » signifie littéralement « la grotte du Tricastin », rappel d'un paysage et d'une occupation très anciens.",
+      "source_label": "Patrimoine de la Drôme",
+      "source_url": "https://cartepatrimoine.ladrome.fr/notice-6879"
+    },
+    {
+      "text": "Une gravure de 1835 montre l'ancien village groupé au pied de la colline rocheuse, dominé par un château qui se dressait très haut dans le paysage.",
+      "source_label": "Patrimoine de la Drôme",
+      "source_url": "https://cartepatrimoine.ladrome.fr/notice-6875"
+    }
+  ],
+  "Rochegude": [
+    {
+      "text": "La tradition viticole de Rochegude remonte à l'Antiquité : le vin du territoire était déjà réputé sous l'empereur romain Domitien.",
+      "source_label": "Mairie de Rochegude",
+      "source_url": "https://mairie-rochegude.fr/index.php/ma-mairie-mon-village/rochegude/histoire-du-village.html"
+    },
+    {
+      "text": "La chapelle fortifiée Notre-Dame-des-Aubagnans, bâtie sur un socle rocheux au nord de Rochegude, traverse l'histoire depuis plus de huit siècles.",
+      "source_label": "Mairie de Rochegude",
+      "source_url": "https://www.mairie-rochegude.fr/"
+    }
+  ],
+  "Montbrun-les-Bains": [
+    {
+      "text": "Les sources fortement sulfurées de Montbrun étaient déjà exploitées à l'époque romaine ; elles sont à l'origine de la vocation thermale du village.",
+      "source_label": "Office de tourisme de Montbrun-les-Bains",
+      "source_url": "https://www.montbrunlesbains.com/"
+    },
+    {
+      "text": "Montbrun-les-Bains conserve seize fontaines des XIXe et XXe siècles, en plus des ruines du château Dupuy-Montbrun et de l'église Notre-Dame du XIIe siècle.",
+      "source_label": "Office de tourisme de Montbrun-les-Bains",
+      "source_url": "https://www.balineae.fr/content/uploads/2024/12/MONTBRUN-LES-BAINS-Brochure-2025.pdf"
+    }
+  ],
+  "Sahune": [
+    {
+      "text": "Un sentier botanique a été créé en 2013 sur le site du vieux village de Sahune afin de faire découvrir la flore des Baronnies.",
+      "source_label": "Mairie de Sahune",
+      "source_url": "https://www.sahune.fr/webroot/decouvertes/patrimoine_naturel"
+    },
+    {
+      "text": "Sahune abrite encore, en plusieurs endroits de la commune, une tulipe sauvage devenue l'une des discrètes richesses naturelles locales.",
+      "source_label": "Mairie de Sahune",
+      "source_url": "https://www.sahune.fr/webroot/divertissements/nature"
+    }
+  ],
+  "Rémuzat": [
+    {
+      "text": "Le vautour fauve a été réintroduit dans les Baronnies en 1996 ; le secteur du rocher du Caire compte aujourd'hui plus de 200 couples.",
+      "source_label": "Auvergne-Rhône-Alpes Tourisme",
+      "source_url": "https://www.inauvergnerhonealpes.com/fiches/le-rocher-du-caire/"
+    },
+    {
+      "text": "À Rémuzat, les vautours survolent quotidiennement le village et le rocher du Caire, une spectaculaire barre rocheuse devenue l'emblème de la commune.",
+      "source_label": "Mairie de Rémuzat",
+      "source_url": "https://www.remuzat.fr/commune/decouvrir-remuzat/a-la-decouverte-du-village-3001"
+    }
+  ],
+  "Verclause": [
+    {
+      "text": "Le vieux Verclause conserve une église Sainte-Madeleine d'origine romane, le donjon d'un château du XIIIe siècle et les ruines de l'ancienne forteresse.",
+      "source_label": "Mairie de Verclause",
+      "source_url": "https://verclause.com/"
+    }
+  ],
+  "Les Pilles": [
+    {
+      "text": "Installé sur un verrou rocheux de la vallée de l'Eygues, Les Pilles était au Moyen Âge un lieu où l'on percevait un péage.",
+      "source_label": "La Drôme Tourisme",
+      "source_url": "https://www.drome-cestmanature.com/fiches/110-de-leygues-au-bentrix/"
+    }
+  ],
+  "Saint-May": [
+    {
+      "text": "Le plateau de Saint-Laurent conserve les vestiges de l'abbaye de Val-Bodon, fondée au VIe siècle ; le village de Saint-May aurait hérité du nom de son premier abbé, Marius.",
+      "source_label": "Auvergne-Rhône-Alpes Tourisme",
+      "source_url": "https://www.inauvergnerhonealpes.com/fiches/du-buegue-au-caire/"
+    }
+  ],
+  "Taulignan": [
+    {
+      "text": "Au XIIe siècle, Taulignan appartenait à Bertrand de Taulignan, vassal du baron de Montauban ; en 1295, il céda son fief aux comtes de Valentinois.",
+      "source_label": "Mairie de Taulignan",
+      "source_url": "https://www.taulignan.fr/le-tourisme/"
+    },
+    {
+      "text": "L'ensemble fortifié de Taulignan est un site inscrit depuis 1943 ; le Musée de la Soie, ouvert en 2003, prolonge la mémoire artisanale du village.",
+      "source_label": "Inventaire général du patrimoine culturel",
+      "source_url": "https://patrimoine.auvergnerhonealpes.fr/dossier/IA26000271"
+    }
+  ],
+  "Grignan": [
+    {
+      "text": "Les premiers ouvrages défensifs du château de Grignan furent aménagés au XIe siècle sur le site d'un ancien oppidum fortifié.",
+      "source_label": "Château de Grignan",
+      "source_url": "https://www.chateaudegrignan.fr/le-chateau/histoire/"
+    },
+    {
+      "text": "La grotte de Rochecourbière était l'un des lieux de promenade favoris de la comtesse de Grignan, qui l'aménagea au XVIIe siècle pour profiter de sa fraîcheur.",
+      "source_label": "Ville de Grignan",
+      "source_url": "https://www.ville-grignan.fr/fr/decouvrir-la-commune/visite-du-village.html"
+    }
+  ],
+  "Réauville": [
+    {
+      "text": "Réauville est une ancienne cité royale : le domaine de Cersas aurait pris ce nom vers 1280 lorsque l'abbaye d'Aiguebelle passa sous la protection de Charles d'Anjou.",
+      "source_label": "Mairie de Réauville",
+      "source_url": "https://reauville.fr/"
+    }
+  ],
+  "Montségur-sur-Lauzon": [
+    {
+      "text": "Le belvédère du Vieux Village de Montségur-sur-Lauzon rappelle que l'habitat ancien occupait une position dominante au-dessus de la plaine.",
+      "source_label": "La Drôme Tourisme",
+      "source_url": "https://www.drome-cestmanature.com/fiches/montsegur-sur-lauzon/"
+    }
+  ],
+  "Saint-Paul-Trois-Châteaux": [
+    {
+      "text": "Le site néolithique des Moulins, à Saint-Paul-Trois-Châteaux, s'étendait sur au moins quatre hectares et atteste une occupation vieille de plusieurs millénaires.",
+      "source_label": "Ville de Saint-Paul-Trois-Châteaux",
+      "source_url": "https://www.ville-saintpaultroischateaux.fr/patrimoine-culturel-et-historique/"
+    }
+  ],
+  "Valaurie": [
+    {
+      "text": "Valaurie conserve un rare clocher-porche, ainsi que des calades et quelques vestiges de son château médiéval au cœur du village perché.",
+      "source_label": "Drôme Provençale",
+      "source_url": "https://www.dromeprovencale.fr/patrimoine-culturel/valaurie/"
+    }
+  ],
+  "La Garde-Adhémar": [
+    {
+      "text": "À deux kilomètres de La Garde-Adhémar se trouve le Val des Nymphes ; le village possède aussi un Jardin des Herbes labellisé Jardin remarquable.",
+      "source_label": "La Drôme Tourisme",
+      "source_url": "https://www.drome-cestmanature.com/fiches/la-garde-adhemar/"
+    }
+  ],
+  "Le Poët-Laval": [
+    {
+      "text": "Le massif donjon du Poët-Laval fut édifié vers la fin du XIIe siècle par l'ordre des Hospitaliers de Saint-Jean-de-Jérusalem.",
+      "source_label": "Mairie du Poët-Laval",
+      "source_url": "https://lepoetlaval.org/decouvrir-le-poet-laval/visites/le-chateau/"
+    }
+  ],
+  "Dieulefit": [
+    {
+      "text": "La poterie est attestée depuis des siècles à Dieulefit grâce à l'argile locale ; cette longue tradition a fait de la ville une capitale historique de la céramique.",
+      "source_label": "Office de tourisme du Pays de Dieulefit-Bourdeaux",
+      "source_url": "https://www.dieulefit-tourisme.com/notre-destination/nos-villages/dieulefit/"
+    }
+  ],
+  "Comps": [
+    {
+      "text": "La petite église romane de Comps n'est pas seulement un monument : elle continue de vivre grâce aux visites et aux concerts organisés dans le village.",
+      "source_label": "Comps Historique",
+      "source_url": "https://www.drome-cestmanature.com/fiches/comps-historique/"
+    }
+  ],
+  "Pont-de-Barret": [
+    {
+      "text": "Pont-de-Barret occupe l'ancien site gallo-romain de Savenna ; plus tard, le village vécut du moulinage sur la route de la soie entre les Cévennes et Lyon.",
+      "source_label": "Office de tourisme du Pays de Dieulefit-Bourdeaux",
+      "source_url": "https://www.dieulefit-tourisme.com/notre-destination/nos-villages/pont-de-barret/"
+    }
+  ],
+  "Rochebaudin": [
+    {
+      "text": "Rochebaudin est lové au pied de deux immenses disques de calcaire presque jointifs, qui marquent l'entrée des gorges de la Rimandoule.",
+      "source_label": "Communauté de communes Dieulefit-Bourdeaux",
+      "source_url": "https://www.ccdb26.fr/communes/rochebaudin/"
+    }
+  ],
+  "La Bégude-de-Mazenc": [
+    {
+      "text": "En 1894, le chef-lieu quitta Châteauneuf-de-Mazenc pour La Bégude ; la commune adopta alors le nom de La Bégude-de-Mazenc.",
+      "source_label": "Office de tourisme du Pays de Dieulefit-Bourdeaux",
+      "source_url": "https://www.dieulefit-tourisme.com/notre-destination/nos-villages/la-begude-de-mazenc/"
+    }
+  ],
+  "La Touche": [
+    {
+      "text": "Le château de La Touche est restauré par ses propriétaires avec des artisans locaux ; le projet a reçu le soutien du Loto du patrimoine.",
+      "source_label": "Drôme Provençale",
+      "source_url": "https://www.dromeprovencale.fr/destination/villes-villages/la-touche/"
+    }
+  ],
+  "Allan": [
+    {
+      "text": "Le vieux village médiéval d'Allan fut entièrement abandonné à la fin du XIXe siècle au profit du site de plaine alors appelé « La Bégude ».",
+      "source_label": "La Drôme Tourisme",
+      "source_url": "https://www.drome-cestmanature.com/fiches/allan/"
+    }
+  ],
+  "Malataverne": [
+    {
+      "text": "Par décret du 4 mai 1891, le chef-lieu de la commune fut officiellement transféré du vieux hameau de Rac vers Malataverne.",
+      "source_label": "Mairie de Malataverne",
+      "source_url": "https://malataverne.fr/rac-berceau-de-malataverne/"
+    }
+  ],
+  "Donzère": [
+    {
+      "text": "La villa du Molard, découverte à Donzère, est considérée comme la plus grande exploitation viticole connue du monde romain.",
+      "source_label": "Mairie de Donzère",
+      "source_url": "https://www.donzere.fr/decouvrir-donzere/histoire-patrimoine/histoire-de-donzere/"
+    }
+  ],
+  "Pierrelatte": [
+    {
+      "text": "Le moulin à vent de Pierrelatte fut construit vers 1839 pour un boulanger ; il ne resta en activité que quelques décennies, jusqu'en 1869.",
+      "source_label": "Ministère de la Culture — Journées du patrimoine",
+      "source_url": "https://journeesdupatrimoine.culture.gouv.fr/w/391796/evenement/20165920/visite-libre-du-moulin-de-pierrelatte"
     }
   ]
 }

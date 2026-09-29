@@ -15,6 +15,7 @@ from __future__ import annotations
 import json
 import os
 import re
+from collections import Counter
 from datetime import date, datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -23,12 +24,29 @@ import requests
 
 ROOT = Path(__file__).resolve().parent
 OUT = ROOT / "agenda.json"
+ANECDOTES_FILE = ROOT / "village_anecdotes.json"
 API_URL = "https://api.datatourisme.fr/v1/entertainmentAndEvent"
 DEPARTMENT_INSEE = "26"
 PAGE_SIZE = 250
 MAX_PAGES = 100
 TIMEOUT = 45
 EVENT_LIMIT = int(os.getenv("DATATOURISME_EVENT_LIMIT", "0"))
+
+# Communes retenues pour les 50 fiches supplémentaires autour de Nyons.
+# L'ordre va globalement du Nyonsais vers le reste de la Drôme provençale.
+# Nyons est volontairement absent et fait aussi l'objet d'un filtre explicite.
+NEARBY_NYONS_COMMUNES = (
+    "Buis-les-Baronnies", "Venterol", "Vinsobres", "Mirabel-aux-Baronnies",
+    "Saint-Maurice-sur-Eygues", "Tulette", "Bouchet", "Suze-la-Rousse",
+    "La Baume-de-Transit", "Rochegude", "Montbrun-les-Bains", "Sahune",
+    "Rémuzat", "Verclause", "Les Pilles", "Saint-May", "Taulignan",
+    "Grignan", "Colonzelle", "Réauville", "Montségur-sur-Lauzon",
+    "Saint-Paul-Trois-Châteaux", "Valaurie", "Clansayes", "La Garde-Adhémar",
+    "Le Poët-Laval", "Dieulefit", "Bourdeaux", "Comps", "Pont-de-Barret",
+    "Rochebaudin", "La Bégude-de-Mazenc", "La Touche", "Allan",
+    "Malataverne", "Donzère", "Pierrelatte",
+)
+PRESERVED_EVENT_TARGET = 50
 
 # Les champs parents permettent de récupérer leurs sous-propriétés sans faire
 # un appel de détail pour chaque événement.
@@ -54,6 +72,120 @@ def clean(value: Any) -> str:
     if value is None:
         return ""
     return re.sub(r"\s+", " ", str(value)).strip()
+
+
+def commune_key(value: Any) -> str:
+    """Clé tolérante aux accents, apostrophes et traits d'union."""
+    import unicodedata
+
+    text = unicodedata.normalize("NFKD", clean(value))
+    text = "".join(ch for ch in text if not unicodedata.combining(ch)).lower()
+    return re.sub(r"[^a-z0-9]+", "", text)
+
+
+def select_events(events: list[dict], previous_urls: set[str], limit: int) -> list[dict]:
+    """Conserve les 50 fiches actuelles puis ajoute les villages proches de Nyons.
+
+    Les ajouts sont effectués en plusieurs tours (une fiche par commune à chaque
+    tour) afin d'éviter qu'une grande ville occupe toute la sélection.
+    """
+    events = [e for e in events if commune_key(e.get("commune")) != "nyons"]
+    if limit <= 0:
+        return events
+
+    by_url = {clean(e.get("url")): e for e in events}
+    preserved = [by_url[url] for url in previous_urls if url in by_url]
+    preserved.sort(
+        key=lambda e: (
+            max(parse_date(e["start_date"]) or date.today(), date.today()),
+            clean(e.get("commune")).lower(),
+            clean(e.get("title")).lower(),
+        )
+    )
+    selected = preserved[: min(PRESERVED_EVENT_TARGET, limit)]
+    used = {clean(e.get("url")) for e in selected}
+    used_by_commune = Counter(clean(e.get("commune")) for e in selected)
+
+    anecdote_catalog = {}
+    if ANECDOTES_FILE.exists():
+        try:
+            anecdote_catalog = json.loads(ANECDOTES_FILE.read_text(encoding="utf-8"))
+        except Exception:
+            anecdote_catalog = {}
+    anecdote_capacity = {
+        clean(commune): len(items)
+        for commune, items in anecdote_catalog.items()
+        if isinstance(items, list)
+    }
+
+    rank = {commune_key(name): pos for pos, name in enumerate(NEARBY_NYONS_COMMUNES)}
+    grouped: dict[str, list[dict]] = {}
+    for event in events:
+        key = commune_key(event.get("commune"))
+        url = clean(event.get("url"))
+        if url in used or key not in rank:
+            continue
+        grouped.setdefault(key, []).append(event)
+
+    for candidates in grouped.values():
+        candidates.sort(
+            key=lambda e: (
+                max(parse_date(e["start_date"]) or date.today(), date.today()),
+                clean(e.get("title")).lower(),
+            )
+        )
+
+    depth = 0
+    while len(selected) < limit:
+        added_this_round = 0
+        for commune in NEARBY_NYONS_COMMUNES:
+            candidates = grouped.get(commune_key(commune), [])
+            if depth >= len(candidates):
+                continue
+            event = candidates[depth]
+            event_commune = clean(event.get("commune"))
+            if used_by_commune[event_commune] >= anecdote_capacity.get(event_commune, 0):
+                continue
+            selected.append(event)
+            used.add(clean(event.get("url")))
+            used_by_commune[event_commune] += 1
+            added_this_round += 1
+            if len(selected) >= limit:
+                break
+        if not added_this_round:
+            break
+        depth += 1
+
+    # Sécurité : un complément ne peut utiliser qu'une commune disposant encore
+    # d'une anecdote sourcée et non attribuée.
+    if len(selected) < limit:
+        for event in events:
+            url = clean(event.get("url"))
+            event_commune = clean(event.get("commune"))
+            if url in used:
+                continue
+            if used_by_commune[event_commune] >= anecdote_capacity.get(event_commune, 0):
+                continue
+            selected.append(event)
+            used.add(url)
+            used_by_commune[event_commune] += 1
+            if len(selected) >= limit:
+                break
+
+    if len(selected) < limit:
+        raise RuntimeError(
+            f"Seulement {len(selected)} fiches peuvent être produites avec une anecdote "
+            f"réelle et unique ; objectif demandé : {limit}."
+        )
+
+    selected.sort(
+        key=lambda e: (
+            max(parse_date(e["start_date"]) or date.today(), date.today()),
+            clean(e.get("commune")).lower(),
+            clean(e.get("title")).lower(),
+        )
+    )
+    return selected
 
 
 def parse_date(value: Any) -> date | None:
@@ -349,6 +481,18 @@ def main() -> None:
     if not api_key:
         raise RuntimeError("Secret DATATOURISME_API_KEY absent")
 
+    previous = {}
+    if OUT.exists():
+        try:
+            previous = json.loads(OUT.read_text(encoding="utf-8"))
+        except Exception:
+            previous = {}
+    previous_urls = {
+        clean(event.get("url"))
+        for event in previous.get("events", [])
+        if isinstance(event, dict) and clean(event.get("url"))
+    }
+
     today = date.today()
     raw = fetch_all(api_key)
     events = []
@@ -373,8 +517,11 @@ def main() -> None:
     )
 
     if EVENT_LIMIT > 0:
-        events = events[:EVENT_LIMIT]
-        print(f"Test limité aux {len(events)} premiers événements.")
+        events = select_events(events, previous_urls, EVENT_LIMIT)
+        print(
+            f"Sélection limitée à {len(events)} événements : "
+            f"fiches existantes conservées, puis villages autour de Nyons (Nyons exclu)."
+        )
 
     payload = {
         "source": API_URL,

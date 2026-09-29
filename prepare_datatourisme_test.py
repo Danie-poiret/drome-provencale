@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Habillage du test DATAtourisme Drôme après génération des fiches.
+"""Habillage du test DATAtourisme autour de Nyons après génération des fiches.
 
-- adapte la page /evenements/ à l'échelle de toute la Drôme ;
+- adapte la page /evenements/ aux villages autour de Nyons ;
 - ajoute une attribution discrète DATAtourisme/producteur/date de mise à jour ;
 - ne touche pas au contenu éditorial lui-même.
 """
@@ -89,10 +89,10 @@ def patch_index(count: int) -> bool:
     text = path.read_text(encoding="utf-8")
     original = text
 
-    title = f"Agenda Drôme : {count} événements en cours et à venir"
+    title = f"Agenda autour de Nyons : {count} événements en cours et à venir"
     desc = (
-        "Agenda des événements dans toute la Drôme : sorties, culture, fêtes, "
-        "spectacles, loisirs et rendez-vous en cours ou à venir."
+        "Agenda des événements dans les villages autour de Nyons : sorties, culture, fêtes, "
+        "spectacles et loisirs. Nyons est exclu de cette sélection."
     )
 
     text = re.sub(r"<title>.*?</title>", f"<title>{html.escape(title)}</title>", text, count=1, flags=re.S)
@@ -104,13 +104,13 @@ def patch_index(count: int) -> bool:
     )
     text = re.sub(
         r"<h1>100 prochains événements autour de Nyons</h1>",
-        f"<h1>Événements dans toute la Drôme</h1>",
+        f"<h1>{count} événements autour de Nyons</h1>",
         text,
         count=1,
     )
     text = re.sub(
         r'<p class="date">Nyons est retiré de cette sélection pour éviter les doublons avec l’agenda local\.</p>',
-        f'<p class="date">{count} rendez-vous en cours ou à venir dans le département.</p>',
+        f'<p class="date">Les villages alentour sont à l’honneur ; Nyons est volontairement exclu.</p>',
         text,
         count=1,
     )
