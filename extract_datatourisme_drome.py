@@ -65,6 +65,7 @@ FIELDS = ",".join(
         "lastUpdate",
         "lastUpdateDatatourisme",
         "hasMainRepresentation",
+        "hasRepresentation",
     ]
 )
 
@@ -389,8 +390,13 @@ def image_data(poi: dict) -> tuple[str, str, str]:
     L'image reste hébergée par sa source : seul son URL, son crédit et ses droits
     sont conservés dans agenda.json. Aucun fichier image n'est téléchargé.
     """
-    media = poi.get("hasMainRepresentation")
-    if not media:
+    media_groups = [
+        media for media in (
+            poi.get("hasMainRepresentation"),
+            poi.get("hasRepresentation"),
+        ) if media
+    ]
+    if not media_groups:
         return "", "", ""
 
     def dictionaries(value: Any):
@@ -402,23 +408,24 @@ def image_data(poi: dict) -> tuple[str, str, str]:
             for child in value:
                 yield from dictionaries(child)
 
-    credit = first_for_key(media, "credits")
-    rights = first_for_key(media, "isCoveredBy")
+    for media in media_groups:
+        credit = first_for_key(media, "credits")
+        rights = first_for_key(media, "isCoveredBy")
 
-    for resource in dictionaries(media):
-        locator = clean(resource.get("locator"))
-        if not re.match(r"^https?://", locator, re.I):
-            continue
+        for resource in dictionaries(media):
+            locator = clean(resource.get("locator"))
+            if not re.match(r"^https?://", locator, re.I):
+                continue
 
-        mime = first_for_key(resource, "hasMimeType").lower()
-        path = locator.split("?", 1)[0].lower()
-        looks_like_image = bool(
-            mime.startswith("image/")
-            or re.search(r"\.(?:avif|gif|jpe?g|png|webp)$", path)
-            or (not mime and not path.endswith(".pdf"))
-        )
-        if looks_like_image:
-            return locator, credit, rights
+            mime = first_for_key(resource, "hasMimeType").lower()
+            path = locator.split("?", 1)[0].lower()
+            looks_like_image = bool(
+                mime.startswith("image/")
+                or re.search(r"\.(?:avif|gif|jpe?g|png|webp)$", path)
+                or (not mime and not path.endswith(".pdf"))
+            )
+            if looks_like_image:
+                return locator, credit, rights
 
     return "", "", ""
 
