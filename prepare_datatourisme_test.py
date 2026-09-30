@@ -56,6 +56,8 @@ def attribution_block(event: dict) -> str:
         '<div style="font-size:12px;color:#686b63;margin-top:22px;padding:12px 14px;'
         'border:1px solid #e4dccd;border-radius:12px;background:rgba(255,255,255,.65)">'
         f'Données : {html.escape(producer)} via DATAtourisme{when} · Licence Ouverte 2.0'
+        ' · <a href="https://agenda.vivreanyons.fr/" style="color:#354622;font-weight:700">Agenda de Nyons</a>'
+        ' · <a href="https://www.vivreanyons.fr/" style="color:#354622;font-weight:700">Vivre à Nyons</a>'
         '</div>\n'
         '<!-- DATATOURISME_ATTRIBUTION_END -->\n'
     )
