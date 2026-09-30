@@ -1,0 +1,90 @@
+name: Ajouter liens footer événements
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/update-footer-links.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  update-footer-links:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le dépôt
+        uses: actions/checkout@v4
+
+      - name: Installer Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Mettre à jour uniquement les footers des fiches
+        run: |
+          python - <<'PY'
+          import hashlib
+          import json
+          from prepare_datatourisme_test import AGENDA, EVENTS_DIR, clean, event_slug, patch_event_page, slugify
+
+          payload = json.loads(AGENDA.read_text(encoding="utf-8"))
+          events = payload.get("events", [])
+          if not events:
+              raise SystemExit("agenda.json ne contient aucun événement")
+
+          slug_map = {}
+          used = set()
+          for event in events:
+              key = clean(event.get("url"))
+              base = event_slug(event)
+              slug = base
+              if slug in used:
+                  slug = f"{base}-{slugify(event.get('commune', 'lieu'), 35)}"
+              if slug in used:
+                  identity = clean(event.get("datatourisme_uuid")) or key
+                  suffix = hashlib.sha256(identity.encode("utf-8")).hexdigest()[:8]
+                  slug = f"{base}-{slugify(event.get('commune', 'lieu'), 24)}-{suffix}"
+              if slug in used:
+                  raise RuntimeError(f"Collision de slug impossible à résoudre : {slug}")
+              used.add(slug)
+              slug_map[key] = slug
+
+          changed = 0
+          for event in events:
+              slug = slug_map[clean(event.get("url"))]
+              if patch_event_page(EVENTS_DIR / slug / "index.html", event):
+                  changed += 1
+
+          print(f"Footers mis à jour : {changed}/{len(events)}")
+          print("Aucun appel OpenAI effectué.")
+          PY
+
+      - name: Vérifier les deux liens sur les fiches
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          pages = list(Path("evenements").glob("*/index.html"))
+          missing = []
+          for path in pages:
+              text = path.read_text(encoding="utf-8")
+              if "https://agenda.vivreanyons.fr/" not in text or "https://www.vivreanyons.fr/" not in text:
+                  missing.append(str(path))
+          if missing:
+              raise SystemExit("Liens absents sur : " + ", ".join(missing[:10]))
+          print(f"{len(pages)} fiches vérifiées avec les deux liens.")
+          PY
+
+      - name: Enregistrer les footers
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add evenements
+          if git diff --cached --quiet; then
+            echo "Aucun changement."
+            exit 0
+          fi
+          git commit -m "Ajouter Agenda de Nyons et Vivre à Nyons aux footers"
+          git push
