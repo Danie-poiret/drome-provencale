@@ -158,12 +158,15 @@ def select_events(events: list[dict], previous_events: list[dict], limit: int) -
         if not url or not fresh_event:
             continue
         # Les textes déjà payés restent attachés à leurs données d'origine.
-        # On ajoute seulement les coordonnées, qui n'invalident pas le cache
-        # éditorial, afin d'éviter de repayer une fiche déjà rédigée.
+        # On rafraîchit les données techniques qui n'invalident pas le cache
+        # éditorial : coordonnées et, lorsqu'elle existe, image DATAtourisme.
         event = dict(old_event)
         for field in ("latitude", "longitude"):
             if field in fresh_event:
                 event[field] = fresh_event[field]
+        if clean(fresh_event.get("image_url")):
+            for field in ("image_url", "image_credit", "image_rights"):
+                event[field] = fresh_event.get(field, "")
         distance = distance_from_nyons(event)
         if distance is not None:
             event["distance_from_nyons_km"] = distance
@@ -726,6 +729,10 @@ def main() -> None:
         )
     )
 
+    raw_with_image = sum(1 for poi in raw if image_data(poi)[0])
+    normalized_count = len(events)
+    normalized_with_image = sum(1 for event in events if clean(event.get("image_url")))
+
     if EVENT_LIMIT > 0:
         events = select_events(events, previous_events, EVENT_LIMIT)
         print(
@@ -749,10 +756,16 @@ def main() -> None:
     tmp.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     tmp.replace(OUT)
 
+    selected_with_image = sum(1 for event in events if clean(event.get("image_url")))
+
     print("=== DATATOURISME DRÔME ===")
-    print(f"Objets API reçus          : {len(raw)}")
-    print(f"Événements en cours/à venir: {len(events)}")
-    print(f"Fichier                   : {OUT.name}")
+    print(f"Objets API reçus                 : {len(raw)}")
+    print(f"Objets API avec image            : {raw_with_image}")
+    print(f"Événements normalisés            : {normalized_count}")
+    print(f"Événements normalisés avec image : {normalized_with_image}")
+    print(f"Événements retenus               : {len(events)}")
+    print(f"Événements retenus avec image    : {selected_with_image}")
+    print(f"Fichier                          : {OUT.name}")
     if events:
         print("Premiers événements:")
         for event in events[:10]:
