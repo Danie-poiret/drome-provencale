@@ -800,6 +800,414 @@
       "version": 1,
       "context_hash": "af4fbfdf8e81299b01cfefabf50526a5a4f0a77e8440d44031606db6d5a3315d",
       "generated_at": "2026-09-30T05:28:24.590053+00:00"
+    },
+    "https://data.datatourisme.fr/13/731e9e43-a460-3d98-979e-185cae2c9181": {
+      "text": "Un avion se maintient en vol grâce notamment à la portance : l’air qui s’écoule autour des ailes exerce une force vers le haut. Le pilote contrôle ensuite l’appareil avec des surfaces mobiles, comme les ailerons, la gouverne de profondeur et la dérive.",
+      "source_label": "",
+      "model": "gpt-5.6-terra",
+      "version": 1,
+      "context_hash": "1b1e7a5a08d95f02aae4faa6fb4f84cfa9f39d9f238891ebe72e18145c1f66fa",
+      "generated_at": "2026-09-30T10:16:56.608846+00:00"
+    },
+    "https://data.datatourisme.fr/13/d56f9ab8-22ed-3af1-8c34-2c46db784e6f": {
+      "text": "Le patrimoine désigne les biens transmis par les générations précédentes et jugés dignes d’être conservés. Il peut être architectural, archéologique, paysager ou immatériel : traditions, savoir-faire et récits locaux en font aussi partie.",
+      "source_label": "",
+      "model": "gpt-5.6-terra",
+      "version": 1,
+      "context_hash": "bd918e1af6fdbe040e14f6671dd8e15a7c829d12465d45c233cb25a67c5c1dc5",
+      "generated_at": "2026-09-30T10:16:56.611088+00:00"
+    },
+    "https://data.datatourisme.fr/13/f374cce1-f55c-394e-842b-668e1b573768": {
+      "text": "Le jeu de piste est une forme de jeu d’orientation fondée sur une succession d’indices. Lorsqu’il porte sur le patrimoine, il peut inviter les enfants à identifier des éléments visibles, puis à les relier à une énigme ou à une histoire.",
+      "source_label": "",
+      "model": "gpt-5.6-terra",
+      "version": 1,
+      "context_hash": "099abbafbc867df46b3b9e8add570ac5d8f93141733361e912c6daa361716a73",
+      "generated_at": "2026-09-30T10:16:56.611949+00:00"
+    },
+    "https://data.datatourisme.fr/13/ccb43dcd-0103-37ce-9e8a-4bebd3a57359": {
+      "text": "Les aliments ne se conservent pas tous de la même manière. Fruits et légumes supportent généralement mieux une température modérée, tandis que viandes, poissons et produits laitiers nécessitent des conditions de conservation plus strictes.",
+      "source_label": "",
+      "model": "gpt-5.6-terra",
+      "version": 1,
+      "context_hash": "982bdf491ced0f9f2204dc2de4b035116e2b56f9f0e5facc17965c2e208f58ba",
+      "generated_at": "2026-09-30T10:16:56.613324+00:00"
+    },
+    "https://data.datatourisme.fr/13/98983ce0-884b-3d06-a617-3916594e9974": {
+      "text": "La vente directe désigne une commercialisation sans intermédiaire entre le producteur et l’acheteur. Elle permet de connaître plus facilement l’origine d’un produit, sans garantir à elle seule qu’il soit biologique, local ou de saison.",
+      "source_label": "",
+      "model": "gpt-5.6-terra",
+      "version": 1,
+      "context_hash": "a44146bb9fd8fd1d5f3ac0c2fbee95dc6d3c8465189379530224ce7f99bf1eda",
+      "generated_at": "2026-09-30T10:16:56.613734+00:00"
+    },
+    "https://data.datatourisme.fr/13/10bdbe06-28a5-3233-be02-0a07e4747ed3": {
+      "text": "L’offre d’un marché varie souvent avec les saisons : certaines productions agricoles arrivent à maturité, tandis que la fréquentation et le nombre de stands peuvent évoluer. Un marché mixte associe quant à lui alimentation et autres types de marchandises.",
+      "source_label": "",
+      "model": "gpt-5.6-terra",
+      "version": 1,
+      "context_hash": "3debb4ab43b79e432bf2122fa5ae435b0876a1d9473a125c53d16a39e782f99a",
+      "generated_at": "2026-09-30T10:16:56.614155+00:00"
+    },
+    "https://data.datatourisme.fr/13/a2444e2d-77ec-3aff-9441-89b87ae58543": {
+      "text": "La faisselle est un fromage frais égoutté dans un moule percé portant le même nom. Selon le lait utilisé et la durée d’égouttage, elle conserve plus ou moins de petit-lait et présente une texture plus ou moins ferme.",
+      "source_label": "",
+      "model": "gpt-5.6-terra",
+      "version": 1,
+      "context_hash": "04680062d910840face5017599a1fab2c70ba4f1a5721f95bd8526c4eee81c9b",
+      "generated_at": "2026-09-30T10:16:56.614555+00:00"
+    },
+    "https://data.datatourisme.fr/13/e5a5dcd1-76e5-3c8e-aacb-ecb4fe9db0de": {
+      "text": "La dégustation d’un aliment commence par la vue et l’odorat, mais la bouche perçoit aussi les saveurs, les textures et la température. Les arômes sont largement ressentis par voie rétro-nasale pendant la mastication.",
+      "source_label": "",
+      "model": "gpt-5.6-terra",
+      "version": 1,
+      "context_hash": "f21130033616988a2c2200fde849a125b2ad44481e15e564ccca687524ef1a6c",
+      "generated_at": "2026-09-30T10:16:56.615392+00:00"
+    },
+    "https://data.datatourisme.fr/13/23a29e78-3554-3c94-b073-a0e9380ffc9e": {
+      "text": "Les produits agricoles de proximité ne sont pas tous disponibles toute l’année. Le rythme des récoltes, de l’élevage et des transformations influence naturellement ce que les producteurs peuvent proposer selon les mois.",
+      "source_label": "",
+      "model": "gpt-5.6-terra",
+      "version": 1,
+      "context_hash": "a076d090d0ae2d2bdcda0537b6b8fbc600e2dff7b3b23420c686e4ea94561b1d",
+      "generated_at": "2026-09-30T10:16:56.617426+00:00"
+    },
+    "https://data.datatourisme.fr/13/f7a20e8b-82b8-3dfd-ae1b-0fd7aa954181": {
+      "text": "La clairette est le nom de plusieurs cépages blancs cultivés dans le sud de la France. Selon l’appellation et les méthodes employées, ils peuvent entrer dans l’élaboration de vins tranquilles ou effervescents.",
+      "source_label": "",
+      "model": "gpt-5.6-terra",
+      "version": 1,
+      "context_hash": "84f28e1164845488cf021cac4b3a45e94095e2d13ffe87397f463d36b9cab8ca",
+      "generated_at": "2026-09-30T10:16:56.617828+00:00"
+    },
+    "https://data.datatourisme.fr/13/af200311-1555-3d32-aa68-7099bccfb873": {
+      "text": "Un marché hebdomadaire peut prendre des formes très différentes selon le jour choisi. La présence des commerçants dépend de leurs tournées, car beaucoup répartissent leurs stands entre plusieurs communes au cours d’une même semaine.",
+      "source_label": "",
+      "model": "gpt-5.6-terra",
+      "version": 1,
+      "context_hash": "2652c12709924054998368545d1d0ad1ae62d77518c113d1f923721024511d55",
+      "generated_at": "2026-09-30T10:16:56.618230+00:00"
+    },
+    "https://data.datatourisme.fr/13/3736c51f-39ee-3470-93ff-0277fd28ff59": {
+      "text": "Les produits régionaux reflètent souvent des matières premières, des recettes et des techniques liées à un territoire. Cette origine culturelle ne signifie pas nécessairement qu’un produit bénéficie d’une appellation ou d’un signe officiel de qualité.",
+      "source_label": "",
+      "model": "gpt-5.6-terra",
+      "version": 1,
+      "context_hash": "0db0d9711bf1dfccb9b1675b8494539af066b0abd532ceaada0ade300580106c",
+      "generated_at": "2026-09-30T10:16:56.618637+00:00"
+    },
+    "https://data.datatourisme.fr/13/70d37216-17e1-3e24-9afe-20ee6a5da1e6": {
+      "text": "Le miel est élaboré par les abeilles à partir du nectar des fleurs ou parfois de miellat. Sa couleur, son goût et sa cristallisation varient selon les plantes butinées, la saison et les conditions de conservation.",
+      "source_label": "",
+      "model": "gpt-5.6-terra",
+      "version": 1,
+      "context_hash": "ca5eae43939b0bba17d454ca4fd384ea0ff91f1116345a2c0c5b6e3cd9b58c35",
+      "generated_at": "2026-09-30T10:16:56.619088+00:00"
+    },
+    "https://data.datatourisme.fr/13/77ea1bd5-be9a-3a58-80a6-12b4c89a4288": {
+      "text": "Le métier de primeur concerne la vente de fruits et légumes frais, tandis que boucherie et charcuterie correspondent à des préparations et découpes de viande distinctes. Ces commerces exigent notamment une attention adaptée à la conservation des denrées.",
+      "source_label": "",
+      "model": "gpt-5.6-terra",
+      "version": 1,
+      "context_hash": "fbc2a06f7088d23cde5c62d8eaf1531ddd9087b1f98b39647e19dd8ca28b553e",
+      "generated_at": "2026-09-30T10:16:56.619724+00:00"
+    },
+    "https://data.datatourisme.fr/13/f0984cf0-9ac2-3bca-8621-957d711c649f": {
+      "text": "Un faible nombre d’exposants n’empêche pas un marché de jouer son rôle de proximité. La rencontre directe entre vendeurs et clients permet notamment de poser des questions sur la production, la préparation ou la saisonnalité.",
+      "source_label": "",
+      "model": "gpt-5.6-terra",
+      "version": 1,
+      "context_hash": "12a16fb11ddcc35d25490adfb02234cb3c18b273888c454dd6f55ea068210488",
+      "generated_at": "2026-09-30T10:16:56.620090+00:00"
+    },
+    "https://data.datatourisme.fr/13/e1e94fed-0a49-3426-84aa-e83722def23c": {
+      "text": "Les produits dits locaux peuvent être agricoles, alimentaires ou artisanaux. Leur caractère local renvoie à leur zone de production ou de transformation, mais ce terme ne correspond pas, à lui seul, à une définition réglementaire unique.",
+      "source_label": "",
+      "model": "gpt-5.6-terra",
+      "version": 1,
+      "context_hash": "209308373d4adb47bb1be0fb4dc4ef8f3522758a7e13cf9796bcefc2000ccbb6",
+      "generated_at": "2026-09-30T10:16:56.620492+00:00"
+    },
+    "https://data.datatourisme.fr/13/ca808ea7-06f8-314c-98bf-3580ed467889": {
+      "text": "Le métier de fromager consiste à sélectionner, conserver et vendre des fromages issus de laits et de fabrications variés. Avec les fruits et légumes du primeur, ils permettent de composer un repas en tenant compte des saisons et des goûts recherchés.",
+      "source_label": "",
+      "model": "gpt-5.6-terra",
+      "version": 1,
+      "context_hash": "daf451a365564220a5f994189bb510cf0175b2324bb7225d40e2f4b33406f39b",
+      "generated_at": "2026-09-30T10:16:56.621313+00:00"
+    },
+    "https://data.datatourisme.fr/13/0886b105-809b-39c2-ba08-7e14892778f4": {
+      "text": "Dans le commerce alimentaire, l’étiquetage informe notamment sur la dénomination du produit, certains ingrédients et, selon les cas, son origine ou sa date de conservation. Ces informations aident à comparer les produits proposés.",
+      "source_label": "",
+      "model": "gpt-5.6-terra",
+      "version": 1,
+      "context_hash": "26e335612b80d9f33ce60860fe427f058ebe8d1d8b4d641371c93fe0408a0063",
+      "generated_at": "2026-09-30T10:16:56.622482+00:00"
+    },
+    "https://data.datatourisme.fr/13/f7005a78-717a-3439-8ff3-879cdaa5cf22": {
+      "text": "Le marché est un mode de vente où les acheteurs peuvent comparer directement les produits et les prix entre plusieurs stands. Cette confrontation des offres constitue l’une des caractéristiques historiques du commerce de marché.",
+      "source_label": "",
+      "model": "gpt-5.6-terra",
+      "version": 1,
+      "context_hash": "0a741225aff9111b6c0a0b230d5d17fa6879a609ad1f8b2d4134f9237d38965d",
+      "generated_at": "2026-09-30T10:16:56.622862+00:00"
+    },
+    "https://data.datatourisme.fr/13/292e278c-51df-388c-8141-2ae075a511d7": {
+      "text": "Le marronnier d’Inde, souvent planté dans les parcs et les places, se reconnaît à ses grandes feuilles composées et à ses fruits épineux. Ses marrons ne doivent pas être confondus avec les châtaignes comestibles.",
+      "source_label": "",
+      "model": "gpt-5.6-terra",
+      "version": 1,
+      "context_hash": "c4f38256fed557b4b2d03856c109ed79a29de8bcf3aa02dc906c4a243cdb95a3",
+      "generated_at": "2026-09-30T10:16:56.623268+00:00"
+    },
+    "https://data.datatourisme.fr/13/2364e7e2-86ed-322e-a900-10dd719b4174": {
+      "text": "Un pique-nique repose surtout sur des aliments faciles à transporter et à consommer. Lorsqu’ils sont périssables, leur conservation au frais et leur protection contre la chaleur restent importantes jusqu’au moment du repas.",
+      "source_label": "",
+      "model": "gpt-5.6-terra",
+      "version": 1,
+      "context_hash": "1678c3d68338d6259ac1362c300e97517aac913042b4dd32c7914f13c3ea6c42",
+      "generated_at": "2026-09-30T10:16:56.623690+00:00"
+    },
+    "https://data.datatourisme.fr/13/0f11f33a-c7ba-30d6-83f9-8af97a7c6b2f": {
+      "text": "Les conserves alimentaires reposent sur un traitement qui limite le développement des micro-organismes dans un contenant hermétique. Selon le produit, la chaleur, l’acidité et le respect des temps de traitement sont déterminants.",
+      "source_label": "",
+      "model": "gpt-5.6-terra",
+      "version": 1,
+      "context_hash": "fa2fe7f22f39830c7f675163d7c7c67d058e58afcf1ec49c6e6890b1620386f5",
+      "generated_at": "2026-09-30T10:16:56.624314+00:00"
+    },
+    "https://data.datatourisme.fr/13/e3346723-108c-3dcc-bb65-4ecaa356e3af": {
+      "text": "Une abbatiale est l’église d’une abbaye, c’est-à-dire d’une communauté monastique dirigée par un abbé ou une abbesse. Son architecture répond à la liturgie, mais aussi aux besoins pratiques et spirituels de la vie conventuelle.",
+      "source_label": "",
+      "model": "gpt-5.6-terra",
+      "version": 1,
+      "context_hash": "cc6e422022bc79c5baaf75fed8c8b7efc2d9e1887c76b23114a2b24f84608971",
+      "generated_at": "2026-09-30T10:16:56.625700+00:00"
+    },
+    "https://data.datatourisme.fr/13/0ba036c1-223f-3ca1-9ad2-1bf119d2fb9c": {
+      "text": "Les huiles de noix et de noisette sont obtenues par pression de fruits oléagineux. Un chauffage ou une torréfaction préalable peut modifier leur profil aromatique, tandis que l’exposition à l’air, à la lumière et à la chaleur favorise leur altération.",
+      "source_label": "",
+      "model": "gpt-5.6-terra",
+      "version": 1,
+      "context_hash": "67c6456ab7cdce5554bffb9eb64e8697fd56005bc31d738a2158b12a7ae19c04",
+      "generated_at": "2026-09-30T10:16:56.626114+00:00"
+    },
+    "https://data.datatourisme.fr/13/21a20378-218c-3d5e-82b7-5ae9667b2086": {
+      "text": "Les escargots comestibles sont des mollusques gastéropodes. En cuisine, ils sont souvent préparés après une phase de jeûne et de nettoyage, puis cuits ; leur élevage porte le nom d’héliciculture.",
+      "source_label": "",
+      "model": "gpt-5.6-terra",
+      "version": 1,
+      "context_hash": "38f656c15e554acfa1370f8b7c43252eadee8505b1c7f8fc6037e8ca753515d6",
+      "generated_at": "2026-09-30T10:16:56.628134+00:00"
+    },
+    "https://data.datatourisme.fr/13/16ceefb0-008b-3d00-92c1-995fb644fb07": {
+      "text": "Le qualificatif « paysan » renvoie historiquement au travail de la terre et à la vie rurale. Dans le commerce, son emploi ne constitue pas à lui seul un signe officiel de qualité : les conditions de production doivent être précisées séparément.",
+      "source_label": "",
+      "model": "gpt-5.6-terra",
+      "version": 1,
+      "context_hash": "d2632518e02ca89ce7337745cb27d2bab39216853e84493723788865b6019861",
+      "generated_at": "2026-09-30T10:16:56.630124+00:00"
+    },
+    "https://data.datatourisme.fr/13/866a0ff0-06ba-392a-a7ab-d62f20d59f9b": {
+      "text": "Les produits agricoles suivent des saisons de production, même lorsque certaines techniques permettent d’en prolonger la disponibilité. La diversité d’un étal dépend donc des cultures, des récoltes et des transformations réalisées par chaque producteur.",
+      "source_label": "",
+      "model": "gpt-5.6-terra",
+      "version": 1,
+      "context_hash": "8eed9f4ecefb321a428d548c17624464c5a26f3392e05adfb62996b0ba94ee71",
+      "generated_at": "2026-09-30T10:16:56.630742+00:00"
+    },
+    "https://data.datatourisme.fr/13/ff4978d3-1f8c-3aaf-b885-3c05e5f300a2": {
+      "text": "Les collemboles sont de petits arthropodes vivant principalement dans les sols, les litières de feuilles et les milieux humides. Ils participent à la décomposition de la matière organique et ne sont pas des insectes au sens strict.",
+      "source_label": "",
+      "model": "gpt-5.6-terra",
+      "version": 1,
+      "context_hash": "8802ca3ef06d16085608b04c4ef65cc91587eeeec39f8d00fe0e2d2850ba4861",
+      "generated_at": "2026-09-30T10:16:56.631779+00:00"
+    },
+    "https://data.datatourisme.fr/13/e497360a-d600-3e0f-960b-22386939aa09": {
+      "text": "Exposer des photographies en extérieur modifie leur perception : lumière naturelle, météo et circulation du public font partie de l’expérience. La présentation doit aussi tenir compte de la sensibilité des tirages à l’humidité, aux UV et au vent.",
+      "source_label": "",
+      "model": "gpt-5.6-terra",
+      "version": 1,
+      "context_hash": "21fe00e91bcf1a2e42136793d6aef1c140888056b3c95aa30650dfeab3013fbd",
+      "generated_at": "2026-09-30T10:16:56.632162+00:00"
+    },
+    "https://data.datatourisme.fr/13/157ab1b7-efe4-390a-a8ba-d7f28561ab4b": {
+      "text": "Dans l’art contemporain, une exposition peut associer des objets, des images, des textes ou des installations. Le titre d’une œuvre oriente parfois l’interprétation, mais il ne fixe pas une signification unique pour tous les visiteurs.",
+      "source_label": "",
+      "model": "gpt-5.6-terra",
+      "version": 1,
+      "context_hash": "4b59d7ce7d46d5594fe37e340ebc3d39481cc2d5e1b7fe038a472d0954773eb6",
+      "generated_at": "2026-09-30T10:16:56.632564+00:00"
+    },
+    "https://data.datatourisme.fr/13/d7bc5ecd-6f2c-3874-85db-7273f8782e1c": {
+      "text": "En photographie noir et blanc, les couleurs sont traduites en valeurs de gris. Le contraste, la lumière et les textures prennent alors une importance particulière pour rendre lisibles les volumes d’une architecture ou d’un paysage.",
+      "source_label": "",
+      "model": "gpt-5.6-terra",
+      "version": 1,
+      "context_hash": "0d145939c0c3d38b61ac75a298acaf81ae281cc252b5bfb86fccf6fb928f77f7",
+      "generated_at": "2026-09-30T10:16:56.633616+00:00"
+    },
+    "https://data.datatourisme.fr/13/c127f648-4128-31a5-9115-3cc904ff36c7": {
+      "text": "La reconstruction après un conflit ne concerne pas seulement les bâtiments : elle touche aussi les réseaux de transport, l’économie locale, les familles et la mémoire collective. Archives, témoignages et photographies aident à documenter ces périodes de relèvement.",
+      "source_label": "",
+      "model": "gpt-5.6-terra",
+      "version": 1,
+      "context_hash": "dbc12d00259d534c1d8f24057d07bf98534475be4156ed8b7094c84c4e46b047",
+      "generated_at": "2026-09-30T10:16:56.634252+00:00"
+    },
+    "https://data.datatourisme.fr/13/9f6da42b-5b11-37a7-9c91-2e97047fe7ee": {
+      "text": "La distillation par entraînement à la vapeur sépare des composés aromatiques volatils présents dans les plantes. Après condensation, on obtient généralement une phase huileuse et une eau aromatique ; le rendement varie selon l’espèce et la récolte.",
+      "source_label": "",
+      "model": "gpt-5.6-terra",
+      "version": 1,
+      "context_hash": "ed95af7f17b0c24a1307051a2d442bbbf0c6b15d458e8f015397366b65a15ee8",
+      "generated_at": "2026-09-30T10:16:56.635091+00:00"
+    },
+    "https://data.datatourisme.fr/13/78485b30-272a-398b-969a-005724aec579": {
+      "text": "L’expression « produits de pays » évoque généralement des produits liés à un territoire, mais elle ne correspond pas automatiquement à une appellation officielle. Pour connaître précisément leur origine, il faut se référer aux informations fournies par le vendeur.",
+      "source_label": "",
+      "model": "gpt-5.6-terra",
+      "version": 1,
+      "context_hash": "258780438d658eed4a9bd0b2cac19910380560c721f51d50cdedb2df67afe9a6",
+      "generated_at": "2026-09-30T10:16:56.637217+00:00"
+    },
+    "https://data.datatourisme.fr/13/fd6576db-5d43-3c81-a835-ed9cf8deb6de": {
+      "text": "La nature morte est un genre artistique centré sur des objets inanimés, tels que fruits, vaisselle, fleurs ou outils. En photographie comme en peinture, le choix du cadrage et de l’éclairage transforme ces objets ordinaires en composition.",
+      "source_label": "",
+      "model": "gpt-5.6-terra",
+      "version": 1,
+      "context_hash": "2d46715711b181aa75c5f4c2560e41cd387e9a7ac6130dec985a85ac0c4e10a4",
+      "generated_at": "2026-09-30T10:16:56.638051+00:00"
+    },
+    "https://data.datatourisme.fr/13/f7b2b9d5-9c49-33d0-bc26-febfdcdb67e4": {
+      "text": "Le mot exposition désigne la présentation organisée d’œuvres, d’objets ou de documents à un public. Même sans indication sur les techniques montrées, une visite peut s’appuyer sur l’observation des matières, des formes, des titres et de la mise en espace.",
+      "source_label": "",
+      "model": "gpt-5.6-terra",
+      "version": 1,
+      "context_hash": "544055ed660ec21f624bf71a2f239bdfd5e5fdede66ddc420dbb64a1fa8b1c4a",
+      "generated_at": "2026-09-30T10:16:56.639057+00:00"
+    },
+    "https://data.datatourisme.fr/13/88ff40fe-2106-34d5-bb7b-e08ac0bb1504": {
+      "text": "Une gratiferia est un espace de gratuité où des objets peuvent être donnés et pris sans échange d’argent. Elle repose sur le réemploi et la circulation des biens, mais ne doit pas être confondue avec une vente d’occasion ou un troc.",
+      "source_label": "",
+      "model": "gpt-5.6-terra",
+      "version": 1,
+      "context_hash": "0a4f4952a2395c5a2db9e3d182d949d0b5f4d1bd19098837648793f1b6a098a1",
+      "generated_at": "2026-09-30T10:16:56.639863+00:00"
+    },
+    "https://data.datatourisme.fr/13/db3a1188-3e05-3ed9-8cc9-4e4946d0e659": {
+      "text": "La veillée est traditionnellement un moment de rencontre en soirée, souvent marqué par la parole, les récits, les chants ou les jeux. Avant l’éclairage domestique généralisé, elle constituait un temps important de sociabilité dans de nombreuses régions.",
+      "source_label": "",
+      "model": "gpt-5.6-terra",
+      "version": 1,
+      "context_hash": "0d4e461469373cf93ea24a147969816af7165c740740a844ebf7eb2afe4cb4b7",
+      "generated_at": "2026-09-30T10:16:56.640479+00:00"
+    },
+    "https://data.datatourisme.fr/13/6f72cca7-432b-35de-8b51-a834024a1fbd": {
+      "text": "En randonnée, la distance ne suffit pas à mesurer l’effort : dénivelé, nature du sol, météo et rythme influencent fortement la difficulté. Un itinéraire court peut ainsi demander davantage de temps qu’un parcours plus long mais peu accidenté.",
+      "source_label": "",
+      "model": "gpt-5.6-terra",
+      "version": 1,
+      "context_hash": "b9f54a9e8953cfef9106c85e2550eb36be43516eff06dab46f11bec368154f70",
+      "generated_at": "2026-09-30T10:16:56.641440+00:00"
+    },
+    "https://data.datatourisme.fr/13/09e5df60-7acd-3e1b-8929-facfc1c193f8": {
+      "text": "Le bal traditionnel réunit des danses issues de répertoires populaires régionaux ou européens. Bourrée, scottish, valse et cercle circassien n’ont pas le même pas ni la même formation ; la musique sert de repère aux danseurs.",
+      "source_label": "",
+      "model": "gpt-5.6-terra",
+      "version": 1,
+      "context_hash": "ae989da8b594ff870359a4b5fac5ecbee5972b34d6999699f49f65b3dec8ccbe",
+      "generated_at": "2026-09-30T10:16:56.641850+00:00"
+    },
+    "https://data.datatourisme.fr/13/61309133-d7c6-3ea0-8b81-b13273415575": {
+      "text": "L’argile devient céramique après cuisson à haute température. Avant cette étape, une pièce doit sécher lentement pour limiter les fissures ; l’émail, appliqué avant une cuisson adaptée, forme ensuite une surface vitrifiée.",
+      "source_label": "",
+      "model": "gpt-5.6-terra",
+      "version": 1,
+      "context_hash": "d17667f193fe55f92cd0fdca369d37222652de358ef41f056921d19f4bf6ef4f",
+      "generated_at": "2026-09-30T10:16:56.642252+00:00"
+    },
+    "https://data.datatourisme.fr/13/48255a10-a06e-386c-babd-51e5e9dc4c70": {
+      "text": "Une performance est une forme artistique réalisée dans un temps donné, souvent devant un public. Elle peut faire dialoguer parole, geste, musique, image ou connaissances scientifiques, sans relever nécessairement du théâtre, du concert ou de la conférence seuls.",
+      "source_label": "",
+      "model": "gpt-5.6-terra",
+      "version": 1,
+      "context_hash": "6ed807b616742f6f59de773fa12210929df2b6da154d326d96ed5869d5e02109",
+      "generated_at": "2026-09-30T10:16:56.642657+00:00"
+    },
+    "https://data.datatourisme.fr/13/6cf47150-16e4-36b0-b906-878aec92841e": {
+      "text": "Le tarogato est un instrument à anche simple de la famille des bois, associé notamment aux traditions musicales hongroises et roumaines. Son timbre, proche par certains aspects de celui de la clarinette ou du saxophone, est très reconnaissable.",
+      "source_label": "",
+      "model": "gpt-5.6-terra",
+      "version": 1,
+      "context_hash": "33c163c1ed2261c10e877935c39e6621f3d989b26a8ae3cb97ee15df03f39a24",
+      "generated_at": "2026-09-30T10:16:56.644434+00:00"
+    },
+    "https://data.datatourisme.fr/13/9b3193f1-c44d-373b-b9b8-e285d744256c": {
+      "text": "L’automne correspond, dans l’hémisphère Nord, à la période où la durée du jour diminue après l’équinoxe de septembre. Les transformations des feuillages proviennent notamment de la baisse de chlorophylle, qui révèle d’autres pigments dans les feuilles.",
+      "source_label": "",
+      "model": "gpt-5.6-terra",
+      "version": 1,
+      "context_hash": "7450254e5ec38491abd63ff0460d2b2c95bd2a76c3c1bbf13a2950916474d46b",
+      "generated_at": "2026-09-30T10:16:56.645029+00:00"
+    },
+    "https://data.datatourisme.fr/13/11a1bb73-07e6-31fa-8d50-41de92abf5ef": {
+      "text": "La coinche est une variante de la belote jouée généralement à quatre, en deux équipes. Son principe repose sur les enchères : les joueurs annoncent un contrat, puis cherchent à réaliser suffisamment de plis pour l’emporter.",
+      "source_label": "",
+      "model": "gpt-5.6-terra",
+      "version": 1,
+      "context_hash": "c71c71c677143b151a1a32f3f30a8a9a497b3c9782f756061aec2a71e4a3c4c3",
+      "generated_at": "2026-09-30T10:16:56.645814+00:00"
+    },
+    "https://data.datatourisme.fr/13/f89b474b-578e-389b-b48d-2c9731ac1b94": {
+      "text": "La gravure consiste à créer une image sur une matrice — bois, métal, pierre ou autre support — afin d’en tirer des impressions. Cette technique se distingue du dessin original, même si chaque tirage peut présenter des particularités.",
+      "source_label": "",
+      "model": "gpt-5.6-terra",
+      "version": 1,
+      "context_hash": "5780af300a20c2a4a88999c7d8e0901f0c0b9bf6809007bd969b8490a6f90b0a",
+      "generated_at": "2026-09-30T10:16:56.646335+00:00"
+    },
+    "https://data.datatourisme.fr/13/c84f4788-6b24-332c-a6a4-b9aff0154191": {
+      "text": "Une exposition collective peut faire dialoguer des pratiques très différentes, de l’image photographique à la sculpture ou aux arts numériques. Chaque technique possède ses matériaux, ses outils et ses modes de présentation, ce qui multiplie les façons d’observer une œuvre.",
+      "source_label": "",
+      "model": "gpt-5.6-terra",
+      "version": 1,
+      "context_hash": "a508be0dae172faef30448e50d271ad6f9e7858afc775524b67f83a6cafd1c9e",
+      "generated_at": "2026-09-30T10:16:56.646799+00:00"
+    },
+    "https://data.datatourisme.fr/13/2f9ac200-9426-3f92-9cef-75047290c68e": {
+      "text": "Les tailles indiquées sur les vêtements ne sont pas parfaitement uniformes : elles varient selon les époques, les fabricants, les coupes et les matières. Essayer ou comparer les mesures reste donc souvent plus révélateur qu’une simple étiquette.",
+      "source_label": "",
+      "model": "gpt-5.6-terra",
+      "version": 1,
+      "context_hash": "13bebe07c5fe981a14e9e8d6761d25c6c3cf1de01e65c783963962486671082b",
+      "generated_at": "2026-09-30T10:16:56.647834+00:00"
+    },
+    "https://data.datatourisme.fr/13/1c7eaf5a-c4ad-32d5-ae31-14663a013e60": {
+      "text": "Lors d’un concert, l’interprétation ne reproduit jamais exactement un enregistrement : l’acoustique, l’énergie des musiciens, les arrangements et les réactions du public participent à faire de chaque représentation un moment singulier.",
+      "source_label": "",
+      "model": "gpt-5.6-terra",
+      "version": 1,
+      "context_hash": "0b3332f70bac279631bbb20bca2356643aff2465e9bb918af82e7dadbf56fd07",
+      "generated_at": "2026-09-30T10:16:56.648211+00:00"
+    },
+    "https://data.datatourisme.fr/13/722550ed-ba68-3a62-9605-ec8b3eaebdd4": {
+      "text": "Halloween est une contraction de l’expression anglaise « All Hallows’ Eve », la veille de la Toussaint. La fête contemporaine mêle des traditions de déguisement, de lanternes et de récits fantastiques, développées surtout dans le monde anglophone.",
+      "source_label": "",
+      "model": "gpt-5.6-terra",
+      "version": 1,
+      "context_hash": "bf9e1899bde746a5a00b0f2dad399acc3e15c3e53ccab09957a5bc51bddead6b",
+      "generated_at": "2026-09-30T10:16:56.649026+00:00"
+    },
+    "https://data.datatourisme.fr/13/0b030c37-b0f5-3a41-87e3-ef72b4447eb8": {
+      "text": "Un arbre se reconnaît notamment par ses feuilles, ses bourgeons, son écorce, ses fleurs ou ses fruits. Le nom botanique permet d’identifier précisément une espèce, tandis qu’une variété cultivée peut présenter des caractéristiques particulières de forme, de couleur ou de croissance.",
+      "source_label": "",
+      "model": "gpt-5.6-terra",
+      "version": 1,
+      "context_hash": "0b263f327ad0680877adc5ea03293e8e7a1e67dfa8f143a07c25586d97a7a95f",
+      "generated_at": "2026-09-30T10:16:56.649393+00:00"
     }
   }
 }
