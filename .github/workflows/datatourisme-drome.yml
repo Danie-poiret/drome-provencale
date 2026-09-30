@@ -28,6 +28,30 @@ jobs:
           DATATOURISME_EVENT_LIMIT: "150"
         run: python extract_datatourisme_drome.py
 
+      - name: Verifier le nombre de nouvelles redactions payantes
+        env:
+          MAX_EVENT_AI_CALLS: "60"
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          from generate_event_pages import clean, event_hash
+
+          events = json.loads(Path("agenda.json").read_text(encoding="utf-8"))["events"]
+          cache = json.loads(Path("_event_seo_cache.json").read_text(encoding="utf-8"))
+          missing = []
+          for event in events:
+              entry = cache.get(clean(event.get("url")))
+              if not isinstance(entry, dict) or entry.get("hash") != event_hash(event):
+                  missing.append(event)
+
+          maximum = int(os.environ["MAX_EVENT_AI_CALLS"])
+          print(f"Rédactions payantes prévues : {len(missing)} (plafond : {maximum})")
+          if len(missing) > maximum:
+              raise SystemExit("Arrêt avant appel OpenAI : plafond de coût dépassé")
+          PY
+
       - name: Generer 150 fiches uniques comme agenda.vivreanyons.fr
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
