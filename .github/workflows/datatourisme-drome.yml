@@ -46,6 +46,7 @@ jobs:
 
           git add agenda.json
           git add _event_seo_cache.json
+          git add _saviezvous_cache.json
           git add index.html
           git add evenements
           git add sitemap.xml
