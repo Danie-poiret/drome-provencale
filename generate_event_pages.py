@@ -30,6 +30,7 @@ ROOT = Path(__file__).resolve().parent
 AGENDA = ROOT / "agenda.json"
 EVENTS_DIR = ROOT / "evenements"
 CACHE_FILE = ROOT / "_event_seo_cache.json"
+FACT_CACHE = ROOT / "_saviezvous_cache.json"
 SITEMAP = ROOT / "sitemap.xml"
 ROBOTS = ROOT / "robots.txt"
 ANECDOTES_FILE = ROOT / "village_anecdotes.json"
@@ -233,6 +234,40 @@ def load_json(path: Path, default):
 
 def save_json(path: Path, data) -> None:
     path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
+def topic_fact_context(event: dict, editorial: dict) -> str:
+    """Contexte stable utilisé pour invalider un fait devenu hors sujet."""
+    return " ".join([
+        clean(event.get("title", "")),
+        clean(editorial.get("question", "")),
+        clean(event.get("description", "")),
+        clean(editorial.get("seo_title", "")),
+        clean(editorial.get("meta_description", "")),
+        clean(editorial.get("lead", "")),
+        clean(editorial.get("discover_title", "")),
+        clean(editorial.get("discover_text", "")),
+        clean(editorial.get("why_text", "")),
+    ])
+
+
+def topic_fact_context_hash(event: dict, editorial: dict) -> str:
+    return hashlib.sha256(topic_fact_context(event, editorial).encode("utf-8")).hexdigest()
+
+
+def cached_topic_fact(event: dict, editorial: dict, entries: dict) -> dict | None:
+    """Retourne le fait thématique seulement s'il correspond encore à la fiche."""
+    record = entries.get(clean(event.get("url"))) if isinstance(entries, dict) else None
+    if not isinstance(record, dict):
+        return None
+    text = clean(record.get("text"))
+    if not text or clean(record.get("context_hash")) != topic_fact_context_hash(event, editorial):
+        return None
+    return {
+        "text": text,
+        "source_label": clean(record.get("source_label", "")),
+        "topic_fact": True,
+    }
 
 
 WEEKDAYS = ("lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche")
@@ -693,14 +728,27 @@ def render_page(
         )
     actions_html = f'<div class="event-actions">{"".join(actions)}</div>' if actions else ""
 
-    anecdote_html = (
-        '<section class="section anecdote"><h2>💡 Le savais-tu sur '
-        f'{esc(commune or "ce village")} ?</h2>'
-        f'<p>{esc(anecdote.get("text"))}</p>'
-        '<p class="source-note">Source : '
-        f'<a href="{esc(anecdote.get("source_url"))}" target="_blank" rel="noopener noreferrer">'
-        f'{esc(anecdote.get("source_label") or "référence historique")}</a></p></section>'
-    )
+    if anecdote.get("topic_fact"):
+        source_label = clean(anecdote.get("source_label"))
+        source_note = (
+            f'<p class="source-note">Repère documentaire : {esc(source_label)}</p>'
+            if source_label else ""
+        )
+        anecdote_html = (
+            '<section class="section anecdote"><h2>💡 Le savais-tu ?</h2>'
+            f'<p>{esc(anecdote.get("text"))}</p>{source_note}</section>'
+        )
+    else:
+        # Secours réel et sourcé par village, utilisé uniquement tant qu'un
+        # nouvel événement n'a pas encore reçu son fait thématique.
+        anecdote_html = (
+            '<section class="section anecdote"><h2>💡 Le savais-tu sur '
+            f'{esc(commune or "ce village")} ?</h2>'
+            f'<p>{esc(anecdote.get("text"))}</p>'
+            '<p class="source-note">Source : '
+            f'<a href="{esc(anecdote.get("source_url"))}" target="_blank" rel="noopener noreferrer">'
+            f'{esc(anecdote.get("source_label") or "référence historique")}</a></p></section>'
+        )
 
     info = [f'<div class="info-row info-date"><span>📅</span><div><strong>Dates et horaires</strong><br>{esc(date_text)}</div></div>']
     if address:
@@ -926,6 +974,10 @@ def main() -> None:
     if not isinstance(anecdote_catalog, dict):
         raise RuntimeError("village_anecdotes.json est invalide")
     anecdotes = assign_anecdotes(events, anecdote_catalog)
+    fact_payload = load_json(FACT_CACHE, {})
+    topic_entries = fact_payload.get("entries", {}) if isinstance(fact_payload, dict) else {}
+    if not isinstance(topic_entries, dict):
+        topic_entries = {}
     seo_titles = build_unique_seo_titles(events)
 
     cache = load_json(CACHE_FILE, {})
@@ -982,8 +1034,9 @@ def main() -> None:
         out_dir.mkdir(parents=True, exist_ok=True)
         page_editorial = dict(editorial)
         page_editorial["seo_title"] = seo_titles[key]
+        page_anecdote = cached_topic_fact(event, editorial, topic_entries) or anecdotes[key]
         (out_dir / "index.html").write_text(
-            render_page(event, page_editorial, events, slug_map, anecdotes[key]),
+            render_page(event, page_editorial, events, slug_map, page_anecdote),
             encoding="utf-8",
         )
         print(f"FICHE {i:03d}/{len(events)}: {slug_map[key]}")
@@ -991,6 +1044,13 @@ def main() -> None:
     (EVENTS_DIR / "index.html").write_text(render_index(events, slug_map), encoding="utf-8")
     save_json(CACHE_FILE, cache)
     write_sitemap(events, slug_map)
+
+    if os.getenv("OPENAI_API_KEY", "").strip():
+        from fix_saviezvous import main as refresh_topic_facts
+
+        refresh_topic_facts()
+    else:
+        print("Le savais-tu : cache thématique réutilisé sans nouvel appel OpenAI.")
 
     print("=== FICHES ÉVÉNEMENTS ===")
     print(f"Fiches générées : {len(events)}")
