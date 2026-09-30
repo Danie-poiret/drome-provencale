@@ -132,6 +132,12 @@ def event_slugs(events: list[dict]) -> dict[str, str]:
         slug = base
         if slug in used:
             slug = f"{base}-{slugify(event.get('commune', 'lieu'), 35)}"
+        if slug in used:
+            identity = clean(event.get("datatourisme_uuid")) or key
+            suffix = hashlib.sha256(identity.encode("utf-8")).hexdigest()[:8]
+            slug = f"{base}-{slugify(event.get('commune', 'lieu'), 24)}-{suffix}"
+        if slug in used:
+            raise RuntimeError(f"Collision de slug impossible à résoudre : {slug}")
         used.add(slug)
         result[key] = slug
     return result

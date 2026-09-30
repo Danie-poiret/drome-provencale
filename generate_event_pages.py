@@ -40,6 +40,7 @@ BANNER_IMAGE_URL = urljoin(SITE, "banniere-livres-drome-ardeche.png")
 BANNER_LINK_URL = "https://link.amazon/B029AvcrG"
 OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gpt-5.6-terra")
 MAX_EVENT_AI_CALLS = int(os.getenv("MAX_EVENT_AI_CALLS", "100"))
+FAIL_ON_EVENT_FALLBACKS = os.getenv("FAIL_ON_EVENT_FALLBACKS", "0") == "1"
 PROMPT_VERSION = 1
 
 MONTHS = {
@@ -634,6 +635,20 @@ def assign_anecdotes(events: list[dict], catalog: dict) -> dict[str, dict]:
     return assigned
 
 
+def temporary_topic_fact(event: dict) -> dict:
+    """Bloc transitoire remplacé par fix_saviezvous avant toute publication."""
+    title = clean(event.get("title")) or "cette sortie"
+    return {
+        "text": (
+            f"Le fait thématique consacré à « {title} » est en cours de contrôle. "
+            "La publication automatique s'arrêtera si son texte définitif n'est pas validé."
+        ),
+        "source_label": "",
+        "topic_fact": True,
+        "temporary": True,
+    }
+
+
 def ics_escape(value: str) -> str:
     return clean(value).replace("\\", "\\\\").replace(";", "\\;").replace(",", "\\,")
 
@@ -970,10 +985,6 @@ def main() -> None:
     if not events:
         raise RuntimeError("agenda.json ne contient aucun événement")
 
-    anecdote_catalog = load_json(ANECDOTES_FILE, {})
-    if not isinstance(anecdote_catalog, dict):
-        raise RuntimeError("village_anecdotes.json est invalide")
-    anecdotes = assign_anecdotes(events, anecdote_catalog)
     fact_payload = load_json(FACT_CACHE, {})
     topic_entries = fact_payload.get("entries", {}) if isinstance(fact_payload, dict) else {}
     if not isinstance(topic_entries, dict):
@@ -992,6 +1003,12 @@ def main() -> None:
         slug = base
         if slug in used:
             slug = f"{base}-{slugify(event.get('commune', 'lieu'), 35)}"
+        if slug in used:
+            identity = clean(event.get("datatourisme_uuid")) or key
+            suffix = hashlib.sha256(identity.encode("utf-8")).hexdigest()[:8]
+            slug = f"{base}-{slugify(event.get('commune', 'lieu'), 24)}-{suffix}"
+        if slug in used:
+            raise RuntimeError(f"Collision de slug impossible à résoudre : {slug}")
         used.add(slug)
         slug_map[key] = slug
 
@@ -1034,7 +1051,13 @@ def main() -> None:
         out_dir.mkdir(parents=True, exist_ok=True)
         page_editorial = dict(editorial)
         page_editorial["seo_title"] = seo_titles[key]
-        page_anecdote = cached_topic_fact(event, editorial, topic_entries) or anecdotes[key]
+        page_anecdote = cached_topic_fact(event, editorial, topic_entries)
+        if not page_anecdote:
+            if not os.getenv("OPENAI_API_KEY", "").strip():
+                raise RuntimeError(
+                    f"Fait thématique absent pour {slug_map[key]} et aucun accès API disponible"
+                )
+            page_anecdote = temporary_topic_fact(event)
         (out_dir / "index.html").write_text(
             render_page(event, page_editorial, events, slug_map, page_anecdote),
             encoding="utf-8",
@@ -1044,6 +1067,11 @@ def main() -> None:
     (EVENTS_DIR / "index.html").write_text(render_index(events, slug_map), encoding="utf-8")
     save_json(CACHE_FILE, cache)
     write_sitemap(events, slug_map)
+
+    if FAIL_ON_EVENT_FALLBACKS and fallbacks:
+        raise RuntimeError(
+            f"Publication interrompue : {fallbacks} fiche(s) ont utilisé un texte de secours"
+        )
 
     if os.getenv("OPENAI_API_KEY", "").strip():
         from fix_saviezvous import main as refresh_topic_facts

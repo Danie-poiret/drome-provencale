@@ -13,6 +13,7 @@ La clé API doit être fournie dans DATATOURISME_API_KEY.
 from __future__ import annotations
 
 import json
+import math
 import os
 import re
 from collections import Counter
@@ -31,22 +32,31 @@ PAGE_SIZE = 250
 MAX_PAGES = 100
 TIMEOUT = 45
 EVENT_LIMIT = int(os.getenv("DATATOURISME_EVENT_LIMIT", "0"))
+NYONS_LATITUDE = 44.3607
+NYONS_LONGITUDE = 5.1399
 
-# Communes retenues pour les 50 fiches supplémentaires autour de Nyons.
-# L'ordre va globalement du Nyonsais vers le reste de la Drôme provençale.
-# Nyons est volontairement absent et fait aussi l'objet d'un filtre explicite.
+# Ordre de secours lorsque DATAtourisme ne fournit pas de coordonnées.
+# La sélection principale repose sur la distance réelle à Nyons. Nyons est
+# volontairement absent et fait aussi l'objet d'un filtre explicite.
 NEARBY_NYONS_COMMUNES = (
-    "Buis-les-Baronnies", "Venterol", "Vinsobres", "Mirabel-aux-Baronnies",
-    "Saint-Maurice-sur-Eygues", "Tulette", "Bouchet", "Suze-la-Rousse",
-    "La Baume-de-Transit", "Rochegude", "Montbrun-les-Bains", "Sahune",
-    "Rémuzat", "Verclause", "Les Pilles", "Saint-May", "Taulignan",
-    "Grignan", "Colonzelle", "Réauville", "Montségur-sur-Lauzon",
+    "Aubres", "Venterol", "Mirabel-aux-Baronnies", "Piégon", "Les Pilles",
+    "Châteauneuf-de-Bordette", "Condorcet", "Vinsobres", "Curnier",
+    "Bénivay-Ollon", "Saint-Maurice-sur-Eygues", "Propiac",
+    "Mérindol-les-Oliviers", "Mollans-sur-Ouvèze", "Buis-les-Baronnies",
+    "Sainte-Jalle", "Saint-Ferréol-Trente-Pas", "Sahune", "Rémuzat",
+    "Vercoiran", "La Penne-sur-l'Ouvèze", "Rochebrune", "Montguers",
+    "Beauvoisin", "Eygaliers", "Plaisians", "Pierrelongue",
+    "La Roche-sur-le-Buis", "Bésignan", "Tulette", "Bouchet",
+    "Suze-la-Rousse", "La Baume-de-Transit", "Rochegude",
+    "Montbrun-les-Bains", "Verclause", "Saint-May", "Taulignan", "Grignan",
+    "Colonzelle", "Réauville", "Montségur-sur-Lauzon",
     "Saint-Paul-Trois-Châteaux", "Valaurie", "Clansayes", "La Garde-Adhémar",
     "Le Poët-Laval", "Dieulefit", "Bourdeaux", "Comps", "Pont-de-Barret",
     "Rochebaudin", "La Bégude-de-Mazenc", "La Touche", "Allan",
-    "Malataverne", "Donzère", "Pierrelatte",
+    "Malataverne", "Donzère", "Pierrelatte", "Montélimar", "Marsanne",
+    "Cléon-d'Andran", "Crest", "Saillans", "Die",
 )
-PRESERVED_EVENT_TARGET = 50
+PRESERVED_EVENT_TARGET = 100
 
 # Les champs parents permettent de récupérer leurs sous-propriétés sans faire
 # un appel de détail pour chaque événement.
@@ -89,18 +99,75 @@ def commune_key(value: Any) -> str:
     return re.sub(r"[^a-z0-9]+", "", text)
 
 
-def select_events(events: list[dict], previous_urls: set[str], limit: int) -> list[dict]:
-    """Conserve les 50 fiches actuelles puis ajoute les villages proches de Nyons.
+def distance_from_nyons(event: dict) -> float | None:
+    try:
+        latitude = float(event.get("latitude"))
+        longitude = float(event.get("longitude"))
+    except (TypeError, ValueError):
+        return None
+    if not (-90 <= latitude <= 90 and -180 <= longitude <= 180):
+        return None
 
-    Les ajouts sont effectués en plusieurs tours (une fiche par commune à chaque
-    tour) afin d'éviter qu'une grande ville occupe toute la sélection.
+    lat1 = math.radians(NYONS_LATITUDE)
+    lat2 = math.radians(latitude)
+    delta_lat = lat2 - lat1
+    delta_lon = math.radians(longitude - NYONS_LONGITUDE)
+    value = (
+        math.sin(delta_lat / 2) ** 2
+        + math.cos(lat1) * math.cos(lat2) * math.sin(delta_lon / 2) ** 2
+    )
+    value = min(1.0, max(0.0, value))
+    return round(6371.0088 * 2 * math.atan2(math.sqrt(value), math.sqrt(1 - value)), 2)
+
+
+def event_signature(event: dict) -> tuple[str, str, str, str, str]:
+    """Détecte un doublon tout en gardant deux rendez-vous réellement distincts.
+
+    Certains marchés ont le même titre, les mêmes dates annuelles et la même
+    commune, mais se tiennent à des jours ou horaires différents. Le champ
+    ``opening`` permet de ne pas supprimer l'un de ces rendez-vous légitimes.
     """
-    events = [e for e in events if commune_key(e.get("commune")) != "nyons"]
+    return (
+        commune_key(event.get("title")),
+        clean(event.get("start_date")),
+        clean(event.get("end_date")),
+        commune_key(event.get("commune")),
+        commune_key(event.get("opening")),
+    )
+
+
+def select_events(events: list[dict], previous_events: list[dict], limit: int) -> list[dict]:
+    """Conserve les fiches valides, puis élargit progressivement autour de Nyons.
+
+    Les villages encore absents passent d'abord, du plus proche au plus éloigné.
+    Les places restantes sont ensuite réparties en plusieurs tours afin qu'une
+    grande ville ne puisse pas occuper toute la sélection.
+    """
+    events = [
+        event for event in events
+        if clean(event.get("commune")) and commune_key(event.get("commune")) != "nyons"
+    ]
     if limit <= 0:
         return events
 
     by_url = {clean(e.get("url")): e for e in events}
-    preserved = [by_url[url] for url in previous_urls if url in by_url]
+    preserved = []
+    for old_event in previous_events:
+        url = clean(old_event.get("url"))
+        fresh_event = by_url.get(url)
+        if not url or not fresh_event:
+            continue
+        # Les textes déjà payés restent attachés à leurs données d'origine.
+        # On ajoute seulement les coordonnées, qui n'invalident pas le cache
+        # éditorial, afin d'éviter de repayer une fiche déjà rédigée.
+        event = dict(old_event)
+        for field in ("latitude", "longitude"):
+            if field in fresh_event:
+                event[field] = fresh_event[field]
+        distance = distance_from_nyons(event)
+        if distance is not None:
+            event["distance_from_nyons_km"] = distance
+        preserved.append(event)
     preserved.sort(
         key=lambda e: (
             max(parse_date(e["start_date"]) or date.today(), date.today()),
@@ -110,26 +177,16 @@ def select_events(events: list[dict], previous_urls: set[str], limit: int) -> li
     )
     selected = preserved[: min(PRESERVED_EVENT_TARGET, limit)]
     used = {clean(e.get("url")) for e in selected}
-    used_by_commune = Counter(clean(e.get("commune")) for e in selected)
-
-    anecdote_catalog = {}
-    if ANECDOTES_FILE.exists():
-        try:
-            anecdote_catalog = json.loads(ANECDOTES_FILE.read_text(encoding="utf-8"))
-        except Exception:
-            anecdote_catalog = {}
-    anecdote_capacity = {
-        clean(commune): len(items)
-        for commune, items in anecdote_catalog.items()
-        if isinstance(items, list)
-    }
+    used_signatures = {event_signature(e) for e in selected}
+    used_by_commune = Counter(commune_key(e.get("commune")) for e in selected)
 
     rank = {commune_key(name): pos for pos, name in enumerate(NEARBY_NYONS_COMMUNES)}
     grouped: dict[str, list[dict]] = {}
     for event in events:
         key = commune_key(event.get("commune"))
         url = clean(event.get("url"))
-        if url in used or key not in rank:
+        signature = event_signature(event)
+        if url in used or signature in used_signatures:
             continue
         grouped.setdefault(key, []).append(event)
 
@@ -141,47 +198,55 @@ def select_events(events: list[dict], previous_urls: set[str], limit: int) -> li
             )
         )
 
-    depth = 0
+    fallback_base = len(rank) + 1000
+
+    def group_priority(key: str):
+        candidates = grouped[key]
+        distances = [distance_from_nyons(event) for event in candidates]
+        known = [value for value in distances if value is not None]
+        if known:
+            return (0, min(known), rank.get(key, fallback_base), key)
+        return (1, rank.get(key, fallback_base), key)
+
+    ordered_keys = sorted(grouped, key=group_priority)
+
+    def add_event(event: dict) -> None:
+        event["distance_from_nyons_km"] = distance_from_nyons(event)
+        selected.append(event)
+        used.add(clean(event.get("url")))
+        used_signatures.add(event_signature(event))
+        used_by_commune[commune_key(event.get("commune"))] += 1
+
+    # Un nouveau village proche vaut mieux qu'une nouvelle fiche d'un village
+    # déjà représenté. C'est le sens de « si déjà fait, aller plus loin ».
+    for key in ordered_keys:
+        if len(selected) >= limit:
+            break
+        if used_by_commune[key] == 0 and grouped[key]:
+            add_event(grouped[key].pop(0))
+
+    # Puis un événement par commune à chaque tour, toujours par distance.
     while len(selected) < limit:
         added_this_round = 0
-        for commune in NEARBY_NYONS_COMMUNES:
-            candidates = grouped.get(commune_key(commune), [])
-            if depth >= len(candidates):
-                continue
-            event = candidates[depth]
-            event_commune = clean(event.get("commune"))
-            if used_by_commune[event_commune] >= anecdote_capacity.get(event_commune, 0):
-                continue
-            selected.append(event)
-            used.add(clean(event.get("url")))
-            used_by_commune[event_commune] += 1
-            added_this_round += 1
+        for key in ordered_keys:
             if len(selected) >= limit:
                 break
+            while grouped[key] and (
+                clean(grouped[key][0].get("url")) in used
+                or event_signature(grouped[key][0]) in used_signatures
+            ):
+                grouped[key].pop(0)
+            if not grouped[key]:
+                continue
+            add_event(grouped[key].pop(0))
+            added_this_round += 1
         if not added_this_round:
             break
-        depth += 1
-
-    # Sécurité : un complément ne peut utiliser qu'une commune disposant encore
-    # d'une anecdote sourcée et non attribuée.
-    if len(selected) < limit:
-        for event in events:
-            url = clean(event.get("url"))
-            event_commune = clean(event.get("commune"))
-            if url in used:
-                continue
-            if used_by_commune[event_commune] >= anecdote_capacity.get(event_commune, 0):
-                continue
-            selected.append(event)
-            used.add(url)
-            used_by_commune[event_commune] += 1
-            if len(selected) >= limit:
-                break
 
     if len(selected) < limit:
         raise RuntimeError(
-            f"Seulement {len(selected)} fiches peuvent être produites avec une anecdote "
-            f"réelle et unique ; objectif demandé : {limit}."
+            f"Seulement {len(selected)} fiches distinctes sans Nyons sont disponibles ; "
+            f"objectif demandé : {limit}."
         )
 
     selected.sort(
@@ -360,6 +425,56 @@ def address_data(poi: dict) -> tuple[str, str, str]:
     return commune, address, department
 
 
+def geo_data(poi: dict) -> tuple[float | None, float | None]:
+    """Retrouve latitude/longitude malgré les variantes de clés du JSON-LD."""
+
+    def short_key(value: Any) -> str:
+        text = clean(value).lower()
+        return re.split(r"[:/#]", text)[-1]
+
+    def number(value: Any) -> float | None:
+        if isinstance(value, dict):
+            for key in ("value", "@value"):
+                if key in value:
+                    return number(value[key])
+            return None
+        if isinstance(value, list):
+            for item in value:
+                result = number(item)
+                if result is not None:
+                    return result
+            return None
+        try:
+            return float(str(value).replace(",", "."))
+        except (TypeError, ValueError):
+            return None
+
+    def walk(value: Any):
+        if isinstance(value, dict):
+            latitude = None
+            longitude = None
+            for key, child in value.items():
+                name = short_key(key)
+                if name in {"latitude", "lat"}:
+                    latitude = number(child)
+                elif name in {"longitude", "lon", "lng", "long"}:
+                    longitude = number(child)
+            if (
+                latitude is not None
+                and longitude is not None
+                and 41 <= latitude <= 52
+                and -6 <= longitude <= 10
+            ):
+                yield latitude, longitude
+            for child in value.values():
+                yield from walk(child)
+        elif isinstance(value, list):
+            for child in value:
+                yield from walk(child)
+
+    return next(walk(poi.get("isLocatedAt") or poi), (None, None))
+
+
 def contact_text(poi: dict) -> tuple[str, str]:
     contacts = poi.get("hasContact") or {}
     phones = values_for_key(contacts, {"telephone", "phone"})
@@ -472,6 +587,7 @@ def normalize_poi(poi: dict, today: date) -> dict | None:
         return None
 
     commune, address, department = address_data(poi)
+    latitude, longitude = geo_data(poi)
     # Le filtre API fait foi. Cette vérification supplémentaire ne rejette que
     # les objets explicitement rattachés à un autre département.
     if department and department != DEPARTMENT_INSEE and len(department) == 2:
@@ -489,7 +605,7 @@ def normalize_poi(poi: dict, today: date) -> dict | None:
     last_update = clean(poi.get("lastUpdate") or poi.get("lastUpdateDatatourisme"))
     image_url, image_credit, image_rights = image_data(poi)
 
-    return {
+    event = {
         "title": title,
         "start_date": start.isoformat(),
         "end_date": end.isoformat(),
@@ -512,6 +628,11 @@ def normalize_poi(poi: dict, today: date) -> dict | None:
         "source_name": "DATAtourisme",
         "source_license": "Licence Ouverte 2.0",
     }
+    if latitude is not None and longitude is not None:
+        event["latitude"] = latitude
+        event["longitude"] = longitude
+        event["distance_from_nyons_km"] = distance_from_nyons(event)
+    return event
 
 
 def fetch_all(api_key: str) -> list[dict]:
@@ -566,25 +687,35 @@ def main() -> None:
             previous = json.loads(OUT.read_text(encoding="utf-8"))
         except Exception:
             previous = {}
-    previous_urls = {
-        clean(event.get("url"))
-        for event in previous.get("events", [])
+    previous_events = [
+        event for event in previous.get("events", [])
         if isinstance(event, dict) and clean(event.get("url"))
-    }
+    ]
 
     today = date.today()
     raw = fetch_all(api_key)
     events = []
-    seen = set()
+    seen_urls = set()
+    seen_uuids = set()
+    seen_signatures = set()
 
     for poi in raw:
         event = normalize_poi(poi, today)
         if not event:
             continue
-        key = event["url"]
-        if key in seen:
+        url = clean(event.get("url"))
+        uuid = clean(event.get("datatourisme_uuid"))
+        signature = event_signature(event)
+        if (
+            url in seen_urls
+            or (uuid and uuid in seen_uuids)
+            or signature in seen_signatures
+        ):
             continue
-        seen.add(key)
+        seen_urls.add(url)
+        if uuid:
+            seen_uuids.add(uuid)
+        seen_signatures.add(signature)
         events.append(event)
 
     events.sort(
@@ -596,7 +727,7 @@ def main() -> None:
     )
 
     if EVENT_LIMIT > 0:
-        events = select_events(events, previous_urls, EVENT_LIMIT)
+        events = select_events(events, previous_events, EVENT_LIMIT)
         print(
             f"Sélection limitée à {len(events)} événements : "
             f"fiches existantes conservées, puis villages autour de Nyons (Nyons exclu)."
