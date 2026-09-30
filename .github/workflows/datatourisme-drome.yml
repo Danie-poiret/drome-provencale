@@ -39,6 +39,11 @@ jobs:
           DATATOURISME_EVENT_LIMIT: "150"
         run: python extract_datatourisme_drome.py
 
+      - name: Tester les fiches detail DATAtourisme
+        env:
+          DATATOURISME_API_KEY: ${{ secrets.DATATOURISME_API_KEY }}
+        run: python audit_datatourisme_detail_images.py
+
       - name: Enregistrer uniquement extraction et agenda
         shell: bash
         run: |
