@@ -1,0 +1,67 @@
+name: Appliquer les titles SEO uniques
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/apply-unique-seo-titles.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Recuperer le depot
+        uses: actions/checkout@v4
+
+      - name: Installer Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Generer les fiches sans appel OpenAI
+        env:
+          MAX_EVENT_AI_CALLS: "0"
+        run: python generate_event_pages.py
+
+      - name: Ajouter attribution DATAtourisme
+        run: python prepare_datatourisme_test.py
+
+      - name: Verifier les titles uniques
+        run: |
+          python - <<'PY'
+          import html
+          import re
+          from pathlib import Path
+
+          titles = []
+          for path in Path("evenements").glob("*/index.html"):
+              text = path.read_text(encoding="utf-8")
+              match = re.search(r"<title>(.*?)</title>", text, re.S)
+              if not match:
+                  raise SystemExit(f"title manquant: {path}")
+              titles.append(html.unescape(match.group(1)).strip().casefold())
+
+          if len(titles) != 100 or len(titles) != len(set(titles)):
+              raise SystemExit(
+                  f"titles invalides: {len(titles)} fiches, "
+                  f"{len(set(titles))} uniques"
+              )
+          print("100 fiches, 100 titles uniques")
+          PY
+
+      - name: Enregistrer les fiches
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generate_event_pages.py evenements
+          if git diff --cached --quiet; then
+            echo "Aucun changement."
+            exit 0
+          fi
+          git commit -m "Appliquer les titles SEO uniques"
+          git push
