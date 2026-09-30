@@ -2,12 +2,58 @@ name: DATAtourisme Drôme - 150 événements
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/datatourisme-drome.yml"
 
 permissions:
   contents: write
 
 jobs:
+  audit-images:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Recuperer le depot
+        uses: actions/checkout@v4
+
+      - name: Installer Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Installer les dependances
+        run: python -m pip install -r requirements.txt
+
+      - name: Appliquer la correction photos DATAtourisme
+        run: |
+          python patch_datatourisme_images.py
+          python -m py_compile extract_datatourisme_drome.py
+
+      - name: Auditer les images sans appel OpenAI
+        env:
+          DATATOURISME_API_KEY: ${{ secrets.DATATOURISME_API_KEY }}
+          DATATOURISME_EVENT_LIMIT: "150"
+        run: python extract_datatourisme_drome.py
+
+      - name: Enregistrer uniquement extraction et agenda
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add extract_datatourisme_drome.py agenda.json
+          if git diff --cached --quiet; then
+            echo "Aucun changement."
+            exit 0
+          fi
+          git commit -m "Auditer les photos DATAtourisme"
+          git push
+
   datatourisme-drome:
+    if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
 
     steps:
