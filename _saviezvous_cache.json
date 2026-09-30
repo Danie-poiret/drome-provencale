@@ -1,0 +1,805 @@
+{
+  "version": 1,
+  "entries": {
+    "https://data.datatourisme.fr/13/92e3cca9-2c1a-3a7d-a790-f20face20530": {
+      "text": "Une brocante solidaire donne une seconde vie aux objets tout en finançant une action collective. Le tri reste essentiel : seuls les biens propres, complets et réutilisables peuvent réellement être remis en circulation.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "2d5b7c7ad958425a967231f49ddac8d244ad2790d81a41817f44694892b7d278",
+      "generated_at": "2026-09-30T05:28:24.551003+00:00"
+    },
+    "https://data.datatourisme.fr/13/cc69d8b4-3e14-3c06-be1c-276e8b078d4f": {
+      "text": "Un marché provençal ne propose pas uniquement de l’alimentation : poteries, textiles, savons ou plantes peuvent compléter les produits du terroir. La composition dépend des exposants présents et de la saison.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "f1f440b0074be1c9941d490908fca8bd5f61746bad9fcd7e3d8b6c8ead3a7e0f",
+      "generated_at": "2026-09-30T05:28:24.551710+00:00"
+    },
+    "https://data.datatourisme.fr/13/ba4c8aa2-f2da-3010-b5c6-e983c494e078": {
+      "text": "Les foires étaient autrefois des rendez-vous commerciaux moins fréquents mais plus importants que les marchés ordinaires. Elles pouvaient réunir marchandises, artisanat et bétail sur une zone d’attraction étendue.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "14400eccec2107d38e073b48108a5ca9c59535da3dda11499c3c38c35b581252",
+      "generated_at": "2026-09-30T05:28:24.552120+00:00"
+    },
+    "https://data.datatourisme.fr/13/35888ba0-0a52-314f-9195-024e25fc4022": {
+      "text": "Les jeux de piste patrimoniaux utilisent souvent les façades, blasons et inscriptions comme éléments d’enquête. Une façon ludique d’apprendre à regarder des détails urbains que l’on traverse habituellement sans les remarquer.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "be9f244cc9738b7a4dfe72d417295a8a888a647766bf8c87c335bff0b6cb6908",
+      "generated_at": "2026-09-30T05:28:24.552525+00:00"
+    },
+    "https://data.datatourisme.fr/13/c05b74ac-bb0c-3c5d-b02b-ff8e9ac9e2ea": {
+      "text": "Une carte de jeu de piste simplifie l’espace grâce à des symboles et des repères. Pour avancer, les participants doivent relier cette représentation au paysage réel et vérifier leur position.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "02d9682d7580bc5aef7962f01ebe0051c8b5d17602b5a74758ca24aeeda60be2",
+      "generated_at": "2026-09-30T05:28:24.552923+00:00"
+    },
+    "https://data.datatourisme.fr/13/1fe142f2-f27a-3830-86b2-8f1c26553abc": {
+      "text": "Un jeu de piste transforme les détails d’un lieu en indices : inscriptions, formes, dates ou éléments d’architecture deviennent des repères. L’observation permet ainsi de découvrir le patrimoine tout en avançant dans l’enquête.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "763a9c92db455e011532af81fba29d2989ec202270c7830bd0ae1b9c0a7011a0",
+      "generated_at": "2026-09-30T05:28:24.553333+00:00"
+    },
+    "https://data.datatourisme.fr/13/ff203879-0cb4-360e-a163-149897040cf2": {
+      "text": "Dans un jeu de piste destiné aux enfants, une énigme efficace associe lecture, observation et déplacement. Les indices successifs permettent d’apprendre sans transformer la découverte du patrimoine en leçon scolaire.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "1e8a86817d7fe9070fef6e9b118dbd2546d541a494614712b708af2a0c977d8f",
+      "generated_at": "2026-09-30T05:28:24.553761+00:00"
+    },
+    "https://data.datatourisme.fr/13/f8415ea8-0799-39d5-b010-c9cdc5508a28": {
+      "text": "Les énigmes de patrimoine peuvent s’appuyer sur une date gravée, une forme de fenêtre ou un détail de sculpture. Leur intérêt est d’amener les joueurs à vérifier eux-mêmes les indices sur place.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "46497df2b8c6a92f2018a590f50ea9460bc06207fb734191956d11be90c49292",
+      "generated_at": "2026-09-30T05:28:24.554166+00:00"
+    },
+    "https://data.datatourisme.fr/13/feb1ecc3-ee74-390e-9940-bdb336d24846": {
+      "text": "Un parcours ludique dans un centre ancien aide à comprendre que le patrimoine ne se limite pas aux monuments classés. Une fontaine, une ruelle ou une ancienne enseigne peuvent aussi raconter la vie quotidienne.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "48d80cbe379100e0bb5dba01bfb05b910f2c75fe428abbb356b2283b33aef5b6",
+      "generated_at": "2026-09-30T05:28:24.554559+00:00"
+    },
+    "https://data.datatourisme.fr/13/0841f40a-0e40-30d0-9f0c-87dc58b37dfb": {
+      "text": "Un jeu de piste en famille répartit naturellement les rôles : certains lisent la carte, d’autres repèrent les détails ou résolvent les énigmes. Cette coopération fait partie du jeu autant que la destination finale.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "67dcdfe4b531678681055ca1aaacbc1ef4e223ee9e58990c604efaf291e2f8b2",
+      "generated_at": "2026-09-30T05:28:24.554965+00:00"
+    },
+    "https://data.datatourisme.fr/13/f6169a13-6a40-35a3-90c4-27ba47fe61c5": {
+      "text": "Les places de marché ont longtemps été des lieux de commerce autant que de sociabilité. On y venait pour acheter, mais aussi pour échanger des nouvelles et rencontrer les habitants des villages voisins.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "174c20b7fc5319e496f458cdc1f2c32f8899bb761e1566374a8e9530e0a404c6",
+      "generated_at": "2026-09-30T05:28:24.555332+00:00"
+    },
+    "https://data.datatourisme.fr/13/44a1f9f4-f7f5-327c-b2ea-3faf9a1fd5ae": {
+      "text": "Une halle de marché protège les denrées et les commerçants des intempéries tout en maintenant un espace ouvert aux échanges. Beaucoup de villes ont construit leurs halles près de la place centrale.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "c3db0268440028bb7b823ec92d729678891c13004507ddbfcbabc502f9e15fe3",
+      "generated_at": "2026-09-30T05:28:24.555734+00:00"
+    },
+    "https://data.datatourisme.fr/13/423baa07-343c-310e-9b92-d18010c3fd38": {
+      "text": "Sur un marché alimentaire, les produits sensibles doivent respecter la chaîne du froid. Vitrines réfrigérées, bacs adaptés et temps d’exposition limité contribuent à préserver leur qualité sanitaire.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "65a419d4ac374cbdd4c55ddc143c0438eef21a0deb5bfd4c3f7e91ce7ef9e0a3",
+      "generated_at": "2026-09-30T05:28:24.556124+00:00"
+    },
+    "https://data.datatourisme.fr/13/790225aa-e893-3fc1-9ad4-795bc05bdcef": {
+      "text": "Même modeste, un marché de village maintient un lieu régulier d’échange entre habitants et commerçants. Sa fréquentation dépend souvent autant de la proximité que de la variété des produits proposés.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "4e3c6819de2c57bdd4326a09769bc3c1e5bae9e13e6c4ae8b3474895d5f9c36c",
+      "generated_at": "2026-09-30T05:28:24.556509+00:00"
+    },
+    "https://data.datatourisme.fr/13/2f473275-9c69-34e8-b0ac-2796c6256f49": {
+      "text": "Les marchés de producteurs mettent en relation directe les fermes et les consommateurs. Les étals changent naturellement au fil des récoltes, car fruits et légumes ne sont pas tous disponibles à la même saison.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "bd9f5eb47ed73648855a145c40f997daa24d241857f56c4345708a8621c5991b",
+      "generated_at": "2026-09-30T05:28:24.556896+00:00"
+    },
+    "https://data.datatourisme.fr/13/03308726-ea9c-3b05-8189-0c27bb3be83c": {
+      "text": "Un produit local n’est pas forcément vendu directement par son producteur, tandis qu’un produit fermier a été élaboré sur l’exploitation. Sur un marché, discuter avec le vendeur permet de mieux comprendre cette différence.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "64031708c043ccfabdfa1c4e5a25b0608d4797b024c6d8b607423a28090d3cb1",
+      "generated_at": "2026-09-30T05:28:24.557273+00:00"
+    },
+    "https://data.datatourisme.fr/13/475496f9-ddad-3d03-ad57-8616071987f6": {
+      "text": "Le marché du dimanche associe souvent approvisionnement et promenade, car il se tient pendant un jour traditionnellement moins travaillé. Cette organisation en fait aussi un rendez-vous social régulier.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "f1c249715f78056941d3d405f9bf3552a53f21e673f115c4524ad1b5d2b08a7a",
+      "generated_at": "2026-09-30T05:28:24.557646+00:00"
+    },
+    "https://data.datatourisme.fr/13/d82b5a1d-9858-3cc8-b7c3-9c993984da89": {
+      "text": "Le système métrique a été adopté en France pendant la Révolution afin d’unifier les poids et les mesures. Il a progressivement remplacé de nombreuses unités locales autrefois utilisées dans le commerce des marchés.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "d88405b63b3c113f023689d6cb1fbd94323865d54d6c9db43e191f762d244d91",
+      "generated_at": "2026-09-30T05:28:24.558040+00:00"
+    },
+    "https://data.datatourisme.fr/13/75b1c082-f15c-36ff-8ce2-a3aa0a3520eb": {
+      "text": "Le mot marché vient du latin mercatus, qui désignait le commerce et le lieu où l’on échangeait des marchandises. Sa périodicité hebdomadaire permettait autrefois de desservir régulièrement les bourgs alentour.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "7637e85e1019d91ea5dcdcebd1f6734449504d7a31adb333fadd89198b71b5c7",
+      "generated_at": "2026-09-30T05:28:24.558420+00:00"
+    },
+    "https://data.datatourisme.fr/13/1d6454ba-f6cf-377c-a1d6-4d363bd1d486": {
+      "text": "Sur un marché, l’étal désigne la table ou l’installation où les marchandises sont présentées. Son organisation doit permettre de voir les produits, mais aussi de les protéger du soleil, du vent ou de la pluie.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "5d5e13a35e4589d972bc56d1e4306206064013a1aa423b2f652571f4741464af",
+      "generated_at": "2026-09-30T05:28:24.558805+00:00"
+    },
+    "https://data.datatourisme.fr/13/02748fa9-6350-310e-b6d6-009fcc3d7be5": {
+      "text": "En France, un circuit court alimentaire comporte au maximum un intermédiaire entre le producteur et le consommateur. Les marchés locaux peuvent donc relever du circuit court, sans que la distance soit son unique critère.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "23fcc7e8409be36c6a0f70eca0f7ef377d704a1352b05de3ab9bdecf03bd932f",
+      "generated_at": "2026-09-30T05:28:24.559178+00:00"
+    },
+    "https://data.datatourisme.fr/13/862e8419-0dc7-3927-b76c-8f54f09f0c55": {
+      "text": "Les marchés mixtes réunissent généralement des étals alimentaires et non alimentaires. Cette diversité explique que l’on puisse y trouver, le même jour, des produits frais, des vêtements, des plantes ou de l’artisanat.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "be687d3a2f413b7525687f8216d43cfa07c70fb39887f0ea27273b8ef6df1752",
+      "generated_at": "2026-09-30T05:28:24.559552+00:00"
+    },
+    "https://data.datatourisme.fr/13/35cae8e7-73e9-356f-a6af-690196e41ffa": {
+      "text": "Sur un marché, le contrôle des poids, des mesures et de la qualité protège les échanges. Aujourd’hui encore, l’affichage des prix et l’identification des produits font partie des règles commerciales.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "4f3e2a3350c449c01f40f6268dc53430c2cc7b446852326a28a9147dd5f7a8b2",
+      "generated_at": "2026-09-30T05:28:24.559962+00:00"
+    },
+    "https://data.datatourisme.fr/13/5114bceb-16c8-3c39-8d60-30fb8de9c9fd": {
+      "text": "La taille d’un marché ne détermine pas sa diversité : quelques exposants peuvent proposer alimentation, artisanat ou services complémentaires. La régularité du rendez-vous compte souvent autant que le nombre d’étals.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "84eb90af14c6a25ac63ea742c8636ba809172b0746a9eb0b2fa0940beccb99af",
+      "generated_at": "2026-09-30T05:28:24.560361+00:00"
+    },
+    "https://data.datatourisme.fr/13/586968c6-31d6-31ef-8719-abe2aa84d056": {
+      "text": "Les foires et marchés n’ont pas le même rythme traditionnel : le marché répond à des besoins réguliers, tandis que la foire est plus espacée et attire souvent des vendeurs venus de plus loin.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "7031846416ff40ccb9036ad46047c6972fe8ad31c9afcd16b5b377ff7841056d",
+      "generated_at": "2026-09-30T05:28:24.560794+00:00"
+    },
+    "https://data.datatourisme.fr/13/a3d2e305-75aa-36fa-8bc4-e6f47222efee": {
+      "text": "Un marché qui réunit primeur, boucherie, charcuterie et traiteur rassemble plusieurs métiers alimentaires. Chacun répond à des règles spécifiques de préparation, d’étiquetage et de conservation des produits.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "b72e19c4e038895f7c5158eba1d3f24e86291e8521483f44281c6f2b47f31af9",
+      "generated_at": "2026-09-30T05:28:24.561197+00:00"
+    },
+    "https://data.datatourisme.fr/13/f846be22-d6c4-32d0-9b50-92c333c25d55": {
+      "text": "Les primeurs sont des commerçants spécialisés dans les fruits et légumes frais. Le mot primeur désigne également certains produits disponibles tôt dans la saison, comme les pommes de terre nouvelles.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "a4dc85d7be705280797f85cd0909462e06c93c7213592bcb5b1d91e715acd27b",
+      "generated_at": "2026-09-30T05:28:24.561572+00:00"
+    },
+    "https://data.datatourisme.fr/13/591e1011-f845-357a-9f59-56f325679088": {
+      "text": "Dans un marché de producteurs, les vendeurs proposent principalement ce qu’ils cultivent, élèvent ou transforment eux-mêmes. Cette vente directe permet aussi d’échanger sur l’origine des produits et leur saison.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "fd42de2a07c020b1d6cc87997d8066168ed4a90adbf6191a7b1ecbf95aa1f643",
+      "generated_at": "2026-09-30T05:28:24.561968+00:00"
+    },
+    "https://data.datatourisme.fr/13/3c8dbcce-469d-3556-83e8-a7e5abe34a30": {
+      "text": "Fixer un marché à un jour précis de la semaine permet d’organiser les tournées des commerçants entre plusieurs communes. Un même vendeur peut ainsi fréquenter différents villages au fil des jours.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "cec86c01bc553d3a74dd60594b51cf0ea1da6327c18357aa50d9216c0afc03b8",
+      "generated_at": "2026-09-30T05:28:24.562341+00:00"
+    },
+    "https://data.datatourisme.fr/13/1551156a-bc97-3c63-aeda-8a6d3765b5b9": {
+      "text": "Le marché du lundi prolonge une tradition d’approvisionnement régulier après le week-end. Les jours de marché sont répartis entre communes afin que les commerçants puissent organiser leurs déplacements.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "e2589a3c41679eb12c1248a499563b32133fe6a6610c0848f4b3bb0e34df000c",
+      "generated_at": "2026-09-30T05:28:24.562747+00:00"
+    },
+    "https://data.datatourisme.fr/13/96a1abba-5fbb-3f33-ab46-cc0a9f5422db": {
+      "text": "Fromagers et maraîchers ne préparent pas leur étal de la même façon : les premiers doivent protéger et parfois réfrigérer leurs produits, tandis que les seconds organisent fruits et légumes selon leur fragilité.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "74ab8c65fe786434b05a5641877976f35d05e77c2552854c969d883624ddfa54",
+      "generated_at": "2026-09-30T05:28:24.563123+00:00"
+    },
+    "https://data.datatourisme.fr/13/0549f75d-200b-3722-bcbd-af62181a10b7": {
+      "text": "Le matin reste un horaire fréquent pour les marchés alimentaires, notamment parce que les produits frais supportent mieux les températures modérées et que les commerçants peuvent ensuite poursuivre leur tournée.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "768e6614e35b689f349e1bb7140b3b4a6075de9f6311868b94e034699a9cbc8b",
+      "generated_at": "2026-09-30T05:28:24.563527+00:00"
+    },
+    "https://data.datatourisme.fr/13/820be840-1e6a-3153-a22e-d0a1a1ec180d": {
+      "text": "Les marchés provençaux sont reconnaissables à la place importante accordée aux produits méditerranéens, aux herbes aromatiques et aux productions saisonnières. Leur composition varie toutefois selon le terroir et la période de l’année.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "2c7f7e1aad6b93d4891e78f27d21d914fd994d82a4438d2730f808222c20e8ce",
+      "generated_at": "2026-09-30T05:28:24.563934+00:00"
+    },
+    "https://data.datatourisme.fr/13/5f746fa1-c6c0-3a07-ac5d-01e4161223c0": {
+      "text": "Restaurer un véhicule ancien ne consiste pas seulement à le faire rouler : les passionnés recherchent aussi les matériaux, les couleurs et les pièces correspondant à son époque afin d’en préserver l’authenticité.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "9e61def2c8e93c9301371c758407c037d6d90ddc4bbed1ef267104a60d615d6b",
+      "generated_at": "2026-09-30T05:28:24.564307+00:00"
+    },
+    "https://data.datatourisme.fr/13/6bb4770a-da37-35eb-87cd-b3398aed764a": {
+      "text": "Les marchés du samedi permettent souvent de préparer les repas du week-end. Pour les produits frais, la saison, la maturité et les conditions de conservation sont des critères aussi importants que l’apparence.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "3a60ec85445ceeda5e1cda9f504c2d4a1a0c7a41ea289edaac0f5f1d8c2745da",
+      "generated_at": "2026-09-30T05:28:24.564677+00:00"
+    },
+    "https://data.datatourisme.fr/13/b2abf79b-ddce-3df3-bd7d-e7a8e7074744": {
+      "text": "Un petit marché peut rassembler des productions très différentes parce que chaque ferme se spécialise selon ses sols, son élevage ou son savoir-faire. Cette complémentarité permet de composer un panier varié.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "629c63fed2a3f5de2c5582bea0bfb6cbb98b94ff0c68494f0e0b74207e24e497",
+      "generated_at": "2026-09-30T05:28:24.565088+00:00"
+    },
+    "https://data.datatourisme.fr/13/8b6d80ba-d8db-3748-b089-6a2f81d6b6d1": {
+      "text": "La vente de textile au kilo valorise la quantité de matière plutôt que la marque de chaque vêtement. Elle facilite le réemploi de pièces encore portables et limite leur passage prématuré au rebut.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "dd2219c069b8cf3d03960ad9c92dee2d762945d8370c0a8e57e82a8a54e381b1",
+      "generated_at": "2026-09-30T05:28:24.565451+00:00"
+    },
+    "https://data.datatourisme.fr/13/bbe3ff5b-458b-3526-8c3f-834974bfa63d": {
+      "text": "Avant de devenir chocolat, les fèves de cacao sont fermentées, séchées puis torréfiées. Le chocolatier travaille ensuite la pâte obtenue, notamment par broyage, affinage et tempérage, pour maîtriser texture et brillance.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "26a71e87100c020a1a0373fba98b17cc7ad9c442f470d1d9591325699ccc3d5d",
+      "generated_at": "2026-09-30T05:28:24.565845+00:00"
+    },
+    "https://data.datatourisme.fr/13/8dcc2618-5938-3c0a-a492-36a8c6bb6bda": {
+      "text": "Lors de la distillation de la lavande, la vapeur d’eau traverse les fleurs et entraîne leurs molécules aromatiques. Après refroidissement, l’huile essentielle se sépare de l’eau florale par différence de densité.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "c75f22d8dbe5c09455188b999c03f570d8dcea6113de0e25ad1053bf29e44fa4",
+      "generated_at": "2026-09-30T05:28:24.566338+00:00"
+    },
+    "https://data.datatourisme.fr/13/c3a59a0b-f8d8-35ef-896c-46623131b20b": {
+      "text": "Dans un village perché médiéval, les rues étroites épousent souvent le relief et rejoignent un point fortifié. Une visite guidée aide à lire ces transformations successives dans les murs, passages et places.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "05074ceb4a3ed6207067ee5195b9d80db1418fec8e351c94a1bad76e23230526",
+      "generated_at": "2026-09-30T05:28:24.566739+00:00"
+    },
+    "https://data.datatourisme.fr/13/2551682e-df0e-3f13-a9be-f9eef863cf0c": {
+      "text": "Le fromage de chèvre peut être obtenu par coagulation lactique, par présure ou par une combinaison des deux. Égouttage, salage et affinage déterminent ensuite sa texture et l’évolution de ses arômes.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "7572037f4ee4d76e9a30a9793025296a1fbe607b97b2df8f35e5fc69e1f4c170",
+      "generated_at": "2026-09-30T05:28:24.567142+00:00"
+    },
+    "https://data.datatourisme.fr/13/94e4a52d-bf16-3076-a83b-79d3947f667c": {
+      "text": "Le mot atelier désigne à la fois le lieu où un artiste crée et, par extension, un espace de transmission. Visiter un atelier permet souvent de comprendre les outils et les étapes cachées derrière une œuvre.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "a07e42d4ce8281d109c7638617c80e492a6955c8a7cc9f3d6d1a7ea502924aff",
+      "generated_at": "2026-09-30T05:28:24.567541+00:00"
+    },
+    "https://data.datatourisme.fr/13/0c7adf99-f40f-339a-80ea-f6c9751d4123": {
+      "text": "L’expression vide-grenier évoque les objets longtemps conservés dans les greniers avant d’être proposés à la vente. Contrairement à la brocante professionnelle, il est généralement organisé pour des vendeurs particuliers.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "b32ce61e35122c1e4ed97c30190ad242a885adabc0a2646484e60b2cd5cf54a1",
+      "generated_at": "2026-09-30T05:28:24.567925+00:00"
+    },
+    "https://data.datatourisme.fr/13/21c76fb2-cb31-3867-b666-9b1798100a6e": {
+      "text": "Madame de Sévigné est née en 1626 et doit sa célébrité à une vaste correspondance, notamment avec sa fille. Ses lettres constituent aussi un témoignage précieux sur la société du XVIIe siècle.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "91d4b1ec8353506ead92e345d2ab5518f1ca27eef0a391b85835235c1c4a071b",
+      "generated_at": "2026-09-30T05:28:24.568338+00:00"
+    },
+    "https://data.datatourisme.fr/13/4b35d524-6258-3a6a-8ab4-56c98fe4e0eb": {
+      "text": "La correspondance de Madame de Sévigné relève du genre épistolaire, c’est-à-dire de textes écrits sous forme de lettres. Leur style vivant a contribué à faire de cette correspondance une œuvre littéraire.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "59b9e88234b7b2ba71b39505704a8ea38141fb0bc269926ea288bbc4624086ae",
+      "generated_at": "2026-09-30T05:28:24.568749+00:00"
+    },
+    "https://data.datatourisme.fr/13/e7793ab1-220b-3a89-acac-def13ec67a79": {
+      "text": "L’Eau de Hongrie appartient aux anciennes préparations parfumées européennes à base d’alcool et de plantes aromatiques, souvent du romarin. Plusieurs recettes ont circulé, ce qui rend son origine exacte difficile à établir.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "be4ace5273ee83f561e8854133b45fa374c75111a1d2d47fe7369969d6993106",
+      "generated_at": "2026-09-30T05:28:24.569142+00:00"
+    },
+    "https://data.datatourisme.fr/13/8ed54244-83b4-3afd-8e21-035a135e0c55": {
+      "text": "Un moulin à huile écrase les olives pour en extraire la matière grasse, tandis qu’une distillerie sépare des composés volatils grâce à la chaleur et à la condensation. Les deux procédés sont donc très différents.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "fde66e4b69e3728f503f21590b0d542ba598c1abcd030d5ac001570d7782551e",
+      "generated_at": "2026-09-30T05:28:24.569555+00:00"
+    },
+    "https://data.datatourisme.fr/13/d1fee2bf-6faa-3cc7-a6c3-9075d085e3c4": {
+      "text": "En pâtisserie, peser précisément les ingrédients est particulièrement important : la proportion entre farine, matière grasse, sucre, œufs et agents levants influence directement la texture après cuisson.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "a3e66373db1b8ac52709b7959838a44a416774588f63808759035930d1938728",
+      "generated_at": "2026-09-30T05:28:24.569930+00:00"
+    },
+    "https://data.datatourisme.fr/13/26dd8c8c-25a9-338e-a566-6b716f0c4656": {
+      "text": "Sous le sol forestier, les racines de nombreux arbres vivent en association avec des champignons appelés mycorhizes. Ces relations facilitent les échanges d’eau et de nutriments entre le champignon et la plante.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "e47fa80235b4d359151d1bb3c8a63ca59286e2b672f81d130970ee2720df7ba0",
+      "generated_at": "2026-09-30T05:28:24.570314+00:00"
+    },
+    "https://data.datatourisme.fr/13/1de94095-980b-3643-951d-55c1ede7c44a": {
+      "text": "La soie est produite à partir du filament du cocon du bombyx du mûrier. Plusieurs filaments sont réunis puis travaillés pour obtenir un fil suffisamment solide pour le tissage.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "fdaea9819e0c551dc7e64bd98fdd0cf4114aabcd8b66841b5ae8f89f40ea5b48",
+      "generated_at": "2026-09-30T05:28:24.570728+00:00"
+    },
+    "https://data.datatourisme.fr/13/9c4796f8-70be-3ec9-80f3-e132f51b4163": {
+      "text": "Un marché de fin d’après-midi répond à d’autres habitudes qu’un marché matinal : il peut être fréquenté après l’école ou le travail et prolonger les échanges jusqu’au début de soirée.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "21e770307cf9806c59a1ce2167abba21084bf4363471ef7c6587014149711c3e",
+      "generated_at": "2026-09-30T05:28:24.571097+00:00"
+    },
+    "https://data.datatourisme.fr/13/5ab83d90-da3f-39bd-8d45-d9ae4f692208": {
+      "text": "Le mot biscuit vient de l’idée d’une cuisson répétée, qui permettait autrefois d’obtenir un aliment plus sec et plus facile à conserver. Les recettes modernes ne sont cependant pas toutes cuites deux fois.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "56e2f7557b4101543271b106db63f7318e754891a7fddec9774ce621fe0f1638",
+      "generated_at": "2026-09-30T05:28:24.571497+00:00"
+    },
+    "https://data.datatourisme.fr/13/99c2ea9d-522a-3d5c-9765-be2b8054bb08": {
+      "text": "Une lavandicultrice doit adapter la coupe à la maturité des fleurs et aux conditions météorologiques. Après la récolte, la distillation à la vapeur permet d’obtenir l’huile essentielle et l’eau florale.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "2646a7ee20f609d0e4165c0afb57c4268a24c283eaae1e613083212ac15a2901",
+      "generated_at": "2026-09-30T05:28:24.571872+00:00"
+    },
+    "https://data.datatourisme.fr/13/6f0f138d-0ddd-3158-b059-4265b5ae5f1e": {
+      "text": "Producteur et artisan ne désignent pas la même activité : le premier cultive ou élève une matière première, tandis que l’artisan la transforme ou fabrique un objet grâce à un savoir-faire technique.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "947929e96259006c7817716b4b34576aff2e6b2a5366fdb47e56e2384aa7e7f3",
+      "generated_at": "2026-09-30T05:28:24.572263+00:00"
+    },
+    "https://data.datatourisme.fr/13/eab8c0b3-f195-3ca8-9b1e-b606966f2451": {
+      "text": "Farine, fromage, savon et huile essentielle résultent de transformations très différentes d’une matière première locale. Un marché permet ainsi de voir comment agriculture et artisanat peuvent se compléter.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "070b24e1d44c669708eaf45f585afda2e3fcf750235084b4c01b6866c1e0e9fc",
+      "generated_at": "2026-09-30T05:28:24.572632+00:00"
+    },
+    "https://data.datatourisme.fr/13/1799ceb4-164b-3204-9bdf-04d748289e58": {
+      "text": "Lire l’histoire d’un bourg ancien demande d’observer plusieurs époques à la fois : tracé des rues, remparts, maisons remaniées et bâtiments religieux peuvent conserver des indices médiévaux malgré des transformations plus récentes.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "91ffd688d55dca4e82b0f5e5893ccd28292a25ad16cb6cb1d71495cad5e2b338",
+      "generated_at": "2026-09-30T05:28:24.573042+00:00"
+    },
+    "https://data.datatourisme.fr/13/4cff8133-1d70-34ae-8f85-71c2f2a2e287": {
+      "text": "Sur un marché de producteurs, la présence d’une buvette ou d’une petite restauration transforme parfois l’achat en moment partagé. Il faut toutefois distinguer les produits de la ferme de ceux simplement revendus.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "3bb6a432850265bb331372899ba02c1f7bbfef9c72d865b3fa9e5315f4edcf22",
+      "generated_at": "2026-09-30T05:28:24.573437+00:00"
+    },
+    "https://data.datatourisme.fr/13/35874218-6840-3847-a5d4-55f6e392fa6e": {
+      "text": "Les légumes de plein champ suivent un calendrier saisonnier : asperges, tomates, courges ou poireaux n’arrivent pas naturellement au même moment. Un marché de producteurs rend ces variations particulièrement visibles.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "615173371524a81c0b3731f30fb62592d3ea6cd64d61e2d5e03cf86f40c6da1f",
+      "generated_at": "2026-09-30T05:28:24.573813+00:00"
+    },
+    "https://data.datatourisme.fr/13/78795d08-9ba1-3b3e-bf0d-6598e3b0f7b6": {
+      "text": "Pendant la vinification, les levures transforment les sucres du raisin en alcool et en gaz carbonique. Le choix des raisins, de la température et de l’élevage influence ensuite le style du vin.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "626e98ec4990beeffee4fd58722ea336619e96a0103b8083f401e39bfe084a7f",
+      "generated_at": "2026-09-30T05:28:24.574211+00:00"
+    },
+    "https://data.datatourisme.fr/13/39eb3ee0-5aa1-3b51-aa3f-db71108c7247": {
+      "text": "Le noyer porte des fruits entourés d’une enveloppe verte appelée brou. À maturité, celle-ci se fend et libère la noix, dont la coque protège les cerneaux consommés ou pressés pour produire de l’huile.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "daa4cec06316df3d41780d1754ce9e8869b3a3e77d14d82df371f919876abdac",
+      "generated_at": "2026-09-30T05:28:24.574590+00:00"
+    },
+    "https://data.datatourisme.fr/13/8d59bbaa-60a1-34b3-9884-9f709b274968": {
+      "text": "La bicyclette de sécurité, avec deux roues de taille proche et une transmission par chaîne, s’est imposée à la fin du XIXe siècle. Sa forme générale est à l’origine du vélo moderne.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "2c79e4e70e7b0d46a6924217ce02de02f3b15cf147b85a2afb1ba9d924506e45",
+      "generated_at": "2026-09-30T05:28:24.574994+00:00"
+    },
+    "https://data.datatourisme.fr/13/748e4653-1963-3b86-8350-9a527edbba62": {
+      "text": "Le carrosse se distingue des voitures plus anciennes par une caisse suspendue, destinée à rendre le voyage moins rude. Aux XVIIe et XVIIIe siècles, il reste un moyen de transport coûteux et prestigieux.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "c14d9cc6a81a33838ebca680c0e29ab88017cba5ba85dd79c97a4f7ce1cdd1c6",
+      "generated_at": "2026-09-30T05:28:24.575413+00:00"
+    },
+    "https://data.datatourisme.fr/13/498f92ac-a259-3b77-bd7c-8957bb631c1c": {
+      "text": "Les fleurs sont un sujet ancien de la nature morte. Selon l’artiste, elles peuvent servir à étudier les couleurs et les formes, évoquer les saisons ou rappeler le caractère éphémère du vivant.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "7b70093e53160136b2e7f983de573fabfbcbd0c4b7166532faa2692462ffe70c",
+      "generated_at": "2026-09-30T05:28:24.575800+00:00"
+    },
+    "https://data.datatourisme.fr/13/2aced51f-e145-3f85-ac24-1364c65c953c": {
+      "text": "Dans un musée, un atelier pédagogique ne sert pas seulement à reproduire une œuvre. La manipulation, l’expérimentation et la discussion donnent aussi des clés pour observer les collections autrement.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "92c73850feeb7d9b4632b9d15830e4e4003459e335ac91079ec9c3aff9714914",
+      "generated_at": "2026-09-30T05:28:24.576182+00:00"
+    },
+    "https://data.datatourisme.fr/13/164c6d1b-2877-3665-acf8-0292e9d74986": {
+      "text": "Les libellules passent la plus grande partie de leur vie sous l’eau à l’état larvaire. Devenues adultes, elles restent liées aux zones humides, où elles chassent d’autres insectes en vol.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "93d7e43de20618920cb90bd04c6627c3534d52145b7b4f4a032e7ba6d2019302",
+      "generated_at": "2026-09-30T05:28:24.576591+00:00"
+    },
+    "https://data.datatourisme.fr/13/d4a89fa6-17d5-3dc6-bcd1-1d789ccf0478": {
+      "text": "Une masterclass est une séance publique où un musicien expérimenté travaille une œuvre avec un élève avancé. Le public découvre ainsi les choix d’interprétation, de phrasé, de toucher et de tempo.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "734dc8db2ff0f53c2aeeec25f42be7e09c011a0720cf7bbcf7cd8acdb2fbce7b",
+      "generated_at": "2026-09-30T05:28:24.576979+00:00"
+    },
+    "https://data.datatourisme.fr/13/f771a5c8-8afb-39dc-9629-36132712e2c8": {
+      "text": "Un château peut changer profondément de fonction au fil des siècles : ouvrage défensif, résidence seigneuriale puis lieu culturel. Tours, ouvertures et décors permettent souvent de repérer ces différentes périodes.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "907c4dafa5df0bba022b7c89872cea86d492dc56b455274ce0d5165846f5db7c",
+      "generated_at": "2026-09-30T05:28:24.577355+00:00"
+    },
+    "https://data.datatourisme.fr/13/9b100bcc-da6d-342d-a7bc-de60e72b3aaa": {
+      "text": "À l’origine, une garenne désignait un espace réservé où vivaient notamment des lapins destinés à la chasse. Le mot a ensuite servi plus largement pour parler d’un terrain fréquenté par ces animaux.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "fcc2b0aae994b7eb456076f2b7f022715e9aca05771948931ea8d2fda9619c2f",
+      "generated_at": "2026-09-30T05:28:24.577772+00:00"
+    },
+    "https://data.datatourisme.fr/13/f314e584-c30d-39b1-9fee-ed84b7a4bc3b": {
+      "text": "Les vautours sont des rapaces nécrophages : ils se nourrissent principalement de carcasses. En éliminant rapidement cette matière animale, ils occupent une fonction particulière dans les chaînes alimentaires.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "824eec958656a1650f232c48159579b316e380364514e79f3e2f1a06db3b0584",
+      "generated_at": "2026-09-30T05:28:24.578131+00:00"
+    },
+    "https://data.datatourisme.fr/13/f98e672f-8ad6-36fc-81ea-f43115e0aef5": {
+      "text": "La lavande fine et le lavandin sont deux plantes différentes. Le lavandin est un hybride généralement plus productif, tandis que leurs huiles essentielles n’ont ni exactement la même composition ni le même parfum.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "92541c74ae266bfbcd1360362f14414d4a592083863673cea776abfcb78bd261",
+      "generated_at": "2026-09-30T05:28:24.578511+00:00"
+    },
+    "https://data.datatourisme.fr/13/46c4fcfc-2c9c-303e-927b-a64cb21d82c8": {
+      "text": "La photographie naturaliste demande d’observer les animaux sans perturber leur comportement. La lumière, la distance et le choix du moment permettent de montrer la faune dans son milieu tout en limitant le dérangement.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "506d63bb59e540750f31ad6e92e45fb66198c402eef168051ba7a4e1d26254b4",
+      "generated_at": "2026-09-30T05:28:24.578896+00:00"
+    },
+    "https://data.datatourisme.fr/13/f6afa6a9-0e24-3efd-b715-c47a1b003fe3": {
+      "text": "Le bronze est principalement un alliage de cuivre et d’étain, tandis que la céramique est une matière minérale transformée par la cuisson. Ces techniques imposent aux artistes des gestes et des contraintes très différents.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "3bb11880272646ab84c04ce0cb055c169547c4964eed601f15f76a252dccfff2",
+      "generated_at": "2026-09-30T05:28:24.579291+00:00"
+    },
+    "https://data.datatourisme.fr/13/33894b46-304e-365e-9c80-cdaca24c691e": {
+      "text": "Une gorge se forme lorsque l’érosion d’un cours d’eau entaille lentement la roche. Les parois ainsi dégagées rendent visibles des couches géologiques qui racontent des milieux anciens et leurs transformations.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "206404b50df79aa29fcfc3cb62213f1f5b928f5b2f1cc10d477ca596e1629d60",
+      "generated_at": "2026-09-30T05:28:24.579679+00:00"
+    },
+    "https://data.datatourisme.fr/13/88365cb1-53d7-3b0c-89a1-b54a4c4a7399": {
+      "text": "De nombreux animaux dits nocturnes ne vivent pas uniquement la nuit : certains sont surtout actifs au crépuscule. Les photographier exige souvent une lumière discrète et une grande patience afin de respecter leur activité naturelle.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "f7cbe3d994a65e2f5db98300f43e7c7cf5f6476ce1e556c7673b38afccfe1ed8",
+      "generated_at": "2026-09-30T05:28:24.580076+00:00"
+    },
+    "https://data.datatourisme.fr/13/e4cb5984-268f-3894-9898-ccc12a370286": {
+      "text": "Dans les terrains calcaires, l’eau peut dissoudre lentement la roche et former des conduits souterrains. Ces circulations invisibles ont nourri de nombreuses légendes de rivières cachées et de trésors.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "f7b9bc9fa307807833912341a83ba2ad28679a9a6d54e702c5efbbf4c9b77a52",
+      "generated_at": "2026-09-30T05:28:24.580457+00:00"
+    },
+    "https://data.datatourisme.fr/13/f8846038-629e-38db-b7f3-acb612deacfc": {
+      "text": "En France, les sapeurs-pompiers interviennent pour les incendies, mais aussi pour les secours d’urgence, les accidents et la protection des personnes. La majorité d’entre eux exerce cette mission comme volontaire.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "7ed4ab55059f23bcc65fcbd0f596407103999ba70baeb0da704742a8a74559e6",
+      "generated_at": "2026-09-30T05:28:24.580868+00:00"
+    },
+    "https://data.datatourisme.fr/13/037831c6-04d7-3499-9689-4fac56854f9e": {
+      "text": "Relancer un marché demande de créer une habitude régulière : même lieu, même jour et horaires lisibles. Cette stabilité aide les habitants comme les commerçants à intégrer le rendez-vous dans leur semaine.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "5ef29a36092c6bbcb0311587c4b1accaee01ba877a2cc153c745412458317732",
+      "generated_at": "2026-09-30T05:28:24.581228+00:00"
+    },
+    "https://data.datatourisme.fr/13/4b0b26b8-348e-33d2-9910-f3f743924ada": {
+      "text": "L’activité physique régulière est reconnue comme favorable à la santé physique et mentale. Une activité adaptée tient compte de l’âge, des capacités et de l’état de santé de chaque participant.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "e75ccf4d8ea169b733fb3446b8a16e09369a34793f1e2b9d2f1f9a5e933f092b",
+      "generated_at": "2026-09-30T05:28:24.581614+00:00"
+    },
+    "https://data.datatourisme.fr/13/65e9dc49-d68c-3dcb-8d50-34e55188f77c": {
+      "text": "En peinture, une même couleur peut paraître différente selon les teintes placées autour d’elle. Les artistes utilisent ces contrastes pour créer de la profondeur, attirer le regard ou modifier l’atmosphère d’un tableau.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "a3d0c1828d953c0e7d1d4ea1ae3eb9594cd7f4a7e6363385a0f098b6e5b353c0",
+      "generated_at": "2026-09-30T05:28:24.582020+00:00"
+    },
+    "https://data.datatourisme.fr/13/32e08800-1780-3caa-8c6a-3337e2bd6773": {
+      "text": "Dans l’art du portrait, le visage ne sert pas seulement à reproduire des traits. Le cadrage, la lumière, le regard et l’attitude peuvent aussi suggérer une personnalité, une époque ou une histoire de vie.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "583c9765945a823ccbe673dd19af282f7e7b4f26edbe3ad388c6a4ff35a78621",
+      "generated_at": "2026-09-30T05:28:24.582404+00:00"
+    },
+    "https://data.datatourisme.fr/13/cf178e7f-b134-36cb-a11a-b41260be1ae1": {
+      "text": "La linogravure est une technique d’impression en relief : les parties creusées ne reçoivent pas l’encre, tandis que les surfaces laissées intactes impriment le motif sur le papier.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "35112045f07e7f3929dfd0a00d7780aa718e547e168091dff15e541e58c1ffbe",
+      "generated_at": "2026-09-30T05:28:24.582819+00:00"
+    },
+    "https://data.datatourisme.fr/13/5d5f193e-19b2-3d4c-8bfc-bf6ff854acdf": {
+      "text": "L’écriture collective impose d’accueillir les idées des autres tout en maintenant un récit cohérent. Les jeux narratifs utilisent cette contrainte pour stimuler vocabulaire, imagination et capacité d’improvisation.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "cfa88b1b9a8320a54d9273e2f2747949dda5b1fba33788c8eaf5071ae1c60dd1",
+      "generated_at": "2026-09-30T05:28:24.583210+00:00"
+    },
+    "https://data.datatourisme.fr/13/715a5caa-8e02-326b-8e14-336bd2fec17a": {
+      "text": "Tango, salsa, cha-cha, rock et valse possèdent des origines et des rythmes distincts. Passer de l’une à l’autre demande d’adapter les pas, la posture et la manière de guider son partenaire.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "52cee8fcca03cdb8c71ead33229efb4dd3a2905b9c70837abb72685882f9afb1",
+      "generated_at": "2026-09-30T05:28:24.583602+00:00"
+    },
+    "https://data.datatourisme.fr/13/4af75467-9254-3398-918a-9d2c91524808": {
+      "text": "Cuisine et chanson partagent un vocabulaire de rythme, de composition et de transmission. Les recettes comme les refrains circulent, se transforment et conservent souvent la mémoire d’une époque ou d’une famille.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "109c1744530c5d2c842760ff6de3330b11a14d0d19be3a887f0b522251d0f009",
+      "generated_at": "2026-09-30T05:28:24.583997+00:00"
+    },
+    "https://data.datatourisme.fr/13/5feb88bb-7c0c-366c-b8dc-6a0fed2f600f": {
+      "text": "Au golf, le joueur choisit son club selon la distance et la trajectoire recherchées. Bois, fers et putter ont des formes différentes, conçues pour des coups bien précis sur le parcours.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "538ecc816c5aeca435928b5bd2cf2046a7c7cbc29c6fb3d7d22b0189606a05e3",
+      "generated_at": "2026-09-30T05:28:24.584368+00:00"
+    },
+    "https://data.datatourisme.fr/13/1dfc97b1-fc8b-38dc-a115-e3198300f2e1": {
+      "text": "La Première Guerre mondiale a suscité journaux, lettres, poèmes et romans écrits par des combattants comme par des civils. Ces textes offrent des regards très différents sur l’expérience de 1914-1918.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "7cd48dfb8d662078e1d1bfd84056d5655a04c78a97b4a85e0b78331407faf5e5",
+      "generated_at": "2026-09-30T05:28:24.584762+00:00"
+    },
+    "https://data.datatourisme.fr/13/9ee49fbf-332f-35a4-9d71-855f622c02cf": {
+      "text": "Le cirque contemporain peut mêler acrobatie, théâtre, musique et objets ordinaires détournés. Une baignoire peut ainsi devenir agrès, décor ou partenaire de jeu, loin du chapiteau traditionnel.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "63935a62f7f89bd8a961f2aabfe99bbf86415d9c9eeb07fba7c96fe041b0e4ec",
+      "generated_at": "2026-09-30T05:28:24.585146+00:00"
+    },
+    "https://data.datatourisme.fr/13/42509f35-58c8-371d-bfa5-d4c92568b96e": {
+      "text": "Le fast-hiking se situe entre randonnée soutenue et trail : l’objectif est d’avancer rapidement sur sentier, généralement en marchant dans les montées, avec un équipement plus léger que celui de randonnée classique.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "4a3cf4ee176fc45c9c3b0dfff54defa2bbc487b0d924802f57b7adc8eaa77334",
+      "generated_at": "2026-09-30T05:28:24.585541+00:00"
+    },
+    "https://data.datatourisme.fr/13/7a50ea13-4ae9-3f2d-bff5-d9e214a1c63c": {
+      "text": "La dégustation mobilise plusieurs sens à la fois : l’odorat participe fortement à la perception des arômes, tandis que texture, température et apparence modifient aussi l’expérience d’un aliment.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "bdd0835e204ce26e2cbdd960d24d90be74d5c98e7dfe02e650096f679cfc91db",
+      "generated_at": "2026-09-30T05:28:24.585928+00:00"
+    },
+    "https://data.datatourisme.fr/13/b2d6020c-dfcf-3c62-80b8-86ecfe88b732": {
+      "text": "Une locomotive à vapeur transforme la chaleur en mouvement : l’eau chauffée produit de la vapeur, dont la pression actionne des pistons reliés aux roues. Les modèles réduits reproduisent ce principe à petite échelle.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "4c2277750e4acd218a9cd880eb71f9fca259f8e6194bed187e54f553f6bbbd34",
+      "generated_at": "2026-09-30T05:28:24.586317+00:00"
+    },
+    "https://data.datatourisme.fr/13/33278bfc-3e76-31d2-a62c-7793b9fc5959": {
+      "text": "Le bien-être ne correspond pas à une méthode unique : détente, mouvement doux, respiration ou activité créative peuvent être proposés séparément. Ces pratiques ne remplacent toutefois ni diagnostic ni traitement médical.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "9c813130b6fefaa82326efe5858fc7ea2549a42f0f47024fb2f0c752318b18da",
+      "generated_at": "2026-09-30T05:28:24.586682+00:00"
+    },
+    "https://data.datatourisme.fr/13/93fb9bfd-782a-3df2-b112-8d4666a336e9": {
+      "text": "Les jeux de société sont bien plus anciens que les jeux modernes : le senet était déjà pratiqué dans l’Égypte antique. Plateaux, pions et règles ont depuis pris une immense variété de formes.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "9a3758fdacfe6ad8ff15de606350e38c96159c7a21240e8e9f6ebfbc5d788f4b",
+      "generated_at": "2026-09-30T05:28:24.587067+00:00"
+    },
+    "https://data.datatourisme.fr/13/428072f8-28d5-372a-b7dd-6c8805bf1f7f": {
+      "text": "Le récital de piano met un seul interprète au centre du concert. Franz Liszt a largement contribué à populariser au XIXe siècle cette forme de représentation consacrée au piano seul.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "b985502a9c09d56a44932bd392afa7bafeca882cfdf7a94b8ebd40fbdc45e524",
+      "generated_at": "2026-09-30T05:28:24.587429+00:00"
+    },
+    "https://data.datatourisme.fr/13/42be6fda-7150-3fbd-9d0e-e15c3709e285": {
+      "text": "Chiner consiste à rechercher un objet d’occasion au milieu de nombreux autres. L’intérêt d’un vide-grenier tient autant à la découverte imprévue qu’à la négociation et à l’histoire racontée par le vendeur.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "5d1c8331289f9a37bed38398d4f48cfb1d0f8adaf95703bc8f34ecd3186fa052",
+      "generated_at": "2026-09-30T05:28:24.587801+00:00"
+    },
+    "https://data.datatourisme.fr/13/532c7567-1c46-397a-a343-3eef586547fe": {
+      "text": "Acheter un objet dans un vide-grenier prolonge sa durée d’usage sans exiger une fabrication neuve. Mobilier, vaisselle, livres ou outils peuvent ainsi circuler entre plusieurs propriétaires.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "b2c266a3eec553594681bb1489d1731371ee6f25ff047093cd4d4a9d663717c3",
+      "generated_at": "2026-09-30T05:28:24.588164+00:00"
+    },
+    "https://data.datatourisme.fr/13/790e55ad-e193-38c9-ae71-501ded235d91": {
+      "text": "En trail, le dénivelé positif additionne toutes les montées du parcours, et non la seule différence entre départ et arrivée. Deux courses de même distance peuvent donc présenter des difficultés très différentes.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "f79170d20b73889f3e4bdee7c56e8bb0daccfda2ef057d1deef8587fba44101d",
+      "generated_at": "2026-09-30T05:28:24.588535+00:00"
+    },
+    "https://data.datatourisme.fr/13/287665eb-0553-3668-97b9-064699970429": {
+      "text": "L’improvisation est au cœur de nombreux courants du jazz : les musiciens créent ou transforment leurs phrases en temps réel, tout en s’appuyant sur une structure, un rythme et l’écoute du groupe.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "d0168829adf1de513cf72b42382abc3f53bfda7099d34730646f49b65a4c52fc",
+      "generated_at": "2026-09-30T05:28:24.588941+00:00"
+    },
+    "https://data.datatourisme.fr/13/e8812d4c-4935-3336-a5b3-76734ba0f99f": {
+      "text": "La musique de chambre est écrite pour un petit nombre d’instrumentistes, souvent sans chef. Chaque musicien porte une partie autonome et doit ajuster en permanence son jeu à celui des autres.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "9177dd08d33663741edc14bd64100b1eb5d2c2adb515c84b0dbc351c8fbf0bac",
+      "generated_at": "2026-09-30T05:28:24.589297+00:00"
+    },
+    "https://data.datatourisme.fr/13/ec749863-4a9a-3c84-a468-ea118b9598a6": {
+      "text": "Le coing est naturellement riche en pectine, une substance qui aide confitures et pâtes de fruits à prendre en refroidissant. Cru, il est dur et astringent ; la cuisson développe son parfum.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "a55f3f93820cf648babf6200101c59376f213d2e6a9ba2a69a3dbad92cee0dca",
+      "generated_at": "2026-09-30T05:28:24.589656+00:00"
+    },
+    "https://data.datatourisme.fr/13/6cd134cd-6af4-3f7e-8bc0-d94045b563ee": {
+      "text": "Un jeu d’enquête patrimonial utilise le bâtiment comme document : plan, sculptures, inscriptions ou fonctions anciennes deviennent des preuves. À l’abbaye, observer l’architecture peut donc faire avancer le récit.",
+      "source_label": "",
+      "model": "manual",
+      "version": 1,
+      "context_hash": "af4fbfdf8e81299b01cfefabf50526a5a4f0a77e8440d44031606db6d5a3315d",
+      "generated_at": "2026-09-30T05:28:24.590053+00:00"
+    }
+  }
+}
