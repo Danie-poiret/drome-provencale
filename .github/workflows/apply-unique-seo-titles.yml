@@ -1,4 +1,4 @@
-name: Appliquer les titles SEO uniques
+name: Appliquer titles SEO et Le savais-tu
 
 on:
   push:
@@ -23,15 +23,20 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Generer les fiches sans appel OpenAI
+      - name: Installer les dependances
+        run: python -m pip install -r requirements.txt
+
+      - name: Generer les fiches et les faits thematiques
         env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_MODEL: "gpt-5.6-terra"
           MAX_EVENT_AI_CALLS: "0"
         run: python generate_event_pages.py
 
       - name: Ajouter attribution DATAtourisme
         run: python prepare_datatourisme_test.py
 
-      - name: Verifier les titles uniques
+      - name: Verifier les titles et les faits uniques
         run: |
           python - <<'PY'
           import html
@@ -39,6 +44,7 @@ jobs:
           from pathlib import Path
 
           titles = []
+          facts = []
           for path in Path("evenements").glob("*/index.html"):
               text = path.read_text(encoding="utf-8")
               match = re.search(r"<title>(.*?)</title>", text, re.S)
@@ -46,22 +52,41 @@ jobs:
                   raise SystemExit(f"title manquant: {path}")
               titles.append(html.unescape(match.group(1)).strip().casefold())
 
+              section = re.search(
+                  r'<section class="section anecdote"><h2>💡 Le savais-tu \?</h2>'
+                  r'<p>(.*?)</p>(.*?)</section>',
+                  text,
+                  re.S,
+              )
+              if not section:
+                  raise SystemExit(f"Le savais-tu thématique manquant: {path}")
+              if "href=" in section.group(0):
+                  raise SystemExit(f"Lien interdit dans Le savais-tu: {path}")
+              fact = html.unescape(re.sub(r"<[^>]+>", "", section.group(1))).strip().casefold()
+              facts.append(fact)
+
           if len(titles) != 100 or len(titles) != len(set(titles)):
               raise SystemExit(
                   f"titles invalides: {len(titles)} fiches, "
                   f"{len(set(titles))} uniques"
               )
+          if len(facts) != 100 or len(facts) != len(set(facts)):
+              raise SystemExit(
+                  f"faits invalides: {len(facts)} fiches, "
+                  f"{len(set(facts))} uniques"
+              )
           print("100 fiches, 100 titles uniques")
+          print("100 fiches, 100 Le savais-tu thématiques uniques, sans lien")
           PY
 
       - name: Enregistrer les fiches
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add generate_event_pages.py evenements
+          git add generate_event_pages.py fix_saviezvous.py _saviezvous_cache.json evenements
           if git diff --cached --quiet; then
             echo "Aucun changement."
             exit 0
           fi
-          git commit -m "Appliquer les titles SEO uniques"
+          git commit -m "Appliquer les Le savais-tu thématiques"
           git push
