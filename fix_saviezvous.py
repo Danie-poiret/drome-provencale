@@ -27,6 +27,7 @@ ROOT = Path(__file__).resolve().parent
 AGENDA = ROOT / "agenda.json"
 EVENT_CACHE = ROOT / "_event_seo_cache.json"
 FACT_CACHE = ROOT / "_saviezvous_cache.json"
+MANUAL_FACTS = ROOT / "saviezvous_drome.json"
 EVENTS_DIR = ROOT / "evenements"
 FACT_VERSION = 1
 BATCH_SIZE = int(os.getenv("SAVIEZVOUS_BATCH_SIZE", "25"))
@@ -294,7 +295,7 @@ def load_fact_cache():
     return data
 
 
-def stable_record(fact, item, old=None):
+def stable_record(fact, item, old=None, model=None):
     old = old if isinstance(old, dict) else {}
     wanted_hash = context_hash(item)
     if (
@@ -305,7 +306,7 @@ def stable_record(fact, item, old=None):
     return {
         "text": clean(fact.get("text", "")),
         "source_label": clean(fact.get("source_label", "")),
-        "model": OPENAI_MODEL,
+        "model": model or OPENAI_MODEL,
         "version": FACT_VERSION,
         "context_hash": wanted_hash,
         "generated_at": datetime.now(timezone.utc).isoformat(),
@@ -357,16 +358,25 @@ def main():
 
     fact_cache = load_fact_cache()
     cached_facts = fact_cache.get("entries", {})
+    manual_facts = load_json(MANUAL_FACTS, {})
+    if not isinstance(manual_facts, dict):
+        manual_facts = {}
     assigned = {}
     used_keys = set()
     for url, slug, item in entries:
-        candidate = cached_facts.get(url) if isinstance(cached_facts, dict) else None
+        manual = manual_facts.get(slug)
+        if isinstance(manual, str):
+            candidate = {"text": manual, "source_label": ""}
+        elif isinstance(manual, dict):
+            candidate = manual
+        else:
+            candidate = cached_facts.get(url) if isinstance(cached_facts, dict) else None
         if not isinstance(candidate, dict):
             continue
         text = clean(candidate.get("text", ""))
         key = fact_key(text)
         if (
-            clean(candidate.get("context_hash")) == context_hash(item)
+            (manual is not None or clean(candidate.get("context_hash")) == context_hash(item))
             and valid_fact(text)
             and topical_fact(item, text)
             and key
@@ -412,7 +422,8 @@ def main():
     for url, slug, item in entries:
         fact = assigned[url]
         old = cached_facts.get(url) if isinstance(cached_facts, dict) else None
-        record = stable_record(fact, item, old)
+        model = "manual" if slug in manual_facts else OPENAI_MODEL
+        record = stable_record(fact, item, old, model=model)
         updated_cache[url] = record
         page = EVENTS_DIR / slug / "index.html"
         if not page.exists():
