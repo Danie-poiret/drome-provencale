@@ -43,9 +43,11 @@ jobs:
         run: |
           python - <<'PY'
           import html
+          import json
           import re
           from pathlib import Path
 
+          expected = len(json.loads(Path("agenda.json").read_text(encoding="utf-8"))["events"])
           titles = []
           facts = []
           for path in Path("evenements").glob("*/index.html"):
@@ -68,18 +70,18 @@ jobs:
               fact = html.unescape(re.sub(r"<[^>]+>", "", section.group(1))).strip().casefold()
               facts.append(fact)
 
-          if len(titles) != 100 or len(titles) != len(set(titles)):
+          if len(titles) != expected or len(titles) != len(set(titles)):
               raise SystemExit(
                   f"titles invalides: {len(titles)} fiches, "
                   f"{len(set(titles))} uniques"
               )
-          if len(facts) != 100 or len(facts) != len(set(facts)):
+          if len(facts) != expected or len(facts) != len(set(facts)):
               raise SystemExit(
                   f"faits invalides: {len(facts)} fiches, "
                   f"{len(set(facts))} uniques"
               )
-          print("100 fiches, 100 titles uniques")
-          print("100 fiches, 100 Le savais-tu thématiques uniques, sans lien")
+          print(f"{expected} fiches, {expected} titles uniques")
+          print(f"{expected} fiches, {expected} Le savais-tu thématiques uniques, sans lien")
           PY
 
       - name: Enregistrer les fiches

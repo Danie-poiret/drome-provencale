@@ -1,4 +1,4 @@
-name: DATAtourisme Drôme - 100 événements
+name: DATAtourisme Drôme - 150 événements
 
 on:
   workflow_dispatch:
@@ -25,18 +25,26 @@ jobs:
       - name: Recuperer tous les evenements DATAtourisme de la Drome
         env:
           DATATOURISME_API_KEY: ${{ secrets.DATATOURISME_API_KEY }}
-          DATATOURISME_EVENT_LIMIT: "100"
+          DATATOURISME_EVENT_LIMIT: "150"
         run: python extract_datatourisme_drome.py
 
-      - name: Generer 100 fiches uniques comme agenda.vivreanyons.fr
+      - name: Generer 150 fiches uniques comme agenda.vivreanyons.fr
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           OPENAI_MODEL: "gpt-5.6-terra"
-          MAX_EVENT_AI_CALLS: "50"
+          MAX_EVENT_AI_CALLS: "60"
+          MAX_SAVIEZVOUS_API_CALLS: "8"
+          SAVIEZVOUS_BATCH_SIZE: "25"
+          FAIL_ON_EVENT_FALLBACKS: "1"
         run: python generate_event_pages.py
 
       - name: Ajouter habillage et attribution DATAtourisme
         run: python prepare_datatourisme_test.py
+
+      - name: Verifier les 150 fiches avant publication
+        env:
+          EXPECTED_EVENT_COUNT: "150"
+        run: python validate_event_site.py
 
       - name: Enregistrer les changements
         shell: bash
@@ -51,11 +59,12 @@ jobs:
           git add evenements
           git add sitemap.xml
           git add robots.txt
+          git add validate_event_site.py
 
           if git diff --cached --quiet; then
             echo "Aucun changement."
             exit 0
           fi
 
-          git commit -m "Ajouter 50 fiches des villages autour de Nyons"
+          git commit -m "Ajouter 50 nouvelles fiches autour de Nyons"
           git push
