@@ -1,0 +1,76 @@
+name: Ajouter liens footer home événements
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/add-home-footer-links.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  update-home-footer:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le dépôt
+        uses: actions/checkout@v4
+
+      - name: Installer Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Ajouter le footer à la home et aux générateurs
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          footer = '''<!-- HOME_FOOTER_LINKS_START -->
+          <div style="font-size:12px;color:#686b63;margin-top:22px;padding:12px 14px;border:1px solid #e4dccd;border-radius:12px;background:rgba(255,255,255,.65)">Données : Office de Tourisme de la Vallée de la Drôme via DATAtourisme · mise à jour le 26/09/2026 · Licence Ouverte 2.0 · <a href="https://agenda.vivreanyons.fr/" style="color:#354622;font-weight:700">Agenda de Nyons</a> · <a href="https://www.vivreanyons.fr/" style="color:#354622;font-weight:700">Vivre à Nyons</a></div>
+          <!-- HOME_FOOTER_LINKS_END -->'''
+
+          # Page actuellement publiée dans le dépôt
+          index_path = Path("evenements/index.html")
+          text = index_path.read_text(encoding="utf-8")
+          text = re.sub(r'\s*<!-- HOME_FOOTER_LINKS_START -->.*?<!-- HOME_FOOTER_LINKS_END -->\s*', '\n', text, flags=re.S)
+          if "</main>" not in text:
+              raise SystemExit("Balise </main> introuvable dans evenements/index.html")
+          text = text.replace("</main>", footer + "</main>", 1)
+          index_path.write_text(text, encoding="utf-8")
+
+          # Rendre le footer durable dans les deux sources qui reconstruisent l'index
+          for filename in ("beautify_events_index.py", "generate_event_pages.py"):
+              path = Path(filename)
+              src = path.read_text(encoding="utf-8")
+              src = re.sub(r'\s*<!-- HOME_FOOTER_LINKS_START -->.*?<!-- HOME_FOOTER_LINKS_END -->\s*', '', src, flags=re.S)
+              needle = "</main>{script}</body></html>"
+              if needle not in src:
+                  raise SystemExit(f"Fin de page index introuvable dans {filename}")
+              src = src.replace(needle, footer + needle, 1)
+              path.write_text(src, encoding="utf-8")
+
+          # Contrôles
+          final = index_path.read_text(encoding="utf-8")
+          assert 'https://agenda.vivreanyons.fr/' in final
+          assert 'https://www.vivreanyons.fr/' in final
+          assert 'Office de Tourisme de la Vallée de la Drôme' in final
+          print("Footer home ajouté avec les deux liens.")
+          PY
+
+      - name: Vérifier la syntaxe Python
+        run: python -m py_compile beautify_events_index.py generate_event_pages.py
+
+      - name: Enregistrer le footer de la home
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add beautify_events_index.py generate_event_pages.py evenements/index.html
+          if git diff --cached --quiet; then
+            echo "Aucun changement."
+            exit 0
+          fi
+          git commit -m "Ajouter Agenda de Nyons et Vivre à Nyons sur la home événements"
+          git push
