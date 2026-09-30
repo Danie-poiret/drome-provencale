@@ -235,6 +235,199 @@ def save_json(path: Path, data) -> None:
     path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
+WEEKDAYS = ("lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche")
+
+
+def _title_subject(title: str, pattern: str) -> str:
+    """Retire seulement un type d'événement générique, jamais un nom propre."""
+    subject = re.sub(pattern, "", clean(title), count=1, flags=re.I)
+    return subject.strip(" \t:;,.!?-–—'\"«»")
+
+
+def _weekday_hint(event: dict) -> str:
+    """Différencie notamment deux marchés récurrents d'une même commune."""
+    haystack = " ".join(
+        clean(event.get(field))
+        for field in ("title", "description", "opening")
+    ).casefold()
+    return next((day for day in WEEKDAYS if re.search(rf"\b{day}s?\b", haystack)), "")
+
+
+def _fit_seo_title(commune: str, phrase: str, limit: int = 70) -> str:
+    """Garde la commune visible même quand le titre de la source est très long."""
+    prefix = f"{clean(commune) or 'Drôme'} : "
+    phrase = clean(phrase).strip(" :;,.!-–—")
+    candidate = prefix + phrase
+    if len(candidate) <= limit:
+        return candidate
+
+    room = max(18, limit - len(prefix) - 1)
+    shortened = phrase[:room].rstrip()
+    if " " in shortened:
+        shortened = shortened.rsplit(" ", 1)[0]
+    shortened = re.sub(
+        r"\s+(?:à\s+la|à\s+l['’]|à|au|aux|de\s+la|de\s+l['’]|de|du|des|et|en|dans|pour)$",
+        "",
+        shortened,
+        flags=re.I,
+    )
+    return prefix + shortened.rstrip(" :;,.!-–—") + "…"
+
+
+def _seo_title_phrase(event: dict) -> str:
+    """Reformule les intitulés génériques sans altérer les noms d'événements."""
+    title = clean(event.get("title")) or "Sortie locale"
+    low = title.casefold()
+    commune = clean(event.get("commune")) or "Drôme"
+    day = _weekday_hint(event)
+
+    if re.match(r"^(?:exposition|expo(?:sition)?(?:\s+photos?)?)\b", low):
+        subject = _title_subject(
+            title,
+            r"^(?:exposition|expo(?:sition)?(?:\s+photos?)?)\s*"
+            r"(?:(?:de\s+la|de\s+l['’]|du|des|de|d['’])\s*)?",
+        )
+        phrase = f"à voir, {subject}" if subject else "une exposition à découvrir"
+    elif "marché" in low:
+        if "producteur" in low and "artisan" in low:
+            phrase = "le rendez-vous des producteurs et artisans"
+        elif "producteur" in low:
+            phrase = "le rendez-vous des producteurs"
+        elif "produits locaux" in low:
+            phrase = "le marché des produits locaux"
+        elif "provençal" in low:
+            phrase = "saveurs et étals du marché provençal"
+        elif "alimentaire" in low:
+            phrase = "le marché alimentaire"
+        elif "hebdomadaire" in low:
+            phrase = "le rendez-vous du marché"
+        else:
+            phrase = "jour de marché"
+        if day:
+            phrase += f" du {day}"
+        elif "hebdomadaire" in low:
+            phrase += " chaque semaine"
+    elif low.startswith("foire"):
+        phrase = "la foire, rendez-vous mensuel" if "mensuelle" in low else title
+    elif re.match(r"^visite\s+guid[ée]e?\b", low):
+        subject = _title_subject(title, r"^visite\s+guid[ée]e?\s*(?:[-–—:]\s*)?")
+        if re.match(r"^(?:d['’]|de\s+la|de\s+l['’]|du|des|de)\b", subject, re.I):
+            phrase = f"découverte guidée {subject}"
+        else:
+            phrase = f"découverte guidée : {subject}" if subject else "une découverte avec un guide"
+    elif low.startswith("visite et dégustation"):
+        subject = _title_subject(title, r"^visite\s+et\s+d[ée]gustation\s*(?:[-–—:]\s*)?")
+        phrase = f"découverte et dégustation : {subject}" if subject else "découverte et dégustation"
+    elif low.startswith("visite historique"):
+        subject = _title_subject(title, r"^visite\s+historique\s*(?:de\s+|du\s+|des\s+)?")
+        phrase = f"{subject or commune} au fil de son histoire"
+    elif low.startswith("visite chez"):
+        subject = _title_subject(title, r"^visite\s+")
+        phrase = f"{subject}, le temps d’une visite"
+    elif low.startswith("visite"):
+        subject = _title_subject(title, r"^visite\s+")
+        if re.match(r"^(?:d['’]|de\s+la|de\s+l['’]|du|des|de)\b", subject, re.I):
+            phrase = f"dans les coulisses {subject}"
+        else:
+            phrase = f"une visite à découvrir : {subject}" if subject else "une visite à découvrir"
+    elif low.startswith("jeu d'enquête") or low.startswith("jeu d’enquête"):
+        subject = _title_subject(title, r"^jeu\s+d['’]enqu[êe]te\s*(?:[-–—:]\s*)?")
+        phrase = f"menez l’enquête : {subject}" if subject else "menez l’enquête"
+    elif low.startswith("jeu de piste"):
+        subject = _title_subject(title, r"^jeu\s+de\s+piste\s*(?:[-–—:]\s*)?")
+        subject = re.sub(rf"\s+[àa]\s+{re.escape(commune)}$", "", subject, flags=re.I).strip()
+        if not subject or slugify(subject) == slugify(commune):
+            phrase = "une enquête grandeur nature"
+        elif subject.casefold().startswith("familial"):
+            phrase = "une enquête " + re.sub(r"^familial\b", "familiale", subject, count=1, flags=re.I)
+        else:
+            phrase = f"une enquête grandeur nature : {subject}"
+    elif low.startswith("découverte ") or low.startswith("decouverte "):
+        subject = _title_subject(title, r"^d[ée]couverte\s+")
+        phrase = f"à la découverte {subject}" if subject else title
+    elif low.startswith("découvrez") or low.startswith("decouvrez"):
+        subject = _title_subject(title, r"^d[ée]couvrez\s+")
+        phrase = f"{subject} à découvrir" if subject else title
+    elif re.match(r"^ateliers?\b", low):
+        subject = _title_subject(title, r"^ateliers?\s*(?:[-–—:]\s*)?")
+        if subject:
+            subject = subject[:1].lower() + subject[1:]
+        phrase = f"un atelier autour de {subject}" if subject else "un atelier à découvrir"
+    elif re.match(r"^vide[- ]grenier\b", low):
+        subject = _title_subject(title, r"^vide[- ]grenier\s*(?:[-–—:]\s*)?")
+        if subject.casefold().startswith("du "):
+            phrase = "le rendez-vous des chineurs au " + subject[3:]
+        else:
+            phrase = "le rendez-vous des chineurs" + (f" : {subject}" if subject else "")
+    elif low.startswith("brocante"):
+        phrase = "une brocante solidaire pour chiner" if "solidaire" in low else "le rendez-vous des chineurs"
+    elif low.startswith("fête") or low.startswith("fete"):
+        subject = _title_subject(title, r"^f[êe]te\s+")
+        replacements = (("des ", "les "), ("du ", "le "), ("de la ", "la "), ("de l’", "l’"), ("de l'", "l'"), ("d’", "l’"), ("d'", "l'"))
+        for old, new in replacements:
+            if subject.casefold().startswith(old):
+                subject = new + subject[len(old):]
+                break
+        phrase = f"{subject} à l’honneur" if subject else title
+    elif low.startswith("portes ouvertes"):
+        subject = _title_subject(title, r"^portes\s+ouvertes\s*(?:[àa]u?|[-–—:]\s*)?")
+        phrase = f"portes ouvertes : {subject}" if subject else title
+    elif low.startswith("soirée dansante") or low.startswith("soiree dansante"):
+        phrase = "une soirée pour danser"
+    elif low.startswith("vente de textile au kilo"):
+        phrase = "textiles au kilo : la vente"
+    elif low.startswith("rendez-vous des vieux véhicules"):
+        phrase = "rencontre de véhicules anciens dans la Valloire"
+    elif low.startswith("parcours découverte") or low.startswith("parcours decouverte"):
+        subject = _title_subject(title, r"^parcours\s+d[ée]couverte\s+")
+        phrase = f"dans les coulisses {subject}" if subject else title
+    elif any(word in low for word in ("récital", "recital", "masterclass", "jazz", "trio ")):
+        phrase = f"musique : {title}"
+    else:
+        # Les noms propres et titres de spectacles sont conservés tels quels.
+        phrase = title
+
+    return _fit_seo_title(commune, phrase)
+
+
+def build_unique_seo_titles(events: list[dict]) -> dict[str, str]:
+    """Produit un <title> distinct par URL et refuse silencieusement aucun doublon."""
+    result: dict[str, str] = {}
+    used: dict[str, int] = {}
+
+    for event in events:
+        key = clean(event.get("url"))
+        candidate = _seo_title_phrase(event)
+        normalized = slugify(candidate, 200)
+
+        if normalized in used:
+            day = _weekday_hint(event)
+            opening = clean(event.get("opening"))
+            time_match = re.search(r"\b(?:[01]?\d|2[0-3])(?:h|:)[0-5]\d\b", opening, re.I)
+            details = day or (time_match.group(0).replace(":", " h ") if time_match else "")
+            if details and details.casefold() not in candidate.casefold():
+                candidate = _fit_seo_title(event.get("commune"), f"{candidate.split(': ', 1)[-1]} — {details}")
+                normalized = slugify(candidate, 200)
+
+        if normalized in used:
+            # Dernier recours factuel pour deux doublons parfaits de la source.
+            used[normalized] += 1
+            candidate = _fit_seo_title(
+                event.get("commune"),
+                f"{candidate.split(': ', 1)[-1]} — fiche {used[normalized]}",
+            )
+            normalized = slugify(candidate, 200)
+        else:
+            used[normalized] = 1
+
+        result[key] = candidate
+
+    normalized_titles = [slugify(value, 200) for value in result.values()]
+    if len(normalized_titles) != len(set(normalized_titles)):
+        raise RuntimeError("Les balises title générées ne sont pas toutes uniques")
+    return result
+
+
 def fallback_editorial(event: dict) -> dict:
     title = clean(event.get("title"))
     commune = clean(event.get("commune"))
@@ -733,6 +926,7 @@ def main() -> None:
     if not isinstance(anecdote_catalog, dict):
         raise RuntimeError("village_anecdotes.json est invalide")
     anecdotes = assign_anecdotes(events, anecdote_catalog)
+    seo_titles = build_unique_seo_titles(events)
 
     cache = load_json(CACHE_FILE, {})
     if not isinstance(cache, dict):
@@ -786,8 +980,10 @@ def main() -> None:
 
         out_dir = EVENTS_DIR / slug_map[key]
         out_dir.mkdir(parents=True, exist_ok=True)
+        page_editorial = dict(editorial)
+        page_editorial["seo_title"] = seo_titles[key]
         (out_dir / "index.html").write_text(
-            render_page(event, editorial, events, slug_map, anecdotes[key]),
+            render_page(event, page_editorial, events, slug_map, anecdotes[key]),
             encoding="utf-8",
         )
         print(f"FICHE {i:03d}/{len(events)}: {slug_map[key]}")
@@ -801,6 +997,7 @@ def main() -> None:
     print(f"Cache éditorial : {cache_hits}")
     print(f"Appels OpenAI    : {ai_calls}")
     print(f"Textes secours   : {fallbacks}")
+    print(f"Titles SEO uniques : {len(seo_titles)}")
     print("OK: pages événements, sitemap.xml et robots.txt prêts.")
 
 
