@@ -1,0 +1,31 @@
+name: Collect 50 additional nearby events
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/collect-nearby-additions.yml"
+permissions:
+  contents: write
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install data collector dependencies
+        run: python -m pip install requests==2.32.3
+      - name: Collect verified current events without OpenAI calls
+        env:
+          DATATOURISME_API_KEY: ${{ secrets.DATATOURISME_API_KEY }}
+        run: python collect_nearby_additions.py
+      - name: Save candidates for editorial preparation
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add _nearby_additions.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Collect 50 additional events near Nyons for review"
+          git push
