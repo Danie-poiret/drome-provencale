@@ -56,7 +56,7 @@ NEARBY_NYONS_COMMUNES = (
     "Malataverne", "Donzère", "Pierrelatte", "Montélimar", "Marsanne",
     "Cléon-d'Andran", "Crest", "Saillans", "Die",
 )
-PRESERVED_EVENT_TARGET = 100
+PRESERVED_EVENT_TARGET = 200
 
 # Les champs parents permettent de récupérer leurs sous-propriétés sans faire
 # un appel de détail pour chaque événement.

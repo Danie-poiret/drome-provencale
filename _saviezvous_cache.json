@@ -1208,6 +1208,306 @@
       "version": 1,
       "context_hash": "0b263f327ad0680877adc5ea03293e8e7a1e67dfa8f143a07c25586d97a7a95f",
       "generated_at": "2026-09-30T10:16:56.649393+00:00"
+    },
+    "https://data.datatourisme.fr/13/2ff189ee-5521-3d94-8085-1888cfbadd5a": {
+      "text": "La peinture est bien au programme de cet atelier : le vin sert aussi à créer une œuvre que les participants pourront emporter chez eux.",
+      "context_hash": "a2d7fe0372a3912a475f89ec8c40121a349cbfd94dd5cb4bc25d406d50df467b",
+      "source_label": "Programme publié par la source de l’événement",
+      "updated_at": "2026-10-04T07:43:13.190198+00:00"
+    },
+    "https://data.datatourisme.fr/13/3c9508c4-1124-34aa-974f-33143cda5e3b": {
+      "text": "Regards croisés associe les aquarelles de Pascale Mansano aux poèmes de Mireille Diaz Florian : le visiteur rencontre donc à la fois des images et des mots.",
+      "context_hash": "2672d88dcec67913328391296d95809dedbf455d9108ec735d4d9e22bc439f4d",
+      "source_label": "Programme publié par la source de l’événement",
+      "updated_at": "2026-10-04T07:43:13.209349+00:00"
+    },
+    "https://data.datatourisme.fr/13/3c73304f-68ab-31fd-b0eb-adba201aa7a1": {
+      "text": "Clair de lune figure au programme de Yuko Hirota, mais la soirée ne s’arrête pas à Debussy : la troisième sonate de Chopin est également annoncée.",
+      "context_hash": "c3e1d99d3b53d44bd13ff9c17b8f4d42b3fc4a88ac19bbb7f640bb04159abc96",
+      "source_label": "Programme publié par la source de l’événement",
+      "updated_at": "2026-10-04T07:43:13.220497+00:00"
+    },
+    "https://data.datatourisme.fr/13/42c0db55-08f7-31d0-aecd-844b4225cccc": {
+      "text": "La soirée Musiques à Vinsobres se déroule en plusieurs temps : un duo pop rock, un apéritif, puis un trio consacré à la poésie de Francis Cabrel.",
+      "context_hash": "d41839022e494b91c26351581da813b90229740534ccf343c97b4987f06985ee",
+      "source_label": "Programme publié par la source de l’événement",
+      "updated_at": "2026-10-04T07:43:13.233995+00:00"
+    },
+    "https://data.datatourisme.fr/13/51a736ce-a77e-3fa2-926d-eea8276bacc4": {
+      "text": "Daniel Carturan réunit deux approches du sujet : il est moniteur de plongée et docteur en sciences et techniques des activités physiques et sportives.",
+      "context_hash": "c6fd0098cb6e3d343d676a167e0485dda1ed028dad3376ae27b0281a3c153033",
+      "source_label": "Programme publié par la source de l’événement",
+      "updated_at": "2026-10-04T07:43:13.242995+00:00"
+    },
+    "https://data.datatourisme.fr/13/1f636713-87cf-3c9d-a8f5-903f78c304ba": {
+      "text": "La distribution annoncée rassemble une quinzaine d’adhérents des GEM le Soleil et l’Oasis : le projet repose sur une représentation théâtrale portée par ce collectif.",
+      "context_hash": "de47cbe2a72d7e5a9f4fa6d28638b0027809c087968e30412c4e4bcfdf27132c",
+      "source_label": "Programme publié par la source de l’événement",
+      "updated_at": "2026-10-04T07:43:13.252968+00:00"
+    },
+    "https://data.datatourisme.fr/13/475df38e-d06d-361f-8dba-1186d07bb522": {
+      "text": "Café mortel annonce une rencontre consacrée à la mort. Son intention publiée est de permettre d’en parler, en ouvrant un échange autour de ce sujet souvent tabou.",
+      "context_hash": "05e11351e74d5ac3f6e59a19113c1206692fa20c66ebd9861dfb36c1e83fbcab",
+      "source_label": "Programme publié par la source de l’événement",
+      "updated_at": "2026-10-04T07:43:13.263010+00:00"
+    },
+    "https://data.datatourisme.fr/13/513f399c-d44d-3588-b1fe-4ee0736dd44f": {
+      "text": "La compagnie Estock Fish présente Les bronzés never die comme un spectacle de rue : humour, dérision et performances circassiennes y sont réunis dans une même proposition.",
+      "context_hash": "23a83c360ce7e38a77435f8b644e5c2efdcca665f95d957b6d686fd9642a933a",
+      "source_label": "Programme publié par la source de l’événement",
+      "updated_at": "2026-10-04T07:43:13.278783+00:00"
+    },
+    "https://data.datatourisme.fr/13/0ace681b-9415-3ad4-9cc2-0fa0f3108b8a": {
+      "text": "T Ki Toi ? est présenté comme un spectacle pour découvrir l’autre, destiné aux personnes petites, grandes et à toutes les autres, sans âge minimum précisé ici.",
+      "context_hash": "e2374391a0883bf0783743f41c1f3758ba2417926038adc2b2f208937e5f8a05",
+      "source_label": "Programme publié par la source de l’événement",
+      "updated_at": "2026-10-04T07:43:13.300622+00:00"
+    },
+    "https://data.datatourisme.fr/13/57993df7-2727-34de-888e-d40d71372fe3": {
+      "text": "Le Naïma Quartet est mené par Naïma Girou, qui est à la fois contrebassiste et chanteuse ; la présentation situe la formation du groupe en 2016.",
+      "context_hash": "f6d1a2146f51f2d99cacbec154ac9e1851fd268c83d47813852cc74e0e364679",
+      "source_label": "Programme publié par la source de l’événement",
+      "updated_at": "2026-10-04T07:43:13.329784+00:00"
+    },
+    "https://data.datatourisme.fr/13/2fc31c05-dcf0-3a54-8fb8-a7a849c68931": {
+      "text": "Eclosion est un solo : la compagnie A travers Ciels annonce une forme de danse-théâtre retraçant la trajectoire d’une femme, plutôt qu’un spectacle avec une troupe entière.",
+      "context_hash": "db1fcc95c64c902ce1bc2f39a20910ae0865bacc9b61bc5603510df8a8fc7369",
+      "source_label": "Programme publié par la source de l’événement",
+      "updated_at": "2026-10-04T07:43:13.351970+00:00"
+    },
+    "https://data.datatourisme.fr/13/b253065a-c1d2-333c-b4a3-efb622b1f26a": {
+      "text": "Aïda, celle qui reviendra est annoncé pour une durée d’une heure et un public à partir de quatorze ans, dans le cadre du festival Contes et Rencontres.",
+      "context_hash": "34525f592e25caf5b79e5830f43350c53fed1535123c00384c80bc3e38627431",
+      "source_label": "Programme publié par la source de l’événement",
+      "updated_at": "2026-10-04T07:43:13.361994+00:00"
+    },
+    "https://data.datatourisme.fr/13/fb13791d-9639-30a9-af87-878975a7c752": {
+      "text": "Cette soirée jeux est annoncée avec Ludilez à la salle des fêtes de Roche-Saint-Secret-Béconne. Les jeux précis et les conditions de participation ne sont pas détaillés ici.",
+      "context_hash": "1b872f93964aa7c272041692b4af25563fd0d404cefb9408088a59ac3c560624",
+      "source_label": "Programme publié par la source de l’événement",
+      "updated_at": "2026-10-04T07:43:13.374998+00:00"
+    },
+    "https://data.datatourisme.fr/13/0853e50d-e610-367d-9f2d-346996a7585a": {
+      "text": "Ce rendez-vous associe deux lieux de Taulignan : le musée de la soie pour la visite et le Café de la soie pour le menu Madame de Sévigné.",
+      "context_hash": "31810b3e1084b4da684e0a5dcdada58355ac498168c103951662a9831c873f85",
+      "source_label": "Programme publié par la source de l’événement",
+      "updated_at": "2026-10-04T07:43:13.392713+00:00"
+    },
+    "https://data.datatourisme.fr/13/d9a794ef-3700-35c3-8f30-57a35cbd8ad5": {
+      "text": "L’atelier Poteries Buissonnières annonce un projet commun aux petits et aux grands : réaliser une maison de lutin pendant une séance de poterie d’une heure.",
+      "context_hash": "cb967c85731cbc465243d63fde592c5ca25add2a6f9b681e913b0be3b1bff372",
+      "source_label": "Programme publié par la source de l’événement",
+      "updated_at": "2026-10-04T07:43:13.407253+00:00"
+    },
+    "https://data.datatourisme.fr/13/25e9a16a-535e-397a-b889-4b244ec52f13": {
+      "text": "Deux lectures de Matin brun sont annoncées le même jour à Roche-Saint-Secret-Béconne : une première à 10 heures, puis une seconde à 11 h 30.",
+      "context_hash": "27847a3cd0f12b1fc09df28ba82f65d202eba77f0f8385ff5c2cd70925088fbd",
+      "source_label": "Programme publié par la source de l’événement",
+      "updated_at": "2026-10-04T07:43:13.426470+00:00"
+    },
+    "https://data.datatourisme.fr/13/6619bbed-bf23-3f73-9584-07d994715e7e": {
+      "text": "Le marché de Taulignan n’est pas seulement alimentaire : la présentation mentionne également du textile et des objets touristiques parmi les produits proposés le vendredi matin.",
+      "context_hash": "d0de4584be9a6ad9b2f5f7e8ebcce54c16ec907b1a378b5fa0bfd966de03498d",
+      "source_label": "Programme publié par la source de l’événement",
+      "updated_at": "2026-10-04T07:43:13.441962+00:00"
+    },
+    "https://data.datatourisme.fr/13/d36b6656-86cb-3d9e-9aff-a90ca5d2fe05": {
+      "text": "La source annonce ce rendez-vous chaque deuxième samedi du mois à 11 h 30 ; la fiche présente ici la séance du 10 octobre au musée de la soie.",
+      "context_hash": "611a283b050c2fc197f4f925afe40954197b4dd8c1170f8f5476e2fbbf029af7",
+      "source_label": "Programme publié par la source de l’événement",
+      "updated_at": "2026-10-04T07:43:13.456621+00:00"
+    },
+    "https://data.datatourisme.fr/13/68cf9603-89ed-37c9-af99-4cc4645550cb": {
+      "text": "Accords Vins et Fromages comprend une visite guidée de la cave de vinification avant la dégustation : ce rendez-vous ne se résume donc pas à une table de fromages.",
+      "context_hash": "e07c72e39229af7ebb82e9afbbeae6fafad84168c52c4f1b1d265ab41b3a5c76",
+      "source_label": "Programme publié par la source de l’événement",
+      "updated_at": "2026-10-04T07:43:13.473054+00:00"
+    },
+    "https://data.datatourisme.fr/13/6af28fea-9152-3676-ba76-2bef3cbe1d8f": {
+      "text": "Cette annonce concerne la visite guidée gratuite de la cave de vinification. Elle se distingue de la formule Accords Vins et Fromages, qui comprend une dégustation spécifique.",
+      "context_hash": "ee5726be112b613212dd5e3fb55cb57f818fe1c921041b053925a114d7d5b04f",
+      "source_label": "Programme publié par la source de l’événement",
+      "updated_at": "2026-10-04T07:43:13.489760+00:00"
+    },
+    "https://data.datatourisme.fr/13/f54b602c-51f2-3b66-af0a-134538308821": {
+      "text": "Le Jour de la Nuit est une manifestation nationale de sensibilisation à la pollution lumineuse ; la date de Rémuzat s’inscrit dans ce rendez-vous plus large.",
+      "context_hash": "f79d16af751e71d550c242f8b9eb859f550283ed46b33fbbdd2677bf53580787",
+      "source_label": "Programme publié par la source de l’événement",
+      "updated_at": "2026-10-04T07:43:13.504254+00:00"
+    },
+    "https://data.datatourisme.fr/13/565ab84b-0d64-3342-aa69-eccf64fa302b": {
+      "text": "Le marché de Noël de Rémuzat est annoncé dans deux salles chauffées. La présentation prévoit aussi une buvette, une tombola, une soupe à l’oignon et de la restauration rapide.",
+      "context_hash": "2e065caaaaa333eff54399c873819d9e9d01a0b980af4d9d24d60419bdd6ab88",
+      "source_label": "Programme publié par la source de l’événement",
+      "updated_at": "2026-10-04T07:43:13.521822+00:00"
+    },
+    "https://data.datatourisme.fr/13/ed3c2f36-ad7b-36db-a256-477467106bdb": {
+      "text": "Le même projet théâtral est annoncé à Buis-les-Baronnies et à Rémuzat, à deux dates différentes : cette fiche concerne la représentation du 21 octobre à la Marpa.",
+      "context_hash": "4d3c4536acd907ec6f9eb3ddd779940e89c2fe4cb0db0702a28caa81c5f1b9d0",
+      "source_label": "Programme publié par la source de l’événement",
+      "updated_at": "2026-10-04T07:43:13.538785+00:00"
+    },
+    "https://data.datatourisme.fr/13/681844e2-4e8c-3a82-8105-96ca74c13b5f": {
+      "text": "Le magazine Dialogue présenté lors de cette rencontre rassemble des portraits d’artistes de Lich et de Dieulefit, deux villes jumelées mises en relation par ce projet.",
+      "context_hash": "d3509abe34d673fb94639c76bd48d8f7a0b29189d18d38d457f5021acf2316b4",
+      "source_label": "Programme publié par la source de l’événement",
+      "updated_at": "2026-10-04T07:43:13.554605+00:00"
+    },
+    "https://data.datatourisme.fr/13/6933430d-0205-3af4-9bf5-6118248e3e9b": {
+      "text": "La présentation de Transmettre part d’une situation précise : la fille de Monique et Francis Shirck ne deviendra pas agricultrice, ce qui pose la question de la reprise.",
+      "context_hash": "f76c086e487e5daee1316c0e747b43c615f18753ca347140420fbdc9722ec892",
+      "source_label": "Programme publié par la source de l’événement",
+      "updated_at": "2026-10-04T07:43:13.570178+00:00"
+    },
+    "https://data.datatourisme.fr/13/b4414d8c-c12a-3e06-9011-c8007bce09f2": {
+      "text": "Les ateliers et les outils de travail font partie du sujet de cette exposition : les photographies et les sculptures s’intéressent au processus de création des artistes.",
+      "context_hash": "731bca50a9dc284d5d2dee593e5b823c8dce8775b9db26d466776e12325b526c",
+      "source_label": "Programme publié par la source de l’événement",
+      "updated_at": "2026-10-04T07:43:13.582761+00:00"
+    },
+    "https://data.datatourisme.fr/13/2aafcbd5-92f2-3bec-b644-997eca71fd83": {
+      "text": "Mêlées poétiques rassemble deux formats dans la même annonce : des ateliers d’écriture et une scène ouverte consacrée à la poésie et au slam, à La Mine d’art.",
+      "context_hash": "53c577838a05d657c700aef63d17d12a1429f5097d1145bbdd081788c92d218a",
+      "source_label": "Programme publié par la source de l’événement",
+      "updated_at": "2026-10-04T07:43:13.600018+00:00"
+    },
+    "https://data.datatourisme.fr/13/7950b770-dab6-3a83-87df-ef5dd4dab915": {
+      "text": "La présentation des Cont’oires ne se limite pas aux contes : elle mentionne aussi des anecdotes, des souvenirs et des chants parmi les formes de parole à partager.",
+      "context_hash": "85c18ac9dfbb0df59c490632484c6e3bdc847f1939d2f43b370b438ccea37e94",
+      "source_label": "Programme publié par la source de l’événement",
+      "updated_at": "2026-10-04T07:43:13.613065+00:00"
+    },
+    "https://data.datatourisme.fr/13/1fe5e625-07f3-3b88-89e3-96aa85b98da5": {
+      "text": "La création d’un petit numéro fait partie du stage annoncé. Les participants abordent plusieurs disciplines, dont l’acrobatie au sol, l’aérien, les équilibres et le jonglage.",
+      "context_hash": "5ab9c04a9895c2e2352cde8cc09b344d2a7de05fb00044236b2bdd0ce57da9a1",
+      "source_label": "Programme publié par la source de l’événement",
+      "updated_at": "2026-10-04T07:43:13.626068+00:00"
+    },
+    "https://data.datatourisme.fr/13/0d99ce21-7ee6-350b-977a-8abaa9fa949e": {
+      "text": "La Balade de la céramique est présentée comme une visite guidée autour d’une aventure humaine, entre tradition et renouveau ; les départs précis sont à organiser auprès du contact.",
+      "context_hash": "cb1e11a6218200db6aa9dac5efa91f437637e071012bdd6eb4383e93962748b7",
+      "source_label": "Programme publié par la source de l’événement",
+      "updated_at": "2026-10-04T07:43:13.644152+00:00"
+    },
+    "https://data.datatourisme.fr/13/35c47edc-576d-3322-8c89-97c48cfb3131": {
+      "text": "L’hospitalité est le thème annoncé de cette visite du centre ancien de Dieulefit ; la présentation ne détaille pas ici un parcours précis ni une liste d’arrêts.",
+      "context_hash": "4b76e5cef867f8dab768b60f002cb0d260529aad773ccb5d7820e6f6858ba171",
+      "source_label": "Programme publié par la source de l’événement",
+      "updated_at": "2026-10-04T07:43:13.660203+00:00"
+    },
+    "https://data.datatourisme.fr/13/6321d9de-2251-3f65-a943-3f471ce0146c": {
+      "text": "Cette visite est dédiée aux artistes français et allemands réfugiés et résistants à Dieulefit pendant la Deuxième Guerre mondiale : le sujet annoncé est celui de leur mémoire.",
+      "context_hash": "e6d87af630a3af24510f1f21a7549ca2a52f07d8913559c507b92304ed362c71",
+      "source_label": "Programme publié par la source de l’événement",
+      "updated_at": "2026-10-04T07:43:13.677146+00:00"
+    },
+    "https://data.datatourisme.fr/13/d38dcc98-80f3-34dd-9218-d9886fdfa16b": {
+      "text": "Le jus de pomme chaud et les friandises font partie de la présentation de cette balade de Noël, annoncée comme une promenade familiale guidée et animée.",
+      "context_hash": "1b1e7f844028a1ec91533138209bb4df0887990f1973c4d2fcda17c07850cd63",
+      "source_label": "Programme publié par la source de l’événement",
+      "updated_at": "2026-10-04T07:43:13.699999+00:00"
+    },
+    "https://data.datatourisme.fr/13/2c18ea50-90b1-376c-a5ba-f7eeca5887a1": {
+      "text": "Deux photographes, Anna Puig Rosado et Karin Dilthey, présentent leurs regards sur la campagne autour de Lich, dans une exposition inspirée de l’univers des frères Grimm.",
+      "context_hash": "0b2701b027fe7525e20da1fc688ef0fbd547ff6f8d0a7d25281331de958ea35a",
+      "source_label": "Programme publié par la source de l’événement",
+      "updated_at": "2026-10-04T07:43:13.710016+00:00"
+    },
+    "https://data.datatourisme.fr/13/cc83c064-d7b5-32d2-afef-98d5fddf95bc": {
+      "text": "La présentation du Bal marionnéttique réunit deux propositions musicales : les vinyles de DJ mario Nikki et les rondes folk annoncées avec Clôde, lors du même rendez-vous.",
+      "context_hash": "5881d100b8bc7b8cf8dcc88471a9ae32c7e2d8a00bccdebad0840245a3f47036",
+      "source_label": "Programme publié par la source de l’événement",
+      "updated_at": "2026-10-04T07:43:13.723055+00:00"
+    },
+    "https://data.datatourisme.fr/13/5eb431f4-73f4-3402-b096-7c70f21c10cd": {
+      "text": "Autour de La Fontaine est annoncé d’après Jean de La Fontaine, avec une mise en scène de Pierre Semard ; la liste des textes joués n’est pas précisée ici.",
+      "context_hash": "a53e518cb2f9e73dbe355f620fd88302fc4c21d71df2b7403aa479ac0f960baa",
+      "source_label": "Programme publié par la source de l’événement",
+      "updated_at": "2026-10-04T07:43:13.735578+00:00"
+    },
+    "https://data.datatourisme.fr/13/bc011fd6-cac9-3d06-a2e2-2b18119d1ab8": {
+      "text": "Moments d’Argile est présenté comme la deuxième édition du festival international du DocumenTerre de Dieulefit ; son programme couvre trois journées, du 6 au 8 novembre.",
+      "context_hash": "c65b7e845efe55b5b6c2237a39b92e2624c70498c77896e2abe4e83fc4a3669f",
+      "source_label": "Programme publié par la source de l’événement",
+      "updated_at": "2026-10-04T07:43:13.744587+00:00"
+    },
+    "https://data.datatourisme.fr/13/0adbfeec-c615-3800-93f6-e4c6698b3eae": {
+      "text": "La Curioserie annonce une centaine d’œuvres nouvelles pour Fous d’Art, avec trois disciplines citées : le dessin, la peinture et la sculpture, dans le cadre de cette exposition.",
+      "context_hash": "52ab7859cd5d168a7b23182f6a4b13d7304ccdba697e9d2717f6f265769eeddc",
+      "source_label": "Programme publié par la source de l’événement",
+      "updated_at": "2026-10-04T07:43:13.755597+00:00"
+    },
+    "https://data.datatourisme.fr/13/8babc433-5181-3703-a5d7-48ecbabc04ba": {
+      "text": "Jean-Frédéric Neuburger est également annoncé en récital le 25 octobre à Colonzelle ; la masterclass constitue une autre proposition, publiée sur la période du 25 octobre au 1er novembre.",
+      "context_hash": "466bad785ec53e81fe7ddc1e2db64e93940fca7edcf551cf81aade81ee9b689e",
+      "source_label": "Programme publié par la source de l’événement",
+      "updated_at": "2026-10-04T07:43:13.770649+00:00"
+    },
+    "https://data.datatourisme.fr/13/d8096ce5-a918-3ff7-a83d-aa8b832bdbec": {
+      "text": "La source présente ce rendez-vous comme un récital de piano de Jean-Frédéric Neuburger au Petit Palais de Chaillot ; ni les œuvres jouées ni l’heure ne sont précisées ici.",
+      "context_hash": "8639ede466d4c3d8c4255c9998d886041c92792502f545bc6f8c85ca0fa051ea",
+      "source_label": "Programme publié par la source de l’événement",
+      "updated_at": "2026-10-04T07:43:13.780628+00:00"
+    },
+    "https://data.datatourisme.fr/13/16af935e-fbfb-353d-80e3-910c5d25dce2": {
+      "text": "Ce récital réunit Jean-Frédéric Neuburger et Rebecca Chaillot autour de deux pianos ; il se distingue donc du récital solo annoncé à Colonzelle le 25 octobre.",
+      "context_hash": "285b31c295e7637ce0ba236cdbd1b8e8c883ee474456fb2e67fb65025acb2105",
+      "source_label": "Programme publié par la source de l’événement",
+      "updated_at": "2026-10-04T07:43:13.790652+00:00"
+    },
+    "https://data.datatourisme.fr/13/608bf074-23a3-3e93-9c06-ba1a3aa792ec": {
+      "text": "Plusieurs lieux sont indiqués pour voir le feu d’artifice de Grignan en Lumières : le parvis de la Collégiale, le chemin de ronde et le parking Pré Saint-Vincent.",
+      "context_hash": "9666cfe34572e71003bb3fab206fd321da24c211a1cc4bf6d90697d23ab7af08",
+      "source_label": "Programme publié par la source de l’événement",
+      "updated_at": "2026-10-04T07:43:13.807714+00:00"
+    },
+    "https://data.datatourisme.fr/13/49f1bdd7-b1f1-3484-9120-92aec7a822b3": {
+      "text": "La soirée vigneronne ne réunit pas seulement des vignerons : la présentation annonce aussi des artisans et une offre de restauration locale dans les extérieurs du château.",
+      "context_hash": "f0fcba75bbea3c7120f2039ff194de64707ab32642275a45e749ad759bf44e15",
+      "source_label": "Programme publié par la source de l’événement",
+      "updated_at": "2026-10-04T07:43:13.817763+00:00"
+    },
+    "https://data.datatourisme.fr/13/f7912588-352f-3788-8cb1-7ce0c020ee0b": {
+      "text": "La présentation de Combattre au 17e siècle annonce un temps d’échange après la conférence : le rendez-vous ne se limite donc pas à l’exposé de l’intervenant.",
+      "context_hash": "3d1c13e295d79415dbedba6a97c35be5efd317d14610cec47321d1c9e9babeb6",
+      "source_label": "Programme publié par la source de l’événement",
+      "updated_at": "2026-10-04T07:43:13.826809+00:00"
+    },
+    "https://data.datatourisme.fr/13/9b853da3-6ad1-3d4d-bef1-c2f9118995a7": {
+      "text": "Faites entrer l’accusé est une visite familiale dès six ans ; la mission annoncée consiste à aider les mousquetaires du château à arrêter Fouquet, surintendant des finances.",
+      "context_hash": "36fe98c8fc760f8efc8034b9ba75bc29fde4ec0c7447dcd6598d32c554d48421",
+      "source_label": "Programme publié par la source de l’événement",
+      "updated_at": "2026-10-04T07:43:13.839799+00:00"
+    },
+    "https://data.datatourisme.fr/13/ce1a3a88-e9e0-3730-b390-a2aa9ab72275": {
+      "text": "Fouquet et Sévigné dans les coulisses du Grand Siècle est annoncé comme une visite nocturne en déambulation, dans un château décoré à la bougie pour ce rendez-vous.",
+      "context_hash": "c48c4d17a6d7e95807e85957c23ac544b1751a20379606f880432862c0c13493",
+      "source_label": "Programme publié par la source de l’événement",
+      "updated_at": "2026-10-04T07:43:13.852339+00:00"
+    },
+    "https://data.datatourisme.fr/13/ce53f883-bb13-337d-8bf2-172ac2a87f60": {
+      "text": "La rencontre littéraire du 24 octobre à Grignan annonce Christine Bry pour son recueil Le pays tête-en-bas, avec une animation assurée par Anne-Marie Liautard.",
+      "context_hash": "d17f7d5e84ed2e12afb13f47bf84577b760cff655b819a4975c67833028ae552",
+      "source_label": "Programme publié par la source de l’événement",
+      "updated_at": "2026-10-04T07:43:13.865941+00:00"
+    },
+    "https://data.datatourisme.fr/13/c4502ed9-6371-3769-81eb-f27556f15a95": {
+      "text": "Un temps d’échange est annoncé après La mode au 17e siècle : la conférence d’Yvane Jacob permet donc aussi de prolonger le sujet par une discussion.",
+      "context_hash": "92b5e15d8cad51244bb9f9c67b28282c25a1a53fa7bc225d358452f415ff3996",
+      "source_label": "Programme publié par la source de l’événement",
+      "updated_at": "2026-10-04T07:43:13.876479+00:00"
+    },
+    "https://data.datatourisme.fr/13/91907084-d89c-3f88-aaed-a05c41e266ed": {
+      "text": "La présentation de cette soirée à Vesc associe trois éléments : une tartiflette, un DJ et une buvette sur place ; les détails du menu ne sont pas précisés ici.",
+      "context_hash": "699b092d99ac7b9f4074793d2c5c1beead8caed73aa39d54a3fcdb10ffd03ec4",
+      "source_label": "Programme publié par la source de l’événement",
+      "updated_at": "2026-10-04T07:43:13.890856+00:00"
+    },
+    "https://data.datatourisme.fr/13/020f3d54-5399-3ce5-892c-285428ac5f60": {
+      "text": "L’atelier associe deux étapes : écrire une lettre à l’encre de Chine, puis réaliser un sceau de cire pour la cacheter, avec différents supports et outils proposés.",
+      "context_hash": "453af5af7d256a0a20b0eab8623c802c7ab61eeffd508af23630234899340aae",
+      "source_label": "Programme publié par la source de l’événement",
+      "updated_at": "2026-10-04T07:43:13.901408+00:00"
     }
   }
 }

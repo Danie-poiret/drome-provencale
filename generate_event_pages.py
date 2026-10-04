@@ -590,6 +590,8 @@ INDEX_STYLE = STYLE + """
 
 
 def event_slug(event: dict) -> str:
+    if clean(event.get("existing_slug")):
+        return clean(event["existing_slug"])
     return f"{slugify(event.get('title', 'evenement'))}-{clean(event.get('start_date')) or 'date'}"
 
 
@@ -753,6 +755,20 @@ def render_page(
         )
     actions_html = f'<div class="event-actions">{"".join(actions)}</div>' if actions else ""
 
+    qa = [
+        {"question": f"Quand a lieu {title} ?", "answer": date_label(event)},
+        {"question": "Où se déroule ce rendez-vous ?", "answer": concise_address(event)},
+        {"question": "Qu’est-ce qui est annoncé au programme ?", "answer": clean(editorial.get("discover_text"))},
+    ]
+    faq_data = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+        {"@type": "Question", "name": item["question"], "acceptedAnswer": {"@type": "Answer", "text": item["answer"]}}
+        for item in qa
+    ]}
+    faq_html = '<section class="section faq"><h2>Questions / réponses</h2>' + "".join(
+        '<div class="qa"><h3>' + esc(item["question"]) + '</h3><p>' + esc(item["answer"]) + '</p></div>'
+        for item in qa
+    ) + '</section><script type="application/ld+json">' + json.dumps(faq_data, ensure_ascii=False).replace("</", "<\\/") + '</script>'
+
     if anecdote.get("topic_fact"):
         source_label = clean(anecdote.get("source_label"))
         source_note = (
@@ -873,6 +889,7 @@ def render_page(
     <section class="section"><h2>👀 Pourquoi cette sortie peut valoir le détour</h2><p>{esc(editorial.get('why_text'))}</p></section>
     {anecdote_html}
     <section class="section"><h2>ℹ️ Informations pratiques</h2><p>{esc(editorial.get('practical_text'))}</p></section>
+    {faq_html}
     <div class="question">💬 {esc(editorial.get('question'))}</div>
     <section class="section"><h2>🧭 À découvrir autour</h2><p class="around-intro">{esc(around_intro)}</p><div class="related">{''.join(rel_html)}</div></section>
   </main>

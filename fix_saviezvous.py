@@ -128,7 +128,7 @@ def event_slugs(events: list[dict]) -> dict[str, str]:
     used = set()
     for event in events:
         key = clean(event.get("url"))
-        base = f"{slugify(event.get('title', 'evenement'))}-{clean(event.get('start_date')) or 'date'}"
+        base = clean(event.get("existing_slug")) or f"{slugify(event.get('title', 'evenement'))}-{clean(event.get('start_date')) or 'date'}"
         slug = base
         if slug in used:
             slug = f"{base}-{slugify(event.get('commune', 'lieu'), 35)}"

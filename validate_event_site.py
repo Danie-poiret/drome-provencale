@@ -40,7 +40,7 @@ def event_slugs(events: list[dict]) -> dict[str, str]:
     used = set()
     for event in events:
         key = clean(event.get("url"))
-        base = f"{slugify(event.get('title', 'evenement'))}-{clean(event.get('start_date')) or 'date'}"
+        base = clean(event.get("existing_slug")) or f"{slugify(event.get('title', 'evenement'))}-{clean(event.get('start_date')) or 'date'}"
         slug = base
         if slug in used:
             slug = f"{base}-{slugify(event.get('commune', 'lieu'), 35)}"
@@ -169,7 +169,7 @@ def main() -> None:
         fail(f"Le savais-tu dupliqués : {len(set(facts))}/{expected}")
 
     index_source = (EVENTS_DIR / "index.html").read_text(encoding="utf-8")
-    if f"<h1>{expected} événements autour de Nyons</h1>" not in index_source:
+    if not any(f"<h1>{expected} {label} autour de Nyons</h1>" in index_source for label in ("événements", "idées de sorties")):
         fail("Compteur de la page événements incorrect")
     sitemap_source = SITEMAP.read_text(encoding="utf-8")
     sitemap_urls = re.findall(r"<loc>(.*?)</loc>", sitemap_source)

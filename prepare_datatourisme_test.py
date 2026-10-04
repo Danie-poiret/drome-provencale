@@ -33,6 +33,8 @@ def slugify(text: str, max_len: int = 90) -> str:
 
 
 def event_slug(event: dict) -> str:
+    if clean(event.get("existing_slug")):
+        return clean(event["existing_slug"])
     return f"{slugify(event.get('title', 'evenement'))}-{clean(event.get('start_date')) or 'date'}"
 
 
