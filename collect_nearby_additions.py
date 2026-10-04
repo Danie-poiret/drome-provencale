@@ -10,14 +10,14 @@ def main():
     previous = json.loads(Path("agenda.json").read_text(encoding="utf-8"))["events"]
     urls = {dt.clean(e.get("url")) for e in previous}
     uuids = {dt.clean(e.get("datatourisme_uuid")) for e in previous}
-    signatures = {dt.event_signature(e) for e in previous}
+    signatures = {dt.event_signature(e)[:4] for e in previous}
     today = date.today()
     candidates = []
     for poi in dt.fetch_all(os.environ["DATATOURISME_API_KEY"]):
         event = dt.normalize_poi(poi, today)
         if not event or not dt.clean(event.get("commune")) or dt.commune_key(event["commune"]) == "nyons":
             continue
-        url, uuid, signature = event["url"], dt.clean(event.get("datatourisme_uuid")), dt.event_signature(event)
+        url, uuid, signature = event["url"], dt.clean(event.get("datatourisme_uuid")), dt.event_signature(event)[:4]
         if url in urls or (uuid and uuid in uuids) or signature in signatures:
             continue
         distance = dt.distance_from_nyons(event)
@@ -30,12 +30,12 @@ def main():
             uuids.add(uuid)
         signatures.add(signature)
     candidates.sort(key=lambda e: (e["distance_from_nyons_km"], max(e["start_date"], today.isoformat()), e["title"]))
-    selected = candidates[:50]
-    if len(selected) != 50:
+    selected = candidates[:100]
+    if len(selected) < 50:
         raise RuntimeError(f"Only {len(selected)} new events within 45 km; no agenda changes published")
-    payload = {"source": dt.API_URL, "collected_at": datetime.now(timezone.utc).isoformat(), "reference_count": len(previous), "count": 50, "events": selected}
+    payload = {"source": dt.API_URL, "collected_at": datetime.now(timezone.utc).isoformat(), "reference_count": len(previous), "count": len(selected), "events": selected}
     Path("_nearby_additions.json").write_text(json.dumps(payload, ensure_ascii=False, indent=2)+"\n", encoding="utf-8")
-    print(f"Collected 50 new events in {len({e['commune'] for e in selected})} communes")
+    print(f"Collected candidate events in {len({e['commune'] for e in selected})} communes")
     print(f"Distance range: {selected[0]['distance_from_nyons_km']} to {selected[-1]['distance_from_nyons_km']} km straight-line")
 if __name__ == "__main__":
     main()

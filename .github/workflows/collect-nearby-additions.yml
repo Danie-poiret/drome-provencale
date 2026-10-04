@@ -1,4 +1,4 @@
-name: Collect 50 additional nearby events
+name: Collect candidates for 50 additional nearby events
 on:
   workflow_dispatch:
   push:
