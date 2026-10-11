@@ -3,7 +3,7 @@ from functools import wraps
 from pathlib import Path
 import re
 
-SCRIPT = '<script data-nyons-partner-script src="https://www.vivreanyons.fr/assets/nyons-partner-banners.js?v=20261011-v1" defer></script>'
+SCRIPT = '<script data-nyons-partner-script src="https://www.vivreanyons.fr/assets/nyons-partner-banners.js?v=20261011-v2" defer></script>'
 SLOT = '<div data-nyons-partner-slot></div>'
 
 def add_partner_banners(source):

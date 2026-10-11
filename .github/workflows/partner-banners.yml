@@ -1,0 +1,39 @@
+name: Actualiser le composant des deux bannières
+on:
+  push:
+    branches: [main]
+    paths: [partner_banners.py, .github/workflows/partner-banners.yml]
+permissions:
+  contents: write
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Actualiser uniquement la version du composant publicitaire
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          old = "assets/nyons-partner-banners.js?v=20261011-v1"
+          new = "assets/nyons-partner-banners.js?v=20261011-v2"
+          count = 0
+          for path in Path(".").rglob("*.html"):
+              if any(part.startswith(".") for part in path.parts):
+                  continue
+              source = path.read_text(encoding="utf8")
+              updated = source.replace(old, new)
+              if updated != source:
+                  assert updated.replace(new, old) == source
+                  path.write_text(updated, encoding="utf8")
+                  count += 1
+          print(f"{count} pages actualisées ; textes et données inchangés. Aucun appel OpenAI.")
+          PY
+      - name: Publier les pages actualisées
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- '*.html'
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Actualiser les bannières sous le titre des pages"
+          git pull --rebase
+          git push
