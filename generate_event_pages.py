@@ -9,6 +9,7 @@
 - génère aussi l'index des événements, sitemap.xml et robots.txt.
 """
 from __future__ import annotations
+from partner_banners import with_partner_banners
 
 import hashlib
 import html
@@ -702,6 +703,7 @@ def calendar_href(event: dict, canonical: str) -> str:
     return "data:text/calendar;charset=utf-8," + quote(content, safe="")
 
 
+@with_partner_banners
 def render_page(
     event: dict,
     editorial: dict,
@@ -897,6 +899,7 @@ def render_page(
 </html>'''
 
 
+@with_partner_banners
 def render_index(events: list[dict], slug_map: dict[str, str]) -> str:
     def alpha_key(value: str) -> str:
         raw = unicodedata.normalize("NFKD", clean(value))
