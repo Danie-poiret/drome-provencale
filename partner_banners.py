@@ -2,13 +2,14 @@
 from functools import wraps
 from pathlib import Path
 import re
+from page_links import normalize_html
 
 SCRIPT = '<script data-nyons-partner-script src="https://www.vivreanyons.fr/assets/nyons-partner-banners.js?v=20261011-v2" defer></script>'
 SLOT = '<div data-nyons-partner-slot></div>'
 
 def add_partner_banners(source):
     if not re.search(r'<main(?:\s|>)', source, re.I):
-        return source
+        return normalize_html(source, "https://drome.vivreanyons.fr/")
     def replace_ad(match):
         block=match.group(0)
         return SLOT if '/banniere-livres/' in block or 'banniere-livres-drome-ardeche.png' in block else block
@@ -22,7 +23,7 @@ def add_partner_banners(source):
         source=re.sub(r'(<main(?:\s[^>]*)?>)',lambda m:m[0]+SLOT,source,count=1,flags=re.I)
     if 'data-nyons-partner-script' not in source:
         source=re.sub(r'</head>',lambda m:SCRIPT+m[0],source,count=1,flags=re.I)
-    return source
+    return normalize_html(source, "https://drome.vivreanyons.fr/")
 
 def with_partner_banners(renderer):
     @wraps(renderer)
